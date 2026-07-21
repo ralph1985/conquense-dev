@@ -9,6 +9,7 @@ Conquense Dev es el primer borrador de un portfolio profesional en Astro. Está 
 - Datos de secciones centralizados en TypeScript.
 - Animación discreta, coherente y respetuosa con `prefers-reduced-motion`.
 - Accesibilidad como restricción de diseño, no como añadido posterior.
+- Los commits del proyecto deben usar Conventional Commits y escribirse en inglés.
 
 ## Experiencia principal
 
