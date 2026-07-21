@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PortfolioShell from '@/components/PortfolioShell.astro';
+import { portfolioSections } from '@/data/sections';
+---
+
+<BaseLayout>
+  <PortfolioShell sections={portfolioSections} />
+</BaseLayout>
+
+<script>
+  import { initPortfolioScroll } from '@/scripts/portfolio-scroll';
+
+  initPortfolioScroll();
+</script>

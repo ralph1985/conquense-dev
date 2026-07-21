@@ -1,0 +1,44 @@
+---
+import type { PortfolioSection } from '@/data/sections';
+
+interface Props {
+  section: PortfolioSection;
+  index: number;
+  total: number;
+}
+
+const { section, index, total } = Astro.props;
+---
+
+<section
+  id={section.slug}
+  class={`section-panel section-panel--${section.theme}`}
+  style={`--section-accent: ${section.accentColor}`}
+  aria-labelledby={`${section.id}-title`}
+  data-section-panel
+  data-section-index={index}
+  data-section-title={section.title}
+>
+  <div class="section-panel__grid" aria-hidden="true"></div>
+  <div class="section-panel__content">
+    <p class="section-panel__eyebrow">
+      <span>{String(index + 1).padStart(2, '0')}</span>
+      <span>{section.eyebrow}</span>
+    </p>
+    <h1 id={`${section.id}-title`}>{section.title}</h1>
+    <p class="section-panel__subtitle">{section.subtitle}</p>
+    <p class="section-panel__body">{section.content}</p>
+    {
+      section.items && (
+        <ul class="section-panel__items" aria-label={`Puntos de ${section.title}`}>
+          {section.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+  <p class="section-panel__position" aria-hidden="true">
+    {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+  </p>
+</section>

@@ -1,0 +1,19 @@
+---
+import ProgressNav from '@/components/ProgressNav.astro';
+import SectionPanel from '@/components/SectionPanel.astro';
+import type { PortfolioSection } from '@/data/sections';
+
+interface Props {
+  sections: PortfolioSection[];
+}
+
+const { sections } = Astro.props;
+---
+
+<ProgressNav sections={sections} />
+
+<main id="contenido" class="portfolio-stage" data-portfolio-stage>
+  <div class="portfolio-track" data-portfolio-track>
+    {sections.map((section, index) => <SectionPanel section={section} index={index} total={sections.length} />)}
+  </div>
+</main>
