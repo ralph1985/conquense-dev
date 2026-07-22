@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+const HORIZONTAL_SCROLL_QUERY = '(min-width: 768px)';
 
 type PortfolioElements = {
   stage: HTMLElement;
@@ -230,9 +231,11 @@ export function initPortfolioScroll() {
     setActiveSection(elements, 0, 0);
 
     const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
-    const cleanup = prefersReducedMotion ? initVerticalMode(elements) : initHorizontalMode(elements);
+    const canUseHorizontalScroll = window.matchMedia(HORIZONTAL_SCROLL_QUERY).matches;
+    const usesVerticalMode = prefersReducedMotion || !canUseHorizontalScroll;
+    const cleanup = usesVerticalMode ? initVerticalMode(elements) : initHorizontalMode(elements);
 
-    if (prefersReducedMotion) {
+    if (usesVerticalMode) {
       const initialIndex = getHashIndex(elements);
 
       if (initialIndex >= 0) {

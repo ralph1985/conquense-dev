@@ -44,9 +44,9 @@ El español se publica en `/` y el inglés en `/en/`. `BaseLayout` recibe `lang`
 
 ## Scroll
 
-Si no está activo `prefers-reduced-motion`, `ScrollTrigger` fija el escenario principal y traduce el track horizontal según el scroll vertical también en móvil. El desplazamiento se calcula con `scrollWidth - innerWidth`, evitando valores hardcodeados.
+Si no está activo `prefers-reduced-motion`, `ScrollTrigger` fija el escenario principal y traduce el track horizontal según el scroll vertical en pantallas de `768px` o más. El desplazamiento se calcula con `scrollWidth - innerWidth`, evitando valores hardcodeados.
 
-Con reducción de movimiento, el recorrido horizontal se desactiva y la página usa scroll vertical normal. Los indicadores funcionan como enlaces internos.
+En móvil y con reducción de movimiento, el recorrido horizontal se desactiva y la página usa scroll vertical normal. Los indicadores funcionan como enlaces internos.
 
 ## Decisiones técnicas
 

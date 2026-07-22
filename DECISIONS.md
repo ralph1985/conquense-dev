@@ -30,4 +30,6 @@ Alternativa descartada: CMS. Para un primer borrador con Lorem Ipsum sería una 
 
 ## Scroll horizontal y reduced motion
 
-El desplazamiento horizontal se activa también en móvil para evaluar la experiencia lateral en dispositivo real. Cuando el usuario prefiere reducir movimiento, la información sigue disponible en el mismo orden del DOM mediante scroll vertical.
+El desplazamiento horizontal se reserva para pantallas de `768px` o más, donde la experiencia lateral es más legible. En móvil se usa scroll vertical nativo porque el feedback en dispositivo real confirmó que la animación lateral no era suficientemente intuitiva.
+
+Cuando el usuario prefiere reducir movimiento, la información sigue disponible en el mismo orden del DOM mediante scroll vertical.
