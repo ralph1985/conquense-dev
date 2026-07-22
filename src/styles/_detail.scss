@@ -20,14 +20,29 @@
   padding: var(--space-8) 0 var(--space-12);
 }
 
-.detail-hero__back {
+.detail-hero__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.detail-hero__back,
+.detail-hero__language {
   width: fit-content;
   color: var(--color-muted);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
   text-decoration: none;
 }
 
-.detail-hero__back:hover {
+.detail-hero__language {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.detail-hero__back:hover,
+.detail-hero__language:hover {
   color: var(--color-text);
 }
 

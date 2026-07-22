@@ -1,24 +1,31 @@
 ---
 import { siteConfig } from '@/config/site';
+import type { AlternateLink, Language } from '@/data/i18n';
 import '@/styles/main.scss';
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Language;
+  alternateLinks?: AlternateLink[];
 }
 
-const title = Astro.props.title ?? siteConfig.title;
-const description = Astro.props.description ?? siteConfig.description;
+const lang = Astro.props.lang ?? 'es';
+const title = Astro.props.title ?? siteConfig.title[lang];
+const description = Astro.props.description ?? siteConfig.description[lang];
 const canonical = new URL(Astro.url.pathname, siteConfig.canonical).toString();
+const alternateLinks = Astro.props.alternateLinks ?? [];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternateLinks.map((link) => <link rel="alternate" hreflang={link.lang} href={new URL(link.href, siteConfig.canonical).toString()} />)}
+    {alternateLinks.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternateLinks[0]?.href ?? '/', siteConfig.canonical).toString()} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

@@ -1,18 +1,30 @@
 ---
 import DetailPage from '@/components/DetailPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { projectHighlights } from '@/data/professional';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { professionalContent } from '@/data/professional';
+import { localizedPortfolioSections } from '@/data/sections';
+
+const page = professionalContent.es.projects;
 ---
 
 <BaseLayout
+  lang="es"
   title="Proyectos - Rafael García Prieto"
   description="Selección de proyectos y contextos profesionales de Rafael García Prieto como Frontend Senior."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.projects }, { lang: 'en', href: routesByLanguage.en.projects }]}
 >
   <DetailPage
-    eyebrow="Proyectos"
-    title="Proyectos"
-    subtitle="Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas."
-    description="Una primera selección basada en el CV antiguo. Los enlaces y detalles públicos quedan pendientes de revisión antes de ampliar cada caso."
-    items={projectHighlights}
+    eyebrow={page.eyebrow}
+    title={page.title}
+    subtitle={page.subtitle}
+    description={page.description}
+    items={page.items}
+    backHref={`/#${localizedPortfolioSections.es.find((section) => section.id === 'projects')?.slug ?? 'proyectos'}`}
+    backLabel={uiCopy.es.backToJourney}
+    languageHref={routesByLanguage.en.projects}
+    languageLabel={uiCopy.es.languageLabel}
+    languageText="EN"
+    stackLabel={uiCopy.es.stackLabel}
   />
 </BaseLayout>

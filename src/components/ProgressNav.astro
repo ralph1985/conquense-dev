@@ -1,15 +1,24 @@
 ---
+import { languageNames, type AlternateLink, type Language } from '@/data/i18n';
 import type { PortfolioSection } from '@/data/sections';
 
 interface Props {
   sections: PortfolioSection[];
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    goToSectionLabel: string;
+  };
 }
 
-const { sections } = Astro.props;
+const { sections, lang, alternateLink, labels } = Astro.props;
 ---
 
-<nav class="progress-nav" aria-label="Navegación del portfolio" data-progress-nav>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+<nav class="progress-nav" aria-label={labels.navLabel} data-progress-nav>
+  <a class="skip-link" href="#contenido">{labels.skipLink}</a>
   <div class="progress-nav__meta" aria-live="polite">
     <span class="progress-nav__count">
       <span data-current-index>01</span>
@@ -17,6 +26,11 @@ const { sections } = Astro.props;
       <span>{String(sections.length).padStart(2, '0')}</span>
     </span>
     <span class="progress-nav__name" data-current-name>{sections[0]?.title}</span>
+    <a class="progress-nav__language" href={alternateLink.href} aria-label={labels.languageLabel}>
+      <span aria-current="true">{languageNames[lang]}</span>
+      <span aria-hidden="true">/</span>
+      <span>{languageNames[alternateLink.lang]}</span>
+    </a>
   </div>
   <div class="progress-nav__bar" aria-hidden="true">
     <span data-progress-bar></span>
@@ -28,7 +42,7 @@ const { sections } = Astro.props;
           <a
             href={`#${section.slug}`}
             class="progress-nav__dot"
-            aria-label={`Ir a ${section.title}`}
+            aria-label={`${labels.goToSectionLabel} ${section.title}`}
             aria-current={index === 0 ? 'step' : undefined}
             data-section-link
             data-section-index={index}

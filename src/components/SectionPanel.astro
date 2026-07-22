@@ -5,9 +5,13 @@ interface Props {
   section: PortfolioSection;
   index: number;
   total: number;
+  labels: {
+    sectionItemsLabel: string;
+    sectionActionsLabel: string;
+  };
 }
 
-const { section, index, total } = Astro.props;
+const { section, index, total, labels } = Astro.props;
 ---
 
 <section
@@ -30,7 +34,7 @@ const { section, index, total } = Astro.props;
     <p class="section-panel__body">{section.content}</p>
     {
       section.items && (
-        <ul class="section-panel__items" aria-label={`Puntos de ${section.title}`}>
+        <ul class="section-panel__items" aria-label={`${labels.sectionItemsLabel} ${section.title}`}>
           {section.items.map((item) => (
             <li>{item}</li>
           ))}
@@ -39,7 +43,7 @@ const { section, index, total } = Astro.props;
     }
     {
       section.actions && (
-        <div class="section-panel__actions" aria-label={`Acciones de ${section.title}`}>
+        <div class="section-panel__actions" aria-label={`${labels.sectionActionsLabel} ${section.title}`}>
           {section.actions.map((action) => (
             <a href={action.href}>{action.label}</a>
           ))}

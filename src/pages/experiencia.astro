@@ -1,18 +1,30 @@
 ---
 import DetailPage from '@/components/DetailPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { experienceEntries } from '@/data/professional';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { professionalContent } from '@/data/professional';
+import { localizedPortfolioSections } from '@/data/sections';
+
+const page = professionalContent.es.experience;
 ---
 
 <BaseLayout
+  lang="es"
   title="Experiencia - Rafael García Prieto"
   description="Experiencia profesional de Rafael García Prieto en frontend, mobile web, JavaScript y aplicaciones de gestión."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.experience }, { lang: 'en', href: routesByLanguage.en.experience }]}
 >
   <DetailPage
-    eyebrow="Experiencia"
-    title="Experiencia profesional"
-    subtitle="Trayectoria en frontend, mobile web, banca digital, producto y aplicaciones de gestión."
-    description="Contenido provisional extraído del CV antiguo. Falta contrastarlo con LinkedIn y actualizar fechas, stack reciente, impacto y logros."
-    items={experienceEntries}
+    eyebrow={page.eyebrow}
+    title={page.title}
+    subtitle={page.subtitle}
+    description={page.description}
+    items={page.items}
+    backHref={`/#${localizedPortfolioSections.es.find((section) => section.id === 'projects')?.slug ?? 'proyectos'}`}
+    backLabel={uiCopy.es.backToJourney}
+    languageHref={routesByLanguage.en.experience}
+    languageLabel={uiCopy.es.languageLabel}
+    languageText="EN"
+    stackLabel={uiCopy.es.stackLabel}
   />
 </BaseLayout>

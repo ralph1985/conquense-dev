@@ -63,6 +63,22 @@
   white-space: nowrap;
 }
 
+.progress-nav__language {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--space-1);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.progress-nav__language span[aria-current='true'] {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
 .progress-nav__bar {
   overflow: hidden;
   width: 100%;

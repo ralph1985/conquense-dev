@@ -5,12 +5,12 @@ import { routesByLanguage, uiCopy } from '@/data/i18n';
 import { localizedPortfolioSections } from '@/data/sections';
 ---
 
-<BaseLayout lang="es" alternateLinks={[{ lang: 'es', href: routesByLanguage.es.home }, { lang: 'en', href: routesByLanguage.en.home }]}>
+<BaseLayout lang="en" alternateLinks={[{ lang: 'es', href: routesByLanguage.es.home }, { lang: 'en', href: routesByLanguage.en.home }]}>
   <PortfolioShell
-    sections={localizedPortfolioSections.es}
-    lang="es"
-    alternateLink={{ lang: 'en', href: routesByLanguage.en.home }}
-    labels={uiCopy.es}
+    sections={localizedPortfolioSections.en}
+    lang="en"
+    alternateLink={{ lang: 'es', href: routesByLanguage.es.home }}
+    labels={uiCopy.en}
   />
 </BaseLayout>
 

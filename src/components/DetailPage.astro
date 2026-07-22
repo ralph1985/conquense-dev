@@ -16,14 +16,24 @@ interface Props {
   subtitle: string;
   description: string;
   items: DetailItem[];
+  backHref: string;
+  backLabel: string;
+  languageHref: string;
+  languageLabel: string;
+  languageText: string;
+  stackLabel: string;
 }
 
-const { eyebrow, title, subtitle, description, items } = Astro.props;
+const { eyebrow, title, subtitle, description, items, backHref, backLabel, languageHref, languageLabel, languageText, stackLabel } =
+  Astro.props;
 ---
 
 <main class="detail-page">
   <header class="detail-hero">
-    <a class="detail-hero__back" href="/#proyectos">Volver al recorrido</a>
+    <div class="detail-hero__nav">
+      <a class="detail-hero__back" href={backHref}>{backLabel}</a>
+      <a class="detail-hero__language" href={languageHref} aria-label={languageLabel}>{languageText}</a>
+    </div>
     <p class="detail-hero__eyebrow">{eyebrow}</p>
     <h1>{title}</h1>
     <p class="detail-hero__subtitle">{subtitle}</p>
@@ -47,7 +57,7 @@ const { eyebrow, title, subtitle, description, items } = Astro.props;
               ))}
             </ul>
           )}
-          <ul class="detail-item__stack" aria-label="Tecnologías">
+          <ul class="detail-item__stack" aria-label={stackLabel}>
             {item.stack.map((technology) => (
               <li>{technology}</li>
             ))}

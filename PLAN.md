@@ -8,7 +8,8 @@ Este documento guía el trabajo por hitos de Conquense Dev. Es la fuente de verd
 - Stack base: Astro, TypeScript, SCSS, GSAP y ScrollTrigger.
 - Experiencia principal: scroll vertical con avance horizontal también en móvil; scroll vertical normal solo con `prefers-reduced-motion`.
 - Secciones actuales: Inicio, Perfil, Cómo trabajo, Arquitectura, Proyectos, Stack y Contacto.
-- Contenido actual: primera versión profesional en español, redactada a partir de un CV antiguo como material provisional.
+- Contenido actual: primera versión profesional bilingüe ES/EN, redactada a partir de un CV antiguo como material provisional.
+- Rutas actuales: `/`, `/proyectos/`, `/experiencia/`, `/en/`, `/en/projects/` y `/en/experience/`.
 
 ## Reglas de trabajo
 
@@ -75,6 +76,20 @@ Cierre:
 - Fuente profesional actualizada y revisada.
 - Contenido del portfolio alineado con CV y LinkedIn.
 - Datos personales públicos revisados.
+
+### M3b - Preparación inglés
+
+**Estado:** completado.
+
+Objetivo: dejar preparada y publicada una primera versión inglesa sin bloquear M3.
+
+Cierre:
+
+- Contenido principal, proyectos y experiencia disponibles en ES/EN.
+- Rutas inglesas publicadas bajo `/en/`.
+- `lang`, canonical y `hreflang` configurados por ruta.
+- Cambio de idioma disponible desde la navegación.
+- La traducción queda marcada como provisional hasta actualizar CV y LinkedIn.
 
 ### M4 - Pulido visual y responsive
 
@@ -157,10 +172,11 @@ Cierre:
 
 - Exportar datos de LinkedIn más adelante.
 - Actualizar el CV antes de considerar final el contenido profesional.
+- Revisar la traducción inglesa después de actualizar CV y LinkedIn.
 - Confirmar si el email público será el personal actual o uno específico para el portfolio.
 - Revisar enlaces antiguos del CV antes de publicarlos.
 - Definir proyectos/casos que se pueden contar sin problemas de confidencialidad.
 
 ## Próximo paso
 
-El siguiente hito activo sigue siendo `M3 - Actualización CV y LinkedIn`, manteniendo `/proyectos/` y `/experiencia/` como rutas separadas ya disponibles para revisión.
+El siguiente hito activo sigue siendo `M3 - Actualización CV y LinkedIn`. Si se aplaza contenido, el siguiente avance técnico recomendado es `M4 - Pulido visual y responsive`.

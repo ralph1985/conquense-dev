@@ -1,0 +1,30 @@
+---
+import DetailPage from '@/components/DetailPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { localizedPortfolioSections } from '@/data/sections';
+import { professionalContent } from '@/data/professional';
+
+const page = professionalContent.en.experience;
+---
+
+<BaseLayout
+  lang="en"
+  title="Experience - Rafael Garcia Prieto"
+  description="Professional experience of Rafael Garcia Prieto in frontend, mobile web, JavaScript and management applications."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.experience }, { lang: 'en', href: routesByLanguage.en.experience }]}
+>
+  <DetailPage
+    eyebrow={page.eyebrow}
+    title={page.title}
+    subtitle={page.subtitle}
+    description={page.description}
+    items={page.items}
+    backHref={`${routesByLanguage.en.home}#${localizedPortfolioSections.en.find((section) => section.id === 'projects')?.slug ?? 'projects'}`}
+    backLabel={uiCopy.en.backToJourney}
+    languageHref={routesByLanguage.es.experience}
+    languageLabel={uiCopy.en.languageLabel}
+    languageText="ES"
+    stackLabel={uiCopy.en.stackLabel}
+  />
+</BaseLayout>

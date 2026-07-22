@@ -1,19 +1,30 @@
 ---
 import ProgressNav from '@/components/ProgressNav.astro';
 import SectionPanel from '@/components/SectionPanel.astro';
+import type { AlternateLink, Language } from '@/data/i18n';
 import type { PortfolioSection } from '@/data/sections';
 
 interface Props {
   sections: PortfolioSection[];
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    goToSectionLabel: string;
+    sectionItemsLabel: string;
+    sectionActionsLabel: string;
+  };
 }
 
-const { sections } = Astro.props;
+const { sections, lang, alternateLink, labels } = Astro.props;
 ---
 
-<ProgressNav sections={sections} />
+<ProgressNav sections={sections} lang={lang} alternateLink={alternateLink} labels={labels} />
 
 <main id="contenido" class="portfolio-stage" data-portfolio-stage>
   <div class="portfolio-track" data-portfolio-track>
-    {sections.map((section, index) => <SectionPanel section={section} index={index} total={sections.length} />)}
+    {sections.map((section, index) => <SectionPanel section={section} index={index} total={sections.length} labels={labels} />)}
   </div>
 </main>

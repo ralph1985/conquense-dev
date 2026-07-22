@@ -20,22 +20,27 @@ npm run preview  # preview del build
 
 ## Arquitectura
 
-- `src/pages/index.astro`: compone la página principal.
+- `src/pages/`: rutas principales en español e inglés.
 - `src/layouts/BaseLayout.astro`: HTML base, SEO y estilos globales.
 - `src/components/PortfolioShell.astro`: estructura del recorrido.
 - `src/components/SectionPanel.astro`: render genérico de cada sección.
 - `src/components/ProgressNav.astro`: navegación fija, indicadores y progreso.
 - `src/components/DetailPage.astro`: layout para páginas internas de experiencia y proyectos.
-- `src/data/sections.ts`: fuente de datos tipada para todas las secciones.
-- `src/data/professional.ts`: fuente de datos para rutas separadas de proyectos y experiencia.
+- `src/data/i18n.ts`: rutas, etiquetas de UI y soporte de idioma.
+- `src/data/sections.ts`: fuente de datos tipada para secciones ES/EN.
+- `src/data/professional.ts`: fuente de datos ES/EN para rutas separadas de proyectos y experiencia.
 - `src/styles/`: tokens, estilos base, layout, navegación y secciones.
 - `src/scripts/portfolio-scroll.ts`: lógica GSAP, teclado, indicadores y estado activo.
 
 ## Datos
 
-Las secciones se definen en `src/data/sections.ts`. Para añadir una sección basta con añadir un objeto al array `portfolioSections`; la navegación, el progreso y el recorrido se derivan de los datos renderizados.
+Las secciones se definen en `src/data/sections.ts`, separadas por idioma en `localizedPortfolioSections`. Para añadir una sección hay que añadir el objeto equivalente en `es` y `en`; la navegación, el progreso y el recorrido se derivan de los datos renderizados.
 
-Los proyectos y la experiencia profesional viven en `src/data/professional.ts` y se muestran en rutas independientes: `/proyectos/` y `/experiencia/`.
+Los proyectos y la experiencia profesional viven en `src/data/professional.ts` y se muestran en rutas independientes: `/proyectos/`, `/experiencia/`, `/en/projects/` y `/en/experience/`.
+
+## Idiomas
+
+El español se publica en `/` y el inglés en `/en/`. `BaseLayout` recibe `lang` y enlaces alternativos para generar `canonical` y `hreflang`. El cambio de idioma apunta a la ruta equivalente cuando existe.
 
 ## Scroll
 
@@ -49,6 +54,7 @@ Con reducción de movimiento, el recorrido horizontal se desactiva y la página 
 - GSAP + ScrollTrigger cubre `pin`, `scrub` y `snap` sin dependencias de smooth scroll.
 - SCSS centraliza tokens y estilos sin introducir un framework visual.
 - Los datos viven en TypeScript para mantener tipos y edición simple.
+- El bilingüismo se resuelve con datos tipados y rutas Astro estáticas, sin añadir una librería i18n.
 
 ## Mejoras futuras
 
