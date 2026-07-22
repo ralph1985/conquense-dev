@@ -11,6 +11,10 @@ interface Props {
     skipLink: string;
     languageLabel: string;
     goToSectionLabel: string;
+    themeToggleLabel: string;
+    themeSystemLabel: string;
+    themeLightLabel: string;
+    themeDarkLabel: string;
   };
 }
 
@@ -26,11 +30,26 @@ const { sections, lang, alternateLink, labels } = Astro.props;
       <span>{String(sections.length).padStart(2, '0')}</span>
     </span>
     <span class="progress-nav__name" data-current-name>{sections[0]?.title}</span>
-    <a class="progress-nav__language" href={alternateLink.href} aria-label={labels.languageLabel}>
-      <span aria-current="true">{languageNames[lang]}</span>
-      <span aria-hidden="true">/</span>
-      <span>{languageNames[alternateLink.lang]}</span>
-    </a>
+    <span class="progress-nav__controls">
+      <button
+        class="progress-nav__theme"
+        type="button"
+        aria-label={labels.themeToggleLabel}
+        title={labels.themeToggleLabel}
+        data-theme-toggle
+        data-label-toggle={labels.themeToggleLabel}
+        data-label-system={labels.themeSystemLabel}
+        data-label-light={labels.themeLightLabel}
+        data-label-dark={labels.themeDarkLabel}
+      >
+        <span data-theme-state>{labels.themeSystemLabel}</span>
+      </button>
+      <a class="progress-nav__language" href={alternateLink.href} aria-label={labels.languageLabel}>
+        <span aria-current="true">{languageNames[lang]}</span>
+        <span aria-hidden="true">/</span>
+        <span>{languageNames[alternateLink.lang]}</span>
+      </a>
+    </span>
   </div>
   <div class="progress-nav__bar" aria-hidden="true">
     <span data-progress-bar></span>

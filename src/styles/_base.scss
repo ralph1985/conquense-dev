@@ -13,8 +13,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 16% 12%, rgba(199, 161, 90, 0.1), transparent 26rem),
-    radial-gradient(circle at 86% 8%, rgba(37, 99, 235, 0.08), transparent 30rem),
+    radial-gradient(circle at 16% 12%, var(--color-ambient-warm), transparent 26rem),
+    radial-gradient(circle at 86% 8%, var(--color-ambient-focus), transparent 30rem),
     linear-gradient(var(--color-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
     var(--color-background);
@@ -26,7 +26,7 @@ body {
 }
 
 body::selection {
-  background: rgba(199, 161, 90, 0.28);
+  background: var(--color-selection);
 }
 
 a {

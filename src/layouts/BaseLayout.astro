@@ -40,9 +40,39 @@ const alternateLinks = Astro.props.alternateLinks ?? [];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={siteConfig.brand.name} />
+    <script is:inline>
+      (() => {
+        const storageKey = 'conquense-dev-theme';
+        const darkQuery = '(prefers-color-scheme: dark)';
+        let storedTheme = null;
+
+        try {
+          storedTheme = window.localStorage.getItem(storageKey);
+        } catch {
+          storedTheme = null;
+        }
+
+        const resolvedTheme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : window.matchMedia(darkQuery).matches
+              ? 'dark'
+              : 'light';
+
+        document.documentElement.dataset.theme = resolvedTheme;
+        document.documentElement.dataset.themePreference = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'system';
+        document.documentElement.style.colorScheme = resolvedTheme;
+      })();
+    </script>
     <title>{title}</title>
   </head>
   <body>
     <slot />
   </body>
 </html>
+
+<script>
+  import { initThemeControls } from '@/scripts/theme';
+
+  initThemeControls();
+</script>
