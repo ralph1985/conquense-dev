@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const DESKTOP_QUERY = '(min-width: 1024px)';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
 type PortfolioElements = {
@@ -97,7 +96,7 @@ function initVerticalMode(elements: PortfolioElements) {
   return () => observer.disconnect();
 }
 
-function initDesktopMode(elements: PortfolioElements) {
+function initHorizontalMode(elements: PortfolioElements) {
   gsap.registerPlugin(ScrollTrigger);
 
   const distance = () => Math.max(0, elements.track.scrollWidth - window.innerWidth);
@@ -135,18 +134,19 @@ function initDesktopMode(elements: PortfolioElements) {
     ScrollTrigger.refresh();
 
     if (initialIndex >= 0) {
-      goToIndex(initialIndex);
+      window.setTimeout(() => goToIndex(initialIndex, 'auto'), 0);
     }
   });
 
-  function goToIndex(index: number) {
+  function goToIndex(index: number, behavior: ScrollBehavior = 'smooth') {
     const safeIndex = Math.min(Math.max(index, 0), elements.panels.length - 1);
     const progress = elements.panels.length <= 1 ? 0 : safeIndex / (elements.panels.length - 1);
     const scrollTop = trigger.start + (trigger.end - trigger.start) * progress;
 
     window.scrollTo({
+      left: 0,
       top: scrollTop,
-      behavior: 'smooth',
+      behavior,
     });
     setActiveSection(elements, safeIndex, progress);
     updateHash(elements.panels[safeIndex]);
@@ -189,11 +189,22 @@ function initDesktopMode(elements: PortfolioElements) {
     }
   };
 
+  const onLoad = () => {
+    ScrollTrigger.refresh();
+
+    const hashIndex = getHashIndex(elements);
+
+    if (hashIndex >= 0) {
+      goToIndex(hashIndex, 'auto');
+    }
+  };
+
   window.addEventListener('keydown', onKeyDown);
-  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+  window.addEventListener('load', onLoad, { once: true });
 
   return () => {
     window.removeEventListener('keydown', onKeyDown);
+    window.removeEventListener('load', onLoad);
     trigger.kill();
     tween.kill();
     gsap.set(elements.track, { clearProps: 'transform' });
@@ -210,11 +221,10 @@ export function initPortfolioScroll() {
 
     setActiveSection(elements, 0, 0);
 
-    const isDesktop = window.matchMedia(DESKTOP_QUERY).matches;
     const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
-    const cleanup = isDesktop && !prefersReducedMotion ? initDesktopMode(elements) : initVerticalMode(elements);
+    const cleanup = prefersReducedMotion ? initVerticalMode(elements) : initHorizontalMode(elements);
 
-    if (!isDesktop || prefersReducedMotion) {
+    if (prefersReducedMotion) {
       const initialIndex = getHashIndex(elements);
 
       if (initialIndex >= 0) {
@@ -223,7 +233,7 @@ export function initPortfolioScroll() {
           const panel = elements.panels[initialIndex];
 
           if (panel) {
-            window.scrollTo({ top: panel.offsetTop, behavior: 'auto' });
+            window.scrollTo({ left: 0, top: panel.offsetTop, behavior: 'auto' });
           }
         });
       }

@@ -107,10 +107,15 @@
   }
 }
 
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   .section-panel {
     width: 100vw;
     min-width: 100vw;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .section-panel {
     padding: var(--space-16) var(--space-24);
   }
 

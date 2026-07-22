@@ -35,9 +35,9 @@ Las secciones se definen en `src/data/sections.ts`. Para añadir una sección ba
 
 ## Scroll
 
-En escritorio, desde `1024px` y solo si no está activo `prefers-reduced-motion`, `ScrollTrigger` fija el escenario principal y traduce el track horizontal según el scroll vertical. El desplazamiento se calcula con `scrollWidth - innerWidth`, evitando valores hardcodeados.
+Si no está activo `prefers-reduced-motion`, `ScrollTrigger` fija el escenario principal y traduce el track horizontal según el scroll vertical también en móvil. El desplazamiento se calcula con `scrollWidth - innerWidth`, evitando valores hardcodeados.
 
-En móvil y con reducción de movimiento, el recorrido horizontal se desactiva y la página usa scroll vertical normal. Los indicadores funcionan como enlaces internos.
+Con reducción de movimiento, el recorrido horizontal se desactiva y la página usa scroll vertical normal. Los indicadores funcionan como enlaces internos.
 
 ## Decisiones técnicas
 

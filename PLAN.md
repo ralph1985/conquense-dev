@@ -6,7 +6,7 @@ Este documento guía el trabajo por hitos de Conquense Dev. Es la fuente de verd
 
 - Repositorio Astro inicial creado y publicado en GitHub.
 - Stack base: Astro, TypeScript, SCSS, GSAP y ScrollTrigger.
-- Experiencia principal: scroll vertical con avance horizontal en escritorio; scroll vertical normal en móvil y con `prefers-reduced-motion`.
+- Experiencia principal: scroll vertical con avance horizontal también en móvil; scroll vertical normal solo con `prefers-reduced-motion`.
 - Secciones actuales: Inicio, Perfil, Cómo trabajo, Arquitectura, Proyectos, Stack y Contacto.
 - Contenido actual: primera versión profesional en español, redactada a partir de un CV antiguo como material provisional.
 
@@ -30,8 +30,8 @@ Objetivo: dejar una primera app funcional, documentada y publicada.
 Cierre:
 
 - Astro inicializado.
-- Scroll horizontal de escritorio implementado con GSAP ScrollTrigger.
-- Fallback móvil vertical disponible.
+- Scroll horizontal implementado con GSAP ScrollTrigger.
+- Fallback vertical con `prefers-reduced-motion` disponible.
 - README, decisiones arquitectónicas, agentes y contexto del proyecto creados.
 - Git inicializado y repo público en GitHub.
 

@@ -28,6 +28,6 @@ Las secciones se definen en `src/data/sections.ts` mediante un array tipado. Est
 
 Alternativa descartada: CMS. Para un primer borrador con Lorem Ipsum sería una dependencia prematura.
 
-## Fallback móvil y reduced motion
+## Scroll horizontal y reduced motion
 
-El desplazamiento horizontal se desactiva por completo en móvil y cuando el usuario prefiere reducir movimiento. La información sigue disponible en el mismo orden del DOM mediante scroll vertical.
+El desplazamiento horizontal se activa también en móvil para evaluar la experiencia lateral en dispositivo real. Cuando el usuario prefiere reducir movimiento, la información sigue disponible en el mismo orden del DOM mediante scroll vertical.

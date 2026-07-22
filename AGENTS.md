@@ -32,8 +32,8 @@ Conquense Dev es un portfolio profesional construido con Astro. El objetivo del 
 
 - No añadir React, Vue, Svelte, Lenis, Locomotive Scroll, frameworks UI, analítica, CMS ni dependencias nuevas sin necesidad clara y permiso explícito.
 - Mantener el contenido de secciones definido desde `src/data/sections.ts`; añadir una sección debe requerir añadir un objeto al array.
-- En escritorio, conservar la experiencia de scroll vertical con avance horizontal mediante GSAP y ScrollTrigger.
-- En móvil y con `prefers-reduced-motion`, conservar scroll vertical normal y todo el contenido accesible.
+- Conservar la experiencia de scroll vertical con avance horizontal mediante GSAP y ScrollTrigger también en móvil.
+- Con `prefers-reduced-motion`, conservar scroll vertical normal y todo el contenido accesible.
 - No sacrificar orden lógico del DOM, foco visible, navegación por teclado ni landmarks semánticos por efectos visuales.
 - No introducir efectos visuales exagerados ni estética de agencia creativa. Priorizar sobriedad, tipografía, espacio blanco y grid técnico sutil.
 - No tocar `.env` ni credenciales.

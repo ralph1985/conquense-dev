@@ -1,6 +1,6 @@
 # Contexto del proyecto
 
-Conquense Dev es el primer borrador de un portfolio profesional en Astro. Está diseñado como una web estática, sobria y técnica, con una experiencia de escritorio tipo presentación y fallback móvil vertical.
+Conquense Dev es el primer borrador de un portfolio profesional en Astro. Está diseñado como una web estática, sobria y técnica, con una experiencia tipo presentación también en móvil salvo cuando se reduce el movimiento.
 
 ## Principios
 
@@ -13,7 +13,7 @@ Conquense Dev es el primer borrador de un portfolio profesional en Astro. Está 
 
 ## Experiencia principal
 
-En escritorio, el usuario hace scroll vertical y las secciones avanzan horizontalmente mediante GSAP ScrollTrigger. En móvil y con reducción de movimiento, la navegación horizontal se desactiva por completo.
+El usuario hace scroll vertical y las secciones avanzan horizontalmente mediante GSAP ScrollTrigger. Con reducción de movimiento, la navegación horizontal se desactiva por completo y se usa scroll vertical normal.
 
 ## Stack
 
