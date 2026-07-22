@@ -2,7 +2,10 @@
   position: relative;
   display: grid;
   min-height: 100svh;
-  padding: calc(var(--nav-height) + var(--space-8)) var(--space-4) calc(var(--nav-height) + var(--space-12));
+  padding:
+    calc(var(--nav-height) + var(--space-8))
+    var(--space-4)
+    calc(var(--nav-bottom-clearance) + env(safe-area-inset-bottom));
   overflow: hidden;
   isolation: isolate;
 }
@@ -145,7 +148,7 @@
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .section-panel {
-    padding: var(--space-16) var(--space-24);
+    padding: var(--space-16) var(--space-24) calc(var(--nav-bottom-clearance) + var(--space-8));
   }
 
   .section-panel__content {
