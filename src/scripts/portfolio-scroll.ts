@@ -51,6 +51,14 @@ function setActiveSection(elements: PortfolioElements, index: number, progress?:
       link.removeAttribute('aria-current');
     }
   });
+
+  elements.panels.forEach((panelElement, panelIndex) => {
+    const sectionProgress = elements.panels.length <= 1 ? 0 : totalProgress * (elements.panels.length - 1) - panelIndex;
+    const boundedProgress = Math.min(Math.max(sectionProgress, -1), 1);
+
+    panelElement.classList.toggle('is-active', panelIndex === safeIndex);
+    panelElement.style.setProperty('--panel-progress', boundedProgress.toFixed(3));
+  });
 }
 
 function getHashIndex(elements: PortfolioElements) {

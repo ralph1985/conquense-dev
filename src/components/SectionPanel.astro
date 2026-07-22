@@ -24,6 +24,13 @@ const { section, index, total, labels } = Astro.props;
   data-section-title={section.title}
 >
   <div class="section-panel__grid" aria-hidden="true"></div>
+  <div class="section-panel__visual" aria-hidden="true">
+    <span class="section-panel__orb"></span>
+    <span class="section-panel__axis section-panel__axis--x"></span>
+    <span class="section-panel__axis section-panel__axis--y"></span>
+    <span class="section-panel__plate section-panel__plate--primary"></span>
+    <span class="section-panel__plate section-panel__plate--secondary"></span>
+  </div>
   <div class="section-panel__content">
     <p class="section-panel__eyebrow">
       <span>{String(index + 1).padStart(2, '0')}</span>
