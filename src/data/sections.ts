@@ -10,6 +10,10 @@ export interface PortfolioSection {
   accentColor: string;
   content: string;
   items?: string[];
+  actions?: Array<{
+    label: string;
+    href: string;
+  }>;
 }
 
 export const portfolioSections: PortfolioSection[] = [
@@ -71,6 +75,10 @@ export const portfolioSections: PortfolioSection[] = [
     content:
       'He trabajado en operativas web móviles para BBVA, aplicaciones de inversión y banca privada, plataformas de reserva para compañías de transporte y hoteles, supermercado online y herramientas de gestión para empleados. Los enlaces antiguos del CV quedan pendientes de revisión antes de publicarse.',
     items: ['BBVA', 'Mobile commerce', 'Booking', 'Herramientas internas'],
+    actions: [
+      { label: 'Ver proyectos', href: '/proyectos/' },
+      { label: 'Ver experiencia', href: '/experiencia/' },
+    ],
   },
   {
     id: 'stack',

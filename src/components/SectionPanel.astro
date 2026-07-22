@@ -37,6 +37,15 @@ const { section, index, total } = Astro.props;
         </ul>
       )
     }
+    {
+      section.actions && (
+        <div class="section-panel__actions" aria-label={`Acciones de ${section.title}`}>
+          {section.actions.map((action) => (
+            <a href={action.href}>{action.label}</a>
+          ))}
+        </div>
+      )
+    }
   </div>
   <p class="section-panel__position" aria-hidden="true">
     {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}

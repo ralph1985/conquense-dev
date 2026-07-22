@@ -1,0 +1,59 @@
+---
+interface DetailItem {
+  name?: string;
+  company?: string;
+  period?: string;
+  role: string;
+  context?: string;
+  summary: string;
+  highlights?: string[];
+  stack: string[];
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  items: DetailItem[];
+}
+
+const { eyebrow, title, subtitle, description, items } = Astro.props;
+---
+
+<main class="detail-page">
+  <header class="detail-hero">
+    <a class="detail-hero__back" href="/#proyectos">Volver al recorrido</a>
+    <p class="detail-hero__eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="detail-hero__subtitle">{subtitle}</p>
+    <p class="detail-hero__description">{description}</p>
+  </header>
+
+  <section class="detail-list" aria-label={title}>
+    {
+      items.map((item) => (
+        <article class="detail-item">
+          <div class="detail-item__header">
+            <p>{item.period ?? item.context}</p>
+            <h2>{item.company ?? item.name}</h2>
+            <p>{item.role}</p>
+          </div>
+          <p class="detail-item__summary">{item.summary}</p>
+          {item.highlights && (
+            <ul class="detail-item__highlights">
+              {item.highlights.map((highlight) => (
+                <li>{highlight}</li>
+              ))}
+            </ul>
+          )}
+          <ul class="detail-item__stack" aria-label="Tecnologías">
+            {item.stack.map((technology) => (
+              <li>{technology}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </section>
+</main>

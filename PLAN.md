@@ -137,7 +137,7 @@ Cierre:
 
 ### M7 - Casos de proyecto
 
-**Estado:** pendiente.
+**Estado:** iniciado.
 
 Objetivo: convertir experiencia y proyectos en casos reales ampliables.
 
@@ -163,4 +163,4 @@ Cierre:
 
 ## Próximo paso
 
-El siguiente hito es `M3 - Actualización CV y LinkedIn`.
+El siguiente hito activo sigue siendo `M3 - Actualización CV y LinkedIn`, manteniendo `/proyectos/` y `/experiencia/` como rutas separadas ya disponibles para revisión.

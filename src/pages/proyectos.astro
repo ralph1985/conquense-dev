@@ -1,0 +1,18 @@
+---
+import DetailPage from '@/components/DetailPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { projectHighlights } from '@/data/professional';
+---
+
+<BaseLayout
+  title="Proyectos - Rafael García Prieto"
+  description="Selección de proyectos y contextos profesionales de Rafael García Prieto como Frontend Senior."
+>
+  <DetailPage
+    eyebrow="Proyectos"
+    title="Proyectos"
+    subtitle="Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas."
+    description="Una primera selección basada en el CV antiguo. Los enlaces y detalles públicos quedan pendientes de revisión antes de ampliar cada caso."
+    items={projectHighlights}
+  />
+</BaseLayout>

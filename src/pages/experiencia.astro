@@ -1,0 +1,18 @@
+---
+import DetailPage from '@/components/DetailPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { experienceEntries } from '@/data/professional';
+---
+
+<BaseLayout
+  title="Experiencia - Rafael García Prieto"
+  description="Experiencia profesional de Rafael García Prieto en frontend, mobile web, JavaScript y aplicaciones de gestión."
+>
+  <DetailPage
+    eyebrow="Experiencia"
+    title="Experiencia profesional"
+    subtitle="Trayectoria en frontend, mobile web, banca digital, producto y aplicaciones de gestión."
+    description="Contenido provisional extraído del CV antiguo. Falta contrastarlo con LinkedIn y actualizar fechas, stack reciente, impacto y logros."
+    items={experienceEntries}
+  />
+</BaseLayout>
