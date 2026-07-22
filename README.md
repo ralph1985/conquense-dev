@@ -48,7 +48,7 @@ En móvil y con reducción de movimiento, el recorrido horizontal se desactiva y
 
 ## Mejoras futuras
 
-- Sustituir Lorem Ipsum por contenido real.
+- Actualizar el contenido con CV y LinkedIn revisados.
 - Añadir imagen Open Graph definitiva.
 - Incorporar analítica ligera si aporta valor.
 - Afinar copy, contraste y microinteracciones tras revisar el contenido final.

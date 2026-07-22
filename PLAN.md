@@ -8,7 +8,7 @@ Este documento guía el trabajo por hitos de Conquense Dev. Es la fuente de verd
 - Stack base: Astro, TypeScript, SCSS, GSAP y ScrollTrigger.
 - Experiencia principal: scroll vertical con avance horizontal en escritorio; scroll vertical normal en móvil y con `prefers-reduced-motion`.
 - Secciones actuales: Inicio, Perfil, Cómo trabajo, Arquitectura, Proyectos, Stack y Contacto.
-- Contenido actual: placeholder y CV antiguo como material provisional de trabajo.
+- Contenido actual: primera versión profesional en español, redactada a partir de un CV antiguo como material provisional.
 
 ## Reglas de trabajo
 
@@ -37,7 +37,7 @@ Cierre:
 
 ### M2 - Contenido real
 
-**Estado:** activo.
+**Estado:** completado.
 
 Objetivo: convertir el contenido placeholder en una narrativa profesional orientada a Frontend Senior.
 
@@ -59,7 +59,7 @@ Cierre:
 
 ### M3 - Actualización CV y LinkedIn
 
-**Estado:** pendiente.
+**Estado:** activo.
 
 Objetivo: actualizar la base factual del contenido profesional.
 
@@ -163,4 +163,4 @@ Cierre:
 
 ## Próximo paso
 
-El siguiente hito es `M2 - Contenido real`.
+El siguiente hito es `M3 - Actualización CV y LinkedIn`.

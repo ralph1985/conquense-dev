@@ -218,8 +218,14 @@ export function initPortfolioScroll() {
       const initialIndex = getHashIndex(elements);
 
       if (initialIndex >= 0) {
-        elements.panels[initialIndex]?.scrollIntoView();
         setActiveSection(elements, initialIndex);
+        requestAnimationFrame(() => {
+          const panel = elements.panels[initialIndex];
+
+          if (panel) {
+            window.scrollTo({ top: panel.offsetTop, behavior: 'auto' });
+          }
+        });
       }
     }
 

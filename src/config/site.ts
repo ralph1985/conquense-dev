@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: 'Conquense Dev',
-  title: 'Conquense Dev - Portfolio de ingeniería de software',
+  name: 'Rafael García Prieto',
+  title: 'Rafael García Prieto - Frontend Senior',
   description:
-    'Portfolio profesional centrado en ingeniería de software, arquitectura, claridad y rendimiento.',
+    'Portfolio profesional de Rafael García Prieto, Frontend Senior especializado en arquitectura UI, JavaScript y aplicaciones web móviles.',
   canonical: 'https://example.com/',
   ogImage: '/og-placeholder.png',
 };
