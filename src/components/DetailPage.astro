@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '@/config/site';
+
 interface DetailItem {
   name?: string;
   company?: string;
@@ -31,6 +33,9 @@ const { eyebrow, title, subtitle, description, items, backHref, backLabel, langu
 <main class="detail-page">
   <header class="detail-hero">
     <div class="detail-hero__nav">
+      <a class="detail-hero__brand" href={backHref} aria-label={siteConfig.brand.name}>
+        <img src={siteConfig.brand.logo} alt={siteConfig.brand.name} width="1200" height="406" />
+      </a>
       <a class="detail-hero__back" href={backHref}>{backLabel}</a>
       <a class="detail-hero__language" href={languageHref} aria-label={languageLabel}>{languageText}</a>
     </div>

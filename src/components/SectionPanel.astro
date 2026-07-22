@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '@/config/site';
 import type { PortfolioSection } from '@/data/sections';
 
 interface Props {
@@ -32,6 +33,19 @@ const { section, index, total, labels } = Astro.props;
     <span class="section-panel__plate section-panel__plate--secondary"></span>
   </div>
   <div class="section-panel__content">
+    {
+      section.id === 'home' && (
+        <img
+          class="section-panel__brand"
+          src={siteConfig.brand.logo}
+          alt={siteConfig.brand.name}
+          width="1200"
+          height="406"
+          loading="eager"
+          decoding="async"
+        />
+      )
+    }
     <p class="section-panel__eyebrow">
       <span>{String(index + 1).padStart(2, '0')}</span>
       <span>{section.eyebrow}</span>

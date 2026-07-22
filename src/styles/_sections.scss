@@ -130,6 +130,14 @@
     transform var(--duration-medium) var(--ease-main);
 }
 
+.section-panel__brand {
+  display: block;
+  width: clamp(10rem, 22vw, 18rem);
+  height: auto;
+  margin-bottom: calc(var(--space-2) * -1);
+  opacity: 0.92;
+}
+
 .section-panel__eyebrow {
   display: inline-flex;
   gap: var(--space-3);
@@ -329,6 +337,10 @@
     padding: var(--space-4);
     border-left: 0;
     border-top: 1px solid color-mix(in srgb, var(--section-accent), transparent 72%);
+  }
+
+  .section-panel__brand {
+    width: min(58vw, 13rem);
   }
 
   .section-panel__visual {

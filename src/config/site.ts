@@ -9,5 +9,11 @@ export const siteConfig = {
     en: 'Professional portfolio of Rafael Garcia Prieto, Senior Frontend Engineer focused on UI architecture, JavaScript and mobile web applications.',
   },
   canonical: 'https://example.com/',
-  ogImage: '/og-placeholder.png',
+  brand: {
+    name: 'Conquense Dev',
+    logo: '/assets/brand/conquense-dev-logo.webp',
+    icon: '/assets/brand/conquense-dev-icon.png',
+    ogImage: '/assets/brand/conquense-dev-og.png',
+  },
+  ogImage: '/assets/brand/conquense-dev-og.png',
 };
