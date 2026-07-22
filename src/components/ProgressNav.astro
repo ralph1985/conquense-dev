@@ -1,6 +1,5 @@
 ---
-import { siteConfig } from '@/config/site';
-import { languageNames, routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
+import { languageNames, type AlternateLink, type Language } from '@/data/i18n';
 import type { PortfolioSection } from '@/data/sections';
 
 interface Props {
@@ -16,14 +15,10 @@ interface Props {
 }
 
 const { sections, lang, alternateLink, labels } = Astro.props;
-const homeHref = routesByLanguage[lang].home;
 ---
 
 <nav class="progress-nav" aria-label={labels.navLabel} data-progress-nav>
   <a class="skip-link" href="#contenido">{labels.skipLink}</a>
-  <a class="progress-nav__brand" href={homeHref} aria-label={siteConfig.brand.name}>
-    <img src={siteConfig.brand.logo} alt={siteConfig.brand.name} width="1200" height="406" />
-  </a>
   <div class="progress-nav__meta" aria-live="polite">
     <span class="progress-nav__count">
       <span data-current-index>01</span>

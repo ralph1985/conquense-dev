@@ -43,7 +43,7 @@
   --duration-medium: 320ms;
   --ease-main: cubic-bezier(0.22, 1, 0.36, 1);
   --nav-height: 4rem;
-  --nav-bottom-clearance: 7.75rem;
+  --nav-bottom-clearance: 6.75rem;
 }
 
 @media (min-width: 768px) {
@@ -51,7 +51,7 @@
     --text-2xl: 2.5rem;
     --text-3xl: 4rem;
     --text-4xl: 6rem;
-    --nav-bottom-clearance: 6rem;
+    --nav-bottom-clearance: 5.25rem;
   }
 }
 
