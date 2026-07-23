@@ -21,3 +21,7 @@ El usuario hace scroll vertical y las secciones avanzan horizontalmente mediante
 - TypeScript para configuración y scripts.
 - SCSS para tokens y estilos.
 - GSAP y ScrollTrigger para pin, scrub, snap, progreso y navegación programática.
+
+## Pendientes editoriales
+
+- La entrada de BBVA en `src/data/professional.ts` queda avanzada pero no cerrada. Antes de darla por definitiva hay que seguir incorporando hechos concretos y revisar si faltan responsabilidades, proyectos o matices actuales.
