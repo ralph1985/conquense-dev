@@ -107,13 +107,16 @@ export const professionalContent: Record<
         {
           company: 'Geanet onDemand',
           period: '2011 - 2012',
-          role: 'Desarrollador PHP, HTML, CSS y JavaScript',
+          role: 'Desarrollador web full-stack',
           summary:
-            'Mantenimiento y evolución de una plataforma CRM, resolución de incidencias, nuevas funcionalidades y colaboración en una nueva versión con foco en usabilidad.',
+            'Mantenimiento y evolución de una plataforma SaaS de gestión empresarial con módulos de CRM, ERP, portales, intranet y procesos internos.',
           highlights: [
-            'Trabajo en frontend y backend dentro de una plataforma de gestión empresarial.',
-            'Integración con peticiones REST y procesos internos.',
-            'Evolución de interfaz con HTML5, CSS3 y JavaScript.',
+            'Trabajo principalmente centrado en JavaScript, mantenimiento de producto existente y desarrollo de nuevas funcionalidades.',
+            'Resolución de incidencias y soporte interno sobre módulos existentes de la plataforma.',
+            'Participación en una nueva versión del producto con foco en evolución de interfaz y mejora de usabilidad.',
+            'Desarrollo de informes y funcionalidades para la gestión de declaración de la renta de fundaciones, con formularios largos, validaciones, cálculos y generación de documentación.',
+            'Trabajo full-stack con PHP, HTML, CSS, JavaScript, AJAX, JSON, REST y MySQL sobre una plataforma construida con framework propio.',
+            'Criterio técnico reforzado sobre el coste de mantener capas internas frente a estándares abiertos.',
           ],
           stack: ['PHP', 'JavaScript', 'jQuery', 'AJAX', 'JSON', 'MySQL', 'SVN'],
         },
@@ -259,13 +262,16 @@ export const professionalContent: Record<
         {
           company: 'Geanet onDemand',
           period: '2011 - 2012',
-          role: 'PHP, HTML, CSS and JavaScript developer',
+          role: 'Full-stack web developer',
           summary:
-            'Maintenance and evolution of a CRM platform, incident resolution, new features and collaboration on a new version with a focus on usability.',
+            'Maintenance and evolution of a SaaS business management platform with CRM, ERP, portals, intranet and internal process modules.',
           highlights: [
-            'Frontend and backend work inside a business management platform.',
-            'Integration with REST requests and internal processes.',
-            'Interface evolution with HTML5, CSS3 and JavaScript.',
+            'Work mainly focused on JavaScript, existing product maintenance and development of new features.',
+            'Incident resolution and internal support for existing platform modules.',
+            'Contribution to a new product version focused on interface evolution and usability improvements.',
+            'Development of reports and features for foundation income tax filing management, including long forms, validations, calculations and document generation.',
+            'Full-stack work with PHP, HTML, CSS, JavaScript, AJAX, JSON, REST and MySQL on a platform built with a custom framework.',
+            'Reinforced technical judgment around the maintenance cost of internal layers compared with open standards.',
           ],
           stack: ['PHP', 'JavaScript', 'jQuery', 'AJAX', 'JSON', 'MySQL', 'SVN'],
         },
