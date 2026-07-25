@@ -52,8 +52,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Trabajo desde el entendimiento del problema hacia una solución simple de operar: requisitos claros, arquitectura proporcional, implementación incremental, pruebas cuando aportan valor y revisión de código como parte natural del proceso.',
-      items: ['Análisis', 'Clean code', 'Code review', 'Entrega incremental'],
+        'Trabajo desde el entendimiento del problema hacia una solución simple de operar: requisitos claros, arquitectura proporcional, implementación incremental, pruebas cuando aportan valor y revisión de código como parte natural del proceso. Prefiero apoyarme en estándares y herramientas abiertas antes que crear capas propias si no reducen complejidad real.',
+      items: ['Análisis', 'Arquitectura proporcional', 'Code review', 'Entrega incremental'],
     },
     {
       id: 'architecture',
@@ -141,8 +141,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'I move from understanding the problem toward a solution that is simple to operate: clear requirements, proportionate architecture, incremental implementation, tests where they add value and code review as a natural part of the process.',
-      items: ['Analysis', 'Clean code', 'Code review', 'Incremental delivery'],
+        'I move from understanding the problem toward a solution that is simple to operate: clear requirements, proportionate architecture, incremental implementation, tests where they add value and code review as a natural part of the process. I prefer relying on open standards and tools before creating custom layers when they do not reduce real complexity.',
+      items: ['Analysis', 'Proportionate architecture', 'Code review', 'Incremental delivery'],
     },
     {
       id: 'architecture',

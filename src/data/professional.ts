@@ -62,6 +62,7 @@ export const professionalContent: Record<
             'Ember.js',
             'Web Components',
             'LitElement',
+            'Handlebars',
             'SCSS',
             'Chrome DevTools',
             'Accesibilidad',
@@ -86,15 +87,22 @@ export const professionalContent: Record<
         {
           company: 'Mobile One2One',
           period: '2012 - 2016',
-          role: 'Analista programador / Frontend mobile web',
+          role: 'Analista programador web / Frontend mobile',
           summary:
-            'Diseño y desarrollo de aplicaciones mobile web y webapps para clientes de transporte, hoteles, retail y entretenimiento, combinando frontend, integración con servicios y entrega a producción.',
+            'Diseño y desarrollo de aplicaciones mobile web y webapps para clientes como Vueling, Iberostar, National Express, Carrefour y Alsa, combinando frontend, integración con servicios, backend y entrega a producción.',
           highlights: [
-            'Diseño e implantación del framework JavaScript propio MO2OJS.',
-            'Desarrollo de procesos de booking, compra y pasarelas de pago.',
-            'Aplicaciones embebidas con Cordova y PhoneGap para distintos dispositivos.',
+            'Trabajo transversal en booking, compra, pagos, webapps mobile, maquetación responsive, backend PHP/Silex, MySQL e integración con APIs REST.',
+            'Interlocución directa con cliente en proyectos para Vueling, Iberostar, Renfe y otras cuentas, incluyendo desplazamientos, análisis funcional/técnico, toma de requisitos, estimación parcial y seguimiento hasta producción.',
+            'Desarrollo de flujos mobile completos de reserva, compra y pago, con integración de servicios, gestión de estados de operación, validaciones y tratamiento de errores.',
+            'Desarrollo para Iberostar de una web de reservas de estancias y una webapp privada para gestión interna de trabajadores, con chat, soporte para tablet y PC y primeras notificaciones web en Google Chrome.',
+            'Desarrollo para National Express de flujos de reserva de trayectos, compra de billetes de bus, pago y gestión de QR.',
+            'Desarrollo para Carrefour de una experiencia mobile de supermercado online con catálogo, carrito, promociones, pago y navegación lateral compleja por categorías y subcategorías.',
+            'Diseño principal desde cero, con colaboraciones puntuales, del framework JavaScript propio MO2OJS, inspirado en patrones de jQuery y usado para routing, AJAX, plantillas propias y vistas en proyectos para Carrefour, National Express, Sanitas y otros clientes.',
+            'Criterio técnico para valorar el coste de mantener tooling propio frente a adoptar estándares y frameworks abiertos.',
+            'Desarrollo de aplicaciones embebidas con Cordova, una webapp para Tizen en Samsung Watch dentro de un proyecto para Renfe y una aplicación interna para operativas de tripulación de Vueling.',
+            'Evolución desde tareas full-stack con PHP hacia un foco cada vez mayor en JavaScript y frontend mobile web.',
           ],
-          stack: ['JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Sass', 'PHP', 'Silex', 'Cordova'],
+          stack: ['JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Sass', 'PHP', 'Silex', 'REST', 'MySQL', 'Cordova', 'GitLab'],
         },
         {
           company: 'Geanet onDemand',
@@ -162,7 +170,7 @@ export const professionalContent: Record<
           role: 'Arquitectura frontend e integración',
           summary:
             'Flujos de reserva, compra y pago para compañías de transporte, hoteles y supermercado online. Incluye integración con servicios backend y pasarelas de pago.',
-          stack: ['JavaScript', 'HTML5', 'CSS3', 'PHP', 'REST', 'SOAP'],
+          stack: ['JavaScript', 'HTML5', 'CSS3', 'PHP', 'REST'],
         },
         {
           name: 'Herramientas internas para empleados',
@@ -206,6 +214,7 @@ export const professionalContent: Record<
             'Ember.js',
             'Web Components',
             'LitElement',
+            'Handlebars',
             'SCSS',
             'Chrome DevTools',
             'Accessibility',
@@ -230,15 +239,22 @@ export const professionalContent: Record<
         {
           company: 'Mobile One2One',
           period: '2012 - 2016',
-          role: 'Software analyst / Mobile web frontend developer',
+          role: 'Web software analyst / Mobile frontend developer',
           summary:
-            'Design and development of mobile web applications and webapps for transport, hotel, retail and entertainment clients, combining frontend, service integration and production delivery.',
+            'Design and development of mobile web applications and webapps for clients such as Vueling, Iberostar, National Express, Carrefour and Alsa, combining frontend, service integration, backend work and production delivery.',
           highlights: [
-            'Design and rollout of the internal MO2OJS JavaScript framework.',
-            'Development of booking, purchase and payment gateway flows.',
-            'Embedded applications with Cordova and PhoneGap for different devices.',
+            'Cross-functional work across booking, purchase, payments, mobile webapps, responsive layout, PHP/Silex backend, MySQL and REST API integration.',
+            'Direct client interaction on projects for Vueling, Iberostar, Renfe and other accounts, including on-site work, functional/technical analysis, requirement gathering, partial estimation and follow-up through production.',
+            'Development of complete mobile booking, purchase and payment flows, with service integration, operation state management, validations and error handling.',
+            'Development for Iberostar of a stay booking website and a private employee management webapp, including chat, tablet and desktop support and early web notifications in Google Chrome.',
+            'Development for National Express of journey booking flows, bus ticket purchase, payment and QR handling.',
+            'Development for Carrefour of an online grocery mobile experience with catalogue, cart, promotions, payment and complex side navigation across categories and subcategories.',
+            'Main design from scratch, with occasional collaboration, of the internal MO2OJS JavaScript framework, inspired by jQuery patterns and used for routing, AJAX, custom templates and views in projects for Carrefour, National Express, Sanitas and other clients.',
+            'Technical judgment to evaluate the maintenance cost of custom tooling compared with adopting open standards and frameworks.',
+            'Development of embedded applications with Cordova, a Tizen webapp for Samsung Watch within a Renfe project and an internal application for Vueling crew operations.',
+            'Evolution from full-stack PHP tasks toward an increasing focus on JavaScript and mobile web frontend.',
           ],
-          stack: ['JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Sass', 'PHP', 'Silex', 'Cordova'],
+          stack: ['JavaScript', 'jQuery', 'HTML5', 'CSS3', 'Sass', 'PHP', 'Silex', 'REST', 'MySQL', 'Cordova', 'GitLab'],
         },
         {
           company: 'Geanet onDemand',
@@ -306,7 +322,7 @@ export const professionalContent: Record<
           role: 'Frontend architecture and integration',
           summary:
             'Reservation, purchase and payment flows for transport companies, hotels and online grocery shopping. Includes backend service and payment gateway integration.',
-          stack: ['JavaScript', 'HTML5', 'CSS3', 'PHP', 'REST', 'SOAP'],
+          stack: ['JavaScript', 'HTML5', 'CSS3', 'PHP', 'REST'],
         },
         {
           name: 'Internal employee tools',
