@@ -152,10 +152,13 @@ export const professionalContent: Record<
         {
           company: 'Goitek',
           period: '2005',
-          role: 'Programador junior',
+          role: 'Programador en prácticas',
           summary:
-            'Primer trabajo profesional desarrollando procedimientos almacenados e interfaces para control de procesos productivos en tiempo real.',
-          highlights: ['Desarrollo SQL DML/DDL.', 'Interfaces de usuario para procesos industriales.'],
+            'Prácticas en empresa en el entorno OLANET, una solución MES para control y monitorización de producción industrial en tiempo real.',
+          highlights: [
+            'Trabajo principalmente centrado en SQL Server, DML/DDL, procedimientos almacenados y apoyo puntual en interfaces de usuario.',
+            'Primer contacto con entornos industriales, sistemas MES y datos de producción en tiempo real.',
+          ],
           stack: ['Visual Basic 6', 'SQL Server', 'OLANET'],
         },
       ],
@@ -323,10 +326,13 @@ export const professionalContent: Record<
         {
           company: 'Goitek',
           period: '2005',
-          role: 'Junior developer',
+          role: 'Intern developer',
           summary:
-            'First professional role developing stored procedures and interfaces for real-time production process control.',
-          highlights: ['SQL DML/DDL development.', 'User interfaces for industrial processes.'],
+            'Company internship in the OLANET environment, a MES solution for real-time industrial production control and monitoring.',
+          highlights: [
+            'Work mainly focused on SQL Server, DML/DDL, stored procedures and occasional support on user interfaces.',
+            'First exposure to industrial environments, MES systems and real-time production data.',
+          ],
           stack: ['Visual Basic 6', 'SQL Server', 'OLANET'],
         },
       ],
