@@ -71,6 +71,7 @@ const iconBySection: Record<string, string> = {
 };
 
 const getBrandInitials = (value: string) => brandInitials[value] ?? value.slice(0, 3).toUpperCase();
+const isExternalUrl = (href: string) => href.startsWith('http');
 
 const copy = {
   es: {
@@ -259,7 +260,19 @@ const copy = {
       <p>{contact?.content}</p>
     </div>
     <ul>
-      {contact?.items?.map((item) => <li>{item}</li>)}
+      {
+        contact?.items?.map((item) => (
+          <li>
+            {typeof item === 'string' ? (
+              item
+            ) : (
+              <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}>
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </section>
 </main>

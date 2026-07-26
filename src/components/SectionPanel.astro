@@ -13,6 +13,7 @@ interface Props {
 }
 
 const { section, index, total, labels } = Astro.props;
+const isExternalUrl = (href: string) => href.startsWith('http');
 ---
 
 <section
@@ -49,7 +50,15 @@ const { section, index, total, labels } = Astro.props;
       section.items && (
         <ul class="section-panel__items" aria-label={`${labels.sectionItemsLabel} ${section.title}`}>
           {section.items.map((item) => (
-            <li>{item}</li>
+            <li>
+              {typeof item === 'string' ? (
+                item
+              ) : (
+                <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}>
+                  {item.label}
+                </a>
+              )}
+            </li>
           ))}
         </ul>
       )

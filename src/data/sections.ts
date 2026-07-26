@@ -2,6 +2,11 @@ import { routesByLanguage, type Language } from '@/data/i18n';
 
 export type SectionTheme = 'intro' | 'profile' | 'method' | 'architecture' | 'experience' | 'projects' | 'stack' | 'contact';
 
+export interface SectionItemLink {
+  label: string;
+  href: string;
+}
+
 export interface PortfolioSection {
   id: string;
   slug: string;
@@ -11,7 +16,7 @@ export interface PortfolioSection {
   theme: SectionTheme;
   accentColor: string;
   content: string;
-  items?: string[];
+  items?: Array<string | SectionItemLink>;
   actions?: Array<{
     label: string;
     href: string;
@@ -120,7 +125,11 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#111827',
       content:
         'La forma más directa de contacto es por email o LinkedIn. Mantengo este portfolio enfocado en canales profesionales y evito publicar el teléfono móvil en abierto.',
-      items: ['rafaelgarcia1985@gmail.com', 'LinkedIn: es.linkedin.com/in/rgarcia85', 'GitHub: ralph1985'],
+      items: [
+        { label: 'hola@conquense.dev', href: 'mailto:hola@conquense.dev' },
+        { label: 'LinkedIn', href: 'https://es.linkedin.com/in/rgarcia85' },
+        { label: 'GitHub', href: 'https://github.com/ralph1985' },
+      ],
     },
   ],
   en: [
@@ -224,7 +233,11 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#111827',
       content:
         'The most direct way to get in touch is email or LinkedIn. I keep this portfolio focused on professional channels and avoid publishing my mobile phone number in the open.',
-      items: ['rafaelgarcia1985@gmail.com', 'LinkedIn: es.linkedin.com/in/rgarcia85', 'GitHub: ralph1985'],
+      items: [
+        { label: 'hola@conquense.dev', href: 'mailto:hola@conquense.dev' },
+        { label: 'LinkedIn', href: 'https://es.linkedin.com/in/rgarcia85' },
+        { label: 'GitHub', href: 'https://github.com/ralph1985' },
+      ],
     },
   ],
 };
