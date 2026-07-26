@@ -1,21 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PortfolioShell from '@/components/PortfolioShell.astro';
+import HomePage from '@/components/HomePage.astro';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
-import { localizedPortfolioSections } from '@/data/sections';
 ---
 
 <BaseLayout lang="es" alternateLinks={[{ lang: 'es', href: routesByLanguage.es.home }, { lang: 'en', href: routesByLanguage.en.home }]}>
-  <PortfolioShell
-    sections={localizedPortfolioSections.es}
-    lang="es"
-    alternateLink={{ lang: 'en', href: routesByLanguage.en.home }}
-    labels={uiCopy.es}
-  />
+  <HomePage lang="es" alternateLink={{ lang: 'en', href: routesByLanguage.en.home }} labels={uiCopy.es} />
 </BaseLayout>
-
-<script>
-  import { initPortfolioScroll } from '@/scripts/portfolio-scroll';
-
-  initPortfolioScroll();
-</script>

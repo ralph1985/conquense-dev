@@ -1,0 +1,209 @@
+---
+import { siteConfig } from '@/config/site';
+import { languageNames, routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
+import { localizedExperience } from '@/data/experience';
+import { localizedProjects } from '@/data/projects';
+import { localizedPortfolioSections, type PortfolioSection } from '@/data/sections';
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    themeToggleLabel: string;
+    themeSystemLabel: string;
+    themeLightLabel: string;
+    themeDarkLabel: string;
+  };
+}
+
+const { lang, alternateLink, labels } = Astro.props;
+const sections = localizedPortfolioSections[lang];
+const routeSet = routesByLanguage[lang];
+const experience = localizedExperience[lang];
+const projects = localizedProjects[lang];
+
+const byId = (id: PortfolioSection['id']) => sections.find((section) => section.id === id);
+
+const intro = byId('home') ?? sections[0];
+const profile = byId('profile');
+const workflow = byId('workflow');
+const architecture = byId('architecture');
+const stack = byId('stack');
+const contact = byId('contact');
+const featuredExperience = experience.items.slice(0, 3);
+const featuredProjects = projects.items.slice(0, 3);
+const currentLanguage = languageNames[lang];
+const alternateLanguage = languageNames[alternateLink.lang];
+const contactSlug = lang === 'es' ? 'contacto' : 'contact';
+
+const copy = {
+  es: {
+    navExperience: 'Experiencia',
+    navProjects: 'Proyectos',
+    navContact: 'Contacto',
+    heroPrimary: 'Ver experiencia',
+    heroSecondary: 'Ver proyectos',
+    currentFocus: 'Foco actual',
+    selectedExperience: 'Experiencia reciente',
+    selectedProjects: 'Proyectos separados',
+    viewAllExperience: 'Ver toda la experiencia',
+    viewAllProjects: 'Ver proyectos',
+    contactTitle: 'Contacto profesional',
+  },
+  en: {
+    navExperience: 'Experience',
+    navProjects: 'Projects',
+    navContact: 'Contact',
+    heroPrimary: 'View experience',
+    heroSecondary: 'View projects',
+    currentFocus: 'Current focus',
+    selectedExperience: 'Recent experience',
+    selectedProjects: 'Separated projects',
+    viewAllExperience: 'View full experience',
+    viewAllProjects: 'View projects',
+    contactTitle: 'Professional contact',
+  },
+}[lang];
+---
+
+<a class="skip-link" href="#contenido">{labels.skipLink}</a>
+
+<header class="home-header">
+  <a class="home-header__brand" href={routeSet.home} aria-label={siteConfig.brand.name}>
+    <img src={siteConfig.brand.logo} alt={siteConfig.brand.name} width="1200" height="406" decoding="async" />
+  </a>
+  <nav class="home-header__nav" aria-label={labels.navLabel}>
+    <a href={routeSet.experience}>{copy.navExperience}</a>
+    <a href={routeSet.projects}>{copy.navProjects}</a>
+    <a href={`#${contactSlug}`}>{copy.navContact}</a>
+  </nav>
+  <div class="home-header__controls">
+    <button
+      class="home-header__theme"
+      type="button"
+      aria-label={labels.themeToggleLabel}
+      title={labels.themeToggleLabel}
+      data-theme-toggle
+      data-label-toggle={labels.themeToggleLabel}
+      data-label-system={labels.themeSystemLabel}
+      data-label-light={labels.themeLightLabel}
+      data-label-dark={labels.themeDarkLabel}
+    >
+      <span data-theme-state>{labels.themeSystemLabel}</span>
+    </button>
+    <a class="home-header__language" href={alternateLink.href} aria-label={labels.languageLabel}>
+      <span aria-current="true">{currentLanguage}</span>
+      <span aria-hidden="true">/</span>
+      <span>{alternateLanguage}</span>
+    </a>
+  </div>
+</header>
+
+<main id="contenido" class="home-page">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__content">
+      <p class="home-kicker">{intro.eyebrow}</p>
+      <h1 id="home-title">{intro.title}</h1>
+      <p class="home-hero__lead">{intro.subtitle}</p>
+      <p class="home-hero__body">{intro.content}</p>
+      <div class="home-hero__actions" aria-label={copy.currentFocus}>
+        <a class="home-button home-button--primary" href={routeSet.experience}>{copy.heroPrimary}</a>
+        <a class="home-button" href={routeSet.projects}>{copy.heroSecondary}</a>
+      </div>
+    </div>
+    <aside class="home-hero__summary" aria-label={copy.currentFocus}>
+      <p>{copy.currentFocus}</p>
+      <ul>
+        {intro.items?.map((item) => <li>{item}</li>)}
+      </ul>
+    </aside>
+  </section>
+
+  <section class="home-section home-section--split" aria-labelledby="profile-title">
+    <div>
+      <p class="home-kicker">{profile?.eyebrow}</p>
+      <h2 id="profile-title">{profile?.title}</h2>
+    </div>
+    <div class="home-section__copy">
+      <p class="home-section__lead">{profile?.subtitle}</p>
+      <p>{profile?.content}</p>
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="work-title">
+    <div class="home-section__heading">
+      <p class="home-kicker">{workflow?.eyebrow}</p>
+      <h2 id="work-title">{workflow?.title}</h2>
+      <p>{workflow?.subtitle}</p>
+    </div>
+    <div class="home-principles">
+      {[workflow, architecture, stack].map(
+        (section) =>
+          section && (
+            <article class="home-principle">
+              <p>{section.eyebrow}</p>
+              <h3>{section.title}</h3>
+              <span>{section.content}</span>
+            </article>
+          ),
+      )}
+    </div>
+  </section>
+
+  <section class="home-section home-section--timeline" aria-labelledby="experience-title">
+    <div class="home-section__heading">
+      <p class="home-kicker">{experience.eyebrow}</p>
+      <h2 id="experience-title">{copy.selectedExperience}</h2>
+      <p>{experience.description}</p>
+    </div>
+    <ol class="home-timeline">
+      {
+        featuredExperience.map((item) => (
+          <li>
+            <span>{item.period}</span>
+            <div>
+              <h3>{item.company}</h3>
+              <p>{item.role}</p>
+              <p>{item.summary}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <a class="home-link" href={routeSet.experience}>{copy.viewAllExperience}</a>
+  </section>
+
+  <section class="home-section home-section--projects" aria-labelledby="projects-title">
+    <div class="home-section__heading">
+      <p class="home-kicker">{projects.eyebrow}</p>
+      <h2 id="projects-title">{copy.selectedProjects}</h2>
+      <p>{projects.description}</p>
+    </div>
+    <div class="home-projects">
+      {
+        featuredProjects.map((item) => (
+          <article class="home-project">
+            <p>{item.context}</p>
+            <h3>{item.name}</h3>
+            <span>{item.summary}</span>
+          </article>
+        ))
+      }
+    </div>
+    <a class="home-link" href={routeSet.projects}>{copy.viewAllProjects}</a>
+  </section>
+
+  <section id={contactSlug} class="home-contact" aria-labelledby="contact-title">
+    <div>
+      <p class="home-kicker">{contact?.eyebrow}</p>
+      <h2 id="contact-title">{copy.contactTitle}</h2>
+      <p>{contact?.content}</p>
+    </div>
+    <ul>
+      {contact?.items?.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+</main>
