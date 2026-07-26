@@ -35,7 +35,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#2563eb',
       content:
         'Diseño y desarrollo interfaces web para entornos exigentes, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Trabajo especialmente cómodo en producto bancario, arquitectura UI, calidad frontend y aplicaciones web móviles.',
-      items: ['Banca móvil e inversión', 'Arquitectura UI', 'JavaScript senior', 'Calidad y revisión'],
+      items: [
+        'Banca móvil e inversión',
+        'Arquitectura UI con Ember y Lit',
+        'Rendimiento y calidad frontend',
+        'Coordinación técnica de producto',
+      ],
       actions: [
         { label: 'Ver experiencia', href: routesByLanguage.es.experience },
         { label: 'Ver proyectos', href: routesByLanguage.es.projects },
