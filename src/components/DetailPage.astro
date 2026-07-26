@@ -41,11 +41,21 @@ const brandInitials: Record<string, string> = {
   'Hospitality y gestión empresarial': 'HGE',
 };
 
+const companyLogos: Record<string, string> = {
+  BBVA: '/assets/logos/bbva.svg',
+  'Mobile One2One': '/assets/logos/mo2o.svg',
+  'Geanet onDemand': '/assets/logos/geanet.svg',
+  ComNet: '/assets/logos/comnet-isp.gif',
+  Goitek: '/assets/logos/goitek.svg',
+};
+
 const getBrandInitials = (item: DetailItem) => {
   const key = item.company ?? item.context ?? item.name ?? '';
 
   return brandInitials[key] ?? key.slice(0, 3).toUpperCase();
 };
+
+const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.company] : undefined);
 ---
 
 <main class="detail-page">
@@ -70,7 +80,15 @@ const getBrandInitials = (item: DetailItem) => {
           <div class="detail-item__header">
             <p>{item.period ?? item.context}</p>
             <h2>
-              <span class="detail-item__mark" aria-hidden="true">{getBrandInitials(item)}</span>
+              {
+                getCompanyLogo(item) ? (
+                  <span class="detail-item__logo" aria-hidden="true">
+                    <img src={getCompanyLogo(item)} alt="" loading="lazy" decoding="async" />
+                  </span>
+                ) : (
+                  <span class="detail-item__mark" aria-hidden="true">{getBrandInitials(item)}</span>
+                )
+              }
               {item.company ?? item.name}
             </h2>
             <p>{item.role}</p>

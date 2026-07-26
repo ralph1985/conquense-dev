@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title">
+  <title id="title">Geanet onDemand</title>
+  <rect width="360" height="120" rx="14" fill="#ffffff"/>
+  <text x="34" y="70" fill="#134e4a" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800">GeaNET</text>
+  <text x="37" y="95" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">onDemand</text>
+  <path d="M267 36c29 0 52 20 52 44H215c0-24 23-44 52-44Z" fill="#ccfbf1"/>
+  <path d="M238 71c8-13 18-19 30-19 13 0 24 7 31 20" fill="none" stroke="#0f766e" stroke-linecap="round" stroke-width="7"/>
+</svg>

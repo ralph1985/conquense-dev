@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title">
+  <title id="title">Mobile One2One</title>
+  <rect width="360" height="120" rx="14" fill="#ffffff"/>
+  <text x="32" y="70" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="-1">MO2O</text>
+  <text x="35" y="95" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Mobile One2One</text>
+  <circle cx="262" cy="58" r="23" fill="none" stroke="#2563eb" stroke-width="8"/>
+  <path d="M282 39h30v30" fill="none" stroke="#38bdf8" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"/>
+</svg>

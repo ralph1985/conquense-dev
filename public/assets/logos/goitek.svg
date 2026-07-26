@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title">
+  <title id="title">Goitek</title>
+  <rect width="360" height="120" rx="14" fill="#ffffff"/>
+  <text x="34" y="72" fill="#1f2937" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="800" letter-spacing="-1">Goitek</text>
+  <text x="38" y="96" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">OLANET / MES</text>
+  <path d="M257 37h58v46h-58z" fill="none" stroke="#475569" stroke-width="7"/>
+  <path d="M271 73h30M271 57h18" stroke="#2563eb" stroke-linecap="round" stroke-width="7"/>
+</svg>

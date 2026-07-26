@@ -53,6 +53,13 @@ const brandInitials: Record<string, string> = {
   'Transport, hotels and retail': 'THR',
   'Transporte, hoteles y retail': 'THR',
 };
+const experienceLogos: Record<string, string> = {
+  BBVA: '/assets/logos/bbva.svg',
+  'Mobile One2One': '/assets/logos/mo2o.svg',
+  'Geanet onDemand': '/assets/logos/geanet.svg',
+  ComNet: '/assets/logos/comnet-isp.gif',
+  Goitek: '/assets/logos/goitek.svg',
+};
 const iconBySection: Record<string, string> = {
   workflow:
     'M8 7h8M8 12h5M8 17h8M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z',
@@ -209,6 +216,11 @@ const copy = {
             <span>{item.period}</span>
             <div>
               <h3><span class="home-mark" aria-hidden="true">{getBrandInitials(item.company)}</span>{item.company}</h3>
+              {
+                experienceLogos[item.company] && (
+                  <img class="home-experience-logo" src={experienceLogos[item.company]} alt="" loading="lazy" decoding="async" aria-hidden="true" />
+                )
+              }
               <p>{item.role}</p>
               <p>{item.summary}</p>
             </div>
