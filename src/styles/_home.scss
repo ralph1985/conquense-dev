@@ -196,18 +196,29 @@
 }
 
 .home-hero__summary {
+  position: relative;
   display: grid;
-  gap: var(--space-4);
-  align-self: stretch;
-  padding: var(--space-6) 0 0;
+  gap: var(--space-5);
+  align-self: end;
+  padding: var(--space-5) 0 0;
   border-top: 1px solid var(--color-line);
+}
+
+.home-hero__summary::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 5rem;
+  height: 2px;
+  background: var(--color-warm);
+  content: '';
 }
 
 .home-hero__summary p {
   margin: 0;
-  color: var(--color-text);
+  color: var(--color-muted);
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -221,7 +232,45 @@
   list-style: none;
 }
 
-.home-hero__summary li,
+.home-hero__summary ul {
+  counter-reset: focus-item;
+  gap: 0;
+}
+
+.home-hero__summary li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-text);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.home-hero__summary li::before {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-overlay-soft);
+  color: var(--color-warm);
+  content: counter(focus-item, decimal-leading-zero);
+  counter-increment: focus-item;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.home-hero__summary li:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
 .home-contact li {
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-line);
@@ -519,10 +568,16 @@ html[data-theme='dark'] .home-experience-logo {
   }
 
   .home-hero__summary {
-    padding-top: 0;
-    padding-left: var(--space-6);
+    padding: var(--space-2) 0 var(--space-2) var(--space-6);
     border-top: 0;
     border-left: 1px solid var(--color-line);
+  }
+
+  .home-hero__summary::before {
+    top: var(--space-2);
+    left: -1px;
+    width: 2px;
+    height: 4.5rem;
   }
 
   .home-section--split,
