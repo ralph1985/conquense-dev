@@ -58,7 +58,7 @@ En móvil y con reducción de movimiento, el recorrido horizontal se desactiva y
 
 ## Mejoras futuras
 
-- Actualizar el contenido con CV y LinkedIn revisados.
+- Revisar proyectos, enlaces públicos y casos ampliables.
 - Añadir imagen Open Graph definitiva.
 - Incorporar analítica ligera si aporta valor.
 - Afinar copy, contraste y microinteracciones tras revisar el contenido final.

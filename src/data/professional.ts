@@ -37,7 +37,7 @@ export const professionalContent: Record<
       title: 'Experiencia profesional',
       subtitle: 'Trayectoria en frontend, mobile web, banca digital, producto y aplicaciones de gestión.',
       description:
-        'Contenido provisional extraído del CV antiguo. Falta contrastarlo con LinkedIn y actualizar fechas, stack reciente, impacto y logros.',
+        'Recorrido profesional revisado desde las prácticas iniciales en industria hasta el trabajo actual en frontend senior, banca móvil e inversión.',
       items: [
         {
           company: 'BBVA',
@@ -168,7 +168,7 @@ export const professionalContent: Record<
       title: 'Proyectos',
       subtitle: 'Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas.',
       description:
-        'Una primera selección basada en el CV antiguo. Los enlaces y detalles públicos quedan pendientes de revisión antes de ampliar cada caso.',
+        'Una primera selección de trabajo representativo. Los enlaces y detalles públicos quedan pendientes de revisión antes de ampliar cada caso.',
       items: [
         {
           name: 'Operativas de banca digital',
@@ -211,7 +211,7 @@ export const professionalContent: Record<
       title: 'Professional experience',
       subtitle: 'A career across frontend, mobile web, digital banking, product and management applications.',
       description:
-        'Provisional content extracted from an old CV. It still needs to be checked against LinkedIn and updated with recent dates, stack, impact and achievements.',
+        'Reviewed professional path from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
       items: [
         {
           company: 'BBVA',
@@ -342,7 +342,7 @@ export const professionalContent: Record<
       title: 'Projects',
       subtitle: 'Representative work in digital banking, mobile commerce, booking and internal tools.',
       description:
-        'An initial selection based on the old CV. Public links and details remain pending review before each case is expanded.',
+        'An initial selection of representative work. Public links and details remain pending review before each case is expanded.',
       items: [
         {
           name: 'Digital banking flows',

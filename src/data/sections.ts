@@ -29,7 +29,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'Diseño y desarrollo interfaces web para entornos exigentes, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Esta es una primera versión del portfolio, construida a partir de un CV que todavía debe actualizarse.',
+        'Diseño y desarrollo interfaces web para entornos exigentes, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Este portfolio resume una trayectoria revisada en banca móvil, producto digital, mobile web y aplicaciones de gestión.',
     },
     {
       id: 'profile',
@@ -76,7 +76,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'projects',
       accentColor: '#9333ea',
       content:
-        'He trabajado en operativas web móviles para BBVA, aplicaciones de inversión y banca privada, plataformas de reserva para compañías de transporte y hoteles, supermercado online y herramientas de gestión para empleados. Los enlaces antiguos del CV quedan pendientes de revisión antes de publicarse.',
+        'He trabajado en operativas web móviles para BBVA, aplicaciones de inversión y banca privada, plataformas de reserva para compañías de transporte y hoteles, supermercado online y herramientas de gestión para empleados. Los enlaces y casos públicos quedan pendientes de revisión antes de ampliarse.',
       items: ['BBVA', 'Mobile commerce', 'Booking', 'Herramientas internas'],
       actions: [
         { label: 'Ver proyectos', href: routesByLanguage.es.projects },
@@ -104,7 +104,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'contact',
       accentColor: '#111827',
       content:
-        'La forma más directa de contacto es por email o LinkedIn. Esta primera versión evita publicar el teléfono móvil y queda pendiente de actualizar con el CV y el perfil de LinkedIn revisados.',
+        'La forma más directa de contacto es por email o LinkedIn. Mantengo este portfolio enfocado en canales profesionales y evito publicar el teléfono móvil en abierto.',
       items: ['rafaelgarcia1985@gmail.com', 'LinkedIn: es.linkedin.com/in/rgarcia85', 'GitHub: ralph1985'],
     },
   ],
@@ -118,7 +118,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. This is an early portfolio draft based on a CV that still needs to be updated.',
+        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. This portfolio summarizes a reviewed career across mobile banking, digital product, mobile web and management applications.',
     },
     {
       id: 'profile',
@@ -165,7 +165,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'projects',
       accentColor: '#9333ea',
       content:
-        'I have worked on BBVA mobile web flows, investment and private banking applications, booking platforms for transport and hotel companies, online grocery shopping and employee management tools. Old CV links remain pending review before being published.',
+        'I have worked on BBVA mobile web flows, investment and private banking applications, booking platforms for transport and hotel companies, online grocery shopping and employee management tools. Public links and cases remain pending review before being expanded.',
       items: ['BBVA', 'Mobile commerce', 'Booking', 'Internal tools'],
       actions: [
         { label: 'View projects', href: routesByLanguage.en.projects },
@@ -193,7 +193,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'contact',
       accentColor: '#111827',
       content:
-        'The most direct way to get in touch is email or LinkedIn. This first version avoids publishing my mobile phone number and still needs to be updated with a reviewed CV and LinkedIn profile.',
+        'The most direct way to get in touch is email or LinkedIn. I keep this portfolio focused on professional channels and avoid publishing my mobile phone number in the open.',
       items: ['rafaelgarcia1985@gmail.com', 'LinkedIn: es.linkedin.com/in/rgarcia85', 'GitHub: ralph1985'],
     },
   ],

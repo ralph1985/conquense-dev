@@ -24,4 +24,5 @@ El usuario hace scroll vertical y las secciones avanzan horizontalmente mediante
 
 ## Pendientes editoriales
 
-- La entrada de BBVA en `src/data/professional.ts` queda avanzada pero no cerrada. Antes de darla por definitiva hay que seguir incorporando hechos concretos y revisar si faltan responsabilidades, proyectos o matices actuales.
+- La experiencia laboral en `src/data/professional.ts` ya está revisada por etapas: BBVA, Mobile One2One, Geanet onDemand, ComNet y Goitek.
+- Queda pendiente revisar la sección de proyectos y decidir qué enlaces o casos públicos pueden ampliarse sin inventar ni exponer información sensible.
