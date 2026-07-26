@@ -3,7 +3,7 @@
   top: 0;
   z-index: 10;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(12rem, 24rem) minmax(0, 1fr) auto;
   gap: var(--space-4);
   align-items: center;
   min-height: var(--nav-height);
@@ -16,7 +16,7 @@
 .home-header__brand {
   display: inline-flex;
   align-items: center;
-  width: clamp(8rem, 15vw, 12rem);
+  width: 100%;
 }
 
 .home-header__brand .brand-logo {
@@ -521,7 +521,7 @@
 
 @media (max-width: 767px) {
   .home-header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .home-header__nav {

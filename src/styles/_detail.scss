@@ -44,7 +44,7 @@
 
 .detail-hero__nav {
   display: grid;
-  grid-template-columns: minmax(8rem, 11rem) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(12rem, 20rem) minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--space-4);
 }
@@ -57,11 +57,9 @@
 .detail-hero__brand .brand-logo {
   display: block;
   width: 100%;
-  max-height: 3rem;
 }
 
 .detail-hero__brand .brand-logo__image {
-  max-height: 3rem;
   object-fit: contain;
 }
 

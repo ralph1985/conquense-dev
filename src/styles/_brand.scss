@@ -1,13 +1,19 @@
 .brand-logo {
-  display: inline-grid;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 407;
   min-width: 0;
 }
 
 .brand-logo__image {
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .brand-logo__image--light {

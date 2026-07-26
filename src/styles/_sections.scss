@@ -136,7 +136,7 @@
 
 .section-panel__brand {
   display: block;
-  width: clamp(10rem, 22vw, 18rem);
+  width: min(100%, 34rem);
   height: auto;
   margin-bottom: calc(var(--space-2) * -1);
   opacity: 0.92;
@@ -343,7 +343,7 @@
   }
 
   .section-panel__brand {
-    width: min(58vw, 13rem);
+    width: 100%;
   }
 
   .section-panel__visual {
