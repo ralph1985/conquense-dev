@@ -124,7 +124,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'contact',
       accentColor: '#111827',
       content:
-        'La forma más directa de contacto es por email o LinkedIn. Mantengo este portfolio enfocado en canales profesionales y evito publicar el teléfono móvil en abierto.',
+        'La forma más directa de contacto es por email o LinkedIn. Si quieres hablar sobre frontend, arquitectura UI, producto web o colaboración técnica, estaré encantado de leerte.',
       items: [
         { label: 'hola@conquense.dev', href: 'mailto:hola@conquense.dev' },
         { label: 'LinkedIn', href: 'https://es.linkedin.com/in/rgarcia85' },
@@ -232,7 +232,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'contact',
       accentColor: '#111827',
       content:
-        'The most direct way to get in touch is email or LinkedIn. I keep this portfolio focused on professional channels and avoid publishing my mobile phone number in the open.',
+        'The most direct way to get in touch is by email or LinkedIn. If you want to talk about frontend, UI architecture, web product or technical collaboration, I will be glad to hear from you.',
       items: [
         { label: 'hola@conquense.dev', href: 'mailto:hola@conquense.dev' },
         { label: 'LinkedIn', href: 'https://es.linkedin.com/in/rgarcia85' },
