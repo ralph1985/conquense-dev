@@ -28,6 +28,24 @@ interface Props {
 
 const { eyebrow, title, subtitle, description, items, backHref, backLabel, languageHref, languageLabel, languageText, stackLabel } =
   Astro.props;
+
+const brandInitials: Record<string, string> = {
+  BBVA: 'BBVA',
+  'Mobile One2One': 'MO2O',
+  'Geanet onDemand': 'GE',
+  ComNet: 'CN',
+  Goitek: 'GO',
+  'Transport, hotels and retail': 'THR',
+  'Transporte, hoteles y retail': 'THR',
+  'Hospitality and business management': 'HBM',
+  'Hospitality y gestión empresarial': 'HGE',
+};
+
+const getBrandInitials = (item: DetailItem) => {
+  const key = item.company ?? item.context ?? item.name ?? '';
+
+  return brandInitials[key] ?? key.slice(0, 3).toUpperCase();
+};
 ---
 
 <main class="detail-page">
@@ -51,7 +69,10 @@ const { eyebrow, title, subtitle, description, items, backHref, backLabel, langu
         <article class="detail-item">
           <div class="detail-item__header">
             <p>{item.period ?? item.context}</p>
-            <h2>{item.company ?? item.name}</h2>
+            <h2>
+              <span class="detail-item__mark" aria-hidden="true">{getBrandInitials(item)}</span>
+              {item.company ?? item.name}
+            </h2>
             <p>{item.role}</p>
           </div>
           <p class="detail-item__summary">{item.summary}</p>
