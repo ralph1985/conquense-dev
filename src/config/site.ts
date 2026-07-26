@@ -12,6 +12,8 @@ export const siteConfig = {
   brand: {
     name: 'Conquense Dev',
     logo: '/assets/brand/conquense-dev-logo.webp',
+    logoDark: '/assets/brand/conquense-dev-logo-dark.webp',
+    logoLight: '/assets/brand/conquense-dev-logo-light.webp',
     icon: '/assets/brand/conquense-dev-icon.png',
     ogImage: '/assets/brand/conquense-dev-og.png',
   },

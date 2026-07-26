@@ -54,9 +54,13 @@
   min-width: 0;
 }
 
-.detail-hero__brand img {
+.detail-hero__brand .brand-logo {
   display: block;
   width: 100%;
+  max-height: 3rem;
+}
+
+.detail-hero__brand .brand-logo__image {
   max-height: 3rem;
   object-fit: contain;
 }

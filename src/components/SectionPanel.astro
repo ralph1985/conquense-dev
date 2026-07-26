@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '@/config/site';
+import BrandLogo from '@/components/BrandLogo.astro';
 import type { PortfolioSection } from '@/data/sections';
 
 interface Props {
@@ -35,15 +35,7 @@ const { section, index, total, labels } = Astro.props;
   <div class="section-panel__content">
     {
       section.id === 'home' && (
-        <img
-          class="section-panel__brand"
-          src={siteConfig.brand.logo}
-          alt={siteConfig.brand.name}
-          width="1200"
-          height="406"
-          loading="eager"
-          decoding="async"
-        />
+        <BrandLogo class="section-panel__brand" eager />
       )
     }
     <p class="section-panel__eyebrow">

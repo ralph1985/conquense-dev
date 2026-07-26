@@ -1,0 +1,33 @@
+.brand-logo {
+  display: inline-grid;
+  min-width: 0;
+}
+
+.brand-logo__image {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.brand-logo__image--light {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .brand-logo__image--dark {
+  opacity: 0;
+}
+
+html[data-theme='dark'] .brand-logo__image--light {
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .brand-logo__image--dark {
+    opacity: 0;
+  }
+
+  html:not([data-theme='light']) .brand-logo__image--light {
+    opacity: 1;
+  }
+}

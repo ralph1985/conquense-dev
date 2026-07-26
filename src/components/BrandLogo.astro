@@ -1,0 +1,34 @@
+---
+import { siteConfig } from '@/config/site';
+
+interface Props {
+  class?: string;
+  eager?: boolean;
+}
+
+const className = Astro.props.class;
+const eager = Astro.props.eager ?? false;
+const loading = eager ? 'eager' : 'lazy';
+---
+
+<span class:list={['brand-logo', className]}>
+  <img
+    class="brand-logo__image brand-logo__image--dark"
+    src={siteConfig.brand.logoDark}
+    alt={siteConfig.brand.name}
+    width="1200"
+    height="407"
+    loading={loading}
+    decoding="async"
+  />
+  <img
+    class="brand-logo__image brand-logo__image--light"
+    src={siteConfig.brand.logoLight}
+    alt=""
+    width="1200"
+    height="407"
+    loading={loading}
+    decoding="async"
+    aria-hidden="true"
+  />
+</span>

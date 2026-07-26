@@ -1,4 +1,5 @@
 ---
+import BrandLogo from '@/components/BrandLogo.astro';
 import { siteConfig } from '@/config/site';
 import { languageNames, routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
 import { localizedExperience } from '@/data/experience';
@@ -107,7 +108,7 @@ const copy = {
 
 <header class="home-header">
   <a class="home-header__brand" href={routeSet.home} aria-label={siteConfig.brand.name}>
-    <img src={siteConfig.brand.logo} alt={siteConfig.brand.name} width="1200" height="406" decoding="async" />
+    <BrandLogo eager />
   </a>
   <nav class="home-header__nav" aria-label={labels.navLabel}>
     <a href={routeSet.experience}>{copy.navExperience}</a>
