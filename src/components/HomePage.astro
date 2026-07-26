@@ -38,7 +38,14 @@ const featuredProjects = projects.items.slice(0, 3);
 const currentLanguage = languageNames[lang];
 const alternateLanguage = languageNames[alternateLink.lang];
 const contactSlug = lang === 'es' ? 'contacto' : 'contact';
-const brandMarks = ['BBVA', 'Vueling', 'Iberostar', 'National Express', 'Carrefour', 'Alsa'];
+const brandMarks = [
+  { name: 'BBVA', logo: '/assets/logos/bbva.svg' },
+  { name: 'Vueling', logo: '/assets/logos/vueling.svg' },
+  { name: 'Iberostar', logo: '/assets/logos/iberostar.jpg' },
+  { name: 'National Express', logo: '/assets/logos/national-express.svg' },
+  { name: 'Carrefour', logo: '/assets/logos/carrefour.svg' },
+  { name: 'Alsa', logo: '/assets/logos/alsa.svg' },
+];
 const brandInitials: Record<string, string> = {
   BBVA: 'BBVA',
   'Mobile One2One': 'MO2O',
@@ -145,7 +152,11 @@ const copy = {
   <section class="home-brands" aria-labelledby="brands-title">
     <h2 id="brands-title">{copy.brandLabel}</h2>
     <ul>
-      {brandMarks.map((brand) => <li><span>{brand}</span></li>)}
+      {brandMarks.map((brand) => (
+        <li>
+          <img src={brand.logo} alt={brand.name} loading="lazy" decoding="async" />
+        </li>
+      ))}
     </ul>
   </section>
 

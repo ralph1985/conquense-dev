@@ -258,19 +258,24 @@
   display: grid;
   min-height: 4rem;
   place-items: center;
+  padding: var(--space-3);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--color-surface), transparent 24%);
   box-shadow: var(--shadow-inset);
 }
 
-.home-brands span {
-  color: color-mix(in srgb, var(--color-text), transparent 18%);
-  font-size: var(--text-sm);
-  font-weight: 800;
-  letter-spacing: 0;
-  text-align: center;
-  text-transform: uppercase;
+.home-brands img {
+  display: block;
+  width: min(100%, 8.5rem);
+  max-height: 2.35rem;
+  object-fit: contain;
+}
+
+.home-brands li:nth-child(3) img {
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
 }
 
 .home-section,
