@@ -88,7 +88,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           period: '2011 - 2012',
           role: 'Desarrollador web full-stack',
           summary:
-            'Mantenimiento y evolución de una plataforma SaaS de gestión empresarial con módulos de CRM, ERP, portales, intranet y procesos internos.',
+            'Mantenimiento y evolución de una plataforma SaaS de gestión empresarial con módulos de CRM, ERP, portales, intranet y procesos internos. Geanet onDemand evolucionó posteriormente a Yunbit.',
           highlights: [
             'Trabajo principalmente centrado en JavaScript, mantenimiento de producto existente y desarrollo de nuevas funcionalidades.',
             'Resolución de incidencias y soporte interno sobre módulos existentes de la plataforma.',
@@ -219,7 +219,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           period: '2011 - 2012',
           role: 'Full-stack web developer',
           summary:
-            'Maintenance and evolution of a SaaS business management platform with CRM, ERP, portals, intranet and internal process modules.',
+            'Maintenance and evolution of a SaaS business management platform with CRM, ERP, portals, intranet and internal process modules. Geanet onDemand later evolved into Yunbit.',
           highlights: [
             'Work mainly focused on JavaScript, existing product maintenance and development of new features.',
             'Incident resolution and internal support for existing platform modules.',
