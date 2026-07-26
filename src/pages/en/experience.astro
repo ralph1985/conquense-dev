@@ -1,11 +1,11 @@
 ---
 import DetailPage from '@/components/DetailPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { localizedExperience } from '@/data/experience';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
 import { localizedPortfolioSections } from '@/data/sections';
-import { professionalContent } from '@/data/professional';
 
-const page = professionalContent.en.experience;
+const page = localizedExperience.en;
 ---
 
 <BaseLayout

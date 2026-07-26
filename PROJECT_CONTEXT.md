@@ -24,5 +24,5 @@ El usuario hace scroll vertical y las secciones avanzan horizontalmente mediante
 
 ## Pendientes editoriales
 
-- La experiencia laboral en `src/data/professional.ts` ya está revisada por etapas: BBVA, Mobile One2One, Geanet onDemand, ComNet y Goitek.
-- Queda pendiente revisar la sección de proyectos y decidir qué enlaces o casos públicos pueden ampliarse sin inventar ni exponer información sensible.
+- La experiencia laboral en `src/data/experience.ts` ya está revisada por etapas: BBVA, Mobile One2One, Geanet onDemand, ComNet y Goitek.
+- Los proyectos viven aparte en `src/data/projects.ts`. Queda pendiente revisar GitHub, enlaces y casos públicos para decidir qué proyectos pueden ampliarse sin inventar ni exponer información sensible.

@@ -2,10 +2,10 @@
 import DetailPage from '@/components/DetailPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
-import { professionalContent } from '@/data/professional';
+import { localizedProjects } from '@/data/projects';
 import { localizedPortfolioSections } from '@/data/sections';
 
-const page = professionalContent.es.projects;
+const page = localizedProjects.es;
 ---
 
 <BaseLayout

@@ -28,7 +28,8 @@ npm run preview  # preview del build
 - `src/components/DetailPage.astro`: layout para páginas internas de experiencia y proyectos.
 - `src/data/i18n.ts`: rutas, etiquetas de UI y soporte de idioma.
 - `src/data/sections.ts`: fuente de datos tipada para secciones ES/EN.
-- `src/data/professional.ts`: fuente de datos ES/EN para rutas separadas de proyectos y experiencia.
+- `src/data/experience.ts`: fuente de datos ES/EN para la experiencia profesional.
+- `src/data/projects.ts`: fuente de datos ES/EN para proyectos y casos representativos.
 - `src/styles/`: tokens, estilos base, layout, navegación y secciones.
 - `src/scripts/portfolio-scroll.ts`: lógica GSAP, teclado, indicadores y estado activo.
 
@@ -36,7 +37,7 @@ npm run preview  # preview del build
 
 Las secciones se definen en `src/data/sections.ts`, separadas por idioma en `localizedPortfolioSections`. Para añadir una sección hay que añadir el objeto equivalente en `es` y `en`; la navegación, el progreso y el recorrido se derivan de los datos renderizados.
 
-Los proyectos y la experiencia profesional viven en `src/data/professional.ts` y se muestran en rutas independientes: `/proyectos/`, `/experiencia/`, `/en/projects/` y `/en/experience/`.
+La experiencia profesional vive en `src/data/experience.ts` y se muestra en `/experiencia/` y `/en/experience/`. Los proyectos viven en `src/data/projects.ts` y se muestran en `/proyectos/` y `/en/projects/`.
 
 ## Idiomas
 
