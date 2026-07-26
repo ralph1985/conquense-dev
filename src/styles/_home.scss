@@ -261,7 +261,7 @@
   padding: var(--space-3);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-surface), transparent 24%);
+  background: color-mix(in srgb, var(--color-surface), transparent 18%);
   box-shadow: var(--shadow-inset);
 }
 
@@ -275,7 +275,6 @@
 .home-brands li:nth-child(3) img {
   padding: var(--space-1);
   border-radius: var(--radius-sm);
-  background: #ffffff;
 }
 
 .home-section,
@@ -412,8 +411,24 @@
   width: min(9rem, 100%);
   max-height: 2rem;
   margin-top: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-surface), transparent 18%);
   object-fit: contain;
   object-position: left center;
+}
+
+html[data-theme='dark'] .home-brands li,
+html[data-theme='dark'] .home-experience-logo {
+  background: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) .home-brands li,
+  html:not([data-theme='light']) .home-experience-logo {
+    background: #ffffff;
+  }
 }
 
 .home-principle span,
