@@ -9,7 +9,7 @@ Third-party logos are used only to identify companies and clients mentioned in t
 - `carrefour.svg`: Carrefour icon from Simple Icons CDN.
 - `alsa.svg`: ALSA logo from Wikimedia Commons.
 - `comnet-isp.gif`: ComNet ISP logo from the public ComNet ISP website.
-- `mo2o.svg`: local fallback wordmark for Mobile One2One / MO2O.
+- `mo2o.svg`: Mobile One2One / O2O logo from the public O2O Digital Solutions website.
 - `geanet.svg`: local fallback wordmark for Geanet onDemand.
 - `goitek.svg`: local fallback wordmark for Goitek / OLANET.
 
