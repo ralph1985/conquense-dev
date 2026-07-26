@@ -29,7 +29,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'Diseño y desarrollo interfaces web para entornos exigentes, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Este portfolio resume una trayectoria revisada en banca móvil, producto digital, mobile web y aplicaciones de gestión.',
+        'Diseño y desarrollo interfaces web para entornos exigentes, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Trabajo especialmente cómodo en producto bancario, arquitectura UI, calidad frontend y aplicaciones web móviles.',
+      items: ['Banca móvil e inversión', 'Arquitectura UI', 'JavaScript senior', 'Calidad y revisión'],
+      actions: [
+        { label: 'Ver experiencia', href: routesByLanguage.es.experience },
+        { label: 'Ver proyectos', href: routesByLanguage.es.projects },
+      ],
     },
     {
       id: 'profile',
@@ -128,7 +133,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. This portfolio summarizes a reviewed career across mobile banking, digital product, mobile web and management applications.',
+        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. I am especially comfortable with banking product, UI architecture, frontend quality and mobile web applications.',
+      items: ['Mobile banking and investment', 'UI architecture', 'Senior JavaScript', 'Quality and review'],
+      actions: [
+        { label: 'View experience', href: routesByLanguage.en.experience },
+        { label: 'View projects', href: routesByLanguage.en.projects },
+      ],
     },
     {
       id: 'profile',

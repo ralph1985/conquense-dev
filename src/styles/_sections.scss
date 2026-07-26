@@ -1,7 +1,7 @@
 .section-panel {
   position: relative;
   display: grid;
-  min-height: 100svh;
+  min-height: 86svh;
   padding:
     calc(var(--nav-height) + var(--space-8))
     var(--space-4)
@@ -11,6 +11,10 @@
   --panel-progress: 0;
   --visual-angle: -12deg;
   --visual-offset: 0rem;
+}
+
+.section-panel:first-child {
+  min-height: 100svh;
 }
 
 .section-panel::before {
@@ -159,7 +163,7 @@
 }
 
 .section-panel h1 {
-  max-width: 11ch;
+  max-width: 13ch;
   margin: 0;
   font-size: var(--text-3xl);
   font-weight: 760;
@@ -314,13 +318,6 @@
 
   .section-panel__content {
     padding: var(--space-8);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .section-panel {
-    width: 100vw;
-    min-width: 100vw;
   }
 }
 

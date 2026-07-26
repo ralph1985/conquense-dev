@@ -6,11 +6,11 @@ Se usa Astro porque el portfolio es mayoritariamente contenido estático. Permit
 
 Alternativas descartadas: React, Vue y Svelte. Añaden una capa de runtime innecesaria para este primer borrador.
 
-## GSAP ScrollTrigger
+## Scroll vertical nativo
 
-Se usa GSAP con ScrollTrigger para implementar `pin`, `scrub`, `snap`, progreso y navegación programática con control suficiente sobre resize y cálculo de anchuras.
+La portada usa scroll vertical nativo. La navegación de progreso actualiza la sección activa con `IntersectionObserver`, enlaces internos y atajos de teclado.
 
-Alternativa descartada: CSS scroll-snap puro. Es más ligero, pero no ofrece el mismo control para una experiencia vertical que desplaza secciones horizontalmente con pinning.
+Alternativa descartada: mantener el desplazamiento horizontal con pinning. Era distintivo, pero hacía que la home se sintiera demasiado como una presentación lineal y menos como una portada profesional clásica.
 
 ## Scroll nativo
 
@@ -24,12 +24,10 @@ Alternativa descartada: framework UI. El objetivo visual es específico y sobrio
 
 ## Datos locales tipados
 
-Las secciones se definen en `src/data/sections.ts` mediante un array tipado. Esto mantiene el proyecto simple y permite añadir secciones sin tocar la lógica de scroll.
+Las secciones se definen en `src/data/sections.ts` mediante un array tipado. Esto mantiene el proyecto simple y permite añadir secciones sin tocar la lógica de navegación.
 
 Alternativa descartada: CMS. Para un primer borrador con Lorem Ipsum sería una dependencia prematura.
 
-## Scroll horizontal y reduced motion
+## Reduced motion
 
-El desplazamiento horizontal se reserva para pantallas de `768px` o más, donde la experiencia lateral es más legible. En móvil se usa scroll vertical nativo porque el feedback en dispositivo real confirmó que la animación lateral no era suficientemente intuitiva.
-
-Cuando el usuario prefiere reducir movimiento, la información sigue disponible en el mismo orden del DOM mediante scroll vertical.
+Cuando el usuario prefiere reducir movimiento, se eliminan desplazamientos decorativos y transiciones de entrada. La información sigue disponible en el mismo orden del DOM mediante scroll vertical.

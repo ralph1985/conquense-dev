@@ -1,6 +1,6 @@
 # Conquense Dev
 
-Primer borrador de portfolio profesional construido con Astro, TypeScript, SCSS, GSAP y ScrollTrigger.
+Portfolio profesional construido con Astro, TypeScript y SCSS.
 
 ## Instalación
 
@@ -31,7 +31,7 @@ npm run preview  # preview del build
 - `src/data/experience.ts`: fuente de datos ES/EN para la experiencia profesional.
 - `src/data/projects.ts`: fuente de datos ES/EN para proyectos y casos representativos.
 - `src/styles/`: tokens, estilos base, layout, navegación y secciones.
-- `src/scripts/portfolio-scroll.ts`: lógica GSAP, teclado, indicadores y estado activo.
+- `src/scripts/portfolio-scroll.ts`: navegación vertical, teclado, indicadores y estado activo.
 
 ## Datos
 
@@ -45,14 +45,14 @@ El español se publica en `/` y el inglés en `/en/`. `BaseLayout` recibe `lang`
 
 ## Scroll
 
-Si no está activo `prefers-reduced-motion`, `ScrollTrigger` fija el escenario principal y traduce el track horizontal según el scroll vertical en pantallas de `768px` o más. El desplazamiento se calcula con `scrollWidth - innerWidth`, evitando valores hardcodeados.
+La portada usa scroll vertical nativo en todos los tamaños. Los indicadores funcionan como enlaces internos, actualizan la sección activa y conservan navegación por teclado.
 
-En móvil y con reducción de movimiento, el recorrido horizontal se desactiva y la página usa scroll vertical normal. Los indicadores funcionan como enlaces internos.
+Con `prefers-reduced-motion`, se eliminan las transiciones visuales no esenciales y el contenido conserva el mismo orden lógico.
 
 ## Decisiones técnicas
 
 - Astro mantiene el HTML estático y reduce JavaScript cliente.
-- GSAP + ScrollTrigger cubre `pin`, `scrub` y `snap` sin dependencias de smooth scroll.
+- El scroll nativo evita dependencias de animación para la navegación principal.
 - SCSS centraliza tokens y estilos sin introducir un framework visual.
 - Los datos viven en TypeScript para mantener tipos y edición simple.
 - El bilingüismo se resuelve con datos tipados y rutas Astro estáticas, sin añadir una librería i18n.

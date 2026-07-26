@@ -4,21 +4,6 @@
 }
 
 .portfolio-track {
-  display: flex;
-  flex-direction: column;
+  display: block;
   width: 100%;
-}
-
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .portfolio-stage {
-    min-height: 100svh;
-    overflow: hidden;
-  }
-
-  .portfolio-track {
-    flex-direction: row;
-    width: max-content;
-    min-height: 100svh;
-    will-change: transform;
-  }
 }
