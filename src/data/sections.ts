@@ -1,6 +1,6 @@
 import { routesByLanguage, type Language } from '@/data/i18n';
 
-export type SectionTheme = 'intro' | 'profile' | 'method' | 'architecture' | 'projects' | 'stack' | 'contact';
+export type SectionTheme = 'intro' | 'profile' | 'method' | 'architecture' | 'experience' | 'projects' | 'stack' | 'contact';
 
 export interface PortfolioSection {
   id: string;
@@ -68,20 +68,30 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       items: ['Arquitectura UI', 'Testing', 'Integración continua'],
     },
     {
+      id: 'experience',
+      slug: 'experiencia',
+      title: 'Experiencia',
+      subtitle: 'De prácticas en industria a frontend senior en banca móvil e inversión.',
+      eyebrow: 'Trabajo',
+      theme: 'experience',
+      accentColor: '#334155',
+      content:
+        'Mi recorrido profesional combina producto bancario, mobile web, desarrollos a medida, SaaS de gestión empresarial e integración con clientes reales. La experiencia laboral ya está revisada por etapas y separada de los proyectos representativos.',
+      items: ['BBVA', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
+      actions: [{ label: 'Ver experiencia', href: routesByLanguage.es.experience }],
+    },
+    {
       id: 'projects',
       slug: 'proyectos',
       title: 'Proyectos',
       subtitle: 'Banca digital, booking, e-commerce móvil y aplicaciones internas.',
-      eyebrow: 'Trabajo',
+      eyebrow: 'Casos',
       theme: 'projects',
       accentColor: '#9333ea',
       content:
-        'He trabajado en operativas web móviles para BBVA, aplicaciones de inversión y banca privada, plataformas de reserva para compañías de transporte y hoteles, supermercado online y herramientas de gestión para empleados. Los enlaces y casos públicos quedan pendientes de revisión antes de ampliarse.',
-      items: ['BBVA', 'Mobile commerce', 'Booking', 'Herramientas internas'],
-      actions: [
-        { label: 'Ver proyectos', href: routesByLanguage.es.projects },
-        { label: 'Ver experiencia', href: routesByLanguage.es.experience },
-      ],
+        'Los proyectos se revisarán aparte, empezando por GitHub y por los casos públicos que puedan enseñarse con rigor. Esta sección queda reservada para seleccionar trabajo representativo sin mezclarlo con la cronología laboral.',
+      items: ['GitHub', 'Casos públicos', 'Trabajo representativo'],
+      actions: [{ label: 'Ver proyectos', href: routesByLanguage.es.projects }],
     },
     {
       id: 'stack',
@@ -157,20 +167,30 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       items: ['UI architecture', 'Testing', 'Continuous integration'],
     },
     {
+      id: 'experience',
+      slug: 'experience',
+      title: 'Experience',
+      subtitle: 'From an industrial internship to senior frontend work in mobile banking and investment.',
+      eyebrow: 'Work',
+      theme: 'experience',
+      accentColor: '#334155',
+      content:
+        'My professional path combines banking product, mobile web, custom development, business-management SaaS and integration with real clients. The work experience is now reviewed by stage and separated from representative projects.',
+      items: ['BBVA', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
+      actions: [{ label: 'View experience', href: routesByLanguage.en.experience }],
+    },
+    {
       id: 'projects',
       slug: 'projects',
       title: 'Projects',
       subtitle: 'Digital banking, booking, mobile e-commerce and internal applications.',
-      eyebrow: 'Work',
+      eyebrow: 'Cases',
       theme: 'projects',
       accentColor: '#9333ea',
       content:
-        'I have worked on BBVA mobile web flows, investment and private banking applications, booking platforms for transport and hotel companies, online grocery shopping and employee management tools. Public links and cases remain pending review before being expanded.',
-      items: ['BBVA', 'Mobile commerce', 'Booking', 'Internal tools'],
-      actions: [
-        { label: 'View projects', href: routesByLanguage.en.projects },
-        { label: 'View experience', href: routesByLanguage.en.experience },
-      ],
+        'Projects will be reviewed separately, starting with GitHub and public cases that can be shown rigorously. This section is reserved for representative work without mixing it with the employment timeline.',
+      items: ['GitHub', 'Public cases', 'Representative work'],
+      actions: [{ label: 'View projects', href: routesByLanguage.en.projects }],
     },
     {
       id: 'stack',

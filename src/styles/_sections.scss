@@ -274,6 +274,11 @@
   --visual-offset: -0.5rem;
 }
 
+.section-panel--experience {
+  --visual-angle: -10deg;
+  --visual-offset: 0.5rem;
+}
+
 .section-panel--projects {
   --visual-angle: 14deg;
   --visual-offset: 1rem;
@@ -290,6 +295,7 @@
 }
 
 .section-panel--architecture .section-panel__orb,
+.section-panel--experience .section-panel__orb,
 .section-panel--stack .section-panel__orb {
   border-radius: var(--radius-md);
 }
