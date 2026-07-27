@@ -378,9 +378,8 @@
 
 .home-brands img {
   display: block;
-  width: auto;
-  max-width: 8.5rem;
-  max-height: 2.35rem;
+  width: min(8.5rem, 100%);
+  height: 2.35rem;
   object-fit: contain;
 }
 
