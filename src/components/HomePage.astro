@@ -103,6 +103,24 @@ const copy = {
     brandLabel: 'Selected companies and clients',
   },
 }[lang];
+
+const navItems = [
+  {
+    label: copy.navExperience,
+    href: routeSet.experience,
+    icon: 'M4 7h16M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M5 7h14v12H5V7Zm4 5h6',
+  },
+  {
+    label: copy.navProjects,
+    href: routeSet.projects,
+    icon: 'M4 6h6l2 2h8v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm4 8h8',
+  },
+  {
+    label: copy.navContact,
+    href: `#${contactSlug}`,
+    icon: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
+  },
+];
 ---
 
 <a class="skip-link" href="#contenido">{labels.skipLink}</a>
@@ -112,9 +130,16 @@ const copy = {
     <BrandLogo eager />
   </a>
   <nav class="home-header__nav" aria-label={labels.navLabel}>
-    <a href={routeSet.experience}>{copy.navExperience}</a>
-    <a href={routeSet.projects}>{copy.navProjects}</a>
-    <a href={`#${contactSlug}`}>{copy.navContact}</a>
+    {
+      navItems.map((item) => (
+        <a href={item.href}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d={item.icon} />
+          </svg>
+          <span>{item.label}</span>
+        </a>
+      ))
+    }
   </nav>
   <div class="home-header__controls">
     <button
