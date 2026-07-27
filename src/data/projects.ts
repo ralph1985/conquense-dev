@@ -43,10 +43,16 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Irati',
           context: 'Producto privado familiar',
-          role: 'Arquitectura, seguridad y desarrollo full product',
+          role: 'Producto, arquitectura y desarrollo asistido por IA',
           summary:
-            'Aplicación privada de seguimiento familiar construida con Next.js, TypeScript y Supabase. El proyecto combina arquitectura modular, autenticación segura, PWA offline-first, IndexedDB, reglas de dominio testeables y backups automatizados para datos sensibles.',
-          stack: ['Next.js', 'TypeScript', 'Supabase', 'Dexie', 'Serwist', 'Vitest'],
+            'Irati nació cuando nació mi hija: quería dejar de repartir su información entre carpetas, documentos y aplicaciones. Empezó con un perfil, el seguimiento del peso y el calendario de vacunas; después incorporó una checklist de viaje que antes vivía en TickTick. Cuando en el pediatra la conexión dejó de ser suficiente, evolucionó hacia una PWA offline-first. La mayor parte del proyecto se ha construido conversando con Codex, retomando el contexto y avanzando por fases según aparecían nuevas necesidades.',
+          highlights: [
+            'Centralizar la información familiar en un solo lugar.',
+            'Seguimiento de peso y calendario de vacunas.',
+            'Checklist de viaje integrada desde TickTick.',
+            'Offline first para usarla también en el pediatra.',
+          ],
+          stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Dexie', 'Serwist', 'Codex', 'Vitest'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/irati-app' },
             { label: 'Demo', href: 'https://irati-app.vercel.app' },
@@ -187,10 +193,16 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Irati',
           context: 'Private family product',
-          role: 'Architecture, security and full product development',
+          role: 'Product, architecture and AI-assisted development',
           summary:
-            'Private family tracking application built with Next.js, TypeScript and Supabase. The project combines modular architecture, secure authentication, offline-first PWA, IndexedDB, testable domain rules and automated backups for sensitive data.',
-          stack: ['Next.js', 'TypeScript', 'Supabase', 'Dexie', 'Serwist', 'Vitest'],
+            'Irati began when my daughter was born: I wanted to stop scattering her information across folders, documents and different apps. It started with a profile, weight tracking and a vaccine calendar; later it absorbed a travel checklist that had lived in TickTick. When connectivity proved unreliable at the paediatrician, it evolved into an offline-first PWA. Most of the project has been built by talking with Codex, resuming context and moving in phases as new needs appeared.',
+          highlights: [
+            'Centralising family information in one place.',
+            'Weight tracking and vaccine calendar.',
+            'Travel checklist brought over from TickTick.',
+            'Offline first for use at the paediatrician.',
+          ],
+          stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Dexie', 'Serwist', 'Codex', 'Vitest'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/irati-app' },
             { label: 'Demo', href: 'https://irati-app.vercel.app' },
