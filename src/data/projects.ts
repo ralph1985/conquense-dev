@@ -6,6 +6,7 @@ export interface ProjectHighlight {
   context: string;
   role: string;
   summary: string;
+  highlights?: string[];
   stack: string[];
   links?: Array<{
     label: string;
@@ -23,11 +24,17 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
       items: [
         {
           name: 'Jucart',
-          context: 'Proyecto personal',
-          role: 'Producto, arquitectura frontend y automatización',
+          context: 'Proyecto personal y familiar',
+          role: 'Producto, arquitectura frontend y desarrollo asistido por IA',
           summary:
-            'Aplicación web privada para gestión de compra doméstica, diseñada mobile first y offline first. Combina React, TypeScript, IndexedDB, Supabase, PWA, testing E2E y automatizaciones asistidas por IA para mantener categorías, normalización de productos y procesamiento de tickets.',
-          stack: ['React', 'TypeScript', 'Vite', 'Dexie', 'Supabase', 'Playwright'],
+            'Jucart empezó como una lista de compra privada para sustituir la pizarra de la nevera: añadir productos y tacharlos sin complicaciones. A partir de esa necesidad mínima creció por capas: funcionamiento offline para usarla en el supermercado, Supabase para compartirla entre dispositivos y una bandeja de tickets que Codex procesa para extraer líneas y construir histórico de precios. La herramienta conserva la sencillez de uso mientras permite explorar ideas técnicas más ambiciosas.',
+          highlights: [
+            'Una necesidad doméstica convertida en producto.',
+            'Offline first con Dexie e IndexedDB.',
+            'Sincronización compartida con Supabase.',
+            'Tickets y precios procesados con Codex.',
+          ],
+          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/jucart' },
             { label: 'Demo', href: 'https://jucart-rosy.vercel.app' },
@@ -161,11 +168,17 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
       items: [
         {
           name: 'Jucart',
-          context: 'Personal project',
-          role: 'Product, frontend architecture and automation',
+          context: 'Personal and family project',
+          role: 'Product, frontend architecture and AI-assisted development',
           summary:
-            'Private web application for household shopping management, designed mobile first and offline first. It combines React, TypeScript, IndexedDB, Supabase, PWA, E2E testing and AI-assisted automations for category maintenance, product normalization and ticket processing.',
-          stack: ['React', 'TypeScript', 'Vite', 'Dexie', 'Supabase', 'Playwright'],
+            'Jucart started as a private shopping list to replace the whiteboard on the fridge: add products and cross them off without friction. From that small need it grew in layers: offline use for shopping, Supabase to share it across devices and a ticket inbox that Codex processes to extract lines and build price history. The tool keeps its simple user experience while making room for more ambitious technical ideas.',
+          highlights: [
+            'A household need turned into a product.',
+            'Offline first with Dexie and IndexedDB.',
+            'Shared synchronisation with Supabase.',
+            'Tickets and prices processed with Codex.',
+          ],
+          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/jucart' },
             { label: 'Demo', href: 'https://jucart-rosy.vercel.app' },
