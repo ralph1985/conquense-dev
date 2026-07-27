@@ -11,6 +11,10 @@ interface DetailItem {
   summary: string;
   highlights?: string[];
   stack: string[];
+  links?: Array<{
+    label: string;
+    href: string;
+  }>;
 }
 
 interface Props {
@@ -99,6 +103,15 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
             <ul class="detail-item__highlights">
               {item.highlights.map((highlight) => (
                 <li>{highlight}</li>
+              ))}
+            </ul>
+          )}
+          {item.links && (
+            <ul class="detail-item__links" aria-label={item.name ?? item.company ?? title}>
+              {item.links.map((link) => (
+                <li>
+                  <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+                </li>
               ))}
             </ul>
           )}

@@ -60,6 +60,7 @@ Con `prefers-reduced-motion`, se eliminan las transiciones visuales no esenciale
 ## Mejoras futuras
 
 - Revisar proyectos, enlaces públicos y casos ampliables.
+- Actualizar los README de los proyectos seleccionados que necesiten mejor presentación pública y añadir capturas.
 - Añadir imagen Open Graph definitiva.
 - Incorporar analítica ligera si aporta valor.
 - Afinar copy, contraste y microinteracciones tras revisar el contenido final.
