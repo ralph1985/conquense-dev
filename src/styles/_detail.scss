@@ -231,7 +231,8 @@
 
 .detail-item__logo {
   display: inline-grid;
-  flex: 0 0 5.5rem;
+  flex: 0 0 auto;
+  width: fit-content;
   height: 2.5rem;
   place-items: center;
   padding: var(--space-1) var(--space-2);
@@ -245,7 +246,8 @@
 
 .detail-item__logo img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 5.5rem;
   max-height: 1.75rem;
   object-fit: contain;
 }

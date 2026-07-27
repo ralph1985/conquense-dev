@@ -365,6 +365,8 @@
 
 .home-brands li {
   display: grid;
+  justify-self: center;
+  width: fit-content;
   min-height: 4rem;
   place-items: center;
   padding: var(--space-3);
@@ -376,7 +378,8 @@
 
 .home-brands img {
   display: block;
-  width: min(100%, 8.5rem);
+  width: auto;
+  max-width: 8.5rem;
   max-height: 2.35rem;
   object-fit: contain;
 }
@@ -517,7 +520,8 @@
 
 .home-experience-logo {
   display: block;
-  width: min(9rem, 100%);
+  width: auto;
+  max-width: min(9rem, 100%);
   max-height: 2rem;
   margin-top: var(--space-2);
   padding: var(--space-1) var(--space-2);
