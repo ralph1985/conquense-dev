@@ -20,7 +20,7 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
       title: 'Proyectos',
       subtitle: 'Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas.',
       description:
-        'Una selección viva de proyectos públicos y trabajo representativo. Los repositorios de GitHub se revisan uno a uno antes de incorporarlos.',
+        'Una selección cuidada de proyectos públicos y trabajo representativo, con cada repositorio de GitHub revisado antes de incorporarlo.',
       items: [
         {
           name: 'Jucart',
