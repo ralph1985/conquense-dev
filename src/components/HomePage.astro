@@ -121,6 +121,22 @@ const navItems = [
     icon: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
   },
 ];
+
+const contactIcons = {
+  email: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
+  github:
+    'M12 3a9 9 0 0 0-3 17c.45.08.62-.2.62-.44v-1.55c-2.54.55-3.07-1.08-3.07-1.08-.42-1.05-1.02-1.33-1.02-1.33-.84-.57.06-.56.06-.56.93.07 1.42.96 1.42.96.82 1.4 2.15 1 2.68.76.08-.6.32-1 .58-1.23-2.03-.23-4.16-1.02-4.16-4.52 0-1 .36-1.82.95-2.46-.1-.23-.41-1.16.09-2.42 0 0 .78-.25 2.55.94A8.78 8.78 0 0 1 12 6.76c.79 0 1.58.1 2.32.31 1.77-1.19 2.55-.94 2.55-.94.5 1.26.19 2.19.09 2.42.59.64.95 1.46.95 2.46 0 3.51-2.14 4.28-4.18 4.51.33.28.62.84.62 1.7v2.34c0 .25.17.52.63.44A9 9 0 0 0 12 3Z',
+  linkedin: 'M6 9h3v9H6V9Zm1.5-4.2a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4ZM11 9h3v1.3c.43-.75 1.32-1.55 2.76-1.55 2.42 0 3.24 1.46 3.24 4.1V18h-3v-4.72c0-1.25-.43-1.88-1.42-1.88-.93 0-1.58.63-1.58 1.88V18h-3V9Z',
+};
+
+const getContactIcon = (label: string, href: string) => {
+  const value = `${label} ${href}`.toLowerCase();
+
+  if (value.includes('github')) return contactIcons.github;
+  if (value.includes('linkedin')) return contactIcons.linkedin;
+
+  return contactIcons.email;
+};
 ---
 
 <a class="skip-link" href="#contenido">{labels.skipLink}</a>
@@ -292,7 +308,10 @@ const navItems = [
               item
             ) : (
               <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}>
-                {item.label}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d={getContactIcon(item.label, item.href)} />
+                </svg>
+                <span>{item.label}</span>
               </a>
             )}
           </li>
