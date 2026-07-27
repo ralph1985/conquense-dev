@@ -67,7 +67,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Muchas ideas y poco tiempo continuo. Defino qué debe hacer el producto con SDD y converso con Codex para convertirlo en código: reviso sus propuestas, tomo las decisiones y valido cada avance. GitHub conserva el código, Gitflow ordena los cambios, y el servidor MSI ejecuta los agentes de IA. Termius permite acceder al entorno, Tmux mantener las sesiones y Tailscale conectar los dispositivos de forma privada. Vercel publica las aplicaciones y Supabase resuelve los datos. TickTick y la memoria conservan las próximas tareas, las decisiones y el contexto para poder pausar y retomar. Las soluciones que funcionan en un proyecto se reutilizan en el siguiente.',
+        'Muchas ideas, poco tiempo seguido. Por eso trabajo por ciclos cortos: defino con SDD qué debe hacer el producto, trabajo con agentes de IA especializados y configurados por mí para llevarlo a código, y reviso cada propuesta, decisión y avance. GitHub guarda el código y Gitflow ordena su evolución; un servidor MSI ejecuta los agentes de IA. Termius abre la puerta al entorno, Tmux mantiene las sesiones y Tailscale conecta mis dispositivos de forma privada. Vercel publica las aplicaciones y Supabase gestiona sus datos. TickTick y la memoria mantienen las siguientes tareas, las decisiones y el contexto para poder parar y continuar sin perder el hilo. Cuando una solución funciona, la convierto en una pieza reutilizable para el siguiente proyecto.',
       items: ['Especificaciones claras', 'Conversación y revisión', 'Entrega incremental', 'Piezas reutilizables'],
     },
     {
@@ -175,7 +175,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Many ideas and little uninterrupted time. I define what the product must do with SDD and talk with Codex to turn it into code: I review its proposals, make the decisions and validate each step. GitHub keeps the code, Gitflow organises changes and the MSI server runs the AI agents. Termius provides access to the environment, Tmux keeps sessions alive and Tailscale connects devices privately. Vercel publishes the applications and Supabase handles the data. TickTick and memory preserve next steps, decisions and context so I can pause and resume. Solutions that work in one project become reusable pieces for the next.',
+        'Many ideas, little uninterrupted time. That is why I work in short cycles: I define what the product must do with SDD, work with specialised AI agents configured by me to turn it into code, and review every proposal, decision and step forward. GitHub keeps the code and Gitflow organises its evolution; an MSI server runs the AI agents. Termius opens access to the environment, Tmux keeps sessions alive and Tailscale connects my devices privately. Vercel publishes the applications and Supabase manages their data. TickTick and memory preserve next steps, decisions and context, so I can stop and continue without losing the thread. When a solution works, I turn it into a reusable piece for the next project.',
       items: ['Clear specifications', 'Conversation and review', 'Incremental delivery', 'Reusable pieces'],
     },
     {
