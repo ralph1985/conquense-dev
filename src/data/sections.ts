@@ -62,13 +62,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'como-trabajo',
       title: 'Cómo trabajo',
-      subtitle: 'Decisiones explícitas, código revisable y avances pequeños que reducen riesgo.',
+      subtitle: 'Más ideas convertidas en proyectos, incluso con el tiempo fragmentado.',
       eyebrow: 'Proceso',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Trabajo desde el entendimiento del problema hacia una solución simple de operar: requisitos claros, arquitectura proporcional, implementación incremental, pruebas cuando aportan valor y revisión de código como parte natural del proceso. Prefiero apoyarme en estándares y herramientas abiertas antes que crear capas propias si no reducen complejidad real.',
-      items: ['Análisis', 'Arquitectura proporcional', 'Code review', 'Entrega incremental'],
+        'Muchas ideas y poco tiempo continuo. Defino qué debe hacer el producto con SDD y converso con Codex para convertirlo en código: reviso sus propuestas, tomo las decisiones y valido cada avance. GitHub conserva el código, Gitflow ordena los cambios, y el servidor MSI ejecuta los agentes de IA. Termius permite acceder al entorno, Tmux mantener las sesiones y Tailscale conectar los dispositivos de forma privada. Vercel publica las aplicaciones y Supabase resuelve los datos. TickTick y la memoria conservan las próximas tareas, las decisiones y el contexto para poder pausar y retomar. Las soluciones que funcionan en un proyecto se reutilizan en el siguiente.',
+      items: ['Especificaciones claras', 'Conversación y revisión', 'Entrega incremental', 'Piezas reutilizables'],
     },
     {
       id: 'architecture',
@@ -170,13 +170,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'how-i-work',
       title: 'How I work',
-      subtitle: 'Explicit decisions, reviewable code and small steps that reduce risk.',
+      subtitle: 'More ideas turned into projects, even with fragmented time.',
       eyebrow: 'Process',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'I move from understanding the problem toward a solution that is simple to operate: clear requirements, proportionate architecture, incremental implementation, tests where they add value and code review as a natural part of the process. I prefer relying on open standards and tools before creating custom layers when they do not reduce real complexity.',
-      items: ['Analysis', 'Proportionate architecture', 'Code review', 'Incremental delivery'],
+        'Many ideas and little uninterrupted time. I define what the product must do with SDD and talk with Codex to turn it into code: I review its proposals, make the decisions and validate each step. GitHub keeps the code, Gitflow organises changes and the MSI server runs the AI agents. Termius provides access to the environment, Tmux keeps sessions alive and Tailscale connects devices privately. Vercel publishes the applications and Supabase handles the data. TickTick and memory preserve next steps, decisions and context so I can pause and resume. Solutions that work in one project become reusable pieces for the next.',
+      items: ['Clear specifications', 'Conversation and review', 'Incremental delivery', 'Reusable pieces'],
     },
     {
       id: 'architecture',
