@@ -67,8 +67,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Trabajo para convertir necesidades complejas en productos útiles, comprensibles y sostenibles. Empiezo por entender el problema, el contexto y las restricciones; después alineo las decisiones con producto, diseño, backend y negocio. Mi experiencia me ayuda a detectar riesgos y elegir una solución proporcionada, sin perder de vista a quien va a utilizarla. En la ejecución, Codex forma parte importante de mi método actual: me ayuda a explorar alternativas, transformar especificaciones en código y mantener el ritmo, pero el criterio, la revisión y la responsabilidad siguen siendo míos. Trabajo de principio a fin —arquitectura, interfaz, datos, despliegue y evolución— y reviso cada etapa para equilibrar experiencia, calidad técnica y entrega.',
-      items: ['Entender antes de construir', 'Decidir con el equipo', 'Construir y revisar con IA', 'Evolucionar lo que funciona'],
+        'Trabajo para convertir necesidades complejas en productos útiles, comprensibles y sostenibles. Empiezo por entender el problema, el contexto y las restricciones; después alineo las decisiones con producto, diseño, backend y negocio. Mi experiencia me ayuda a detectar riesgos y elegir una solución proporcionada, sin perder de vista a quien va a utilizarla. En la ejecución, la inteligencia artificial forma parte importante de mi método actual: me ayuda a explorar alternativas, transformar especificaciones en código y mantener el ritmo, pero el criterio, la revisión y la responsabilidad siguen siendo míos. Trabajo de principio a fin —arquitectura, interfaz, datos, despliegue y evolución— y reviso cada etapa para equilibrar experiencia, calidad técnica y entrega.',
+      items: ['Entender antes de construir', 'Decidir con el equipo', 'Construir y revisar con inteligencia artificial', 'Evolucionar lo que funciona'],
     },
     {
       id: 'architecture',
@@ -175,8 +175,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'I work to turn complex needs into useful, understandable and sustainable products. I start by understanding the problem, the context and the constraints; then I align decisions with product, design, backend and business. My experience helps me identify risks and choose a proportionate solution without losing sight of the people who will use it. In execution, Codex is an important part of my current method: it helps me explore alternatives, turn specifications into code and keep moving, but the judgement, review and responsibility remain mine. I work across the full cycle —architecture, interface, data, deployment and evolution— and review each stage to balance user experience, technical quality and delivery.',
-      items: ['Understand before building', 'Decide with the team', 'Build and review with AI', 'Evolve what works'],
+        'I work to turn complex needs into useful, understandable and sustainable products. I start by understanding the problem, the context and the constraints; then I align decisions with product, design, backend and business. My experience helps me identify risks and choose a proportionate solution without losing sight of the people who will use it. In execution, artificial intelligence is an important part of my current method: it helps me explore alternatives, turn specifications into code and keep moving, but the judgement, review and responsibility remain mine. I work across the full cycle —architecture, interface, data, deployment and evolution— and review each stage to balance user experience, technical quality and delivery.',
+      items: ['Understand before building', 'Decide with the team', 'Build and review with artificial intelligence', 'Evolve what works'],
     },
     {
       id: 'architecture',
