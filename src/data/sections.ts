@@ -62,13 +62,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'como-trabajo',
       title: 'Cómo trabajo',
-      subtitle: 'Convierto ideas en productos claros y útiles, avanzando en ciclos que puedo retomar.',
+      subtitle: 'Experiencia, criterio técnico y capacidad para llevar productos completos desde la idea hasta su evolución.',
       eyebrow: 'Proceso',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Suelo empezar con una necesidad concreta o una idea que quiero entender mejor. La convierto en una especificación breve, la trabajo con Codex y reviso cada decisión antes de incorporarla al producto. Yo marco la dirección y el criterio; Codex me ayuda a explorar, construir y mantener el ritmo cuando el tiempo está fragmentado. Trabajo por ciclos cortos y acumulativos: primero una versión que funcione, después observación, pruebas y mejoras. GitHub conserva la evolución, mientras Vercel y Supabase resuelven de forma sencilla la publicación y los datos. Las decisiones y los siguientes pasos quedan documentados para poder parar y continuar sin perder el contexto. Cuando una solución demuestra su valor, la convierto en una pieza reutilizable.',
-      items: ['Definir antes de construir', 'Codex con criterio humano', 'Iterar sobre producto real', 'Documentar para continuar', 'Reutilizar lo que funciona'],
+        'Trabajo para convertir necesidades complejas en productos útiles, comprensibles y sostenibles. Empiezo por entender el problema, el contexto y las restricciones; después alineo las decisiones con producto, diseño, backend y negocio. Mi experiencia me ayuda a detectar riesgos y elegir una solución proporcionada, sin perder de vista a quien va a utilizarla. En la ejecución, Codex forma parte importante de mi método actual: me ayuda a explorar alternativas, transformar especificaciones en código y mantener el ritmo, pero el criterio, la revisión y la responsabilidad siguen siendo míos. Trabajo de principio a fin —arquitectura, interfaz, datos, despliegue y evolución— y reviso cada etapa para equilibrar experiencia, calidad técnica y entrega.',
+      items: ['Entender antes de construir', 'Decidir con el equipo', 'Construir y revisar con IA', 'Evolucionar lo que funciona'],
     },
     {
       id: 'architecture',
@@ -170,13 +170,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'how-i-work',
       title: 'How I work',
-      subtitle: 'I turn ideas into clear, useful products through cycles I can return to.',
+      subtitle: 'Experience, technical judgement and the ability to take complete products from idea to evolution.',
       eyebrow: 'Process',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'I usually start with a concrete need or an idea I want to understand better. I turn it into a short specification, work on it with Codex and review every decision before it becomes part of the product. I set the direction and keep responsibility for the judgement; Codex helps me explore, build and keep moving when my time is fragmented. I work in short, cumulative cycles: first a working version, then observation, testing and improvement. GitHub preserves the evolution, while Vercel and Supabase provide a simple foundation for publishing and data. Decisions and next steps are documented so I can stop and continue without losing context. When a solution proves its value, I turn it into a reusable piece.',
-      items: ['Define before building', 'Codex with human judgement', 'Iterate on real products', 'Document to continue', 'Reuse what works'],
+        'I work to turn complex needs into useful, understandable and sustainable products. I start by understanding the problem, the context and the constraints; then I align decisions with product, design, backend and business. My experience helps me identify risks and choose a proportionate solution without losing sight of the people who will use it. In execution, Codex is an important part of my current method: it helps me explore alternatives, turn specifications into code and keep moving, but the judgement, review and responsibility remain mine. I work across the full cycle —architecture, interface, data, deployment and evolution— and review each stage to balance user experience, technical quality and delivery.',
+      items: ['Understand before building', 'Decide with the team', 'Build and review with AI', 'Evolve what works'],
     },
     {
       id: 'architecture',
