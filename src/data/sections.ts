@@ -62,13 +62,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'como-trabajo',
       title: 'Cómo trabajo',
-      subtitle: 'Más ideas convertidas en proyectos, incluso con el tiempo fragmentado.',
+      subtitle: 'Convierto ideas en productos claros y útiles, avanzando en ciclos que puedo retomar.',
       eyebrow: 'Proceso',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Muchas ideas, poco tiempo seguido. Por eso trabajo por ciclos cortos: defino con SDD qué debe hacer el producto, trabajo con agentes de IA especializados y configurados por mí para llevarlo a código, y reviso cada propuesta, decisión y avance. GitHub guarda el código y Gitflow ordena su evolución; un servidor MSI ejecuta los agentes de IA. Termius abre la puerta al entorno, Tmux mantiene las sesiones y Tailscale conecta mis dispositivos de forma privada. Vercel publica las aplicaciones y Supabase gestiona sus datos. TickTick y la memoria mantienen las siguientes tareas, las decisiones y el contexto para poder parar y continuar sin perder el hilo. Cuando una solución funciona, la convierto en una pieza reutilizable para el siguiente proyecto.',
-      items: ['Especificaciones claras', 'Conversación y revisión', 'Entrega incremental', 'Piezas reutilizables'],
+        'Suelo empezar con una necesidad concreta o una idea que quiero entender mejor. La convierto en una especificación breve, la trabajo con Codex y reviso cada decisión antes de incorporarla al producto. Yo marco la dirección y el criterio; Codex me ayuda a explorar, construir y mantener el ritmo cuando el tiempo está fragmentado. Trabajo por ciclos cortos y acumulativos: primero una versión que funcione, después observación, pruebas y mejoras. GitHub conserva la evolución, mientras Vercel y Supabase resuelven de forma sencilla la publicación y los datos. Las decisiones y los siguientes pasos quedan documentados para poder parar y continuar sin perder el contexto. Cuando una solución demuestra su valor, la convierto en una pieza reutilizable.',
+      items: ['Definir antes de construir', 'Codex con criterio humano', 'Iterar sobre producto real', 'Documentar para continuar', 'Reutilizar lo que funciona'],
     },
     {
       id: 'architecture',
@@ -170,13 +170,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'how-i-work',
       title: 'How I work',
-      subtitle: 'More ideas turned into projects, even with fragmented time.',
+      subtitle: 'I turn ideas into clear, useful products through cycles I can return to.',
       eyebrow: 'Process',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Many ideas, little uninterrupted time. That is why I work in short cycles: I define what the product must do with SDD, work with specialised AI agents configured by me to turn it into code, and review every proposal, decision and step forward. GitHub keeps the code and Gitflow organises its evolution; an MSI server runs the AI agents. Termius opens access to the environment, Tmux keeps sessions alive and Tailscale connects my devices privately. Vercel publishes the applications and Supabase manages their data. TickTick and memory preserve next steps, decisions and context, so I can stop and continue without losing the thread. When a solution works, I turn it into a reusable piece for the next project.',
-      items: ['Clear specifications', 'Conversation and review', 'Incremental delivery', 'Reusable pieces'],
+        'I usually start with a concrete need or an idea I want to understand better. I turn it into a short specification, work on it with Codex and review every decision before it becomes part of the product. I set the direction and keep responsibility for the judgement; Codex helps me explore, build and keep moving when my time is fragmented. I work in short, cumulative cycles: first a working version, then observation, testing and improvement. GitHub preserves the evolution, while Vercel and Supabase provide a simple foundation for publishing and data. Decisions and next steps are documented so I can stop and continue without losing context. When a solution proves its value, I turn it into a reusable piece.',
+      items: ['Define before building', 'Codex with human judgement', 'Iterate on real products', 'Document to continue', 'Reuse what works'],
     },
     {
       id: 'architecture',
