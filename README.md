@@ -23,6 +23,7 @@ npm run preview  # preview del build
 - `src/pages/`: rutas principales en español e inglés.
 - `src/layouts/BaseLayout.astro`: HTML base, SEO y estilos globales.
 - `src/components/PortfolioShell.astro`: estructura del recorrido.
+- `src/components/SiteHeader.astro`: cabecera compartida de portada y páginas internas.
 - `src/components/SectionPanel.astro`: render genérico de cada sección.
 - `src/components/ProgressNav.astro`: navegación fija, indicadores y progreso.
 - `src/components/DetailPage.astro`: layout para páginas internas de experiencia y proyectos.

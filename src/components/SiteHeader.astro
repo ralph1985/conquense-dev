@@ -1,0 +1,85 @@
+---
+import BrandLogo from '@/components/BrandLogo.astro';
+import { languageNames, routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
+import { siteConfig } from '@/config/site';
+
+export interface SiteHeaderLabels {
+  navLabel: string;
+  skipLink: string;
+  languageLabel: string;
+  navExperience: string;
+  navProjects: string;
+  navContact: string;
+  themeToggleLabel: string;
+  themeSystemLabel: string;
+  themeLightLabel: string;
+  themeDarkLabel: string;
+}
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: SiteHeaderLabels;
+}
+
+const { lang, alternateLink, labels } = Astro.props;
+const routeSet = routesByLanguage[lang];
+const contactSlug = lang === 'es' ? 'contacto' : 'contact';
+const navItems = [
+  {
+    label: labels.navExperience,
+    href: routeSet.experience,
+    icon: 'M4 7h16M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M5 7h14v12H5V7Zm4 5h6',
+  },
+  {
+    label: labels.navProjects,
+    href: routeSet.projects,
+    icon: 'M4 6h6l2 2h8v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm4 8h8',
+  },
+  {
+    label: labels.navContact,
+    href: `#${contactSlug}`,
+    icon: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
+  },
+];
+---
+
+<a class="skip-link" href="#contenido">{labels.skipLink}</a>
+
+<header class="home-header">
+  <a class="home-header__brand" href={routeSet.home} aria-label={siteConfig.brand.name}>
+    <BrandLogo eager />
+  </a>
+  <nav class="home-header__nav" aria-label={labels.navLabel}>
+    {
+      navItems.map((item) => (
+        <a href={item.href}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d={item.icon} />
+          </svg>
+          <span>{item.label}</span>
+        </a>
+      ))
+    }
+  </nav>
+  <div class="home-header__controls">
+    <button
+      class="home-header__theme"
+      type="button"
+      aria-label={labels.themeToggleLabel}
+      title={labels.themeToggleLabel}
+      data-theme-toggle
+      data-label-toggle={labels.themeToggleLabel}
+      data-label-system={labels.themeSystemLabel}
+      data-label-light={labels.themeLightLabel}
+      data-label-dark={labels.themeDarkLabel}
+    >
+      <span data-theme-state>{labels.themeSystemLabel}</span>
+    </button>
+    <a class="home-header__language" href={alternateLink.href} aria-label={labels.languageLabel}>
+      <span aria-current="true">{languageNames[lang]}</span>
+      <span aria-hidden="true">/</span>
+      <span>{languageNames[alternateLink.lang]}</span>
+    </a>
+  </div>
+</header>

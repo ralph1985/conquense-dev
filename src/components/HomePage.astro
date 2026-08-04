@@ -1,7 +1,6 @@
 ---
-import BrandLogo from '@/components/BrandLogo.astro';
-import { siteConfig } from '@/config/site';
-import { languageNames, routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
+import SiteHeader from '@/components/SiteHeader.astro';
+import { routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
 import { localizedExperience } from '@/data/experience';
 import { localizedProjects } from '@/data/projects';
 import { localizedPortfolioSections, type PortfolioSection } from '@/data/sections';
@@ -13,6 +12,9 @@ interface Props {
     navLabel: string;
     skipLink: string;
     languageLabel: string;
+    navExperience: string;
+    navProjects: string;
+    navContact: string;
     themeToggleLabel: string;
     themeSystemLabel: string;
     themeLightLabel: string;
@@ -36,8 +38,6 @@ const stack = byId('stack');
 const contact = byId('contact');
 const featuredExperience = experience.items.slice(0, 3);
 const featuredProjects = projects.items.slice(0, 3);
-const currentLanguage = languageNames[lang];
-const alternateLanguage = languageNames[alternateLink.lang];
 const contactSlug = lang === 'es' ? 'contacto' : 'contact';
 const brandMarks = [
   { name: 'BBVA', logo: '/assets/logos/bbva.svg' },
@@ -75,9 +75,6 @@ const isExternalUrl = (href: string) => href.startsWith('http');
 
 const copy = {
   es: {
-    navExperience: 'Experiencia',
-    navProjects: 'Proyectos',
-    navContact: 'Contacto',
     heroPrimary: 'Ver experiencia',
     heroSecondary: 'Ver proyectos',
     currentFocus: 'Foco actual',
@@ -91,9 +88,6 @@ const copy = {
     experienceLead: 'Una trayectoria que combina producto digital, frontend, coordinación técnica y entrega en contextos exigentes.',
   },
   en: {
-    navExperience: 'Experience',
-    navProjects: 'Projects',
-    navContact: 'Contact',
     heroPrimary: 'View experience',
     heroSecondary: 'View projects',
     currentFocus: 'Current focus',
@@ -107,24 +101,6 @@ const copy = {
     experienceLead: 'A career combining digital product, frontend engineering, technical coordination and delivery in demanding environments.',
   },
 }[lang];
-
-const navItems = [
-  {
-    label: copy.navExperience,
-    href: routeSet.experience,
-    icon: 'M4 7h16M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M5 7h14v12H5V7Zm4 5h6',
-  },
-  {
-    label: copy.navProjects,
-    href: routeSet.projects,
-    icon: 'M4 6h6l2 2h8v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm4 8h8',
-  },
-  {
-    label: copy.navContact,
-    href: `#${contactSlug}`,
-    icon: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
-  },
-];
 
 const contactIcons = {
   email: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
@@ -143,45 +119,7 @@ const getContactIcon = (label: string, href: string) => {
 };
 ---
 
-<a class="skip-link" href="#contenido">{labels.skipLink}</a>
-
-<header class="home-header">
-  <a class="home-header__brand" href={routeSet.home} aria-label={siteConfig.brand.name}>
-    <BrandLogo eager />
-  </a>
-  <nav class="home-header__nav" aria-label={labels.navLabel}>
-    {
-      navItems.map((item) => (
-        <a href={item.href}>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d={item.icon} />
-          </svg>
-          <span>{item.label}</span>
-        </a>
-      ))
-    }
-  </nav>
-  <div class="home-header__controls">
-    <button
-      class="home-header__theme"
-      type="button"
-      aria-label={labels.themeToggleLabel}
-      title={labels.themeToggleLabel}
-      data-theme-toggle
-      data-label-toggle={labels.themeToggleLabel}
-      data-label-system={labels.themeSystemLabel}
-      data-label-light={labels.themeLightLabel}
-      data-label-dark={labels.themeDarkLabel}
-    >
-      <span data-theme-state>{labels.themeSystemLabel}</span>
-    </button>
-    <a class="home-header__language" href={alternateLink.href} aria-label={labels.languageLabel}>
-      <span aria-current="true">{currentLanguage}</span>
-      <span aria-hidden="true">/</span>
-      <span>{alternateLanguage}</span>
-    </a>
-  </div>
-</header>
+<SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
 
 <main id="contenido" class="home-page">
   <section class="home-hero" aria-labelledby="home-title">

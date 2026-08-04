@@ -181,25 +181,8 @@
   .section-panel.is-active .section-panel__content { @apply motion-safe:animate-[fade-in_.7s_ease-out_both]; }
 
   .detail-page { @apply min-h-screen bg-paper px-5 pb-20 font-sans text-ink md:px-10; background-image: linear-gradient(to right, var(--color-grid) 1px, transparent 1px), linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px); background-size: 5rem 5rem; }
-  .detail-hero { @apply relative mx-auto max-w-6xl border-b border-ink/20 pb-16 pt-8 md:pb-24 md:pt-12; }
+  .detail-hero { @apply relative mx-auto max-w-6xl border-b border-ink/20 pb-16 pt-28 md:pb-24 md:pt-36; }
   .detail-hero::before { content: '~/portfolio'; @apply absolute right-0 top-4 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-muted; }
-  .detail-hero__nav { @apply mb-24 grid min-w-0 grid-cols-[minmax(0,1fr)_auto_auto] gap-3; grid-template-areas: 'brand brand brand' 'back theme language'; }
-  .detail-hero__brand { grid-area: brand; }
-  .detail-hero__back { grid-area: back; min-width: 0; }
-  .detail-hero__theme { grid-area: theme; }
-  .detail-hero__language { grid-area: language; }
-  .detail-hero__brand, .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply min-w-0; }
-  .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply whitespace-nowrap; }
-  .detail-hero__nav > * { @apply max-w-full; }
-  .detail-hero__nav > .detail-hero__brand { @apply justify-self-start; }
-  @media (min-width: 768px) {
-    .detail-hero__nav { @apply flex items-center gap-5; grid-template-areas: none; }
-    .detail-hero__brand, .detail-hero__back, .detail-hero__theme, .detail-hero__language { grid-area: auto; }
-  }
-  .detail-hero__brand .brand-logo { @apply w-40; }
-  .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply font-mono text-xs font-semibold uppercase tracking-[.14em] text-muted no-underline transition-colors hover:text-accent; }
-  .detail-hero__theme { @apply rounded-sm border border-ink/20 bg-transparent px-3 py-2; }
-  .detail-hero__language { @apply rounded-sm border border-ink/20 px-3 py-2 md:ml-auto; }
   .detail-hero__eyebrow { @apply mb-5 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent; }
   .detail-hero h1 { @apply m-0 max-w-4xl text-5xl font-semibold leading-none tracking-[-.06em] md:text-8xl; }
   .detail-hero__subtitle { @apply mt-8 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }

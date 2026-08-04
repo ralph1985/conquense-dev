@@ -1,6 +1,6 @@
 ---
-import BrandLogo from '@/components/BrandLogo.astro';
-import { siteConfig } from '@/config/site';
+import SiteHeader, { type SiteHeaderLabels } from '@/components/SiteHeader.astro';
+import type { AlternateLink, Language } from '@/data/i18n';
 
 interface DetailItem {
   name?: string;
@@ -23,16 +23,10 @@ interface Props {
   subtitle: string;
   description: string;
   items: DetailItem[];
-  backHref: string;
-  backLabel: string;
-  languageHref: string;
-  languageLabel: string;
-  languageText: string;
+  lang: Language;
+  alternateLink: AlternateLink;
+  headerLabels: SiteHeaderLabels;
   stackLabel: string;
-  themeToggleLabel: string;
-  themeSystemLabel: string;
-  themeLightLabel: string;
-  themeDarkLabel: string;
 }
 
 const {
@@ -41,18 +35,11 @@ const {
   subtitle,
   description,
   items,
-  backHref,
-  backLabel,
-  languageHref,
-  languageLabel,
-  languageText,
+  lang,
+  alternateLink,
+  headerLabels,
   stackLabel,
-  themeToggleLabel,
-  themeSystemLabel,
-  themeLightLabel,
-  themeDarkLabel,
 } = Astro.props;
-  Astro.props;
 
 const brandInitials: Record<string, string> = {
   BBVA: 'BBVA',
@@ -84,27 +71,8 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
 ---
 
 <main class="detail-page">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={headerLabels} />
   <header class="detail-hero">
-    <div class="detail-hero__nav">
-      <a class="detail-hero__brand" href={backHref} aria-label={siteConfig.brand.name}>
-        <BrandLogo eager />
-      </a>
-      <a class="detail-hero__back" href={backHref}>{backLabel}</a>
-      <button
-        class="detail-hero__theme"
-        type="button"
-        aria-label={themeToggleLabel}
-        title={themeToggleLabel}
-        data-theme-toggle
-        data-label-toggle={themeToggleLabel}
-        data-label-system={themeSystemLabel}
-        data-label-light={themeLightLabel}
-        data-label-dark={themeDarkLabel}
-      >
-        <span data-theme-state>{themeSystemLabel}</span>
-      </button>
-      <a class="detail-hero__language" href={languageHref} aria-label={languageLabel}>{languageText}</a>
-    </div>
     <p class="detail-hero__eyebrow">{eyebrow}</p>
     <h1>{title}</h1>
     <p class="detail-hero__subtitle">{subtitle}</p>

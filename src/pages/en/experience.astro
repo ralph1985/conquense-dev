@@ -3,7 +3,6 @@ import DetailPage from '@/components/DetailPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { localizedExperience } from '@/data/experience';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
-import { localizedPortfolioSections } from '@/data/sections';
 
 const page = localizedExperience.en;
 ---
@@ -20,15 +19,9 @@ const page = localizedExperience.en;
     subtitle={page.subtitle}
     description={page.description}
     items={page.items}
-    backHref={`${routesByLanguage.en.home}#${localizedPortfolioSections.en.find((section) => section.id === 'experience')?.slug ?? 'experience'}`}
-    backLabel={uiCopy.en.backToJourney}
-    languageHref={routesByLanguage.es.experience}
-    languageLabel={uiCopy.en.languageLabel}
-    languageText="ES"
+    lang="en"
+    alternateLink={{ lang: 'es', href: routesByLanguage.es.experience }}
+    headerLabels={uiCopy.en}
     stackLabel={uiCopy.en.stackLabel}
-    themeToggleLabel={uiCopy.en.themeToggleLabel}
-    themeSystemLabel={uiCopy.en.themeSystemLabel}
-    themeLightLabel={uiCopy.en.themeLightLabel}
-    themeDarkLabel={uiCopy.en.themeDarkLabel}
   />
 </BaseLayout>

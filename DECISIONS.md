@@ -28,6 +28,12 @@ Las secciones se definen en `src/data/sections.ts` mediante un array tipado. Est
 
 Alternativa descartada: CMS. Para un primer borrador con Lorem Ipsum sería una dependencia prematura.
 
+## Cabecera compartida
+
+La navegación, el cambio de idioma, el control de tema y el logotipo viven en `SiteHeader.astro` y se reutilizan en la portada y en las páginas de experiencia y proyectos. Las páginas internas no mantienen una segunda cabecera distinta.
+
+Alternativa descartada: cabeceras específicas por ruta. Duplicaban controles y producían cambios visuales innecesarios al navegar.
+
 ## Reduced motion
 
 Cuando el usuario prefiere reducir movimiento, se eliminan desplazamientos decorativos y transiciones de entrada. La información sigue disponible en el mismo orden del DOM mediante scroll vertical.
