@@ -88,7 +88,7 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
               {
                 getCompanyLogo(item) ? (
                   <span
-                    class={`detail-item__logo${item.company === 'Geanet onDemand' ? ' detail-item__logo--wide' : ''}`}
+                    class={`detail-item__logo${['Geanet onDemand', 'Goitek'].includes(item.company ?? '') ? ' detail-item__logo--wide' : ''}`}
                     aria-hidden="true"
                   >
                     <img src={getCompanyLogo(item)} alt="" loading="lazy" decoding="async" />
