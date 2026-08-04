@@ -82,10 +82,11 @@ const copy = {
     heroSecondary: 'Ver proyectos',
     currentFocus: 'Foco actual',
     selectedExperience: 'Experiencia que lo demuestra',
-    selectedProjects: 'Proyectos destacados',
+    selectedProjects: 'Proyectos que lo concretan',
     viewAllExperience: 'Ver toda la experiencia',
     viewAllProjects: 'Ver proyectos',
-    contactTitle: 'Contacto profesional',
+    projectsLead: 'Una selección de productos propios y trabajos representativos donde arquitectura, interfaz y entrega tienen que sostenerse juntas.',
+    contactTitle: 'Hablemos de producto digital',
     brandLabel: 'Empresas y clientes del recorrido',
     experienceLead: 'Una trayectoria que combina producto digital, frontend, coordinación técnica y entrega en contextos exigentes.',
   },
@@ -97,10 +98,11 @@ const copy = {
     heroSecondary: 'View projects',
     currentFocus: 'Current focus',
     selectedExperience: 'Experience that proves it',
-    selectedProjects: 'Featured projects',
+    selectedProjects: 'Projects that make it concrete',
     viewAllExperience: 'View full experience',
     viewAllProjects: 'View projects',
-    contactTitle: 'Professional contact',
+    projectsLead: 'A selection of personal products and representative work where architecture, interface and delivery have to hold together.',
+    contactTitle: "Let's talk digital product",
     brandLabel: 'Companies and clients along the way',
     experienceLead: 'A career combining digital product, frontend engineering, technical coordination and delivery in demanding environments.',
   },
@@ -280,7 +282,7 @@ const getContactIcon = (label: string, href: string) => {
     <div class="home-section__heading">
       <p class="home-kicker">{projects.eyebrow}</p>
       <h2 id="projects-title">{copy.selectedProjects}</h2>
-      <p>{projects.description}</p>
+      <p>{copy.projectsLead}</p>
     </div>
     <div class="home-projects">
       {
@@ -288,6 +290,7 @@ const getContactIcon = (label: string, href: string) => {
           <article class="home-project">
             <p>{item.context}</p>
             <h3><span class="home-mark" aria-hidden="true">{getBrandInitials(item.context)}</span>{item.name}</h3>
+            <p class="home-project__role">{item.role}</p>
             <span>{item.summary}</span>
           </article>
         ))
@@ -309,7 +312,12 @@ const getContactIcon = (label: string, href: string) => {
             {typeof item === 'string' ? (
               item
             ) : (
-              <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}>
+              <a
+                class={item.href.startsWith('mailto:') ? 'home-contact__link home-contact__link--primary' : 'home-contact__link'}
+                href={item.href}
+                target={isExternalUrl(item.href) ? '_blank' : undefined}
+                rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d={getContactIcon(item.label, item.href)} />
                 </svg>

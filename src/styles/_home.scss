@@ -338,6 +338,22 @@
   color: var(--color-warm);
 }
 
+.home-contact__link--primary {
+  min-height: 3rem;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-md);
+  background: var(--color-text);
+  color: var(--color-surface);
+  font-weight: 750;
+}
+
+.home-contact__link--primary:hover {
+  background: transparent;
+  color: var(--color-text);
+}
+
 .home-brands {
   display: grid;
   gap: var(--space-4);
@@ -483,7 +499,7 @@
 }
 
 .home-principle p,
-.home-project p {
+.home-project > p:first-child {
   margin: 0;
   color: var(--color-warm);
   font-family: var(--font-mono);
@@ -548,6 +564,14 @@ html[data-theme='dark'] .home-experience-logo {
 .home-principle span,
 .home-project span {
   font-size: var(--text-md);
+}
+
+.home-project__role {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .home-timeline {
