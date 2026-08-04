@@ -29,9 +29,29 @@ interface Props {
   languageLabel: string;
   languageText: string;
   stackLabel: string;
+  themeToggleLabel: string;
+  themeSystemLabel: string;
+  themeLightLabel: string;
+  themeDarkLabel: string;
 }
 
-const { eyebrow, title, subtitle, description, items, backHref, backLabel, languageHref, languageLabel, languageText, stackLabel } =
+const {
+  eyebrow,
+  title,
+  subtitle,
+  description,
+  items,
+  backHref,
+  backLabel,
+  languageHref,
+  languageLabel,
+  languageText,
+  stackLabel,
+  themeToggleLabel,
+  themeSystemLabel,
+  themeLightLabel,
+  themeDarkLabel,
+} = Astro.props;
   Astro.props;
 
 const brandInitials: Record<string, string> = {
@@ -70,6 +90,19 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
         <BrandLogo eager />
       </a>
       <a class="detail-hero__back" href={backHref}>{backLabel}</a>
+      <button
+        class="detail-hero__theme"
+        type="button"
+        aria-label={themeToggleLabel}
+        title={themeToggleLabel}
+        data-theme-toggle
+        data-label-toggle={themeToggleLabel}
+        data-label-system={themeSystemLabel}
+        data-label-light={themeLightLabel}
+        data-label-dark={themeDarkLabel}
+      >
+        <span data-theme-state>{themeSystemLabel}</span>
+      </button>
       <a class="detail-hero__language" href={languageHref} aria-label={languageLabel}>{languageText}</a>
     </div>
     <p class="detail-hero__eyebrow">{eyebrow}</p>
