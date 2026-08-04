@@ -62,13 +62,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'como-trabajo',
       title: 'Cómo trabajo',
-      subtitle: 'Experiencia, criterio técnico y capacidad para llevar productos completos desde la idea hasta su evolución.',
+      subtitle: 'Un proceso claro para pasar de una necesidad compleja a una solución que el equipo puede mantener y hacer crecer.',
       eyebrow: 'Proceso',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'Trabajo para convertir necesidades complejas en productos útiles, comprensibles y sostenibles. Empiezo por entender el problema, el contexto y las restricciones; después alineo las decisiones con producto, diseño, backend y negocio. Mi experiencia me ayuda a detectar riesgos y elegir una solución proporcionada, sin perder de vista a quien va a utilizarla. En la ejecución, la inteligencia artificial forma parte importante de mi método actual: me ayuda a explorar alternativas, transformar especificaciones en código y mantener el ritmo, pero el criterio, la revisión y la responsabilidad siguen siendo míos. Trabajo de principio a fin —arquitectura, interfaz, datos, despliegue y evolución— y reviso cada etapa para equilibrar experiencia, calidad técnica y entrega.',
-      items: ['Entender antes de construir', 'Decidir con el equipo', 'Construir y revisar con inteligencia artificial', 'Evolucionar lo que funciona'],
+        'Primero hago visible el problema, el contexto y las restricciones. Después alineo las decisiones con producto, diseño y tecnología, construyo por ciclos y reviso cada entrega. La inteligencia artificial acelera la exploración y la implementación, pero el criterio y la responsabilidad siguen siendo míos.',
+      items: ['Entender antes de construir', 'Decidir con contexto', 'Construir y revisar', 'Evolucionar lo que funciona'],
     },
     {
       id: 'architecture',
@@ -170,13 +170,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'workflow',
       slug: 'how-i-work',
       title: 'How I work',
-      subtitle: 'Experience, technical judgement and the ability to take complete products from idea to evolution.',
+      subtitle: 'A clear process for turning a complex need into a solution the team can maintain and grow.',
       eyebrow: 'Process',
       theme: 'method',
       accentColor: '#4f46e5',
       content:
-        'I work to turn complex needs into useful, understandable and sustainable products. I start by understanding the problem, the context and the constraints; then I align decisions with product, design, backend and business. My experience helps me identify risks and choose a proportionate solution without losing sight of the people who will use it. In execution, artificial intelligence is an important part of my current method: it helps me explore alternatives, turn specifications into code and keep moving, but the judgement, review and responsibility remain mine. I work across the full cycle —architecture, interface, data, deployment and evolution— and review each stage to balance user experience, technical quality and delivery.',
-      items: ['Understand before building', 'Decide with the team', 'Build and review with artificial intelligence', 'Evolve what works'],
+        'I make the problem, context and constraints visible first. Then I align decisions across product, design and technology, build in cycles and review each delivery. Artificial intelligence speeds up exploration and implementation, but the judgement and responsibility remain mine.',
+      items: ['Understand before building', 'Decide with context', 'Build and review', 'Evolve what works'],
     },
     {
       id: 'architecture',
