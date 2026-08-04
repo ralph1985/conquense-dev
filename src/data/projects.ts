@@ -160,7 +160,6 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           stack: ['TypeScript', 'Lit', 'Material Web Components', 'Google Sheets', 'TDD'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/buy-buddies' },
-            { label: 'Demo', href: 'https://buy-buddies.vercel.app' },
           ],
         },
       ],
@@ -310,7 +309,6 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           stack: ['TypeScript', 'Lit', 'Material Web Components', 'Google Sheets', 'TDD'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/buy-buddies' },
-            { label: 'Demo', href: 'https://buy-buddies.vercel.app' },
           ],
         },
       ],
