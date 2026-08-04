@@ -23,6 +23,8 @@ interface Props {
   subtitle: string;
   description: string;
   items: DetailItem[];
+  backHref: string;
+  backLabel: string;
   lang: Language;
   alternateLink: AlternateLink;
   headerLabels: SiteHeaderLabels;
@@ -35,6 +37,8 @@ const {
   subtitle,
   description,
   items,
+  backHref,
+  backLabel,
   lang,
   alternateLink,
   headerLabels,
@@ -77,6 +81,7 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
     <h1>{title}</h1>
     <p class="detail-hero__subtitle">{subtitle}</p>
     <p class="detail-hero__description">{description}</p>
+    <a class="detail-hero__back" href={backHref}>← {backLabel}</a>
   </header>
 
   <section class="detail-list" aria-label={title}>
