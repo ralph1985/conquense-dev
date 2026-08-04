@@ -81,12 +81,13 @@ const copy = {
     heroPrimary: 'Ver experiencia',
     heroSecondary: 'Ver proyectos',
     currentFocus: 'Foco actual',
-    selectedExperience: 'Experiencia reciente',
+    selectedExperience: 'Experiencia que lo demuestra',
     selectedProjects: 'Proyectos destacados',
     viewAllExperience: 'Ver toda la experiencia',
     viewAllProjects: 'Ver proyectos',
     contactTitle: 'Contacto profesional',
-    brandLabel: 'Empresas y clientes destacados',
+    brandLabel: 'Empresas y clientes del recorrido',
+    experienceLead: 'Una trayectoria que combina producto digital, frontend, coordinación técnica y entrega en contextos exigentes.',
   },
   en: {
     navExperience: 'Experience',
@@ -95,12 +96,13 @@ const copy = {
     heroPrimary: 'View experience',
     heroSecondary: 'View projects',
     currentFocus: 'Current focus',
-    selectedExperience: 'Recent experience',
+    selectedExperience: 'Experience that proves it',
     selectedProjects: 'Featured projects',
     viewAllExperience: 'View full experience',
     viewAllProjects: 'View projects',
     contactTitle: 'Professional contact',
-    brandLabel: 'Selected companies and clients',
+    brandLabel: 'Companies and clients along the way',
+    experienceLead: 'A career combining digital product, frontend engineering, technical coordination and delivery in demanding environments.',
   },
 }[lang];
 
@@ -199,17 +201,6 @@ const getContactIcon = (label: string, href: string) => {
     </aside>
   </section>
 
-  <section class="home-brands" aria-labelledby="brands-title">
-    <h2 id="brands-title">{copy.brandLabel}</h2>
-    <ul>
-      {brandMarks.map((brand) => (
-        <li>
-          <img src={brand.logo} alt={brand.name} decoding="async" />
-        </li>
-      ))}
-    </ul>
-  </section>
-
   <section class="home-section home-section--split" aria-labelledby="profile-title">
     <div>
       <p class="home-kicker">{profile?.eyebrow}</p>
@@ -250,7 +241,7 @@ const getContactIcon = (label: string, href: string) => {
     <div class="home-section__heading">
       <p class="home-kicker">{experience.eyebrow}</p>
       <h2 id="experience-title">{copy.selectedExperience}</h2>
-      <p>{experience.description}</p>
+      <p>{copy.experienceLead}</p>
     </div>
     <ol class="home-timeline">
       {
@@ -272,6 +263,17 @@ const getContactIcon = (label: string, href: string) => {
       }
     </ol>
     <a class="home-link" href={routeSet.experience}>{copy.viewAllExperience}</a>
+  </section>
+
+  <section class="home-brands" aria-labelledby="brands-title">
+    <h2 id="brands-title">{copy.brandLabel}</h2>
+    <ul>
+      {brandMarks.map((brand) => (
+        <li>
+          <img src={brand.logo} alt={brand.name} decoding="async" />
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="home-section home-section--projects" aria-labelledby="projects-title">
