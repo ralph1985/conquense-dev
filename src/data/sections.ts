@@ -49,14 +49,14 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'profile',
       slug: 'perfil',
-      title: 'Perfil',
-      subtitle: 'Más de 15 años construyendo producto web, con una etapa larga centrada en mobile web y banca digital.',
-      eyebrow: 'Sobre mí',
+      title: 'Qué resuelvo',
+      subtitle: 'Convierto necesidades complejas en productos digitales claros, mantenibles y preparados para crecer.',
+      eyebrow: 'Propuesta de valor',
       theme: 'profile',
       accentColor: '#0f766e',
       content:
-        'Mi trayectoria combina desarrollo frontend, análisis técnico, colaboración con producto y entrega en equipos multidisciplinares. He trabajado en aplicaciones para banca, viajes, e-commerce, hospitality y herramientas internas, con especial atención a interfaces robustas y sostenibles.',
-      items: ['Frontend senior', 'Mobile web', 'Producto digital'],
+        'Aporto experiencia frontend, criterio técnico y capacidad de colaboración para ordenar problemas difíciles y llevarlos hasta una solución útil. Trabajo entre producto, diseño y tecnología para construir interfaces que se entienden, arquitecturas que resisten y equipos que pueden seguir avanzando.',
+      items: ['Interfaces que se entienden', 'Arquitecturas que resisten', 'Equipos que avanzan'],
     },
     {
       id: 'workflow',
@@ -157,14 +157,14 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'profile',
       slug: 'profile',
-      title: 'Profile',
-      subtitle: 'More than 15 years building web products, with a long stage focused on mobile web and digital banking.',
-      eyebrow: 'About',
+      title: 'What I solve',
+      subtitle: 'I turn complex needs into clear, maintainable digital products that are ready to grow.',
+      eyebrow: 'Value proposition',
       theme: 'profile',
       accentColor: '#0f766e',
       content:
-        'My background combines frontend development, technical analysis, product collaboration and delivery in multidisciplinary teams. I have worked on banking, travel, e-commerce, hospitality and internal tools, with particular attention to robust and sustainable interfaces.',
-      items: ['Senior frontend', 'Mobile web', 'Digital product'],
+        'I bring frontend experience, technical judgement and collaborative delivery to make difficult problems clearer and turn them into useful solutions. I work across product, design and technology to build interfaces people understand, architectures that hold up and teams that can keep moving.',
+      items: ['Interfaces people understand', 'Architectures that hold up', 'Teams that keep moving'],
     },
     {
       id: 'workflow',
