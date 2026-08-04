@@ -68,6 +68,17 @@ const alternateLinks = Astro.props.alternateLinks ?? [];
   </head>
   <body>
     <slot />
+    <footer class="site-credit">
+      <p>
+        {lang === 'es' ? 'Diseñada y desarrollada por' : 'Designed and developed by'}
+        <a
+          href="https://conquense.dev"
+          aria-label={lang === 'es' ? 'Portfolio conquense.dev' : 'conquense.dev portfolio'}
+        >
+          conquense.dev
+        </a>
+      </p>
+    </footer>
   </body>
 </html>
 
