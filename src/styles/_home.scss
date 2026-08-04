@@ -338,7 +338,7 @@
   color: var(--color-warm);
 }
 
-.home-contact__link--primary {
+.home-contact a.home-contact__link--primary {
   min-height: 3rem;
   align-items: center;
   padding: var(--space-3) var(--space-4);
@@ -349,7 +349,7 @@
   font-weight: 750;
 }
 
-.home-contact__link--primary:hover {
+.home-contact a.home-contact__link--primary:hover {
   background: transparent;
   color: var(--color-text);
 }
