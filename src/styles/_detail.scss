@@ -474,6 +474,19 @@ html[data-theme='dark'] .detail-item__logo {
   color: var(--color-text);
 }
 
+.detail-item__logo--wide {
+  width: 9rem;
+  height: 3.25rem;
+  padding: var(--space-2) var(--space-3);
+  background: #ffffff;
+}
+
+.detail-item__logo--wide img {
+  width: 100%;
+  max-width: none;
+  max-height: 2.75rem;
+}
+
 @media (max-width: 767px) {
   .detail-page {
     padding-top: var(--space-6);
@@ -481,5 +494,9 @@ html[data-theme='dark'] .detail-item__logo {
 
   .detail-hero {
     padding-top: var(--space-8);
+  }
+
+  .detail-item__logo--wide {
+    width: 8rem;
   }
 }
