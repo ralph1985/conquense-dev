@@ -19,7 +19,7 @@ El usuario hace scroll vertical nativo. La navegación fija muestra progreso, se
 
 - Astro para estructura estática.
 - TypeScript para configuración y scripts.
-- SCSS para tokens y estilos.
+- Tailwind CSS para layout, responsive y estados, con DaisyUI tematizado para primitivas visuales.
 - JavaScript cliente mínimo para navegación vertical, progreso y estado activo.
 
 ## Pendientes editoriales

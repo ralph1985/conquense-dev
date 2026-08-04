@@ -16,11 +16,11 @@ Alternativa descartada: mantener el desplazamiento horizontal con pinning. Era d
 
 No se usa Lenis ni Locomotive Scroll. El scroll nativo reduce complejidad, conserva mejor la accesibilidad y evita conflictos con navegación por teclado, hash links y preferencias de movimiento.
 
-## SCSS y tokens
+## Tailwind CSS y DaisyUI
 
-Se usa SCSS con variables CSS centralizadas para mantener una capa de diseño sencilla: colores, tipografía, espaciado, radios, sombras, breakpoints y tiempos de animación.
+Se usa Tailwind CSS como sistema principal de layout, responsive y estados. DaisyUI aporta primitivas como botones, con un tema propio que reutiliza los tokens semánticos del portfolio y respeta los modos claro y oscuro.
 
-Alternativa descartada: framework UI. El objetivo visual es específico y sobrio, y un framework añadiría estilos y convenciones que no hacen falta.
+Alternativa descartada: mantener SCSS como capa principal. La migración reduce estilos dispersos y hace explícita la composición visual en los componentes Astro, sin adoptar la estética predeterminada de DaisyUI.
 
 ## Datos locales tipados
 

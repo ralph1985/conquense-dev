@@ -5,8 +5,8 @@ Este documento guía el trabajo por hitos de Conquense Dev. Es la fuente de verd
 ## Estado actual
 
 - Repositorio Astro inicial creado y publicado en GitHub.
-- Stack base: Astro, TypeScript, SCSS, GSAP y ScrollTrigger.
-- Experiencia principal: scroll vertical con avance horizontal también en móvil; scroll vertical normal solo con `prefers-reduced-motion`.
+- Stack base: Astro, TypeScript, Tailwind CSS, DaisyUI y scripts cliente mínimos.
+- Experiencia principal: scroll vertical nativo con navegación de progreso y fallback accesible para movimiento reducido.
 - Secciones actuales: Inicio, Perfil, Cómo trabajo, Arquitectura, Proyectos, Stack y Contacto.
 - Contenido actual: primera versión profesional bilingüe ES/EN, redactada a partir de un CV antiguo como material provisional.
 - Rutas actuales: `/`, `/proyectos/`, `/experiencia/`, `/en/`, `/en/projects/` y `/en/experience/`.
@@ -15,7 +15,7 @@ Este documento guía el trabajo por hitos de Conquense Dev. Es la fuente de verd
 
 - Trabajar hito a hito, sin adelantar features de hitos posteriores salvo que desbloqueen el hito activo.
 - Mantener las secciones en `src/data/sections.ts` mientras no se apruebe otra arquitectura.
-- No añadir frameworks cliente, CMS, analítica, smooth-scroll externo ni dependencias nuevas sin aprobación explícita.
+- No añadir frameworks cliente, CMS, analítica ni smooth-scroll externo sin aprobación explícita.
 - No publicar teléfono móvil por defecto; el contacto público será email y LinkedIn.
 - No inventar métricas, cargos, resultados, tecnologías recientes ni responsabilidades no confirmadas por el usuario.
 - Cada hito debe cerrarse con commit Conventional Commit en inglés y push a `origin/main`.
@@ -93,9 +93,16 @@ Cierre:
 
 ### M4 - Pulido visual y responsive
 
-**Estado:** pendiente.
+**Estado:** completado.
 
-Objetivo: elevar el acabado visual sin cambiar la arquitectura base.
+Objetivo: elevar el acabado visual con un sistema de estilos explícito y mantenible.
+
+Cierre:
+
+- Migración de SCSS a Tailwind CSS y DaisyUI con tema propio claro/oscuro.
+- Componentes Astro existentes conservados como unidades de composición y datos.
+- Responsive, foco visible y `prefers-reduced-motion` cubiertos en la nueva capa visual.
+- `npm run lint` y `npm run build` pasan.
 
 Alcance:
 

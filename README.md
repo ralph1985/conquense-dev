@@ -1,6 +1,6 @@
 # Conquense Dev
 
-Portfolio profesional construido con Astro, TypeScript y SCSS.
+Portfolio profesional construido con Astro, TypeScript, Tailwind CSS y DaisyUI.
 
 ## Instalación
 
@@ -30,7 +30,7 @@ npm run preview  # preview del build
 - `src/data/sections.ts`: fuente de datos tipada para secciones ES/EN.
 - `src/data/experience.ts`: fuente de datos ES/EN para la experiencia profesional.
 - `src/data/projects.ts`: fuente de datos ES/EN para proyectos y casos representativos.
-- `src/styles/`: tokens, estilos base, layout, navegación y secciones.
+- `src/styles/tailwind.css`: reset, tokens semánticos, tema claro/oscuro y componentes visuales construidos sobre Tailwind.
 - `src/scripts/portfolio-scroll.ts`: navegación vertical, teclado, indicadores y estado activo.
 
 ## Datos
@@ -52,8 +52,8 @@ Con `prefers-reduced-motion`, se eliminan las transiciones visuales no esenciale
 ## Decisiones técnicas
 
 - Astro mantiene el HTML estático y reduce JavaScript cliente.
+- Tailwind CSS centraliza layout, responsive y estados; DaisyUI aporta primitivas accesibles tematizadas sin imponer su tema por defecto.
 - El scroll nativo evita dependencias de animación para la navegación principal.
-- SCSS centraliza tokens y estilos sin introducir un framework visual.
 - Los datos viven en TypeScript para mantener tipos y edición simple.
 - El bilingüismo se resuelve con datos tipados y rutas Astro estáticas, sin añadir una librería i18n.
 
