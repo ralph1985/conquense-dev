@@ -41,7 +41,7 @@ export const uiCopy = {
     themeDarkLabel: 'Oscuro',
     sectionItemsLabel: 'Puntos de',
     sectionActionsLabel: 'Acciones de',
-    backToJourney: 'Volver al recorrido',
+    backToJourney: 'Volver al inicio',
     stackLabel: 'Tecnologías',
   },
   en: {
@@ -55,7 +55,7 @@ export const uiCopy = {
     themeDarkLabel: 'Dark',
     sectionItemsLabel: 'Highlights for',
     sectionActionsLabel: 'Actions for',
-    backToJourney: 'Back to the journey',
+    backToJourney: 'Back home',
     stackLabel: 'Technologies',
   },
 } satisfies Record<Language, Record<string, string>>;
