@@ -20,7 +20,7 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
       title: 'Proyectos',
       subtitle: 'Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas.',
       description:
-        'Una selección cuidada de proyectos públicos y trabajo representativo, con cada repositorio de GitHub revisado antes de incorporarlo.',
+        'Una muestra de productos propios y trabajos representativos, construidos entre la interfaz, la arquitectura y las decisiones que hacen posible su evolución.',
       items: [
         {
           name: 'Jucart',
@@ -170,7 +170,7 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
       title: 'Projects',
       subtitle: 'Representative work in digital banking, mobile commerce, booking and internal tools.',
       description:
-        'A living selection of public projects and representative work. GitHub repositories are reviewed one by one before being added.',
+        'A selection of personal products and representative work shaped by interface, architecture and the decisions that allow them to evolve.',
       items: [
         {
           name: 'Jucart',
