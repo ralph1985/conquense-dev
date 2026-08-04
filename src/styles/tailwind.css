@@ -183,20 +183,32 @@
   .detail-page { @apply min-h-screen bg-paper px-5 pb-20 font-sans text-ink md:px-10; background-image: linear-gradient(to right, var(--color-grid) 1px, transparent 1px), linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px); background-size: 5rem 5rem; }
   .detail-hero { @apply relative mx-auto max-w-6xl border-b border-ink/20 pb-16 pt-8 md:pb-24 md:pt-12; }
   .detail-hero::before { content: '~/portfolio'; @apply absolute right-0 top-4 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-muted; }
-  .detail-hero__nav { @apply mb-24 flex items-center gap-5; }
+  .detail-hero__nav { @apply mb-24 grid min-w-0 grid-cols-[minmax(0,1fr)_auto_auto] gap-3; grid-template-areas: 'brand brand brand' 'back theme language'; }
+  .detail-hero__brand { grid-area: brand; }
+  .detail-hero__back { grid-area: back; min-width: 0; }
+  .detail-hero__theme { grid-area: theme; }
+  .detail-hero__language { grid-area: language; }
+  .detail-hero__brand, .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply min-w-0; }
+  .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply whitespace-nowrap; }
+  .detail-hero__nav > * { @apply max-w-full; }
+  .detail-hero__nav > .detail-hero__brand { @apply justify-self-start; }
+  @media (min-width: 768px) {
+    .detail-hero__nav { @apply flex items-center gap-5; grid-template-areas: none; }
+    .detail-hero__brand, .detail-hero__back, .detail-hero__theme, .detail-hero__language { grid-area: auto; }
+  }
   .detail-hero__brand .brand-logo { @apply w-40; }
   .detail-hero__back, .detail-hero__theme, .detail-hero__language { @apply font-mono text-xs font-semibold uppercase tracking-[.14em] text-muted no-underline transition-colors hover:text-accent; }
   .detail-hero__theme { @apply rounded-sm border border-ink/20 bg-transparent px-3 py-2; }
-  .detail-hero__language { @apply ml-auto rounded-sm border border-ink/20 px-3 py-2; }
+  .detail-hero__language { @apply rounded-sm border border-ink/20 px-3 py-2 md:ml-auto; }
   .detail-hero__eyebrow { @apply mb-5 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent; }
   .detail-hero h1 { @apply m-0 max-w-4xl text-5xl font-semibold leading-none tracking-[-.06em] md:text-8xl; }
   .detail-hero__subtitle { @apply mt-8 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }
   .detail-hero__description { @apply mt-5 max-w-[65ch] leading-relaxed text-muted; }
   .detail-list { @apply mx-auto max-w-6xl; }
   .detail-item { @apply grid gap-8 border-b border-ink/20 py-12 md:grid-cols-[minmax(220px,.6fr)_minmax(0,1fr)]; }
-  .detail-item__header { @apply relative; }
+  .detail-item__header { @apply relative min-w-0; }
   .detail-item__header > p:first-child { @apply mb-5 font-mono text-xs text-accent; }
-  .detail-item h2 { @apply m-0 flex items-center gap-3 text-2xl font-semibold tracking-tight; }
+  .detail-item h2 { @apply m-0 flex min-w-0 items-center gap-3 break-words text-2xl font-semibold tracking-tight; }
   .detail-item__header > p:last-child { @apply mt-3 text-sm font-semibold text-muted; }
   .detail-item__mark { @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-ink p-2 text-[.6rem] font-bold text-paper; }
   .detail-item__logo { @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full border border-slate-200 bg-white p-2 text-[.6rem] font-bold text-ink shadow-sm; }
