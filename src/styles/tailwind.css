@@ -119,13 +119,13 @@
   .home-timeline h3 { @apply mb-3 flex items-center gap-2 text-xl font-semibold tracking-tight; }
   .home-timeline p { @apply mb-2 text-sm leading-relaxed text-muted; }
   .home-mark { @apply inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-ink text-[.6rem] font-bold text-paper; }
-  .home-experience-logo { @apply mb-4 h-6 max-w-28 object-contain object-left; }
+  .home-experience-logo { @apply mb-4 h-9 max-w-32 rounded-full border border-slate-200 bg-white px-3 py-1.5 object-contain object-left shadow-sm; }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .home-brands { @apply border-b border-ink/15 py-12; }
   .home-brands h2 { @apply mb-8 font-mono text-[.68rem] font-bold uppercase tracking-[.18em] text-muted; }
   .home-brands ul { @apply grid grid-cols-2 items-center gap-8 md:grid-cols-6; }
-  .home-brands li { @apply flex h-10 items-center justify-start grayscale transition-all hover:grayscale-0; }
-  .home-brands img { @apply max-h-8 w-auto max-w-32 object-contain object-left; }
+  .home-brands li { @apply flex h-12 min-w-32 items-center justify-center rounded-full border border-slate-200 bg-white px-5 shadow-sm transition-transform hover:-translate-y-0.5; }
+  .home-brands img { @apply max-h-8 w-auto max-w-32 object-contain; }
   .home-projects { @apply grid gap-3 md:grid-cols-3; }
   .home-project__role { @apply mb-5 text-sm font-semibold text-accent; }
   .home-contact { @apply grid gap-10 py-20 md:grid-cols-[1fr_auto] md:items-end md:py-28; }
@@ -192,7 +192,8 @@
   .detail-item__header > p:first-child { @apply mb-5 font-mono text-xs text-accent; }
   .detail-item h2 { @apply m-0 flex items-center gap-3 text-2xl font-semibold tracking-tight; }
   .detail-item__header > p:last-child { @apply mt-3 text-sm font-semibold text-muted; }
-  .detail-item__mark, .detail-item__logo { @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-ink p-2 text-[.6rem] font-bold text-paper; }
+  .detail-item__mark { @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-ink p-2 text-[.6rem] font-bold text-paper; }
+  .detail-item__logo { @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full border border-slate-200 bg-white p-2 text-[.6rem] font-bold text-ink shadow-sm; }
   .detail-item__logo img { @apply max-h-full max-w-full object-contain; }
   .detail-item__logo--wide { @apply w-16 rounded-lg; }
   .detail-item__summary { @apply max-w-[65ch] leading-relaxed text-muted; }
