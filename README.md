@@ -24,6 +24,7 @@ npm run preview  # preview del build
 - `src/layouts/BaseLayout.astro`: HTML base, SEO y estilos globales.
 - `src/components/PortfolioShell.astro`: estructura del recorrido.
 - `src/components/SiteHeader.astro`: cabecera compartida de portada y páginas internas.
+- `src/components/CompanyLogo.astro`: representación compartida de empresas con logo o iniciales de fallback.
 - `src/components/SectionPanel.astro`: render genérico de cada sección.
 - `src/components/ProgressNav.astro`: navegación fija, indicadores y progreso.
 - `src/components/DetailPage.astro`: layout para páginas internas de experiencia y proyectos.

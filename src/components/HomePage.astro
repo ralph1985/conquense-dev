@@ -1,5 +1,6 @@
 ---
 import SiteHeader from '@/components/SiteHeader.astro';
+import CompanyLogo from '@/components/CompanyLogo.astro';
 import { routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
 import { localizedExperience } from '@/data/experience';
 import { localizedProjects } from '@/data/projects';
@@ -189,12 +190,10 @@ const getContactIcon = (label: string, href: string) => {
           <li>
             <span>{item.period}</span>
             <div>
-              <h3><span class="home-mark" aria-hidden="true">{getBrandInitials(item.company)}</span>{item.company}</h3>
-              {
-                experienceLogos[item.company] && (
-                  <img class="home-experience-logo" src={experienceLogos[item.company]} alt="" loading="lazy" decoding="async" aria-hidden="true" />
-                )
-              }
+              <h3>
+                <CompanyLogo initials={getBrandInitials(item.company)} logo={experienceLogos[item.company]} />
+                {item.company}
+              </h3>
               <p>{item.role}</p>
               <p>{item.summary}</p>
             </div>
@@ -227,7 +226,7 @@ const getContactIcon = (label: string, href: string) => {
         featuredProjects.map((item) => (
           <article class="home-project">
             <p>{item.context}</p>
-            <h3><span class="home-mark" aria-hidden="true">{getBrandInitials(item.context)}</span>{item.name}</h3>
+            <h3><CompanyLogo initials={getBrandInitials(item.context)} />{item.name}</h3>
             <p class="home-project__role">{item.role}</p>
             <span>{item.summary}</span>
           </article>

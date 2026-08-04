@@ -1,5 +1,6 @@
 ---
 import SiteHeader, { type SiteHeaderLabels } from '@/components/SiteHeader.astro';
+import CompanyLogo from '@/components/CompanyLogo.astro';
 import type { AlternateLink, Language } from '@/data/i18n';
 
 interface DetailItem {
@@ -91,18 +92,7 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
           <div class="detail-item__header">
             <p>{item.period ?? item.context}</p>
             <h2>
-              {
-                getCompanyLogo(item) ? (
-                  <span
-                    class={`detail-item__logo${['Geanet onDemand', 'Goitek'].includes(item.company ?? '') ? ' detail-item__logo--wide' : ''}`}
-                    aria-hidden="true"
-                  >
-                    <img src={getCompanyLogo(item)} alt="" loading="lazy" decoding="async" />
-                  </span>
-                ) : (
-                  <span class="detail-item__mark" aria-hidden="true">{getBrandInitials(item)}</span>
-                )
-              }
+              <CompanyLogo initials={getBrandInitials(item)} logo={getCompanyLogo(item)} />
               {item.company ?? item.name}
             </h2>
             <p>{item.role}</p>
