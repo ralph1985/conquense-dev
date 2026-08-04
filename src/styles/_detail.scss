@@ -378,3 +378,108 @@ html[data-theme='dark'] .detail-item__logo {
     transform: none;
   }
 }
+
+/* Editorial engineering layer */
+.detail-page {
+  padding-top: var(--space-8);
+  background: var(--color-background);
+}
+
+.detail-hero {
+  padding-top: var(--space-12);
+  border-top: 1px solid var(--color-text);
+}
+
+.detail-hero::after {
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.45;
+}
+
+.detail-hero__back,
+.detail-hero__language {
+  color: var(--color-muted);
+}
+
+.detail-hero__back:hover,
+.detail-hero__language:hover {
+  color: var(--color-focus);
+}
+
+.detail-hero__eyebrow {
+  color: var(--color-warm);
+  letter-spacing: 0.08em;
+}
+
+.detail-hero__eyebrow::before {
+  background: var(--color-warm);
+}
+
+.detail-hero h1 {
+  max-width: 10ch;
+  letter-spacing: -0.06em;
+}
+
+.detail-item {
+  border-radius: var(--radius-sm);
+  border-top: 2px solid var(--color-focus);
+  border-right: 0;
+  border-bottom: 1px solid var(--color-line);
+  border-left: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.detail-item::after {
+  background: var(--color-warm);
+  opacity: 0.5;
+}
+
+.detail-item:hover {
+  border-top-color: var(--color-warm);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.detail-item::before {
+  color: var(--color-warm);
+}
+
+.detail-item__mark,
+.detail-item__stack li {
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
+}
+
+.detail-item__mark {
+  border-color: var(--color-focus);
+  color: var(--color-focus);
+}
+
+.detail-item__header p:first-child {
+  color: var(--color-warm);
+}
+
+.detail-item__links a {
+  border-radius: var(--radius-sm);
+  background: var(--color-focus);
+  color: var(--color-surface);
+}
+
+.detail-item__links a:hover {
+  border-color: var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+}
+
+@media (max-width: 767px) {
+  .detail-page {
+    padding-top: var(--space-6);
+  }
+
+  .detail-hero {
+    padding-top: var(--space-8);
+  }
+}

@@ -209,3 +209,31 @@
     grid-column: 1 / -1;
   }
 }
+
+/* Editorial engineering layer */
+.progress-nav {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--color-nav-surface);
+  box-shadow: 0 -12px 32px var(--color-ink-soft);
+}
+
+.progress-nav__theme,
+.progress-nav__dot {
+  border-radius: var(--radius-sm);
+}
+
+.progress-nav__dot[aria-current='step'] {
+  border-color: var(--color-focus);
+  background: var(--color-focus);
+  color: var(--color-surface);
+}
+
+.progress-nav__bar span {
+  background: linear-gradient(90deg, var(--color-focus), var(--color-warm));
+}
+
+@media (min-width: 768px) {
+  .progress-nav {
+    border-radius: var(--radius-sm);
+  }
+}

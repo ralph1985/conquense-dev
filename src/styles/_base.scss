@@ -13,12 +13,10 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 16% 12%, var(--color-ambient-warm), transparent 26rem),
-    radial-gradient(circle at 86% 8%, var(--color-ambient-focus), transparent 30rem),
     linear-gradient(var(--color-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
     var(--color-background);
-  background-size: auto, auto, 48px 48px, 48px 48px, auto;
+  background-size: 48px 48px, 48px 48px, auto;
   color: var(--color-text);
   font-size: var(--text-md);
   line-height: 1.5;
