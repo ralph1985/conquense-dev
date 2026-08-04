@@ -117,7 +117,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'stack',
       accentColor: '#0369a1',
       content:
-        'Mi base principal está en JavaScript, HTML y CSS, con experiencia en Ember, LitElement, jQuery, SCSS, tooling frontend, testing, Git, CI y trabajo con APIs REST. También arrastro una base sólida en PHP, SQL y aplicaciones de gestión, útil para entender producto más allá de la capa visual.',
+        'Mi base principal está en JavaScript, HTML y CSS, con experiencia en Ember, LitElement, SCSS, tooling frontend, testing, Git, CI y trabajo con APIs REST. También arrastro una base sólida en PHP, SQL y aplicaciones de gestión, útil para entender producto más allá de la capa visual.',
       items: ['JavaScript', 'Ember', 'LitElement', 'SCSS', 'Testing', 'Git'],
     },
     {
@@ -225,7 +225,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'stack',
       accentColor: '#0369a1',
       content:
-        'My main foundation is JavaScript, HTML and CSS, with experience in Ember, LitElement, jQuery, SCSS, frontend tooling, testing, Git, CI and REST APIs. I also bring a solid PHP, SQL and management applications background, useful for understanding product beyond the visual layer.',
+        'My main foundation is JavaScript, HTML and CSS, with experience in Ember, LitElement, SCSS, frontend tooling, testing, Git, CI and REST APIs. I also bring a solid PHP, SQL and management applications background, useful for understanding product beyond the visual layer.',
       items: ['JavaScript', 'Ember', 'LitElement', 'SCSS', 'Testing', 'Git'],
     },
     {
