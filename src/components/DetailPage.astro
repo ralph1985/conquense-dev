@@ -47,7 +47,6 @@ const {
 } = Astro.props;
 
 const brandInitials: Record<string, string> = {
-  'BBVA Technology · BBVA IT España · GFT': 'BBVA',
   'GFT IT Consulting': 'GFT',
   'BBVA IT España': 'BIT',
   'BBVA Technology': 'BT',
@@ -63,8 +62,8 @@ const brandInitials: Record<string, string> = {
 };
 
 const companyLogos: Record<string, string> = {
-  'BBVA Technology · BBVA IT España · GFT': '/assets/logos/bbva.svg',
   'BBVA IT España': '/assets/logos/bbva.svg',
+  'BBVA Technology': '/assets/logos/bbva-technology-white.png',
   BBVA: '/assets/logos/bbva.svg',
   'Mobile One2One': '/assets/logos/mo2o.svg',
   'Geanet onDemand': '/assets/logos/geanet.svg',
@@ -98,7 +97,11 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
           <div class="detail-item__header">
             <p>{item.period}</p>
             <h2>
-              <CompanyLogo initials={getBrandInitials(item)} logo={getCompanyLogo(item)} />
+              <CompanyLogo
+                initials={getBrandInitials(item)}
+                logo={getCompanyLogo(item)}
+                technology={item.company === 'BBVA Technology'}
+              />
               {item.company ?? item.name}
             </h2>
             <p>{item.role}</p>

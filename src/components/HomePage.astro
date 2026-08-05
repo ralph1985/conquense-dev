@@ -60,6 +60,7 @@ const brandInitials: Record<string, string> = {
 };
 const experienceLogos: Record<string, string> = {
   'BBVA IT España': '/assets/logos/bbva.svg',
+  'BBVA Technology': '/assets/logos/bbva-technology-white.png',
   BBVA: '/assets/logos/bbva.svg',
   'Mobile One2One': '/assets/logos/mo2o.svg',
   'Geanet onDemand': '/assets/logos/geanet.svg',
@@ -195,7 +196,11 @@ const getContactIcon = (label: string, href: string) => {
             <span>{item.period}</span>
             <div>
               <h3>
-                <CompanyLogo initials={getBrandInitials(item.company)} logo={experienceLogos[item.company]} />
+                <CompanyLogo
+                  initials={getBrandInitials(item.company)}
+                  logo={experienceLogos[item.company]}
+                  technology={item.company === 'BBVA Technology'}
+                />
                 {item.company}
               </h3>
               <p>{item.role}</p>
