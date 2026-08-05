@@ -48,7 +48,9 @@ const profile = byId('profile');
 const workflow = byId('workflow');
 const architecture = byId('architecture');
 const stack = byId('stack');
+const hobbies = byId('hobbies')!;
 const contact = byId('contact');
+const featuredHobbyVideos = hobbies?.media?.slice(0, 3) ?? [];
 const featuredExperience = experience.items.slice(0, 3);
 const featuredProjects = projects.items.slice(0, 3);
 const contactSlug = lang === 'es' ? 'contacto' : 'contact';
@@ -257,6 +259,36 @@ const getContactIcon = (label: string, href: string) => {
     </div>
     <a class="home-link" href={routeSet.projects}>{copy.viewAllProjects}</a>
   </section>
+
+  {
+    featuredHobbyVideos.length > 0 && (
+      <section class="home-section home-hobby" aria-labelledby="hobbies-title">
+        <div class="home-section__heading">
+          <p class="home-kicker">{hobbies.eyebrow}</p>
+          <h2 id="hobbies-title">{hobbies.title}</h2>
+          <p>{hobbies.subtitle}</p>
+        </div>
+        <div class="home-hobby__layout">
+          <div class="home-hobby__copy">
+            <p>{hobbies.content}</p>
+            <p class="home-hobby__note">{lang === 'es' ? 'Una selección de vuelos y perspectivas.' : 'A selection of flights and perspectives.'}</p>
+          </div>
+          <div class="home-hobby__media-grid">
+            {featuredHobbyVideos.map((media) => (
+              <a class="home-hobby__media group" href={media.href} target="_blank" rel="noopener noreferrer" aria-label={`${media.title}: ${lang === 'es' ? 'ver vídeo en YouTube' : 'watch video on YouTube'}`}>
+                <img src={media.src} alt={media.alt} loading="lazy" decoding="async" />
+                <span class="home-hobby__play" aria-hidden="true">▶</span>
+                <span class="home-hobby__caption">{media.title}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <a class="home-link" href={routeSet.hobbies}>
+          {lang === 'es' ? 'Ver todos los vídeos' : 'View all videos'}
+        </a>
+      </section>
+    )
+  }
 
   <section id={contactSlug} class="home-contact" aria-labelledby="contact-title">
     <div>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HobbyVideosPage from '@/components/HobbyVideosPage.astro';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { localizedPortfolioSections } from '@/data/sections';
+
+const page = localizedPortfolioSections.en.find((section) => section.id === 'hobbies');
+const videos = page?.media ?? [];
+---
+
+<BaseLayout
+  lang="en"
+  title="Another way of looking - Rafael García Prieto"
+  description="Drone flight videos by Rafael García Prieto."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.hobbies }, { lang: 'en', href: routesByLanguage.en.hobbies }]}
+>
+  <HobbyVideosPage
+    eyebrow={page?.eyebrow}
+    title={page?.title ?? 'Another way of looking'}
+    subtitle={page?.subtitle ?? ''}
+    description={page?.content ?? ''}
+    videos={videos}
+    backHref={`${routesByLanguage.en.home}#${page?.slug ?? 'another-way-of-looking'}`}
+    backLabel={uiCopy.en.backToJourney}
+    lang="en"
+    alternateLink={{ lang: 'es', href: routesByLanguage.es.hobbies }}
+    headerLabels={uiCopy.en}
+  />
+</BaseLayout>

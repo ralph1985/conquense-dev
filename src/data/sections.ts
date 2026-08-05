@@ -1,6 +1,6 @@
 import { routesByLanguage, type Language } from '@/data/i18n';
 
-export type SectionTheme = 'intro' | 'profile' | 'method' | 'architecture' | 'experience' | 'projects' | 'stack' | 'contact';
+export type SectionTheme = 'intro' | 'profile' | 'method' | 'architecture' | 'experience' | 'projects' | 'stack' | 'hobbies' | 'contact';
 
 export interface SectionItemLink {
   label: string;
@@ -17,6 +17,17 @@ export interface PortfolioSection {
   accentColor: string;
   content: string;
   items?: Array<string | SectionItemLink>;
+  media?: Array<{
+    src: string;
+    alt: string;
+    href: string;
+    title: string;
+    description?: string;
+    source?: {
+      label: string;
+      href: string;
+    };
+  }>;
   actions?: Array<{
     label: string;
     href: string;
@@ -119,6 +130,61 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       content:
         'Mi base principal está en JavaScript, HTML y CSS, con experiencia en Ember, LitElement, SCSS, tooling frontend, testing, Git, CI y trabajo con APIs REST. También arrastro una base sólida en PHP, SQL y aplicaciones de gestión, útil para entender producto más allá de la capa visual.',
       items: ['JavaScript', 'Ember', 'LitElement', 'SCSS', 'Testing', 'Git'],
+    },
+    {
+      id: 'hobbies',
+      slug: 'otra-forma-de-mirar',
+      title: 'Otra forma de mirar',
+      subtitle: 'También vuelo drones y publico vídeos en YouTube.',
+      eyebrow: 'Fuera del trabajo',
+      theme: 'hobbies',
+      accentColor: '#0369a1',
+      content:
+        'Preparar un vuelo, encontrar una perspectiva y convertirla en una pieza audiovisual es otra forma de trabajar con atención, precisión y curiosidad.',
+      media: [
+        {
+          src: '/assets/hobbies/drone-flight-d5C1apoWJ9w.jpg',
+          title: 'Torrebuceit',
+          alt: 'Vista aérea de una ermita y el paisaje que la rodea',
+          href: 'https://youtu.be/d5C1apoWJ9w',
+          description:
+            'El Castillo de Torrebuceit, en Villar del Águila (Torrejoncillo del Rey, Cuenca), es una fortaleza de origen islámico vinculada al paisaje del valle del Záncara. Actualmente es una propiedad privada y se contempla desde el exterior. Para mí tiene además un significado personal: allí me crié hasta los cuatro años.',
+          source: {
+            label: 'Información turística de Castilla-La Mancha',
+            href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',
+          },
+        },
+        {
+          src: '/assets/hobbies/drone-flight-t-42MBn1ZFE.jpg',
+          title: 'Ávila',
+          alt: 'Vista aérea captada durante otro vuelo de dron',
+          href: 'https://youtu.be/t-42MBn1ZFE',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-Ll9hkctwzvM.jpg',
+          title: 'Castillo de Peracense',
+          alt: 'Vista aérea de una fortaleza entre formaciones rocosas',
+          href: 'https://youtu.be/Ll9hkctwzvM',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-0n4WIq5jOWw.jpg',
+          title: 'Castillo de Consuegra',
+          alt: 'Paisaje visto desde el aire durante un vuelo de dron',
+          href: 'https://youtu.be/0n4WIq5jOWw',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-Fk6UYF4GO8M.jpg',
+          title: 'Huerta de la Obispalía',
+          alt: 'Paisaje captado desde el aire durante otro vuelo de dron',
+          href: 'https://youtu.be/Fk6UYF4GO8M',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-IcJ5EI_Ovlw.jpg',
+          title: 'Castillo de Zafra (Guadalajara)',
+          alt: 'Paisaje aéreo captado durante el último vuelo de dron',
+          href: 'https://youtu.be/IcJ5EI_Ovlw',
+        },
+      ],
     },
     {
       id: 'contact',
@@ -227,6 +293,61 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       content:
         'My main foundation is JavaScript, HTML and CSS, with experience in Ember, LitElement, SCSS, frontend tooling, testing, Git, CI and REST APIs. I also bring a solid PHP, SQL and management applications background, useful for understanding product beyond the visual layer.',
       items: ['JavaScript', 'Ember', 'LitElement', 'SCSS', 'Testing', 'Git'],
+    },
+    {
+      id: 'hobbies',
+      slug: 'another-way-of-looking',
+      title: 'Another way of looking',
+      subtitle: 'I also fly drones and publish videos on YouTube.',
+      eyebrow: 'Beyond work',
+      theme: 'hobbies',
+      accentColor: '#0369a1',
+      content:
+        'Planning a flight, finding a perspective and turning it into an audiovisual piece is another way of working with attention, precision and curiosity.',
+      media: [
+        {
+          src: '/assets/hobbies/drone-flight-d5C1apoWJ9w.jpg',
+          title: 'Torrebuceit',
+          alt: 'Aerial view of a chapel and the surrounding landscape',
+          href: 'https://youtu.be/d5C1apoWJ9w',
+          description:
+            'Castillo de Torrebuceit, in Villar del Águila (Torrejoncillo del Rey, Cuenca), is a fortress of Islamic origin set within the landscape of the Záncara valley. It is now privately owned and can only be viewed from outside. It also has a personal meaning for me: I grew up there until I was four.',
+          source: {
+            label: 'Castilla-La Mancha tourism information',
+            href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',
+          },
+        },
+        {
+          src: '/assets/hobbies/drone-flight-t-42MBn1ZFE.jpg',
+          title: 'Ávila',
+          alt: 'Aerial view captured during another drone flight',
+          href: 'https://youtu.be/t-42MBn1ZFE',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-Ll9hkctwzvM.jpg',
+          title: 'Castillo de Peracense',
+          alt: 'Aerial view of a fortress among rock formations',
+          href: 'https://youtu.be/Ll9hkctwzvM',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-0n4WIq5jOWw.jpg',
+          title: 'Castillo de Consuegra',
+          alt: 'Aerial view of a landscape during a drone flight',
+          href: 'https://youtu.be/0n4WIq5jOWw',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-Fk6UYF4GO8M.jpg',
+          title: 'Huerta de la Obispalía',
+          alt: 'Aerial view of a landscape during another drone flight',
+          href: 'https://youtu.be/Fk6UYF4GO8M',
+        },
+        {
+          src: '/assets/hobbies/drone-flight-IcJ5EI_Ovlw.jpg',
+          title: 'Castillo de Zafra (Guadalajara)',
+          alt: 'Aerial view of a landscape during the latest drone flight',
+          href: 'https://youtu.be/IcJ5EI_Ovlw',
+        },
+      ],
     },
     {
       id: 'contact',

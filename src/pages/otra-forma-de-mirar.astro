@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HobbyVideosPage from '@/components/HobbyVideosPage.astro';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { localizedPortfolioSections } from '@/data/sections';
+
+const page = localizedPortfolioSections.es.find((section) => section.id === 'hobbies');
+const videos = page?.media ?? [];
+---
+
+<BaseLayout
+  lang="es"
+  title="Otra forma de mirar - Rafael García Prieto"
+  description="Vídeos de vuelos de dron de Rafael García Prieto."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.hobbies }, { lang: 'en', href: routesByLanguage.en.hobbies }]}
+>
+  <HobbyVideosPage
+    eyebrow={page?.eyebrow}
+    title={page?.title ?? 'Otra forma de mirar'}
+    subtitle={page?.subtitle ?? ''}
+    description={page?.content ?? ''}
+    videos={videos}
+    backHref={`/#${page?.slug ?? 'otra-forma-de-mirar'}`}
+    backLabel={uiCopy.es.backToJourney}
+    lang="es"
+    alternateLink={{ lang: 'en', href: routesByLanguage.en.hobbies }}
+    headerLabels={uiCopy.es}
+  />
+</BaseLayout>

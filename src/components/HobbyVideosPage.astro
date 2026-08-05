@@ -1,0 +1,58 @@
+---
+import SiteHeader, { type SiteHeaderLabels } from '@/components/SiteHeader.astro';
+import type { AlternateLink, Language } from '@/data/i18n';
+
+interface VideoItem {
+  src: string;
+  alt: string;
+  href: string;
+  title: string;
+  description?: string;
+  source?: {
+    label: string;
+    href: string;
+  };
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  videos: VideoItem[];
+  backHref: string;
+  backLabel: string;
+  lang: Language;
+  alternateLink: AlternateLink;
+  headerLabels: SiteHeaderLabels;
+}
+
+const { eyebrow, title, subtitle, description, videos, backHref, backLabel, lang, alternateLink, headerLabels } = Astro.props;
+const watchLabel = lang === 'es' ? 'Ver vídeo en YouTube' : 'Watch video on YouTube';
+---
+
+<main id="contenido" class="detail-page hobby-detail-page" tabindex="-1">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={headerLabels} />
+  <header class="detail-hero">
+    <p class="detail-hero__eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="detail-hero__subtitle">{subtitle}</p>
+    <p class="detail-hero__description">{description}</p>
+    <a class="detail-hero__back" href={backHref}>← {backLabel}</a>
+  </header>
+
+  <section class="hobby-detail-list" aria-label={title}>
+    {videos.map((video) => (
+      <article class="hobby-detail-item">
+        <a class="hobby-detail-item__media group" href={video.href} target="_blank" rel="noopener noreferrer" aria-label={`${video.title}: ${watchLabel}`}>
+          <img src={video.src} alt={video.alt} loading="lazy" decoding="async" />
+          <span class="home-hobby__play" aria-hidden="true">▶</span>
+        </a>
+        <h2 class="hobby-detail-item__title">{video.title}</h2>
+        {video.description && <p class="hobby-detail-item__description">{video.description}</p>}
+        {video.source && <a class="hobby-detail-item__source" href={video.source.href} target="_blank" rel="noopener noreferrer">{video.source.label}</a>}
+        <a class="hobby-detail-item__link" href={video.href} target="_blank" rel="noopener noreferrer">{watchLabel}</a>
+      </article>
+    ))}
+  </section>
+</main>

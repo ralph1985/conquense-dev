@@ -9,6 +9,7 @@ export interface RouteSet {
   home: string;
   projects: string;
   experience: string;
+  hobbies: string;
 }
 
 export const routesByLanguage: Record<Language, RouteSet> = {
@@ -16,11 +17,13 @@ export const routesByLanguage: Record<Language, RouteSet> = {
     home: '/',
     projects: '/proyectos/',
     experience: '/experiencia/',
+    hobbies: '/otra-forma-de-mirar/',
   },
   en: {
     home: '/en/',
     projects: '/en/projects/',
     experience: '/en/experience/',
+    hobbies: '/en/another-way-of-looking/',
   },
 };
 

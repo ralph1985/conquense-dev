@@ -117,6 +117,17 @@
   .home-section__heading { @apply mb-12 max-w-3xl; }
   .home-section__heading > p:last-child { @apply mt-5 max-w-2xl leading-relaxed text-muted; }
   .home-section__copy { @apply space-y-4 self-end; }
+  .home-hobby__layout { @apply grid items-end gap-10 md:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] md:gap-16; }
+  .home-hobby__copy { @apply flex flex-col items-start gap-7 self-end; }
+  .home-hobby__copy > p { @apply m-0 max-w-[48ch] leading-relaxed text-muted; }
+  .home-hobby__note { @apply m-0 font-mono text-xs uppercase tracking-[.08em] text-muted; }
+  .home-hobby__media-grid { @apply grid gap-4 sm:grid-cols-2; }
+  .home-hobby__media { @apply relative block overflow-hidden rounded-sm border border-ink/15 bg-surface no-underline; }
+  .home-hobby__media img { @apply block aspect-video w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]; }
+  .home-hobby__media::after { content: ''; @apply pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10; }
+  .home-hobby__play { @apply absolute bottom-4 left-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-paper shadow-sm transition-transform duration-300 group-hover:scale-105; font-size: .8rem; }
+  .home-hobby__caption { @apply absolute inset-x-4 bottom-4 z-10 pr-16 text-sm font-semibold text-paper drop-shadow-md; }
+  .home-hobby__media:focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper; }
   .home-principles { @apply grid gap-3 md:grid-cols-3; }
   .home-principle, .home-project { @apply rounded-sm border border-ink/20 bg-surface p-6 shadow-soft transition-transform hover:-translate-y-1 md:p-7; }
   .home-principle svg { @apply mb-8 h-7 w-7 fill-none stroke-accent stroke-[1.25]; }
@@ -149,6 +160,10 @@
   .home-contact li { @apply text-sm text-muted; }
   .home-contact__link { @apply inline-flex items-center gap-3 rounded-full border border-ink/15 px-4 py-3 font-semibold no-underline transition-colors hover:border-accent hover:text-accent; }
   .home-contact__link--primary { @apply border-accent bg-accent text-paper hover:bg-transparent hover:text-accent; }
+  @media (prefers-reduced-motion: reduce) {
+    .home-hobby__media img { @apply transition-none; }
+    .home-hobby__media:hover img { transform: none; }
+  }
 
   .progress-nav { @apply fixed inset-x-0 bottom-0 z-40 border-t border-ink/25 bg-surface/95 px-5 py-3 font-mono backdrop-blur-xl md:px-10; }
   .progress-nav::before { content: '> '; @apply absolute left-1 top-1 text-[.55rem] font-bold text-accent; }
@@ -213,6 +228,15 @@
   .detail-item__links, .detail-item__stack { @apply mt-7 flex flex-wrap gap-2 p-0; }
   .detail-item__links li, .detail-item__stack li { @apply list-none rounded-sm border border-ink/20 px-3 py-1.5 font-mono text-xs text-muted; }
   .detail-item__links a { @apply text-accent underline underline-offset-4; }
+  .hobby-detail-list { @apply mx-auto grid max-w-6xl gap-x-6 gap-y-12 py-12 md:grid-cols-2 md:py-16; }
+  .hobby-detail-item { @apply min-w-0; }
+  .hobby-detail-item__media { @apply relative block overflow-hidden rounded-sm border border-ink/15 bg-surface no-underline; }
+  .hobby-detail-item__media img { @apply block aspect-video w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]; }
+  .hobby-detail-item__media:focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper; }
+  .hobby-detail-item__title { @apply mt-4 text-xl font-semibold tracking-tight; }
+  .hobby-detail-item__description { @apply mt-3 max-w-[62ch] text-sm leading-relaxed text-muted; }
+  .hobby-detail-item__source { @apply mt-4 inline-flex text-xs text-muted underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent; }
+  .hobby-detail-item__link { @apply mt-4 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
 }
 
 @keyframes fade-in { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
