@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '@/config/site';
-import type { AlternateLink, Language } from '@/data/i18n';
+import BackToTop from '@/components/BackToTop.astro';
+import { uiCopy, type AlternateLink, type Language } from '@/data/i18n';
 import '@/styles/tailwind.css';
 
 interface Props {
@@ -68,6 +69,7 @@ const alternateLinks = Astro.props.alternateLinks ?? [];
   </head>
   <body>
     <slot />
+    <BackToTop label={uiCopy[lang].backToTop} />
   </body>
 </html>
 
