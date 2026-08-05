@@ -141,14 +141,14 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'home',
-      title: 'Senior frontend engineer for web products that evolve.',
+      title: 'I listen, understand and turn needs into easy-to-use interfaces.',
       subtitle: 'UI architecture, digital product and frontend quality for demanding environments.',
-      eyebrow: 'Rafael Garcia Prieto · Portfolio',
+      eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. I am especially comfortable with banking product, UI architecture, frontend quality and mobile web applications.',
-      items: ['Mobile banking and investment', 'UI architecture', 'Senior JavaScript', 'Quality and review'],
+        'I design and build web interfaces for demanding environments, with a strong focus on technical clarity, performance, maintainability and user experience. I am particularly comfortable working on banking products, UI architecture, frontend quality and mobile web applications.',
+      items: ['Mobile banking and investment', 'UI architecture with Ember and Lit', 'Frontend performance and quality', 'Technical product coordination'],
       actions: [
         { label: 'View experience', href: routesByLanguage.en.experience },
         { label: 'View projects', href: routesByLanguage.en.projects },
@@ -199,7 +199,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       theme: 'experience',
       accentColor: '#334155',
       content:
-        'My professional path combines banking product, mobile web, custom development, business-management SaaS and integration with real clients. The work experience is now reviewed by stage and separated from representative projects.',
+        'My professional path combines banking products, mobile web, custom development, business-management SaaS and integration with real clients. The work experience is now reviewed by stage and separated from representative projects.',
       items: ['BBVA', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
       actions: [{ label: 'View experience', href: routesByLanguage.en.experience }],
     },
@@ -232,12 +232,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'contact',
       slug: 'contact',
       title: 'Contact',
-      subtitle: 'Available for professional conversations about frontend, UI architecture and web product.',
+      subtitle: 'Available for professional conversations about frontend, UI architecture and web products.',
       eyebrow: 'Let us talk',
       theme: 'contact',
       accentColor: '#111827',
       content:
-        'The most direct way to get in touch is by email or LinkedIn. If you want to talk about frontend, UI architecture, web product or technical collaboration, I will be glad to hear from you.',
+        'The most direct way to get in touch is by email or LinkedIn. If you want to talk about frontend, UI architecture, web products or technical collaboration, I will be glad to hear from you.',
       items: [
         { label: 'hola@conquense.dev', href: 'mailto:hola@conquense.dev' },
         { label: 'LinkedIn', href: 'https://es.linkedin.com/in/rgarcia85' },

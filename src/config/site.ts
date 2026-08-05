@@ -6,7 +6,7 @@ export const siteConfig = {
   },
   description: {
     es: 'Portfolio profesional de Rafael García Prieto, Frontend Senior especializado en arquitectura UI, JavaScript y aplicaciones web móviles.',
-    en: 'Professional portfolio of Rafael Garcia Prieto, Senior Frontend Engineer focused on UI architecture, JavaScript and mobile web applications.',
+    en: 'Professional portfolio of Rafael García Prieto, Senior Frontend Engineer focused on UI architecture, JavaScript and mobile web applications.',
   },
   canonical: 'https://example.com/',
   brand: {

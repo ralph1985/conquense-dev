@@ -147,7 +147,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
       title: 'Professional experience',
       subtitle: 'A career across frontend, mobile web, digital banking, product and management applications.',
       description:
-        'Reviewed professional path from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
+        'A professional journey reviewed from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
       items: [
         {
           company: 'BBVA',
@@ -156,14 +156,14 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           summary:
             'I work on investment product experiences within retail mobile banking, combining frontend development, architectural judgment and technical coordination on complex features.',
           highlights: [
-            'Technical reference within the investments team for frontend decisions, component definition, responsibilities and communication across UI pieces.',
-            'PR validator for the whole mobile application, with validation capacity over PRs in a large development organization.',
+            'Technical point of reference within the investments team for frontend decisions, component definition, responsibilities and communication across UI pieces.',
+            'I review PRs across the mobile application, with validation responsibility in a large development organization.',
             'Technical coordination within a four-person frontend team, supporting milestone planning, value delivery, onboarding of new teammates and technical debt management.',
             'Technical feasibility validation from business needs, coordination with design and backend, service integration design and definition of required data.',
             'Recent integration of the investment trends module into the customer Global Position experience, prioritizing performance, coexistence with other modules and alignment with usage metrics and configuration.',
-            'Technical framing of an external financial visualization library integration as a LitElement component: requirements, vendor feasibility, architecture review and a Spec-Driven Development approach for AI agents.',
+            'Technical framing of an external financial visualization library integration as a LitElement component: requirements, feasibility with the vendor, architecture review and a Spec-Driven Development approach for AI agents.',
             'Integration of complex LitElement features inside Ember and progressive migration of legacy Ember pieces to LitElement.',
-            'Review of unnecessary rendering, Ember engine weight and frontend quality through accessibility, QUnit, Cucumber, ESLint, Prettier, Sonar and internal plugins.',
+            'Review of unnecessary renders, Ember bundle size and frontend quality through accessibility, QUnit, Cucumber, ESLint, Prettier, Sonar and internal plugins.',
             'Daily use of Jira, GitFlow, Agile/Scrum/SAFe and pipeline monitoring with Bamboo, Jenkins and GitHub Actions.',
             'Previous experience in third-party funds, GDPR, private banking, migration to multichannel microservices and the retail banking application for Mexico with Cells.',
           ],
@@ -202,12 +202,12 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
             'Design and development of mobile web applications and webapps for clients such as Vueling, Iberostar, National Express, Carrefour and Alsa, combining frontend, service integration, backend work and production delivery.',
           highlights: [
             'Cross-functional work across booking, purchase, payments, mobile webapps, responsive layout, PHP/Silex backend, MySQL and REST API integration.',
-            'Direct client interaction on projects for Vueling, Iberostar, Renfe and other accounts, including on-site work, functional/technical analysis, requirement gathering, partial estimation and follow-up through production.',
+            'Direct client interaction on projects for Vueling, Iberostar, Renfe and other accounts, including on-site work, functional/technical analysis, requirement gathering, partial estimation and follow-up through to production.',
             'Development of complete mobile booking, purchase and payment flows, with service integration, operation state management, validations and error handling.',
             'Development for Iberostar of a stay booking website and a private employee management webapp, including chat, tablet and desktop support and early web notifications in Google Chrome.',
             'Development for National Express of journey booking flows, bus ticket purchase, payment and QR handling.',
             'Development for Carrefour of an online grocery mobile experience with catalogue, cart, promotions, payment and complex side navigation across categories and subcategories.',
-            'Main design from scratch, with occasional collaboration, of the internal MO2OJS JavaScript framework, inspired by jQuery patterns and used for routing, AJAX, custom templates and views in projects for Carrefour, National Express, Sanitas and other clients.',
+            'I designed most of the internal MO2OJS JavaScript framework from scratch, with occasional collaboration. It was inspired by jQuery patterns and used for routing, AJAX, custom templates and views in projects for Carrefour, National Express, Sanitas and other clients.',
             'Technical judgment to evaluate the maintenance cost of custom tooling compared with adopting open standards and frameworks.',
             'Development of embedded applications with Cordova, a Tizen webapp for Samsung Watch within a Renfe project and an internal application for Vueling crew operations.',
             'Evolution from full-stack PHP tasks toward an increasing focus on JavaScript and mobile web frontend.',
@@ -264,7 +264,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           period: '2005',
           role: 'Intern developer',
           summary:
-            'Company internship in the OLANET environment, a MES solution for real-time industrial production control and monitoring.',
+            'Internship at a company working with OLANET, a MES solution for real-time industrial production control and monitoring.',
           highlights: [
             'Work mainly focused on SQL Server, DML/DDL, stored procedures and occasional support on user interfaces.',
             'First exposure to industrial environments, MES systems and real-time production data.',

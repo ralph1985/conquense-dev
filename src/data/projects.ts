@@ -224,7 +224,7 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           context: 'Professional website draft',
           role: 'Technical base, frontend design and deployment setup',
           summary:
-            'Draft professional website built with Astro, TypeScript and SCSS. The base is prepared for static deployment on Vercel and covers technical SEO, canonical URLs, Open Graph, sitemap, robots, living planning and work tracking.',
+            'Draft professional website built with Astro, TypeScript and SCSS. The base is prepared for static deployment on Vercel and covers technical SEO, canonical URLs, Open Graph, sitemap, robots, an evolving roadmap and work tracking.',
           stack: ['Astro', 'TypeScript', 'SCSS', 'SEO', 'Vercel'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/barbaranunez-osteopata' },
@@ -236,7 +236,7 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           context: 'Shared management mobile application',
           role: 'Product, frontend, API and data model',
           summary:
-            'Mobile web application for shared lottery ticket management, groups, receipts, results and balance movements. Built with Next.js, TypeScript, Prisma, Postgres and file storage, with an internal API for tickets, results, prizes and backups.',
+            'Mobile web application for shared lottery ticket management, groups, receipts, results and prize-pool movements. Built with Next.js, TypeScript, Prisma, Postgres and file storage, with an internal API for tickets, results, prizes and backups.',
           stack: ['Next.js', 'TypeScript', 'Prisma', 'Postgres', 'Vercel'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/loto-sync' },
