@@ -159,30 +159,60 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           title: 'Ávila',
           alt: 'Vista aérea captada durante otro vuelo de dron',
           href: 'https://youtu.be/t-42MBn1ZFE',
+          description:
+            'Ávila conserva una de las murallas medievales mejor conservadas de Europa. La ciudad histórica, sus iglesias extramuros y el recinto amurallado forman parte del Patrimonio Mundial de la UNESCO.',
+          source: {
+            label: 'Patrimonio de Ávila',
+            href: 'https://www.cultura.gob.es/cultura/areas/patrimonio/mc/patrimoniomundial/bienes-declarados/por-ano-de-inscripcion/1985/avila.html',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-Ll9hkctwzvM.jpg',
           title: 'Castillo de Peracense',
           alt: 'Vista aérea de una fortaleza entre formaciones rocosas',
           href: 'https://youtu.be/Ll9hkctwzvM',
+          description:
+            'El Castillo de Peracense se levanta sobre una mole de rodeno rojo y organiza sus defensas en varios recintos adaptados a la roca. La fortaleza tuvo un papel estratégico en la frontera y su residencia principal estuvo ocupada durante los siglos XIV y XV.',
+          source: {
+            label: 'Castillo de Peracense',
+            href: 'https://www.castillodeperacense.es/conocenos/el-castillo/',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-0n4WIq5jOWw.jpg',
           title: 'Castillo de Consuegra',
           alt: 'Paisaje visto desde el aire durante un vuelo de dron',
           href: 'https://youtu.be/0n4WIq5jOWw',
+          description:
+            'El Castillo de Consuegra domina el Cerro Calderico. Su origen se remonta a una fortificación musulmana del siglo X y después fue reconstruido y ampliado por la Orden de Malta. En sus alrededores tuvo lugar la batalla de Consuegra de 1097.',
+          source: {
+            label: 'Turismo oficial de Consuegra',
+            href: 'https://consuegra.es/es/descubre/monumentos/castillo-de-consuegra',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-Fk6UYF4GO8M.jpg',
           title: 'Huerta de la Obispalía',
           alt: 'Paisaje captado desde el aire durante otro vuelo de dron',
           href: 'https://youtu.be/Fk6UYF4GO8M',
+          description:
+            'El castillo de Huerta de la Obispalía ocupa la parte más alta del pueblo y tiene un origen andalusí del siglo X. Su torre del homenaje actual es del siglo XV y conserva una inscripción de 1473 relacionada con el poder eclesiástico de la antigua Obispalía.',
+          source: {
+            label: 'Turismo de Castilla-La Mancha',
+            href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-huerta-de-la-obispalia',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-IcJ5EI_Ovlw.jpg',
           title: 'Castillo de Zafra (Guadalajara)',
           alt: 'Paisaje aéreo captado durante el último vuelo de dron',
           href: 'https://youtu.be/IcJ5EI_Ovlw',
+          description:
+            'El Castillo de Zafra se alza sobre un risco en Campillo de Dueñas y fue construido en el siglo XII sobre una fortaleza de origen árabe. En Juego de tronos se convirtió en la Torre de la Alegría de Dorne, el lugar donde Ned Stark encuentra a su hermana Lyanna.',
+          source: {
+            label: 'El País: escenarios españoles de Juego de tronos',
+            href: 'https://elpais.com/elviajero/2016/04/22/actualidad/1461325131_973662.html',
+          },
         },
       ],
     },
@@ -322,30 +352,60 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           title: 'Ávila',
           alt: 'Aerial view captured during another drone flight',
           href: 'https://youtu.be/t-42MBn1ZFE',
+          description:
+            'Ávila preserves one of Europe’s best-preserved medieval walls. Its historic city, extra-mural churches and walled enclosure are part of the UNESCO World Heritage site.',
+          source: {
+            label: 'Ávila World Heritage, Spanish Ministry of Culture',
+            href: 'https://www.cultura.gob.es/cultura/areas/patrimonio/mc/patrimoniomundial/bienes-declarados/por-ano-de-inscripcion/1985/avila.html',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-Ll9hkctwzvM.jpg',
           title: 'Castillo de Peracense',
           alt: 'Aerial view of a fortress among rock formations',
           href: 'https://youtu.be/Ll9hkctwzvM',
+          description:
+            'Peracense Castle rises from a red sandstone rock and arranges its defences across several enclosures shaped by the terrain. The fortress played a strategic role on the frontier, while its main residence was occupied during the fourteenth and fifteenth centuries.',
+          source: {
+            label: 'Peracense Castle',
+            href: 'https://www.castillodeperacense.es/conocenos/el-castillo/',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-0n4WIq5jOWw.jpg',
           title: 'Castillo de Consuegra',
           alt: 'Aerial view of a landscape during a drone flight',
           href: 'https://youtu.be/0n4WIq5jOWw',
+          description:
+            'Consuegra Castle dominates Cerro Calderico. Its origins go back to a tenth-century Muslim fortification, later rebuilt and enlarged by the Order of Malta. The surrounding area was also the scene of the Battle of Consuegra in 1097.',
+          source: {
+            label: 'Official Consuegra tourism',
+            href: 'https://consuegra.es/es/descubre/monumentos/castillo-de-consuegra',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-Fk6UYF4GO8M.jpg',
           title: 'Huerta de la Obispalía',
           alt: 'Aerial view of a landscape during another drone flight',
           href: 'https://youtu.be/Fk6UYF4GO8M',
+          description:
+            'The castle of Huerta de la Obispalía occupies the highest point of the village and has an Andalusi origin dating from the tenth century. Its current keep dates from the fifteenth century and preserves a 1473 inscription linked to the ecclesiastical power of the former Obispalía territory.',
+          source: {
+            label: 'Castilla-La Mancha tourism',
+            href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-huerta-de-la-obispalia',
+          },
         },
         {
           src: '/assets/hobbies/drone-flight-IcJ5EI_Ovlw.jpg',
           title: 'Castillo de Zafra (Guadalajara)',
           alt: 'Aerial view of a landscape during the latest drone flight',
           href: 'https://youtu.be/IcJ5EI_Ovlw',
+          description:
+            'Zafra Castle rises on a rocky outcrop in Campillo de Dueñas and was built in the twelfth century over a fortress of Arab origin. In Game of Thrones it became the Tower of Joy in Dorne, where Ned Stark finds his sister Lyanna.',
+          source: {
+            label: 'El País: Spanish Game of Thrones locations',
+            href: 'https://elpais.com/elviajero/2016/04/22/actualidad/1461325131_973662.html',
+          },
         },
       ],
     },
