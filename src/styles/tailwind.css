@@ -30,6 +30,8 @@
     --color-nav-surface: rgb(244 249 247 / .95);
     --color-nav-surface-muted: rgb(244 249 247 / .84);
     --color-nav-active-end: #12383c;
+    --color-logo-surface: #ffffff;
+    --color-logo-border: #d8e4e1;
   }
 
   html[data-theme='dark'] {
@@ -59,6 +61,8 @@
     --color-nav-surface: rgb(15 29 33 / .95);
     --color-nav-surface-muted: rgb(15 29 33 / .84);
     --color-nav-active-end: #1b4f54;
+    --color-logo-surface: #d7e5e2;
+    --color-logo-border: rgb(231 243 240 / .28);
   }
 
   html { scroll-behavior: smooth; }
@@ -123,14 +127,15 @@
   .home-timeline li > span { @apply mb-8 block font-mono text-xs text-accent; }
   .home-timeline h3 { @apply mb-3 flex items-center gap-2 text-xl font-semibold tracking-tight; }
   .home-timeline p { @apply mb-2 text-sm leading-relaxed text-muted; }
-  .company-logo { @apply inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white px-2 text-[.6rem] font-bold text-ink shadow-sm; }
+  .company-logo { @apply inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-full border px-2 text-[.6rem] font-bold text-ink shadow-sm; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
   .company-logo img { @apply max-h-6 max-w-14 object-contain; }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .home-brands { @apply border-b border-ink/15 py-12; }
   .home-brands h2 { @apply mb-8 font-mono text-[.68rem] font-bold uppercase tracking-[.18em] text-muted; }
   .home-brands ul { @apply grid grid-cols-2 items-center gap-8 md:grid-cols-6; }
-  .home-brands li { @apply flex h-12 min-w-32 items-center justify-center rounded-sm border border-slate-200 bg-white px-5 shadow-sm transition-transform hover:-translate-y-0.5; }
+  .home-brands li { @apply flex h-12 min-w-32 items-center justify-center rounded-sm border px-5 shadow-sm transition-transform hover:-translate-y-0.5; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
   .home-brands img { @apply max-h-8 w-auto max-w-32 object-contain; }
+  html[data-theme='dark'] .company-logo img, html[data-theme='dark'] .home-brands img { mix-blend-mode: multiply; }
   .home-projects { @apply grid gap-3 md:grid-cols-3; }
   .home-project__role { @apply mb-5 text-sm font-semibold text-accent; }
   .home-contact { @apply grid gap-10 py-20 md:grid-cols-[1fr_auto] md:items-end md:py-28; }
