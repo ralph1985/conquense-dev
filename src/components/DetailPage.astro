@@ -101,6 +101,7 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
                 initials={getBrandInitials(item)}
                 logo={getCompanyLogo(item)}
                 technology={item.company === 'BBVA Technology'}
+                wide={item.company === 'Geanet onDemand' || item.company === 'Goitek'}
               />
               {item.company ?? item.name}
             </h2>

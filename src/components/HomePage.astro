@@ -200,6 +200,7 @@ const getContactIcon = (label: string, href: string) => {
                   initials={getBrandInitials(item.company)}
                   logo={experienceLogos[item.company]}
                   technology={item.company === 'BBVA Technology'}
+                  wide={item.company === 'Geanet onDemand' || item.company === 'Goitek'}
                 />
                 {item.company}
               </h3>
