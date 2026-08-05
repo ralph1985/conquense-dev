@@ -1,6 +1,7 @@
 ---
 import SiteHeader from '@/components/SiteHeader.astro';
 import CompanyLogo from '@/components/CompanyLogo.astro';
+import ProjectIcon from '@/components/ProjectIcon.astro';
 import { routesByLanguage, type AlternateLink, type Language } from '@/data/i18n';
 import { localizedExperience } from '@/data/experience';
 import { localizedProjects } from '@/data/projects';
@@ -28,6 +29,16 @@ const sections = localizedPortfolioSections[lang];
 const routeSet = routesByLanguage[lang];
 const experience = localizedExperience[lang];
 const projects = localizedProjects[lang];
+const projectIcons: Record<string, string> = {
+  Jucart: '/assets/project-icons/jucart.svg',
+  Irati: '/assets/project-icons/irati.svg',
+  'Borch Gómez': '/assets/project-icons/borchgomez.webp',
+  'Bárbara Núñez Osteópata': '/assets/project-icons/barbaranunez.jpg',
+  'Loto Sync': '/assets/project-icons/loto-sync.ico',
+  'Preparación al parto': '/assets/project-icons/preparacion-parto.svg',
+  'Gas Price Finder': '/assets/project-icons/gas-price-finder.png',
+  'BuyBuddies': '/assets/project-icons/buy-buddies.svg',
+};
 
 const byId = (id: PortfolioSection['id']) => sections.find((section) => section.id === id);
 
@@ -236,7 +247,7 @@ const getContactIcon = (label: string, href: string) => {
         featuredProjects.map((item) => (
           <article class="home-project">
             <p>{item.context}</p>
-            <h3><CompanyLogo initials={getBrandInitials(item.context)} />{item.name}</h3>
+            <h3><ProjectIcon label={item.name} icon={projectIcons[item.name]} />{item.name}</h3>
             <p class="home-project__role">{item.role}</p>
             <span>{item.summary}</span>
           </article>

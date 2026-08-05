@@ -132,6 +132,8 @@
   .company-logo img { @apply max-h-7 max-w-16 object-contain; }
   .company-logo--technology { @apply min-w-24 px-3; }
   .company-logo--technology img { @apply max-h-6 max-w-24; mix-blend-mode: normal; filter: brightness(0) saturate(100%) invert(16%) sepia(32%) saturate(1578%) hue-rotate(183deg) brightness(88%) contrast(103%); }
+  .project-icon { @apply inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-ink/20 bg-surface text-[.65rem] font-bold text-accent; }
+  .project-icon img { @apply h-full w-full object-contain p-1; }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .home-brands { @apply border-b border-ink/15 py-12; }
   .home-brands h2 { @apply mb-8 font-mono text-[.68rem] font-bold uppercase tracking-[.18em] text-muted; }

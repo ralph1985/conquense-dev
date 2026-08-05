@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  icon?: string;
+}
+
+const { label, icon } = Astro.props;
+const initials = label
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('')
+  .toUpperCase();
+---
+
+<span class="project-icon" aria-hidden="true">
+  {icon ? <img src={icon} alt="" loading="lazy" decoding="async" /> : initials}
+</span>

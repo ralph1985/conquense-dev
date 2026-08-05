@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Jucart</title>
+  <rect width="512" height="512" rx="112" fill="#dff4ea" />
+  <path d="M150 188c0-63 43-106 106-106s106 43 106 106" fill="none" stroke="#102033" stroke-width="30" stroke-linecap="round" />
+  <rect x="108" y="154" width="296" height="274" rx="54" fill="#ffffff" />
+  <path d="M108 218h296v156c0 30-24 54-54 54H162c-30 0-54-24-54-54z" fill="#167c5a" />
+  <path d="M188 308l48 48 96-112" fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="196" cy="194" r="15" fill="#102033" />
+  <circle cx="316" cy="194" r="15" fill="#102033" />
+</svg>

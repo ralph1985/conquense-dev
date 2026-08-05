@@ -1,6 +1,7 @@
 ---
 import SiteHeader, { type SiteHeaderLabels } from '@/components/SiteHeader.astro';
 import CompanyLogo from '@/components/CompanyLogo.astro';
+import ProjectIcon from '@/components/ProjectIcon.astro';
 import type { AlternateLink, Language } from '@/data/i18n';
 
 interface DetailItem {
@@ -71,6 +72,17 @@ const companyLogos: Record<string, string> = {
   Goitek: '/assets/logos/goitek.svg',
 };
 
+const projectIcons: Record<string, string> = {
+  Jucart: '/assets/project-icons/jucart.svg',
+  Irati: '/assets/project-icons/irati.svg',
+  'Borch Gómez': '/assets/project-icons/borchgomez.webp',
+  'Bárbara Núñez Osteópata': '/assets/project-icons/barbaranunez.jpg',
+  'Loto Sync': '/assets/project-icons/loto-sync.ico',
+  'Preparación al parto': '/assets/project-icons/preparacion-parto.svg',
+  'Gas Price Finder': '/assets/project-icons/gas-price-finder.png',
+  'BuyBuddies': '/assets/project-icons/buy-buddies.svg',
+};
+
 const getBrandInitials = (item: DetailItem) => {
   const key = item.company ?? item.context ?? item.name ?? '';
 
@@ -97,11 +109,15 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
           <div class="detail-item__header">
             <p>{item.period}</p>
             <h2>
-              <CompanyLogo
-                initials={getBrandInitials(item)}
-                logo={getCompanyLogo(item)}
-                technology={item.company === 'BBVA Technology'}
-              />
+              {item.name ? (
+                <ProjectIcon label={item.name} icon={projectIcons[item.name]} />
+              ) : (
+                <CompanyLogo
+                  initials={getBrandInitials(item)}
+                  logo={getCompanyLogo(item)}
+                  technology={item.company === 'BBVA Technology'}
+                />
+              )}
               {item.company ?? item.name}
             </h2>
             <p>{item.role}</p>
