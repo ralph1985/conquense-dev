@@ -3,12 +3,11 @@ interface Props {
   initials: string;
   logo?: string;
   technology?: boolean;
-  wide?: boolean;
 }
 
-const { initials, logo, technology = false, wide = false } = Astro.props;
+const { initials, logo, technology = false } = Astro.props;
 ---
 
-<span class:list={['company-logo', { 'company-logo--technology': technology, 'company-logo--wide': wide }]} aria-hidden="true">
+<span class:list={['company-logo', { 'company-logo--technology': technology }]} aria-hidden="true">
   {logo ? <img src={logo} alt="" loading="lazy" decoding="async" /> : initials}
 </span>

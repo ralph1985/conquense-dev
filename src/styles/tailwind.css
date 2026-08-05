@@ -128,12 +128,10 @@
   .home-timeline h3 { @apply mb-3 flex items-center gap-2 text-xl font-semibold tracking-tight; }
   .home-timeline p { @apply mb-2 text-sm leading-relaxed text-muted; }
   .home-timeline__context { @apply font-mono text-[.68rem] uppercase tracking-[.08em] text-accent; }
-  .company-logo { @apply inline-flex h-10 min-w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border px-2 text-[.6rem] font-bold text-ink shadow-sm; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
-  .company-logo img { @apply max-h-6 max-w-14 object-contain; }
-  .company-logo--technology { @apply min-w-24 rounded-full px-3; }
+  .company-logo { @apply inline-flex h-10 min-w-20 shrink-0 items-center justify-center overflow-hidden rounded-md border px-2 text-[.6rem] font-bold text-ink shadow-sm; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
+  .company-logo img { @apply max-h-7 max-w-16 object-contain; }
+  .company-logo--technology { @apply min-w-24 px-3; }
   .company-logo--technology img { @apply max-h-6 max-w-24; mix-blend-mode: normal; filter: brightness(0) saturate(100%) invert(16%) sepia(32%) saturate(1578%) hue-rotate(183deg) brightness(88%) contrast(103%); }
-  .company-logo--wide { @apply min-w-20 rounded-md px-2; }
-  .company-logo--wide img { @apply max-h-7 max-w-16; }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .home-brands { @apply border-b border-ink/15 py-12; }
   .home-brands h2 { @apply mb-8 font-mono text-[.68rem] font-bold uppercase tracking-[.18em] text-muted; }
