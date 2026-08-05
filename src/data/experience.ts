@@ -70,9 +70,9 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           period: '2012 - 2016',
           role: 'Analista programador web / Frontend mobile',
           summary:
-            'Diseño y desarrollo de aplicaciones mobile web y webapps para clientes como Vueling, Iberostar, National Express, Carrefour y Alsa, combinando frontend, integración con servicios, backend y entrega a producción.',
+            'Diseño y desarrollo de experiencias web optimizadas para móvil y aplicaciones web de gestión para clientes como Vueling, Iberostar, National Express, Carrefour y Alsa, combinando frontend, integración con servicios, backend y entrega a producción.',
           highlights: [
-            'Trabajo transversal en booking, compra, pagos, webapps mobile, maquetación responsive, backend PHP/Silex, MySQL e integración con APIs REST.',
+            'Trabajo transversal en reservas, compras y pagos desde móvil, además de aplicaciones web de gestión, maquetación responsive, backend PHP/Silex, MySQL e integración con APIs REST.',
             'Interlocución directa con cliente en proyectos para Vueling, Iberostar, Renfe y otras cuentas, incluyendo desplazamientos, análisis funcional/técnico, toma de requisitos, estimación parcial y seguimiento hasta producción.',
             'Desarrollo de flujos mobile completos de reserva, compra y pago, con integración de servicios, gestión de estados de operación, validaciones y tratamiento de errores.',
             'Desarrollo para Iberostar de una web de reservas de estancias y una webapp privada para gestión interna de trabajadores, con chat, soporte para tablet y PC y primeras notificaciones web en Google Chrome.',
@@ -202,9 +202,9 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
           period: '2012 - 2016',
           role: 'Web software analyst / Mobile frontend developer',
           summary:
-            'Design and development of mobile web applications and webapps for clients such as Vueling, Iberostar, National Express, Carrefour and Alsa, combining frontend, service integration, backend work and production delivery.',
+            'Design and development of web experiences optimized for mobile and management web applications for clients such as Vueling, Iberostar, National Express, Carrefour and Alsa, combining frontend, service integration, backend work and production delivery.',
           highlights: [
-            'Cross-functional work across booking, purchase, payments, mobile webapps, responsive layout, PHP/Silex backend, MySQL and REST API integration.',
+            'Cross-functional work across mobile booking, purchasing and payment flows, as well as management web applications, responsive layout, PHP/Silex backend, MySQL and REST API integration.',
             'Direct client interaction on projects for Vueling, Iberostar, Renfe and other accounts, including on-site work, functional/technical analysis, requirement gathering, partial estimation and follow-up through to production.',
             'Development of complete mobile booking, purchase and payment flows, with service integration, operation state management, validations and error handling.',
             'Development for Iberostar of a stay booking website and a private employee management webapp, including chat, tablet and desktop support and early web notifications in Google Chrome.',
