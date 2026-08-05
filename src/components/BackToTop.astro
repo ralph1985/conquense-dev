@@ -6,7 +6,7 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<button class="back-to-top" type="button" aria-label={label} data-back-to-top>
+<button class="back-to-top" type="button" aria-label={label} tabindex="-1" data-back-to-top>
   <span aria-hidden="true">↑</span>
   <span>{label}</span>
 </button>
@@ -19,7 +19,14 @@ const { label } = Astro.props;
     let frame = 0;
 
     const updateVisibility = () => {
-      button.classList.toggle('is-visible', window.scrollY > visibilityThreshold);
+      const isVisible = window.scrollY > visibilityThreshold;
+
+      button.classList.toggle('is-visible', isVisible);
+      button.tabIndex = isVisible ? 0 : -1;
+
+      if (!isVisible && document.activeElement === button) {
+        button.blur();
+      }
       frame = 0;
     };
 

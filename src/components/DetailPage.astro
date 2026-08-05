@@ -93,7 +93,7 @@ const getBrandInitials = (item: DetailItem) => {
 const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.company] : undefined);
 ---
 
-<main class="detail-page">
+<main id="contenido" class="detail-page" tabindex="-1">
   <SiteHeader lang={lang} alternateLink={alternateLink} labels={headerLabels} />
   <header class="detail-hero">
     <p class="detail-hero__eyebrow">{eyebrow}</p>
@@ -136,7 +136,7 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
             <ul class="detail-item__links" aria-label={item.name ?? item.company ?? title}>
               {item.links.map((link) => (
                 <li>
-                  <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
                 </li>
               ))}
             </ul>

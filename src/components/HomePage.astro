@@ -139,7 +139,7 @@ const getContactIcon = (label: string, href: string) => {
 
 <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
 
-<main id="contenido" class="home-page">
+<main id="contenido" class="home-page" tabindex="-1">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__content">
       <p class="home-kicker">{intro.eyebrow}</p>
@@ -275,7 +275,7 @@ const getContactIcon = (label: string, href: string) => {
                 class={item.href.startsWith('mailto:') ? 'home-contact__link home-contact__link--primary' : 'home-contact__link'}
                 href={item.href}
                 target={isExternalUrl(item.href) ? '_blank' : undefined}
-                rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}
+                rel={isExternalUrl(item.href) ? 'noopener noreferrer' : undefined}
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d={getContactIcon(item.label, item.href)} />

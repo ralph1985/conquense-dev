@@ -76,8 +76,8 @@ const navItems = [
     >
       <span data-theme-state>{labels.themeSystemLabel}</span>
     </button>
-    <a class="home-header__language" href={alternateLink.href} aria-label={labels.languageLabel}>
-      <span aria-current="true">{languageNames[lang]}</span>
+    <a class="home-header__language" href={alternateLink.href} aria-label={`${labels.languageLabel}: ${languageNames[alternateLink.lang]}`}>
+      <span>{languageNames[lang]}</span>
       <span aria-hidden="true">/</span>
       <span>{languageNames[alternateLink.lang]}</span>
     </a>

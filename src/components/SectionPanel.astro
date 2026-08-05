@@ -54,7 +54,7 @@ const isExternalUrl = (href: string) => href.startsWith('http');
               {typeof item === 'string' ? (
                 item
               ) : (
-                <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noreferrer' : undefined}>
+                <a href={item.href} target={isExternalUrl(item.href) ? '_blank' : undefined} rel={isExternalUrl(item.href) ? 'noopener noreferrer' : undefined}>
                   {item.label}
                 </a>
               )}
