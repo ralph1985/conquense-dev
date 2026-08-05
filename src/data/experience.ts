@@ -19,54 +19,11 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
         'Recorrido profesional revisado desde las prácticas iniciales en industria hasta el trabajo actual en frontend senior, banca móvil e inversión.',
       items: [
         {
-          company: 'GFT IT Consulting',
-          period: '2016 - 2018',
-          role: 'Frontend Engineer',
-          summary:
-            'Desarrollo frontend en proyectos de banca digital para BBVA, combinando evolución de producto, integración con servicios y trabajo coordinado con otros equipos técnicos.',
-          highlights: [
-            'Participación en la evolución de funcionalidades frontend dentro de productos digitales de BBVA.',
-            'Trabajo coordinado con equipos de producto, diseño y backend para convertir necesidades de negocio en entregas técnicas.',
-            'Aplicación de criterios de calidad, mantenibilidad y rendimiento en un entorno bancario exigente.',
-          ],
-          stack: ['JavaScript', 'Ember.js', 'Handlebars', 'SCSS', 'Web Components', 'Git', 'Accesibilidad', 'Testing'],
-        },
-        {
-          company: 'BBVA IT España',
-          period: '2018 - 2024',
+          company: 'BBVA Technology · BBVA IT España · GFT',
+          period: '2016 - actualidad',
           role: 'Senior Frontend Engineer',
           summary:
-            'Continuidad del trabajo en producto de inversión dentro de banca móvil para particulares, ya desde BBVA IT España, combinando desarrollo frontend, criterio arquitectónico y coordinación técnica en funcionalidades complejas.',
-          highlights: [
-            'Referente técnico dentro del equipo de inversiones para decisiones frontend, definición de componentes, responsabilidades y comunicación entre piezas de UI.',
-            'Coordinación técnica dentro de un equipo frontend, con apoyo a planificación de hitos, entrega de valor, formación de nuevos compañeros y gestión de deuda técnica.',
-            'Validación de viabilidad técnica a partir de necesidades de negocio, coordinación con diseño y backend, diseño de integración con servicios y definición de datos necesarios.',
-            'Integración de funcionalidades complejas de LitElement dentro de Ember y migración progresiva de piezas antiguas de Ember a LitElement.',
-            'Revisión de renderizados innecesarios, peso de engines Ember y calidad frontend mediante accesibilidad, testing y herramientas de calidad.',
-          ],
-          stack: [
-            'JavaScript',
-            'Ember.js',
-            'Web Components',
-            'LitElement',
-            'Handlebars',
-            'SCSS',
-            'Chrome DevTools',
-            'Accesibilidad',
-            'Git',
-            'Testing',
-            'Jira',
-            'ESLint',
-            'Prettier',
-            'Sonar',
-          ],
-        },
-        {
-          company: 'BBVA Technology',
-          period: '2024 - actualidad',
-          role: 'Senior Frontend Engineer',
-          summary:
-            'Trabajo en producto de inversión dentro de banca móvil para particulares, combinando desarrollo frontend, criterio arquitectónico y coordinación técnica en funcionalidades complejas para BBVA.',
+            'Trabajo en producto de inversión dentro de banca móvil para particulares, combinando desarrollo frontend, criterio arquitectónico y coordinación técnica en funcionalidades complejas.',
           highlights: [
             'Referente técnico dentro del equipo de inversiones para decisiones frontend, definición de componentes, responsabilidades y comunicación entre piezas de UI.',
             'Validador de PRs para el conjunto de la aplicación móvil, con capacidad de validación sobre cambios en una organización de desarrollo amplia.',
@@ -193,54 +150,11 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
         'A professional journey reviewed from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
       items: [
         {
-          company: 'GFT IT Consulting',
-          period: '2016 - 2018',
-          role: 'Frontend Engineer',
-          summary:
-            'Frontend development on digital banking projects for BBVA, combining product evolution, service integration and coordinated work with other technical teams.',
-          highlights: [
-            'Contributed to the evolution of frontend features within BBVA digital products.',
-            'Worked with product, design and backend teams to turn business needs into technical deliveries.',
-            'Applied quality, maintainability and performance criteria in a demanding banking environment.',
-          ],
-          stack: ['JavaScript', 'Ember.js', 'Handlebars', 'SCSS', 'Web Components', 'Git', 'Accessibility', 'Testing'],
-        },
-        {
-          company: 'BBVA IT España',
-          period: '2018 - 2024',
+          company: 'BBVA Technology · BBVA IT España · GFT',
+          period: '2016 - present',
           role: 'Senior Frontend Engineer',
           summary:
-            'Continued working on investment product experiences within retail mobile banking at BBVA IT España, combining frontend development, architectural judgment and technical coordination on complex features.',
-          highlights: [
-            'Technical point of reference within the investments team for frontend decisions, component definition, responsibilities and communication across UI pieces.',
-            'Technical coordination within a frontend team, supporting milestone planning, value delivery, onboarding of new teammates and technical debt management.',
-            'Technical feasibility validation from business needs, coordination with design and backend, service integration design and definition of required data.',
-            'Integration of complex LitElement features inside Ember and progressive migration of legacy Ember pieces to LitElement.',
-            'Review of unnecessary renders, Ember bundle size and frontend quality through accessibility, testing and quality tooling.',
-          ],
-          stack: [
-            'JavaScript',
-            'Ember.js',
-            'Web Components',
-            'LitElement',
-            'Handlebars',
-            'SCSS',
-            'Chrome DevTools',
-            'Accessibility',
-            'Git',
-            'Testing',
-            'Jira',
-            'ESLint',
-            'Prettier',
-            'Sonar',
-          ],
-        },
-        {
-          company: 'BBVA Technology',
-          period: '2024 - present',
-          role: 'Senior Frontend Engineer',
-          summary:
-            'I work on investment product experiences within retail mobile banking, combining frontend development, architectural judgment and technical coordination on complex features for BBVA.',
+            'I work on investment product experiences within retail mobile banking, combining frontend development, architectural judgment and technical coordination on complex features.',
           highlights: [
             'Technical point of reference within the investments team for frontend decisions, component definition, responsibilities and communication across UI pieces.',
             'I review PRs across the mobile application, with validation responsibility in a large development organization.',

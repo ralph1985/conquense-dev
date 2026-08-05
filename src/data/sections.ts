@@ -92,7 +92,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#334155',
       content:
         'Mi recorrido profesional combina producto bancario, mobile web, desarrollos a medida, SaaS de gestión empresarial e integración con clientes reales. La experiencia laboral ya está revisada por etapas y separada de los proyectos representativos.',
-      items: ['GFT IT Consulting', 'BBVA IT España', 'BBVA Technology', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
+      items: ['BBVA Technology', 'BBVA IT España', 'GFT IT Consulting', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
       actions: [{ label: 'Ver experiencia', href: routesByLanguage.es.experience }],
     },
     {
@@ -200,7 +200,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#334155',
       content:
         'My professional path combines banking products, mobile web, custom development, business-management SaaS and integration with real clients. The work experience is now reviewed by stage and separated from representative projects.',
-      items: ['GFT IT Consulting', 'BBVA IT España', 'BBVA Technology', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
+      items: ['BBVA Technology', 'BBVA IT España', 'GFT IT Consulting', 'Mobile One2One', 'Geanet onDemand', 'ComNet', 'Goitek'],
       actions: [{ label: 'View experience', href: routesByLanguage.en.experience }],
     },
     {
