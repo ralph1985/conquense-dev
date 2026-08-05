@@ -150,7 +150,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           href: 'https://youtu.be/d5C1apoWJ9w',
           description:
             'El Castillo de Torrebuceit, en Villar del Águila (Torrejoncillo del Rey, Cuenca), es una fortaleza de origen islámico vinculada al paisaje del valle del Záncara. Actualmente es una propiedad privada y se contempla desde el exterior.',
-          personalNote: 'Me crié en Torrebuceit hasta los cuatro años.',
+          personalNote: 'Torrebuceit fue mi hogar durante mis primeros cuatro años de vida.',
           source: {
             label: 'Información turística de Castilla-La Mancha',
             href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',
@@ -344,7 +344,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           href: 'https://youtu.be/d5C1apoWJ9w',
           description:
             'Castillo de Torrebuceit, in Villar del Águila (Torrejoncillo del Rey, Cuenca), is a fortress of Islamic origin set within the landscape of the Záncara valley. It is now privately owned and can only be viewed from outside.',
-          personalNote: 'I grew up in Torrebuceit until I was four.',
+          personalNote: 'Torrebuceit was my home during the first four years of my life.',
           source: {
             label: 'Castilla-La Mancha tourism information',
             href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',

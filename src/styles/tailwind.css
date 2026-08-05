@@ -237,7 +237,7 @@
   .hobby-detail-item__description { @apply mt-3 max-w-[62ch] text-sm leading-relaxed text-muted; }
   .hobby-detail-item__personal { @apply mt-3 max-w-[62ch] text-sm leading-relaxed text-ink; }
   .hobby-detail-item__source { @apply mt-4 inline-flex text-xs text-muted underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent; }
-  .hobby-detail-item__link { @apply mt-4 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
+  .hobby-detail-item__link { @apply mt-4 flex w-fit border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
 }
 
 @keyframes fade-in { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
