@@ -96,12 +96,13 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
       items.map((item) => (
         <article class="detail-item">
           <div class="detail-item__header">
-            <p>{item.period ?? item.context}</p>
+            <p>{item.period}</p>
             <h2>
               <CompanyLogo initials={getBrandInitials(item)} logo={getCompanyLogo(item)} />
               {item.company ?? item.name}
             </h2>
             <p>{item.role}</p>
+            {item.context && <p class="detail-item__context">{item.context}</p>}
           </div>
           <p class="detail-item__summary">{item.summary}</p>
           {item.highlights && (

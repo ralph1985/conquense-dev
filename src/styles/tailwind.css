@@ -127,6 +127,7 @@
   .home-timeline li > span { @apply mb-8 block font-mono text-xs text-accent; }
   .home-timeline h3 { @apply mb-3 flex items-center gap-2 text-xl font-semibold tracking-tight; }
   .home-timeline p { @apply mb-2 text-sm leading-relaxed text-muted; }
+  .home-timeline__context { @apply font-mono text-[.68rem] uppercase tracking-[.08em] text-accent; }
   .company-logo { @apply inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-full border px-2 text-[.6rem] font-bold text-ink shadow-sm; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
   .company-logo img { @apply max-h-6 max-w-14 object-contain; }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
@@ -201,6 +202,7 @@
   .detail-item__header > p:first-child { @apply mb-5 font-mono text-xs text-accent; }
   .detail-item h2 { @apply m-0 flex min-w-0 items-center gap-3 break-words text-2xl font-semibold tracking-tight; }
   .detail-item__header > p:last-child { @apply mt-3 text-sm font-semibold text-muted; }
+  .detail-item__context { @apply mt-2 text-xs font-normal text-muted; }
   .detail-item__summary { @apply max-w-[65ch] leading-relaxed text-muted; }
   .detail-item__highlights { @apply mt-6 space-y-3 border-l-2 border-accent pl-5 text-sm leading-relaxed text-muted; }
   .detail-item__links, .detail-item__stack { @apply mt-7 flex flex-wrap gap-2 p-0; }

@@ -4,6 +4,7 @@ import type { DetailCopy } from '@/data/detail-types';
 export interface ExperienceEntry {
   company: string;
   period: string;
+  context?: string;
   role: string;
   summary: string;
   highlights: string[];
@@ -19,8 +20,9 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
         'Recorrido profesional revisado desde las prácticas iniciales en industria hasta el trabajo actual en frontend senior, banca móvil e inversión.',
       items: [
         {
-          company: 'BBVA Technology · BBVA IT España · GFT',
+          company: 'BBVA Technology',
           period: '2016 - actualidad',
+          context: 'BBVA IT España (2018–2024) · GFT (2016–2018)',
           role: 'Senior Frontend Engineer',
           summary:
             'Trabajo en producto de inversión dentro de banca móvil para particulares, combinando desarrollo frontend, criterio arquitectónico y coordinación técnica en funcionalidades complejas.',
@@ -150,8 +152,9 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
         'A professional journey reviewed from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
       items: [
         {
-          company: 'BBVA Technology · BBVA IT España · GFT',
+          company: 'BBVA Technology',
           period: '2016 - present',
+          context: 'BBVA IT España (2018–2024) · GFT (2016–2018)',
           role: 'Senior Frontend Engineer',
           summary:
             'I work on investment product experiences within retail mobile banking, combining frontend development, architectural judgment and technical coordination on complex features.',
