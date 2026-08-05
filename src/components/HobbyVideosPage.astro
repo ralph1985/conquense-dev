@@ -8,6 +8,7 @@ interface VideoItem {
   href: string;
   title: string;
   description?: string;
+  personalNote?: string;
   source?: {
     label: string;
     href: string;
@@ -50,6 +51,7 @@ const watchLabel = lang === 'es' ? 'Ver vídeo en YouTube' : 'Watch video on You
         </a>
         <h2 class="hobby-detail-item__title">{video.title}</h2>
         {video.description && <p class="hobby-detail-item__description">{video.description}</p>}
+        {video.personalNote && <p class="hobby-detail-item__personal"><strong>{video.personalNote}</strong></p>}
         {video.source && <a class="hobby-detail-item__source" href={video.source.href} target="_blank" rel="noopener noreferrer">{video.source.label}</a>}
         <a class="hobby-detail-item__link" href={video.href} target="_blank" rel="noopener noreferrer">{watchLabel}</a>
       </article>

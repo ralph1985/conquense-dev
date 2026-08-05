@@ -23,6 +23,7 @@ export interface PortfolioSection {
     href: string;
     title: string;
     description?: string;
+    personalNote?: string;
     source?: {
       label: string;
       href: string;
@@ -148,7 +149,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           alt: 'Vista aérea de una ermita y el paisaje que la rodea',
           href: 'https://youtu.be/d5C1apoWJ9w',
           description:
-            'El Castillo de Torrebuceit, en Villar del Águila (Torrejoncillo del Rey, Cuenca), es una fortaleza de origen islámico vinculada al paisaje del valle del Záncara. Actualmente es una propiedad privada y se contempla desde el exterior. Para mí tiene además un significado personal: allí me crié hasta los cuatro años.',
+            'El Castillo de Torrebuceit, en Villar del Águila (Torrejoncillo del Rey, Cuenca), es una fortaleza de origen islámico vinculada al paisaje del valle del Záncara. Actualmente es una propiedad privada y se contempla desde el exterior.',
+          personalNote: 'Me crié en Torrebuceit hasta los cuatro años.',
           source: {
             label: 'Información turística de Castilla-La Mancha',
             href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',
@@ -341,7 +343,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
           alt: 'Aerial view of a chapel and the surrounding landscape',
           href: 'https://youtu.be/d5C1apoWJ9w',
           description:
-            'Castillo de Torrebuceit, in Villar del Águila (Torrejoncillo del Rey, Cuenca), is a fortress of Islamic origin set within the landscape of the Záncara valley. It is now privately owned and can only be viewed from outside. It also has a personal meaning for me: I grew up there until I was four.',
+            'Castillo de Torrebuceit, in Villar del Águila (Torrejoncillo del Rey, Cuenca), is a fortress of Islamic origin set within the landscape of the Záncara valley. It is now privately owned and can only be viewed from outside.',
+          personalNote: 'I grew up in Torrebuceit until I was four.',
           source: {
             label: 'Castilla-La Mancha tourism information',
             href: 'https://www.turismocastillalamancha.es/es/cultura-y-patrimonio/castillos/cuenca/castillo-de-torrebuceit',
