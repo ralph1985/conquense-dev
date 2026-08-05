@@ -130,8 +130,8 @@
   .home-timeline__context { @apply font-mono text-[.68rem] uppercase tracking-[.08em] text-accent; }
   .company-logo { @apply inline-flex h-10 min-w-10 shrink-0 items-center justify-center rounded-full border px-2 text-[.6rem] font-bold text-ink shadow-sm; border-color: var(--color-logo-border); background: var(--color-logo-surface); }
   .company-logo img { @apply max-h-6 max-w-14 object-contain; }
-  .company-logo--technology { @apply h-12 min-w-24 rounded-sm border-0 bg-slate-950 px-3 shadow-none; }
-  .company-logo--technology img { @apply max-h-9 max-w-20; mix-blend-mode: normal; }
+  .company-logo--technology { @apply h-auto min-w-0 rounded-none border-0 bg-transparent px-0 shadow-none; }
+  .company-logo--technology img { @apply max-h-8 max-w-24; mix-blend-mode: normal; filter: brightness(0) saturate(100%) invert(16%) sepia(32%) saturate(1578%) hue-rotate(183deg) brightness(88%) contrast(103%); }
   .home-link { @apply mt-8 inline-flex border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .home-brands { @apply border-b border-ink/15 py-12; }
   .home-brands h2 { @apply mb-8 font-mono text-[.68rem] font-bold uppercase tracking-[.18em] text-muted; }
