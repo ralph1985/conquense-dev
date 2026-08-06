@@ -89,7 +89,6 @@
   .back-to-top.is-visible { @apply visible pointer-events-auto translate-y-0 opacity-100; }
   .back-to-top span:first-child { @apply text-base leading-none text-accent; }
   .home-header { @apply fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-4 border-b border-ink/20 bg-surface/95 px-5 font-mono backdrop-blur-xl md:px-10; }
-  .home-header::after { content: 'STATIC / ASTRO'; @apply pointer-events-none absolute right-5 top-1 hidden text-[.55rem] font-bold tracking-[.18em] text-muted/60 md:block; }
   .home-header__brand { @apply shrink-0; }
   .home-header__brand .brand-logo { @apply w-32 md:w-40; }
   .home-header__nav { @apply hidden items-center gap-1 text-xs font-semibold uppercase tracking-[.14em] text-muted md:flex; }
