@@ -110,19 +110,20 @@ const legalData = {
             paragraphs: [
               'El sitio utiliza Vercel Web Analytics para conocer de forma agregada qué páginas se visitan y cómo se utiliza la web. Vercel indica que esta herramienta no utiliza cookies ni identificadores personales para seguir a una persona entre sitios, aunque puede tratar datos como URL, referencia, dispositivo, navegador, ubicación aproximada y momento de acceso.',
               'No se envían deliberadamente a esta herramienta nombres, direcciones de email ni otros datos introducidos por una persona.',
+              'Vercel puede tratar los datos generados por Analytics conforme a su propia política de privacidad. En el plan Hobby, el panel del titular ofrece una ventana de informes de aproximadamente 30 días; Vercel puede conservar datos durante más tiempo según sus políticas y condiciones.',
             ],
           },
           {
             title: 'Proveedores y terceros',
             paragraphs: [
-              'El buzón hola@conquense.dev está gestionado mediante DonDominio. El sitio está alojado y desplegado en Vercel, que también presta el servicio de analítica indicado.',
+              'El dominio y el buzón hola@conquense.dev están gestionados mediante DonDominio como proveedor técnico del correo y del dominio. El sitio está alojado y desplegado en Vercel, que también presta el servicio de analítica indicado.',
               'Los enlaces a YouTube, LinkedIn, GitHub y otros sitios no transfieren datos a esos servicios por el mero hecho de estar enlazados. Si se abren, el tratamiento posterior dependerá de cada tercero y de su política de privacidad.',
             ],
           },
           {
             title: 'Conservación',
             paragraphs: [
-              'Los mensajes se conservarán durante el tiempo necesario para atender la comunicación y, posteriormente, durante los plazos que puedan exigir responsabilidades legales. Los datos técnicos y estadísticos se conservarán conforme a las políticas y configuración de los proveedores correspondientes.',
+              'Los mensajes se conservarán mientras sean necesarios para atender la comunicación y, posteriormente, durante los plazos que puedan exigir responsabilidades legales; cuando dejen de ser necesarios, se eliminarán o bloquearán. Los datos técnicos y estadísticos se conservarán conforme a las políticas y configuración de los proveedores. El panel de Vercel Hobby ofrece una ventana de informes de aproximadamente 30 días, sin que esa ventana permita conocer por sí sola el plazo total de conservación de Vercel.',
             ],
           },
           {
@@ -136,8 +137,19 @@ const legalData = {
             title: 'Derechos',
             paragraphs: [
               'Puedes solicitar el acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad cuando proceda, así como retirar un consentimiento previamente prestado, escribiendo a hola@conquense.dev.',
-              'También puedes presentar una reclamación ante la Agencia Española de Protección de Datos si consideras que el tratamiento no se ajusta a la normativa.',
+              'Responderé a estas solicitudes en el plazo máximo de un mes, ampliable otros dos meses cuando la complejidad o el número de solicitudes lo justifique. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos si consideras que el tratamiento no se ajusta a la normativa.',
             ],
+          },
+          {
+            title: 'Seguridad y brechas',
+            paragraphs: [
+              'Se aplican medidas razonables de seguridad, incluyendo HTTPS/TLS y autenticación en dos pasos en Vercel, DonDominio y GitHub. El acceso al buzón está restringido a la cuenta personal del titular.',
+              'Si se produjera una brecha de seguridad que afectase a datos personales, el incidente se analizará y documentará, y se notificará a la autoridad de control o a las personas afectadas cuando la normativa lo exija.',
+            ],
+          },
+          {
+            title: 'Delegado de protección de datos',
+            paragraphs: ['No se ha designado un delegado de protección de datos para este sitio. Las consultas y solicitudes relacionadas con los tratamientos descritos pueden dirigirse a hola@conquense.dev.'],
           },
         ],
       },
@@ -209,11 +221,13 @@ const legalData = {
           { title: 'Data controller', list: ['Controller: Rafael García Prieto', 'Address: Calle de los Jazmines 1, 1B, 28880 Meco, Madrid, Spain', 'Email: hola@conquense.dev'] },
           { title: 'Data and source', paragraphs: ['The site has no forms, registration, newsletter, comments or private area. Personal data received will come from messages that a person voluntarily sends to hola@conquense.dev.', 'The hosting provider may process technical connection data needed to deliver the pages, protect the service and diagnose incidents.'] },
           { title: 'Purposes and legal bases', list: ['To handle and answer email messages, based on the person’s request and, where applicable, pre-contractual steps.', 'To maintain the site’s security, availability and technical operation, based on the controller’s legitimate interest.', 'To obtain aggregated audience statistics through Vercel Web Analytics, based on the legitimate interest in understanding and improving the use of this site, without using tracking cookies.', 'To comply with applicable legal obligations.'] },
-          { title: 'Vercel Web Analytics', paragraphs: ['The site uses Vercel Web Analytics to understand, in aggregate, which pages are visited and how the site is used. Vercel states that the tool does not use cookies or personal identifiers to follow a person across sites, although it may process data such as URL, referrer, device, browser, approximate location and access time.', 'Names, email addresses and other information entered by a person are not deliberately sent to this tool.'] },
-          { title: 'Providers and third parties', paragraphs: ['The hola@conquense.dev mailbox is managed through DonDominio. The site is hosted and deployed on Vercel, which also provides the analytics service described above.', 'Links to YouTube, LinkedIn, GitHub and other sites do not transfer data to those services merely because they are present. Once opened, processing is governed by each third party’s privacy policy.'] },
-          { title: 'Retention', paragraphs: ['Messages will be kept for as long as needed to handle the communication and afterwards for any periods required to establish or defend legal claims. Technical and statistical data will be retained according to the applicable provider policies and configuration.'] },
+          { title: 'Vercel Web Analytics', paragraphs: ['The site uses Vercel Web Analytics to understand, in aggregate, which pages are visited and how the site is used. Vercel states that the tool does not use cookies or personal identifiers to follow a person across sites, although it may process data such as URL, referrer, device, browser, approximate location and access time.', 'Names, email addresses and other information entered by a person are not deliberately sent to this tool.', 'Vercel may process Analytics data under its own privacy notice. On the Hobby plan, the account dashboard provides an approximately 30-day reporting window; Vercel may retain data for longer under its policies and terms.'] },
+          { title: 'Providers and third parties', paragraphs: ['The domain and the hola@conquense.dev mailbox are managed through DonDominio as the technical email and domain provider. The site is hosted and deployed on Vercel, which also provides the analytics service described above.', 'Links to YouTube, LinkedIn, GitHub and other sites do not transfer data to those services merely because they are present. Once opened, processing is governed by each third party’s privacy policy.'] },
+          { title: 'Retention', paragraphs: ['Messages will be kept while needed to handle the communication and afterwards for any periods required to establish or defend legal claims; when no longer needed, they will be deleted or blocked. Technical and statistical data will be retained according to the applicable provider policies and configuration. The Vercel Hobby dashboard provides an approximately 30-day reporting window, but that window alone does not establish Vercel’s total retention period.'] },
           { title: 'International transfers', paragraphs: ['Some technology providers may process data outside the European Economic Area. Vercel states that it may process data in the United States and other countries under the transfer mechanisms set out in its contractual documentation. DonDominio describes the processing and safeguards applicable to its services in its privacy policy.', 'No additional international transfers are made by this site’s code. For current details about providers, locations and safeguards, the policies and terms of each provider should be consulted.'] },
-          { title: 'Rights', paragraphs: ['You may request access, rectification, erasure, objection, restriction and portability where applicable, and withdraw previously given consent, by writing to hola@conquense.dev.', 'You may also lodge a complaint with the Spanish Data Protection Agency if you believe processing does not comply with the law.'] },
+          { title: 'Rights', paragraphs: ['You may request access, rectification, erasure, objection, restriction and portability where applicable, and withdraw previously given consent, by writing to hola@conquense.dev.', 'Requests will be answered within one month, extendable by a further two months where justified by the complexity or number of requests. You may also lodge a complaint with the Spanish Data Protection Agency if you believe processing does not comply with the law.'] },
+          { title: 'Security and breaches', paragraphs: ['Reasonable security measures are applied, including HTTPS/TLS and two-factor authentication on Vercel, DonDominio and GitHub. Access to the mailbox is restricted to the controller’s personal account.', 'If a security breach affecting personal data occurs, it will be assessed and documented, and the supervisory authority or affected individuals will be notified where required by law.'] },
+          { title: 'Data Protection Officer', paragraphs: ['No Data Protection Officer has been appointed for this site. Questions and requests about the processing described here may be sent to hola@conquense.dev.'] },
         ],
       },
       cookies: {
