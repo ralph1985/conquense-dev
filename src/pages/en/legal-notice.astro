@@ -1,0 +1,12 @@
+---
+import LegalPage from '@/components/LegalPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLegalPage } from '@/data/legal';
+import { routesByLanguage } from '@/data/i18n';
+
+const page = getLegalPage('en', 'legalNotice');
+---
+
+<BaseLayout lang="en" title={`${page.title} - Conquense Dev`} description={page.description} alternateLinks={[{ lang: 'es', href: routesByLanguage.es.legalNotice }, { lang: 'en', href: routesByLanguage.en.legalNotice }]}>
+  <LegalPage page={page} lang="en" />
+</BaseLayout>

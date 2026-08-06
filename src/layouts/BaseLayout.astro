@@ -1,7 +1,8 @@
 ---
 import { siteConfig } from '@/config/site';
 import BackToTop from '@/components/BackToTop.astro';
-import { uiCopy, type AlternateLink, type Language } from '@/data/i18n';
+import { routesByLanguage, uiCopy, type AlternateLink, type Language } from '@/data/i18n';
+import { getLegalMeta } from '@/data/legal';
 import Analytics from '@vercel/analytics/astro';
 import '@/styles/tailwind.css';
 
@@ -18,6 +19,8 @@ const description = Astro.props.description ?? siteConfig.description[lang];
 const canonical = new URL(Astro.url.pathname, siteConfig.canonical).toString();
 const ogImage = new URL(siteConfig.ogImage, siteConfig.canonical).toString();
 const alternateLinks = Astro.props.alternateLinks ?? [];
+const legalMeta = getLegalMeta(lang);
+const legalRoutes = routesByLanguage[lang];
 ---
 
 <!doctype html>
@@ -71,6 +74,18 @@ const alternateLinks = Astro.props.alternateLinks ?? [];
   </head>
   <body>
     <slot />
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>{legalMeta.footer}</p>
+        <nav aria-label={legalMeta.legalLabel}>
+          <ul>
+            <li><a href={legalRoutes.legalNotice}>{lang === 'es' ? 'Aviso legal' : 'Legal notice'}</a></li>
+            <li><a href={legalRoutes.privacy}>{lang === 'es' ? 'Privacidad' : 'Privacy'}</a></li>
+            <li><a href={legalRoutes.cookies}>{lang === 'es' ? 'Cookies' : 'Cookies'}</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
     <BackToTop label={uiCopy[lang].backToTop} />
   </body>
 </html>

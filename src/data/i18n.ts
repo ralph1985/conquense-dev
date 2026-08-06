@@ -10,6 +10,9 @@ export interface RouteSet {
   projects: string;
   experience: string;
   hobbies: string;
+  legalNotice: string;
+  privacy: string;
+  cookies: string;
 }
 
 export const routesByLanguage: Record<Language, RouteSet> = {
@@ -18,12 +21,18 @@ export const routesByLanguage: Record<Language, RouteSet> = {
     projects: '/proyectos/',
     experience: '/experiencia/',
     hobbies: '/otra-forma-de-mirar/',
+    legalNotice: '/aviso-legal/',
+    privacy: '/politica-privacidad/',
+    cookies: '/politica-cookies/',
   },
   en: {
     home: '/en/',
     projects: '/en/projects/',
     experience: '/en/experience/',
     hobbies: '/en/another-way-of-looking/',
+    legalNotice: '/en/legal-notice/',
+    privacy: '/en/privacy-policy/',
+    cookies: '/en/cookie-policy/',
   },
 };
 
