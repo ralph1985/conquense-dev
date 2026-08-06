@@ -17,7 +17,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
       title: 'Experiencia profesional',
       subtitle: 'Trayectoria en frontend, mobile web, banca digital, producto y aplicaciones de gestión.',
       description:
-        'Recorrido profesional revisado desde las prácticas iniciales en industria hasta el trabajo actual en frontend senior, banca móvil e inversión.',
+        'Experiencia desde el desarrollo en entornos industriales hasta el trabajo actual como frontend senior en banca móvil y productos de inversión.',
       items: [
         {
           company: 'BBVA Technology',
@@ -28,7 +28,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
             'Trabajo en producto de inversión dentro de banca móvil para particulares, combinando desarrollo frontend, criterio arquitectónico y coordinación técnica en funcionalidades complejas.',
           highlights: [
             'Referente técnico dentro del equipo de inversiones para decisiones frontend, definición de componentes, responsabilidades y comunicación entre piezas de UI.',
-            'Validador de PRs para el conjunto de la aplicación móvil, con capacidad de validación sobre cambios en una organización de desarrollo amplia.',
+            'Valido PRs del conjunto de la aplicación móvil dentro de una organización de desarrollo amplia.',
             'Coordinación técnica dentro de un equipo frontend de cuatro personas, con apoyo a planificación de hitos, entrega de valor, formación de nuevos compañeros y gestión de deuda técnica.',
             'Validación de viabilidad técnica a partir de necesidades de negocio, coordinación con diseño y backend, diseño de integración con servicios y definición de datos necesarios.',
             'Integración reciente del módulo de tendencias de inversión en la Posición Global del cliente, priorizando rendimiento, convivencia con otros módulos y sincronía con métricas de uso y configuración.',
@@ -149,7 +149,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
       title: 'Professional experience',
       subtitle: 'A career across frontend, mobile web, digital banking, product and management applications.',
       description:
-        'A professional journey reviewed from an initial industrial internship to current senior frontend work in mobile banking and investment products.',
+        'Experience spanning industrial development and current senior frontend work in mobile banking and investment products.',
       items: [
         {
           company: 'BBVA Technology',
@@ -160,7 +160,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
             'I work on investment product experiences within retail mobile banking, combining frontend development, architectural judgment and technical coordination on complex features.',
           highlights: [
             'Technical point of reference within the investments team for frontend decisions, component definition, responsibilities and communication across UI pieces.',
-            'I review PRs across the mobile application, with validation responsibility in a large development organization.',
+            'I review PRs across the mobile application within a large development organization.',
             'Technical coordination within a four-person frontend team, supporting milestone planning, value delivery, onboarding of new teammates and technical debt management.',
             'Technical feasibility validation from business needs, coordination with design and backend, service integration design and definition of required data.',
             'Recent integration of the investment trends module into the customer Global Position experience, prioritizing performance, coexistence with other modules and alignment with usage metrics and configuration.',

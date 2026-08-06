@@ -18,16 +18,16 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
   es: {
       eyebrow: 'Proyectos',
       title: 'Proyectos',
-      subtitle: 'Trabajo representativo en banca digital, mobile commerce, booking y herramientas internas.',
+      subtitle: 'Productos propios, banca digital, mobile commerce y herramientas internas.',
       description:
-        'Una muestra de productos propios y trabajos representativos, construidos entre la interfaz, la arquitectura y las decisiones que hacen posible su evolución.',
+        'Una selección de productos propios y trabajos representativos, descritos desde el problema que resuelven, el papel que desempeñé y las decisiones técnicas que tomé.',
       items: [
         {
           name: 'Jucart',
           context: 'Proyecto personal y familiar',
           role: 'Producto, arquitectura frontend y desarrollo asistido por IA',
           summary:
-            'Jucart empezó como una lista de compra privada para sustituir la pizarra de la nevera: añadir productos y tacharlos sin complicaciones. A partir de esa necesidad mínima creció por capas: funcionamiento offline para usarla en el supermercado, Supabase para compartirla entre dispositivos y una bandeja de tickets que Codex procesa para extraer líneas y construir histórico de precios. La herramienta conserva la sencillez de uso mientras permite explorar ideas técnicas más ambiciosas.',
+            'Jucart empezó como una lista de compra privada para sustituir la pizarra de la nevera: añadir productos y tacharlos sin complicaciones. A partir de esa necesidad mínima creció por capas: funcionamiento offline para usarla en el supermercado, Supabase para compartirla entre dispositivos y una bandeja de tickets que Codex procesa para extraer líneas y construir histórico de precios. La herramienta mantiene una interfaz sencilla mientras añade automatización y un histórico de precios.',
           highlights: [
             'Una necesidad doméstica convertida en producto.',
             'Offline first con Dexie e IndexedDB.',
@@ -167,16 +167,16 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
   en: {
       eyebrow: 'Projects',
       title: 'Projects',
-      subtitle: 'Representative work in digital banking, mobile commerce, booking and internal tools.',
+      subtitle: 'Personal products, digital banking, mobile commerce and internal tools.',
       description:
-        'A selection of personal products and representative work shaped by interface, architecture and the decisions that allow them to evolve.',
+        'A selection of personal products and representative work, described through the problem each one solves, my role and the technical decisions I made.',
       items: [
         {
           name: 'Jucart',
           context: 'Personal and family project',
           role: 'Product, frontend architecture and AI-assisted development',
           summary:
-            'Jucart started as a private shopping list to replace the whiteboard on the fridge: add products and cross them off without friction. From that small need it grew in layers: offline use for shopping, Supabase to share it across devices and a ticket inbox that Codex processes to extract lines and build price history. The tool keeps its simple user experience while making room for more ambitious technical ideas.',
+            'Jucart started as a private shopping list to replace the whiteboard on the fridge: add products and cross them off without friction. From that small need it grew in layers: offline use for shopping, Supabase to share it across devices and a ticket inbox that Codex processes to extract lines and build price history. The tool keeps a simple interface while adding automation and price history.',
           highlights: [
             'A household need turned into a product.',
             'Offline first with Dexie and IndexedDB.',
