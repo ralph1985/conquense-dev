@@ -2,6 +2,7 @@
 import { siteConfig } from '@/config/site';
 import BackToTop from '@/components/BackToTop.astro';
 import { uiCopy, type AlternateLink, type Language } from '@/data/i18n';
+import Analytics from '@vercel/analytics/astro';
 import '@/styles/tailwind.css';
 
 interface Props {
@@ -41,6 +42,7 @@ const alternateLinks = Astro.props.alternateLinks ?? [];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={siteConfig.brand.name} />
+    <Analytics />
     <script is:inline>
       (() => {
         const storageKey = 'conquense-dev-theme';
