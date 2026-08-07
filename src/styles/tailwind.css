@@ -273,16 +273,50 @@
   }
 }
 
+@keyframes home-scroll-reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes home-scroll-reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @supports (animation-timeline: view()) and (animation-range: entry 0% cover 100%) {
   @media (prefers-reduced-motion: no-preference) {
     .home-hero__summary,
     .home-principle,
     .home-timeline li,
     .home-project,
-    .home-hobby__media {
+    .home-hobby__media,
+    .home-brands li {
       animation: auto linear home-scroll-reveal both;
       animation-timeline: view();
       animation-range: entry 5% cover 35%;
+    }
+
+    .home-brands li {
+      animation-name: home-scroll-reveal-left;
+      animation-range: entry 0% cover 30%;
+    }
+
+    .home-brands li:nth-child(even) {
+      animation-name: home-scroll-reveal-right;
     }
   }
 }
