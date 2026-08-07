@@ -85,7 +85,7 @@
 
 @layer components {
   .skip-link { @apply fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-paper transition-transform focus:translate-y-0; }
-  .back-to-top { @apply invisible fixed bottom-20 right-5 z-50 inline-flex translate-y-3 items-center gap-2 rounded-sm border border-ink/20 bg-surface/95 px-3 py-2 font-mono text-[.65rem] font-bold uppercase tracking-[.12em] text-muted opacity-0 shadow-soft backdrop-blur-xl transition-[opacity,transform,color,border-color,visibility] duration-200 pointer-events-none hover:border-accent hover:text-accent md:bottom-24 md:right-10; }
+  .back-to-top { @apply invisible fixed bottom-[calc(7rem+env(safe-area-inset-bottom))] right-5 z-50 inline-flex translate-y-3 items-center gap-2 rounded-sm border border-ink/20 bg-surface/95 px-3 py-2 font-mono text-[.65rem] font-bold uppercase tracking-[.12em] text-muted opacity-0 shadow-soft backdrop-blur-xl transition-[opacity,transform,color,border-color,visibility] duration-200 pointer-events-none hover:border-accent hover:text-accent md:bottom-24 md:right-10; }
   .back-to-top.is-visible { @apply visible pointer-events-auto translate-y-0 opacity-100; }
   .back-to-top span:first-child { @apply text-base leading-none text-accent; }
   .home-header { @apply fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between gap-4 border-b border-ink/20 bg-surface/95 px-5 font-mono backdrop-blur-xl md:px-10; }
@@ -163,6 +163,7 @@
   .site-footer { @apply border-t border-ink/20 bg-surface/80 px-5 py-10 md:px-10; }
   .site-footer__inner { @apply mx-auto flex max-w-[1440px] flex-col gap-5 font-mono text-xs text-muted md:flex-row md:items-center md:justify-between; }
   .site-footer p { @apply m-0; }
+  .site-footer__owner { @apply whitespace-nowrap; }
   .site-footer nav ul { @apply m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0; }
   .site-footer a { @apply underline decoration-ink/25 underline-offset-4 transition-colors hover:text-accent; }
   .legal-page { @apply min-h-screen px-5 pb-24 pt-28 md:px-10 md:pt-36; }

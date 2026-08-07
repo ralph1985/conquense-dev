@@ -76,7 +76,9 @@ const legalRoutes = routesByLanguage[lang];
     <slot />
     <footer class="site-footer">
       <div class="site-footer__inner">
-        <p>{legalMeta.footer}</p>
+        <p>
+          {legalMeta.footer.split('Rafael García Prieto')[0]}<span class="site-footer__owner">Rafael García Prieto</span>{legalMeta.footer.split('Rafael García Prieto')[1]}
+        </p>
         <nav aria-label={legalMeta.legalLabel}>
           <ul>
             <li><a href={legalRoutes.legalNotice}>{lang === 'es' ? 'Aviso legal' : 'Legal notice'}</a></li>
