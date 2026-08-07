@@ -275,8 +275,11 @@
 
 @supports (animation-timeline: view()) and (animation-range: entry 0% cover 100%) {
   @media (prefers-reduced-motion: no-preference) {
+    .home-hero__summary,
     .home-principle,
-    .home-timeline li {
+    .home-timeline li,
+    .home-project,
+    .home-hobby__media {
       animation: auto linear home-scroll-reveal both;
       animation-timeline: view();
       animation-range: entry 5% cover 35%;
