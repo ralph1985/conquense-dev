@@ -1,23 +1,9 @@
 ---
 import SiteHeader, { type SiteHeaderLabels } from '@/components/SiteHeader.astro';
-import CompanyLogo from '@/components/CompanyLogo.astro';
-import ProjectIcon from '@/components/ProjectIcon.astro';
 import type { AlternateLink, Language } from '@/data/i18n';
-
-interface DetailItem {
-  name?: string;
-  company?: string;
-  period?: string;
-  role: string;
-  context?: string;
-  summary: string;
-  highlights?: string[];
-  stack: string[];
-  links?: Array<{
-    label: string;
-    href: string;
-  }>;
-}
+import ExperienceItem from '@/components/ExperienceItem.astro';
+import ProjectItem from '@/components/ProjectItem.astro';
+import type { DetailItem } from '@/data/detail-types';
 
 interface Props {
   eyebrow: string;
@@ -31,6 +17,7 @@ interface Props {
   alternateLink: AlternateLink;
   headerLabels: SiteHeaderLabels;
   stackLabel: string;
+  variant: 'experience' | 'projects';
 }
 
 const {
@@ -45,55 +32,11 @@ const {
   alternateLink,
   headerLabels,
   stackLabel,
+  variant,
 } = Astro.props;
-
-const brandInitials: Record<string, string> = {
-  'GFT IT Consulting': 'GFT',
-  'BBVA IT España': 'BIT',
-  'BBVA Technology': 'BT',
-  BBVA: 'BBVA',
-  'Mobile One2One': 'MO2O',
-  'Geanet onDemand': 'GE',
-  ComNet: 'CN',
-  Goitek: 'GO',
-  'Transport, hotels and retail': 'THR',
-  'Transporte, hoteles y retail': 'THR',
-  'Hospitality and business management': 'HBM',
-  'Hospitality y gestión empresarial': 'HGE',
-};
-
-const companyLogos: Record<string, string> = {
-  'BBVA IT España': '/assets/logos/bbva.svg',
-  'BBVA Technology': '/assets/logos/bbva-technology-white.png',
-  BBVA: '/assets/logos/bbva.svg',
-  'Mobile One2One': '/assets/logos/mo2o.svg',
-  'Geanet onDemand': '/assets/logos/geanet.svg',
-  ComNet: '/assets/logos/comnet-isp.gif',
-  Goitek: '/assets/logos/goitek.svg',
-};
-
-const projectIcons: Record<string, string> = {
-  Jucart: '/assets/project-icons/jucart.svg',
-  Irati: '/assets/project-icons/irati.svg',
-  'Borch Gómez': '/assets/project-icons/borchgomez.png',
-  'Ayuntamiento de Belmontejo': '/assets/project-icons/ayuntamiento-belmontejo.png',
-  'Bárbara Núñez Osteópata': '/assets/project-icons/barbaranunez.jpg',
-  'Loto Sync': '/assets/project-icons/loto-sync.ico',
-  'Preparación al parto': '/assets/project-icons/preparacion-parto.svg',
-  'Gas Price Finder': '/assets/project-icons/gas-price-finder.png',
-  'BuyBuddies': '/assets/project-icons/buy-buddies.svg',
-};
-
-const getBrandInitials = (item: DetailItem) => {
-  const key = item.company ?? item.context ?? item.name ?? '';
-
-  return brandInitials[key] ?? key.slice(0, 3).toUpperCase();
-};
-
-const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.company] : undefined);
 ---
 
-<main id="contenido" class="detail-page" tabindex="-1">
+<main id="contenido" class:list={['detail-page', `detail-page--${variant}`]} tabindex="-1">
   <SiteHeader lang={lang} alternateLink={alternateLink} labels={headerLabels} />
   <header class="detail-hero">
     <p class="detail-hero__eyebrow">{eyebrow}</p>
@@ -103,50 +46,14 @@ const getCompanyLogo = (item: DetailItem) => (item.company ? companyLogos[item.c
     <a class="detail-hero__back" href={backHref}>← {backLabel}</a>
   </header>
 
-  <section class="detail-list" aria-label={title}>
+  <section class:list={['detail-list', `detail-list--${variant}`]} aria-label={title}>
     {
       items.map((item) => (
-        <article class="detail-item">
-          <div class="detail-item__header">
-            <p>{item.period}</p>
-            <h2>
-              {item.name ? (
-                <ProjectIcon label={item.name} icon={projectIcons[item.name]} />
-              ) : (
-                <CompanyLogo
-                  initials={getBrandInitials(item)}
-                  logo={getCompanyLogo(item)}
-                  technology={item.company === 'BBVA Technology'}
-                />
-              )}
-              {item.company ?? item.name}
-            </h2>
-            <p>{item.role}</p>
-            {item.context && <p class="detail-item__context">{item.context}</p>}
-          </div>
-          <p class="detail-item__summary">{item.summary}</p>
-          {item.highlights && (
-            <ul class="detail-item__highlights">
-              {item.highlights.map((highlight) => (
-                <li>{highlight}</li>
-              ))}
-            </ul>
-          )}
-          {item.links && (
-            <ul class="detail-item__links" aria-label={item.name ?? item.company ?? title}>
-              {item.links.map((link) => (
-                <li>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-          <ul class="detail-item__stack" aria-label={stackLabel}>
-            {item.stack.map((technology) => (
-              <li>{technology}</li>
-            ))}
-          </ul>
-        </article>
+        variant === 'projects' ? (
+          <ProjectItem item={item} stackLabel={stackLabel} />
+        ) : (
+          <ExperienceItem item={item} stackLabel={stackLabel} />
+        )
       ))
     }
   </section>

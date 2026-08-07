@@ -1,0 +1,56 @@
+---
+import ProjectIcon from '@/components/ProjectIcon.astro';
+import type { DetailItem } from '@/data/detail-types';
+
+interface Props {
+  item: DetailItem;
+  stackLabel: string;
+}
+
+const { item, stackLabel } = Astro.props;
+
+const projectIcons: Record<string, string> = {
+  Jucart: '/assets/project-icons/jucart.svg',
+  Irati: '/assets/project-icons/irati.svg',
+  'Borch Gómez': '/assets/project-icons/borchgomez.png',
+  'Ayuntamiento de Belmontejo': '/assets/project-icons/ayuntamiento-belmontejo.png',
+  'Bárbara Núñez Osteópata': '/assets/project-icons/barbaranunez.jpg',
+  'Loto Sync': '/assets/project-icons/loto-sync.ico',
+  'Preparación al parto': '/assets/project-icons/preparacion-parto.svg',
+  'Gas Price Finder': '/assets/project-icons/gas-price-finder.png',
+  'BuyBuddies': '/assets/project-icons/buy-buddies.svg',
+};
+---
+
+<article class="detail-project">
+  <header class="detail-project__header">
+    <p class="detail-project__context">{item.context}</p>
+    <h2>
+      <ProjectIcon label={item.name ?? ''} icon={projectIcons[item.name ?? '']} />
+      {item.name}
+    </h2>
+    <p class="detail-project__role">{item.role}</p>
+  </header>
+
+  <div class="detail-project__body">
+    <p class="detail-project__summary">{item.summary}</p>
+    {item.highlights && (
+      <ul class="detail-project__highlights">
+        {item.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    )}
+  </div>
+
+  <footer class="detail-project__footer">
+    <ul class="detail-item__stack" aria-label={stackLabel}>
+      {item.stack.map((technology) => <li>{technology}</li>)}
+    </ul>
+    {item.links && (
+      <ul class="detail-item__links" aria-label={item.name}>
+        {item.links.map((link) => (
+          <li><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a></li>
+        ))}
+      </ul>
+    )}
+  </footer>
+</article>

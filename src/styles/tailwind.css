@@ -227,24 +227,36 @@
   .section-panel__position { @apply absolute bottom-28 right-6 font-mono text-xs text-muted md:bottom-20 md:right-10; }
   .section-panel.is-active .section-panel__content { @apply motion-safe:animate-[fade-in_.7s_ease-out_both]; }
 
-  .detail-page { @apply min-h-screen bg-paper px-5 pb-20 font-sans text-ink md:px-10; background-image: linear-gradient(to right, var(--color-grid) 1px, transparent 1px), linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px); background-size: 5rem 5rem; }
-  .detail-hero { @apply relative mx-auto max-w-6xl border-b border-ink/20 pb-16 pt-28 md:pb-24 md:pt-36; }
+  .detail-page { @apply mx-auto min-h-screen max-w-[1440px] border-x border-ink/10 bg-paper/80 px-5 pb-20 pt-28 font-sans text-ink md:px-10 md:pt-36; }
+  .detail-hero { @apply relative max-w-4xl border-b border-ink/20 pb-16 md:pb-24; }
   .detail-hero::before { content: '~/portfolio'; @apply absolute right-0 top-4 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-muted; }
   .detail-hero__eyebrow { @apply mb-5 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent; }
-  .detail-hero h1 { @apply m-0 max-w-4xl text-5xl font-semibold leading-none tracking-[-.06em] md:text-8xl; }
-  .detail-hero__subtitle { @apply mt-8 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }
+  .detail-hero h1 { @apply m-0 max-w-4xl text-4xl font-semibold uppercase leading-[.94] tracking-[-.06em] md:text-6xl lg:text-7xl; }
+  .detail-hero__subtitle { @apply mt-7 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }
   .detail-hero__description { @apply mt-5 max-w-[65ch] leading-relaxed text-muted; }
   .detail-hero__back { @apply mt-8 inline-flex border-b border-accent pb-1 font-mono text-xs font-bold uppercase tracking-[.12em] text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
-  .detail-list { @apply mx-auto max-w-6xl; }
-  .detail-item { @apply grid gap-8 border-b border-ink/20 py-12 md:grid-cols-[minmax(220px,.6fr)_minmax(0,1fr)]; }
-  .detail-item__header { @apply relative min-w-0; }
-  .detail-item__header > p:first-child { @apply mb-5 font-mono text-xs text-accent; }
-  .detail-item h2 { @apply m-0 flex min-w-0 items-center gap-3 break-words text-2xl font-semibold tracking-tight; }
-  .detail-item__header > p:last-child { @apply mt-3 text-sm font-semibold text-muted; }
-  .detail-item__context { @apply mt-2 text-xs font-normal text-muted; }
-  .detail-item__summary { @apply max-w-[65ch] leading-relaxed text-muted; }
-  .detail-item__highlights { @apply mt-6 space-y-3 border-l-2 border-accent pl-5 text-sm leading-relaxed text-muted; }
-  .detail-item__links, .detail-item__stack { @apply mt-7 flex flex-wrap gap-2 p-0; }
+  .detail-list { @apply mt-12; }
+  .detail-list--projects { @apply grid gap-3 md:grid-cols-2; }
+  .detail-project { @apply flex min-w-0 flex-col rounded-sm border border-ink/20 bg-surface p-6 shadow-soft md:p-7; }
+  .detail-project__context { @apply mb-3 font-mono text-[.65rem] uppercase tracking-[.16em] text-muted; }
+  .detail-project h2 { @apply m-0 flex min-w-0 items-center gap-3 break-words text-2xl font-semibold tracking-tight; }
+  .detail-project__role { @apply mt-4 text-sm font-semibold leading-relaxed text-accent; }
+  .detail-project__body { @apply mt-7; }
+  .detail-project__summary { @apply leading-relaxed text-muted; }
+  .detail-project__highlights { @apply mt-6 space-y-3 border-l-2 border-accent pl-5 text-sm leading-relaxed text-muted; }
+  .detail-project__footer { @apply mt-auto pt-8; }
+  .detail-list--experience { @apply border-t border-ink/15; }
+  .detail-experience { @apply grid gap-8 border-b border-ink/15 py-10 md:grid-cols-[minmax(180px,.35fr)_minmax(0,1fr)] md:gap-16 md:py-14; }
+  .detail-experience__meta { @apply flex items-start justify-between gap-5 md:flex-col md:justify-start; }
+  .detail-experience__period { @apply m-0 font-mono text-xs text-accent; }
+  .detail-experience__content { @apply min-w-0; }
+  .detail-experience h2 { @apply m-0 text-2xl font-semibold tracking-tight; }
+  .detail-experience__role { @apply mt-3 text-sm font-semibold text-accent; }
+  .detail-experience__context { @apply mt-2 font-mono text-[.68rem] uppercase tracking-[.08em] text-muted; }
+  .detail-experience__summary { @apply mt-7 max-w-[65ch] leading-relaxed text-muted; }
+  .detail-experience__highlights { @apply mt-6 space-y-3 border-l-2 border-accent pl-5 text-sm leading-relaxed text-muted; }
+  .detail-item__stack, .detail-item__links { @apply mt-7 flex flex-wrap gap-2 p-0; }
+  .detail-item__links { @apply mt-3; }
   .detail-item__links li, .detail-item__stack li { @apply list-none rounded-sm border border-ink/20 px-3 py-1.5 font-mono text-xs text-muted; }
   .detail-item__links a { @apply text-accent underline underline-offset-4; }
   .hobby-detail-list { @apply mx-auto grid max-w-6xl gap-x-6 gap-y-12 py-12 md:grid-cols-2 md:py-16; }
@@ -304,7 +316,10 @@
     .home-timeline li,
     .home-project,
     .home-hobby__media,
-    .home-brands li {
+    .home-brands li,
+    .detail-hero,
+    .detail-project,
+    .detail-experience {
       animation: auto linear home-scroll-reveal both;
       animation-timeline: view();
       animation-range: entry 5% cover 35%;

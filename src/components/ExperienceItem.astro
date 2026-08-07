@@ -1,0 +1,63 @@
+---
+import CompanyLogo from '@/components/CompanyLogo.astro';
+import type { DetailItem } from '@/data/detail-types';
+
+interface Props {
+  item: DetailItem;
+  stackLabel: string;
+}
+
+const { item, stackLabel } = Astro.props;
+
+const brandInitials: Record<string, string> = {
+  'GFT IT Consulting': 'GFT',
+  'BBVA IT España': 'BIT',
+  'BBVA Technology': 'BT',
+  BBVA: 'BBVA',
+  'Mobile One2One': 'MO2O',
+  'Geanet onDemand': 'GE',
+  ComNet: 'CN',
+  Goitek: 'GO',
+};
+
+const companyLogos: Record<string, string> = {
+  'BBVA IT España': '/assets/logos/bbva.svg',
+  'BBVA Technology': '/assets/logos/bbva-technology-white.png',
+  BBVA: '/assets/logos/bbva.svg',
+  'Mobile One2One': '/assets/logos/mo2o.svg',
+  'Geanet onDemand': '/assets/logos/geanet.svg',
+  ComNet: '/assets/logos/comnet-isp.gif',
+  Goitek: '/assets/logos/goitek.svg',
+};
+
+const company = item.company ?? '';
+const initials = brandInitials[company] ?? company.slice(0, 3).toUpperCase();
+---
+
+<article class="detail-experience">
+  <div class="detail-experience__meta">
+    <p class="detail-experience__period">{item.period}</p>
+    <CompanyLogo
+      initials={initials}
+      logo={companyLogos[company]}
+      technology={company === 'BBVA Technology'}
+    />
+  </div>
+
+  <div class="detail-experience__content">
+    <header>
+      <h2>{company}</h2>
+      <p class="detail-experience__role">{item.role}</p>
+      {item.context && <p class="detail-experience__context">{item.context}</p>}
+    </header>
+    <p class="detail-experience__summary">{item.summary}</p>
+    {item.highlights && (
+      <ul class="detail-experience__highlights">
+        {item.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    )}
+    <ul class="detail-item__stack" aria-label={stackLabel}>
+      {item.stack.map((technology) => <li>{technology}</li>)}
+    </ul>
+  </div>
+</article>
