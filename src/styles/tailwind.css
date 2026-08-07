@@ -132,6 +132,7 @@
   .home-principle svg { @apply mb-8 h-7 w-7 fill-none stroke-accent stroke-[1.25]; }
   .home-principle p, .home-project > p:first-child { @apply mb-3 font-mono text-[.65rem] uppercase tracking-[.16em] text-muted; }
   .home-principle h3, .home-project h3 { @apply mb-3 text-xl font-semibold tracking-tight; }
+  .home-project h3 { @apply flex items-center gap-3; }
   .home-principle span, .home-project > span { @apply text-sm leading-relaxed text-muted; }
   .home-timeline { @apply m-0 grid list-none gap-0 border-t border-ink/15 p-0 md:grid-cols-3; }
   .home-timeline li { @apply border-b border-ink/15 py-7 md:border-r md:px-6 md:first:pl-0 md:last:border-r-0; }
