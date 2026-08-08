@@ -59,6 +59,24 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           ],
         },
         {
+          name: 'Curvas de crecimiento infantiles',
+          context: 'Producto personal y familiar',
+          role: 'Producto, arquitectura frontend y desarrollo',
+          summary:
+            'Aplicación web para registrar medidas infantiles y consultar su evolución con referencias de crecimiento de la OMS. Nació como un fork de child-growth-charts y continúa como una herramienta familiar activa, probada con familias cercanas. Los datos se guardan solo en el navegador, sin cuentas ni servidor.',
+          highlights: [
+            'Datos locales, sin cuentas ni servidor.',
+            'Referencias de crecimiento de la OMS.',
+            'Pruebas continuas con familias cercanas.',
+            'Fork y continuación de child-growth-charts de Frederik Leonhardt.',
+          ],
+          stack: ['TypeScript', 'Mithril', 'Chartist', 'Webpack', 'Sass', 'localStorage', 'OMS'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/curvas-crecimiento' },
+            { label: 'Demo', href: 'https://crecimiento-bebe.conquense.dev/' },
+          ],
+        },
+        {
           name: 'Borch Gómez',
           context: 'Web profesional con CMS',
           role: 'Arquitectura frontend, contenido y despliegue',
@@ -205,6 +223,24 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/irati-app' },
             { label: 'Demo', href: 'https://irati-app.vercel.app' },
+          ],
+        },
+        {
+          name: 'Curvas de crecimiento infantiles',
+          context: 'Personal and family product',
+          role: 'Product, frontend architecture and development',
+          summary:
+            "Web application for recording children's measurements and viewing their progress against WHO growth references. It began as a fork of child-growth-charts and continues as an active family tool, tested with families in our circle. Data stays in the browser, with no accounts or server.",
+          highlights: [
+            'Local data, with no accounts or server.',
+            'WHO growth references.',
+            'Continuous testing with families in our circle.',
+            'Fork and continuation of child-growth-charts by Frederik Leonhardt.',
+          ],
+          stack: ['TypeScript', 'Mithril', 'Chartist', 'Webpack', 'Sass', 'localStorage', 'WHO'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/curvas-crecimiento' },
+            { label: 'Demo', href: 'https://crecimiento-bebe.conquense.dev/' },
           ],
         },
         {
