@@ -125,7 +125,7 @@
   .home-hobby__media img { @apply block aspect-video w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]; }
   .home-hobby__media::after { content: ''; @apply pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10; }
   .home-hobby__play { @apply absolute bottom-4 left-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent text-paper shadow-sm transition-transform duration-300 group-hover:scale-105; font-size: .8rem; }
-  .home-hobby__caption { @apply absolute inset-x-4 bottom-4 z-10 pr-16 text-sm font-semibold text-paper drop-shadow-md; }
+  .home-hobby__caption { @apply absolute inset-x-4 bottom-4 z-10 pr-16 text-sm font-semibold text-white drop-shadow-md; }
   .home-hobby__media:focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper; }
   .home-principles { @apply grid gap-3 md:grid-cols-3; }
   .home-principle, .home-project { @apply rounded-sm border border-ink/20 bg-surface p-6 shadow-soft transition-transform hover:-translate-y-1 md:p-7; }
