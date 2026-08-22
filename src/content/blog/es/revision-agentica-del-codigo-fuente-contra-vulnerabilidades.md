@@ -3,7 +3,7 @@ translationId: agentic-source-code-review-2026-08
 lang: es
 slug: revision-agentica-del-codigo-fuente-contra-vulnerabilidades
 title: "Revisión agéntica del código fuente para encontrar vulnerabilidades con más contexto"
-description: "Google Threat Intelligence describe una arquitectura multiagente que combina análisis automatizado, modelado de amenazas y validación humana para acelerar la búsqueda de vulnerabil"
+description: "Google Threat Intelligence describe un sistema multiagente para acelerar la búsqueda de vulnerabilidades mediante análisis automatizado, amenazas y validación humana."
 publishedAt: 2026-08-18
 sourceName: "Google Threat Intelligence"
 sourceTitle: "Staying Ahead of Adversarial AI Through Agentic Source Code Review"
