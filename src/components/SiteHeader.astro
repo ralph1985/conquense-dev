@@ -11,6 +11,8 @@ export interface SiteHeaderLabels {
   navProjects: string;
   navBlog: string;
   navContact: string;
+  mobileMenuLabel: string;
+  mobileMenuCloseLabel: string;
   themeToggleLabel: string;
   themeSystemLabel: string;
   themeLightLabel: string;
@@ -56,7 +58,20 @@ const navItems = [
   <a class="home-header__brand" href={routeSet.home} aria-label={siteConfig.brand.name}>
     <BrandLogo eager />
   </a>
-  <nav class="home-header__nav" aria-label={labels.navLabel}>
+  <button
+    class="home-header__menu"
+    type="button"
+    aria-label={labels.mobileMenuLabel}
+    aria-expanded="false"
+    aria-controls="site-navigation"
+    data-mobile-menu-toggle
+    data-open-label={labels.mobileMenuLabel}
+    data-close-label={labels.mobileMenuCloseLabel}
+  >
+    <span aria-hidden="true" data-mobile-menu-icon>☰</span>
+    <span class="sr-only" data-mobile-menu-label>{labels.mobileMenuLabel}</span>
+  </button>
+  <nav id="site-navigation" class="home-header__nav" aria-label={labels.navLabel} data-mobile-menu>
     {
       navItems.map((item) => (
         <a href={item.href}>
@@ -89,3 +104,35 @@ const navItems = [
     </a>
   </div>
 </header>
+
+<script>
+  const toggle = document.querySelector('[data-mobile-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  const menuLabel = toggle?.querySelector('[data-mobile-menu-label]');
+  const menuIcon = toggle?.querySelector('[data-mobile-menu-icon]');
+
+  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      const label = open ? toggle.dataset.closeLabel : toggle.dataset.openLabel;
+      if (label) {
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+        menuLabel?.replaceChildren(label);
+      }
+      if (menuIcon) menuIcon.textContent = open ? '×' : '☰';
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('click', (event) => {
+      if (toggle.getAttribute('aria-expanded') === 'true' && event.target instanceof Node && !menu.contains(event.target) && !toggle.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+  }
+</script>

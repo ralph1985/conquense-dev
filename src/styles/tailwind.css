@@ -92,11 +92,16 @@
   .home-header__brand { @apply shrink-0; }
   .home-header__brand .brand-logo { @apply w-32 md:w-40; }
   .home-header__nav { @apply hidden items-center gap-1 text-xs font-semibold uppercase tracking-[.14em] text-muted md:flex; }
+  .home-header__nav.is-open { @apply absolute inset-x-0 top-16 flex flex-col items-stretch gap-1 border-b border-ink/20 bg-surface/95 p-3 shadow-soft backdrop-blur-xl; }
   .home-header__nav a { @apply inline-flex items-center gap-2 rounded-sm border border-transparent px-3 py-2 transition-colors hover:border-accent/40 hover:bg-accent/5 hover:text-accent; }
   .home-header__nav svg, .home-contact svg { @apply h-4 w-4 fill-none stroke-current stroke-[1.5]; }
+  .home-header__menu { @apply inline-flex h-10 w-10 items-center justify-center rounded-sm border border-ink/20 bg-transparent font-mono text-xl leading-none text-muted transition-colors hover:border-accent hover:text-accent md:hidden; }
   .home-header__controls { @apply flex items-center gap-2 text-xs font-semibold uppercase tracking-[.12em]; }
   .home-header__theme, .home-header__language { @apply rounded-sm border border-ink/20 bg-transparent px-3 py-2 text-muted transition-colors hover:border-accent hover:text-accent; }
   .home-header__language { @apply no-underline; }
+  @media (min-width: 768px) {
+    .home-header__nav.is-open { @apply static flex-row items-center gap-1 border-0 bg-transparent p-0 shadow-none backdrop-blur-none; }
+  }
   .home-page { @apply mx-auto max-w-[1440px] border-x border-ink/10 bg-paper/80 px-5 pb-16 pt-28 md:px-10 md:pt-36; }
   .home-hero { @apply relative grid gap-12 border-b border-ink/20 pb-20 md:grid-cols-[minmax(0,1.15fr)_minmax(260px,.65fr)] md:gap-20 md:pb-28; }
   .home-kicker { @apply mb-4 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent; }
