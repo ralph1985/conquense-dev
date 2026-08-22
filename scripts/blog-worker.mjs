@@ -101,7 +101,7 @@ async function generateDrafts(knownUrls) {
     '--output-schema', schemaPath,
     '--output-last-message', outputPath,
     promptForArticles(knownUrls),
-  ], { cwd: root, timeout: codexTimeoutMs, killSignal: 'SIGTERM', maxBuffer: 10 * 1024 * 1024 });
+  ], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'], timeout: codexTimeoutMs, killSignal: 'SIGTERM', maxBuffer: 10 * 1024 * 1024 });
   const raw = await readFile(outputPath, 'utf8');
   await rm(outputPath, { force: true });
   try {
