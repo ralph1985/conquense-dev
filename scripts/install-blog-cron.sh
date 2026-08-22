@@ -18,6 +18,7 @@ trap 'rm -f "$TEMP_CRON"' EXIT
 cat >> "$TEMP_CRON" <<EOF
 $BEGIN
 PATH=$PATH_VALUE
+CRON_TZ=Europe/Madrid
 45 9 * * * cd $ROOT && /usr/bin/flock -n $ROOT/var/blog-worker.lock env BLOG_MAX_ARTICLES=3 $PNPM_BIN blog:worker >> $LOG_DIR/blog-worker.cron.log 2>&1
 $END
 EOF

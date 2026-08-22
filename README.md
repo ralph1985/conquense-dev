@@ -54,7 +54,7 @@ La ejecución real requiere `.env.local` con `BLOG_SMTP_PASSWORD` y una sesión 
 
 `BLOG_CODEX_TIMEOUT_MS` permite limitar el tiempo de búsqueda (por defecto, tres minutos) para que una ejecución bloqueada termine y envíe la alerta configurada.
 
-El instalador añade una entrada marcada en la crontab del usuario para las 09:45, según la zona horaria del sistema:
+El instalador añade una entrada marcada en la crontab del usuario para las 09:45, fijada a la zona horaria `Europe/Madrid`:
 
 ```bash
 ./scripts/install-blog-cron.sh
