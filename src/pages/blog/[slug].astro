@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogArticle from '@/components/BlogArticle.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { uiCopy } from '@/data/i18n';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('blog');
+  return entries.filter((entry) => entry.data.lang === 'es').map((entry) => {
+    const translation = entries.find((candidate) => candidate.data.translationId === entry.data.translationId && candidate.data.lang === 'en');
+    return { params: { slug: entry.data.slug }, props: { entry, translationSlug: translation?.data.slug ?? entry.data.slug } };
+  });
+}
+
+const { entry, translationSlug } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  lang="es"
+  title={`${entry.data.title} - Conquense Dev`}
+  description={entry.data.description}
+  alternateLinks={[{ lang: 'es', href: `/blog/${entry.data.slug}/` }, { lang: 'en', href: `/en/blog/${translationSlug}/` }]}
+>
+  <BlogArticle lang="es" alternateLink={{ lang: 'en', href: `/en/blog/${translationSlug}/` }} labels={uiCopy.es} entry={entry} Content={Content} alternateArticleHref={`/en/blog/${translationSlug}/`} />
+</BaseLayout>

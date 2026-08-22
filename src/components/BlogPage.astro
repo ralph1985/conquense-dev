@@ -1,0 +1,82 @@
+---
+import SiteHeader from '@/components/SiteHeader.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { AlternateLink, Language } from '@/data/i18n';
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    navExperience: string;
+    navProjects: string;
+    navBlog: string;
+    navContact: string;
+    themeToggleLabel: string;
+    themeSystemLabel: string;
+    themeLightLabel: string;
+    themeDarkLabel: string;
+  };
+  entries: CollectionEntry<'blog'>[];
+}
+
+const { lang, alternateLink, labels, entries } = Astro.props;
+const copy = lang === 'es'
+  ? {
+      eyebrow: 'Cuaderno técnico',
+      title: 'Noticias para pensar mejor los sistemas.',
+      description: 'Una selección breve de actualidad sobre ingeniería, arquitectura, IA aplicada, seguridad y rendimiento web.',
+      source: 'Fuente',
+      read: 'min de lectura',
+      empty: 'Todavía no hay artículos publicados. Las próximas propuestas aparecerán aquí después de una revisión editorial.',
+      archive: 'Archivo permanente',
+    }
+  : {
+      eyebrow: 'Technical notebook',
+      title: 'News for thinking better about systems.',
+      description: 'A concise selection of current ideas on engineering, architecture, applied AI, security and web performance.',
+      source: 'Source',
+      read: 'min read',
+      empty: 'There are no published articles yet. New proposals will appear here after editorial review.',
+      archive: 'Permanent archive',
+    };
+
+const sortedEntries = [...entries].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'medium' }).format(date);
+---
+
+<main id="contenido" class="blog-page" tabindex="-1">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
+  <header class="blog-hero">
+    <p class="blog-eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.title}</h1>
+    <p class="blog-hero__description">{copy.description}</p>
+    <p class="blog-hero__archive">{copy.archive} · {String(sortedEntries.length).padStart(2, '0')} {lang === 'es' ? 'artículos' : 'articles'}</p>
+  </header>
+
+  <section class="blog-list" aria-labelledby="blog-list-title">
+    <h2 id="blog-list-title" class="sr-only">{copy.eyebrow}</h2>
+    {
+      sortedEntries.length > 0 ? sortedEntries.map((entry) => (
+        <article class="blog-card">
+          <div class="blog-card__meta">
+            <time datetime={entry.data.publishedAt.toISOString()}>{formatDate(entry.data.publishedAt)}</time>
+            <span>{entry.data.readingTime} {copy.read}</span>
+          </div>
+          <div class="blog-card__body">
+            <div>
+              <p class="blog-card__source">{copy.source} / {entry.data.sourceName}</p>
+              <h2><a href={`/${lang === 'en' ? 'en/' : ''}blog/${entry.data.slug}/`}>{entry.data.title}</a></h2>
+              <p>{entry.data.description}</p>
+            </div>
+            <ul class="blog-card__tags" aria-label={lang === 'es' ? 'Etiquetas' : 'Tags'}>
+              {entry.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+        </article>
+      )) : <p class="blog-empty">{copy.empty}</p>
+    }
+  </section>
+</main>

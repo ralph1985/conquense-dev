@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["articles"],
+  "properties": {
+    "articles": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["translationId", "lang", "slug", "title", "description", "publishedAt", "sourceName", "sourceTitle", "sourceUrl", "tags", "readingTime", "aiDisclosure", "body"],
+        "properties": {
+          "translationId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "lang": { "enum": ["es", "en"] },
+          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "title": { "type": "string", "minLength": 10, "maxLength": 140 },
+          "description": { "type": "string", "minLength": 40, "maxLength": 180 },
+          "publishedAt": { "type": "string", "format": "date" },
+          "sourceName": { "type": "string", "minLength": 2, "maxLength": 80 },
+          "sourceTitle": { "type": "string", "minLength": 5, "maxLength": 180 },
+          "sourceUrl": { "type": "string", "format": "uri" },
+          "author": { "type": "string", "maxLength": 120 },
+          "tags": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "type": "string", "minLength": 1, "maxLength": 32 } },
+          "readingTime": { "type": "integer", "minimum": 1, "maximum": 30 },
+          "aiDisclosure": { "type": "string", "minLength": 20, "maxLength": 240 },
+          "body": { "type": "string", "minLength": 500 }
+        }
+      }
+    }
+  }
+}

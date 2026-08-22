@@ -1,0 +1,64 @@
+---
+import SiteHeader from '@/components/SiteHeader.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { AlternateLink, Language } from '@/data/i18n';
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    navExperience: string;
+    navProjects: string;
+    navBlog: string;
+    navContact: string;
+    themeToggleLabel: string;
+    themeSystemLabel: string;
+    themeLightLabel: string;
+    themeDarkLabel: string;
+  };
+  entry: CollectionEntry<'blog'>;
+  Content: any;
+  alternateArticleHref: string;
+}
+
+const { lang, alternateLink, labels, entry, Content, alternateArticleHref } = Astro.props;
+const copy = lang === 'es'
+  ? { back: 'Volver al blog', source: 'Fuente original', disclosure: 'Transparencia editorial', read: 'min de lectura' }
+  : { back: 'Back to the blog', source: 'Original source', disclosure: 'Editorial transparency', read: 'min read' };
+const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'long' }).format(date);
+---
+
+<main id="contenido" class="blog-article" tabindex="-1">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
+  <article>
+    <header class="blog-article__header">
+      <a class="blog-article__back" href={`/${lang === 'en' ? 'en/' : ''}blog/`}>← {copy.back}</a>
+      <p class="blog-eyebrow">{entry.data.tags[0]}</p>
+      <h1>{entry.data.title}</h1>
+      <p class="blog-article__description">{entry.data.description}</p>
+      <div class="blog-article__meta">
+        <time datetime={entry.data.publishedAt.toISOString()}>{formatDate(entry.data.publishedAt)}</time>
+        <span>{entry.data.readingTime} {copy.read}</span>
+        <a href={alternateArticleHref}>{lang === 'es' ? 'Read in English' : 'Leer en español'}</a>
+      </div>
+    </header>
+
+    <div class="blog-article__grid">
+      <div class="blog-prose"><Content /></div>
+      <aside class="blog-article__aside">
+        <div>
+          <p>{copy.source}</p>
+          <a href={entry.data.sourceUrl} target="_blank" rel="noopener noreferrer">{entry.data.sourceTitle}</a>
+          <span>{entry.data.sourceName}{entry.data.author ? ` · ${entry.data.author}` : ''}</span>
+        </div>
+        <div>
+          <p>{copy.disclosure}</p>
+          <span>{entry.data.aiDisclosure}</span>
+        </div>
+      </aside>
+    </div>
+  </article>
+</main>

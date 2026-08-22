@@ -269,6 +269,46 @@
   .hobby-detail-item__personal { @apply mt-3 max-w-[62ch] text-sm leading-relaxed text-ink; }
   .hobby-detail-item__source { @apply mt-4 inline-flex text-xs text-muted underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent; }
   .hobby-detail-item__link { @apply mt-4 flex w-fit border-b border-accent pb-1 text-sm font-semibold text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
+
+  .blog-page, .blog-article { @apply mx-auto min-h-screen max-w-[1440px] border-x border-ink/10 bg-paper/80 px-5 pb-20 pt-28 font-sans text-ink md:px-10 md:pt-36; }
+  .blog-hero { @apply relative max-w-4xl border-b border-ink/20 pb-16 md:pb-24; }
+  .blog-hero::before { content: '~/editorial'; @apply absolute right-0 top-4 font-mono text-[.62rem] font-bold uppercase tracking-[.16em] text-muted; }
+  .blog-eyebrow { @apply mb-5 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent; }
+  .blog-hero h1, .blog-article__header h1 { @apply m-0 max-w-4xl text-4xl font-semibold uppercase leading-[.94] tracking-[-.06em] md:text-6xl lg:text-7xl; }
+  .blog-hero__description { @apply mt-7 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }
+  .blog-hero__archive { @apply mt-8 font-mono text-xs uppercase tracking-[.12em] text-muted; }
+  .blog-list { @apply mt-12 border-t border-ink/15; }
+  .blog-card { @apply grid gap-5 border-b border-ink/15 py-8 md:grid-cols-[minmax(150px,.3fr)_minmax(0,1fr)] md:gap-12 md:py-12; }
+  .blog-card__meta { @apply flex justify-between gap-4 font-mono text-[.68rem] uppercase tracking-[.08em] text-muted md:flex-col md:justify-start; }
+  .blog-card__meta time { @apply text-accent; }
+  .blog-card__body { @apply flex min-w-0 flex-col justify-between gap-6; }
+  .blog-card__source { @apply mb-3 font-mono text-[.65rem] uppercase tracking-[.16em] text-muted; }
+  .blog-card h2 { @apply m-0 max-w-4xl text-2xl font-semibold tracking-tight md:text-3xl; }
+  .blog-card h2 a { @apply underline decoration-transparent underline-offset-4 transition-colors hover:text-accent hover:decoration-accent; }
+  .blog-card__body > div > p:last-child { @apply mt-4 max-w-[68ch] leading-relaxed text-muted; }
+  .blog-card__tags { @apply m-0 flex flex-wrap gap-2 p-0; }
+  .blog-card__tags li { @apply list-none border border-ink/20 px-2.5 py-1 font-mono text-[.65rem] uppercase tracking-[.08em] text-muted; }
+  .blog-empty { @apply border-b border-ink/15 py-16 leading-relaxed text-muted; }
+  .blog-article > article { @apply mx-auto max-w-6xl; }
+  .blog-article__header { @apply relative max-w-4xl border-b border-ink/20 pb-12 md:pb-16; }
+  .blog-article__back { @apply mb-16 inline-flex border-b border-accent pb-1 font-mono text-xs font-bold uppercase tracking-[.12em] text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
+  .blog-article__description { @apply mt-7 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl; }
+  .blog-article__meta { @apply mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[.08em] text-muted; }
+  .blog-article__meta a { @apply text-accent underline decoration-accent/40 underline-offset-4 hover:text-warm; }
+  .blog-article__grid { @apply grid gap-12 pt-12 md:grid-cols-[minmax(0,1fr)_minmax(220px,.35fr)] md:gap-20 md:pt-16; }
+  .blog-prose { @apply min-w-0 max-w-[72ch] text-base leading-8 text-ink; }
+  .blog-prose h2 { @apply mb-4 mt-12 text-2xl font-semibold tracking-tight first:mt-0; }
+  .blog-prose h3 { @apply mb-3 mt-10 text-xl font-semibold tracking-tight; }
+  .blog-prose p { @apply mb-6; }
+  .blog-prose ul, .blog-prose ol { @apply mb-6 space-y-2 pl-6; }
+  .blog-prose li { @apply pl-1; }
+  .blog-prose a { @apply text-accent underline decoration-accent/40 underline-offset-4 hover:text-warm; }
+  .blog-prose blockquote { @apply my-8 border-l-2 border-accent pl-5 italic text-muted; }
+  .blog-article__aside { @apply flex flex-col gap-8 border-t border-ink/15 pt-6 text-sm md:border-t-0 md:border-l md:pl-8; }
+  .blog-article__aside div { @apply border-b border-ink/15 pb-6; }
+  .blog-article__aside p { @apply mb-3 font-mono text-[.65rem] font-bold uppercase tracking-[.16em] text-accent; }
+  .blog-article__aside a { @apply block font-semibold leading-relaxed text-ink underline decoration-ink/30 underline-offset-4 hover:text-accent; }
+  .blog-article__aside span { @apply mt-2 block leading-relaxed text-muted; }
 }
 
 @keyframes fade-in { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }

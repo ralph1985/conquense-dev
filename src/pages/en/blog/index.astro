@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPage from '@/components/BlogPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+
+const entries = (await getCollection('blog')).filter((entry) => entry.data.lang === 'en');
+---
+
+<BaseLayout
+  lang="en"
+  title="Technical blog - Conquense Dev"
+  description="News and context on software engineering, architecture, applied AI, security and web performance."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.blog }, { lang: 'en', href: routesByLanguage.en.blog }]}
+>
+  <BlogPage lang="en" alternateLink={{ lang: 'es', href: routesByLanguage.es.blog }} labels={uiCopy.en} entries={entries} />
+</BaseLayout>

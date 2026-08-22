@@ -37,3 +37,11 @@ Alternativa descartada: cabeceras específicas por ruta. Duplicaban controles y 
 ## Reduced motion
 
 Cuando el usuario prefiere reducir movimiento, se eliminan desplazamientos decorativos y transiciones de entrada. La información sigue disponible en el mismo orden del DOM mediante scroll vertical.
+
+## Blog estático con revisión por PR
+
+El blog técnico usa Content Collections Markdown y rutas Astro estáticas en español e inglés. Cada noticia publicada se conserva en el repositorio como dos documentos vinculados.
+
+La automatización se ejecuta en el PC local mediante cron. Codex CLI dispone de búsqueda web y redacta una salida JSON, pero no puede modificar el repositorio. Un worker determinista valida fuentes, estructura, deduplicación, traducciones y checks de Astro antes de crear o actualizar una PR en `automation/blog-news`. El merge sigue siendo manual.
+
+Alternativas descartadas: CMS, base de datos de publicación directa, cron remoto y publicación automática. La PR mantiene trazabilidad editorial, revisión humana y compatibilidad con el despliegue estático de Astro.
