@@ -10,7 +10,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["translationId", "lang", "slug", "title", "description", "publishedAt", "sourceName", "sourceTitle", "sourceUrl", "tags", "readingTime", "aiDisclosure", "body"],
+        "required": ["translationId", "lang", "slug", "title", "description", "publishedAt", "sourceName", "sourceTitle", "sourceUrl", "author", "tags", "readingTime", "aiDisclosure", "body"],
         "properties": {
           "translationId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "lang": { "enum": ["es", "en"] },
@@ -20,7 +20,7 @@
           "publishedAt": { "type": "string", "format": "date" },
           "sourceName": { "type": "string", "minLength": 2, "maxLength": 80 },
           "sourceTitle": { "type": "string", "minLength": 5, "maxLength": 180 },
-          "sourceUrl": { "type": "string", "format": "uri" },
+          "sourceUrl": { "type": "string", "minLength": 8 },
           "author": { "type": "string", "maxLength": 120 },
           "tags": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "type": "string", "minLength": 1, "maxLength": 32 } },
           "readingTime": { "type": "integer", "minimum": 1, "maximum": 30 },

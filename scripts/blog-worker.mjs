@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { promisify } from 'node:util';
 import process from 'node:process';
@@ -89,23 +89,52 @@ The result must contain one article object per language for each story, so every
 }
 
 async function generateDrafts(knownUrls) {
-  const outputPath = `${varDir}/codex-output.json`;
-  await mkdir(varDir, { recursive: true });
-  await run(codexBin, [
-    '--search',
-    '--cd', root,
-    '--sandbox', 'read-only',
-    '--ask-for-approval', 'never',
-    'exec',
-    '--ephemeral',
-    '--output-schema', schemaPath,
-    '--output-last-message', outputPath,
-    promptForArticles(knownUrls),
-  ], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'], timeout: codexTimeoutMs, killSignal: 'SIGTERM', maxBuffer: 10 * 1024 * 1024 });
-  const raw = await readFile(outputPath, 'utf8');
-  await rm(outputPath, { force: true });
+  const prompt = promptForArticles(knownUrls);
+  const raw = await new Promise((resolve, reject) => {
+    const child = spawn(codexBin, [
+      '--search',
+      '-a', 'never',
+      '-C', root,
+      'exec',
+      '--ephemeral',
+      '-s', 'read-only',
+      '--output-schema', schemaPath,
+      '-',
+    ], { cwd: root, stdio: ['pipe', 'pipe', 'pipe'] });
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+    const timer = setTimeout(() => {
+      child.kill('SIGTERM');
+      if (!settled) {
+        settled = true;
+        reject(new Error(`Codex superó el tiempo máximo de ${Math.round(codexTimeoutMs / 1000)} segundos.`));
+      }
+    }, codexTimeoutMs);
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', (error) => {
+      clearTimeout(timer);
+      if (!settled) { settled = true; reject(error); }
+    });
+    child.on('close', (code, signal) => {
+      clearTimeout(timer);
+      if (settled) return;
+      settled = true;
+      if (code !== 0) {
+        reject(new Error(stderr.trim() || `Codex terminó con código ${code ?? 'desconocido'}${signal ? ` (${signal})` : ''}.`));
+        return;
+      }
+      resolve(stdout);
+    });
+    child.stdin.end(prompt);
+  });
+  const cleaned = raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start < 0 || end <= start) fail('Codex no devolvió un objeto JSON.');
   try {
-    return JSON.parse(raw);
+    return JSON.parse(cleaned.slice(start, end + 1));
   } catch {
     fail('Codex no devolvió JSON válido.');
   }
@@ -226,6 +255,7 @@ async function sendMail(subject, text) {
 }
 
 async function main() {
+  await mkdir(varDir, { recursive: true });
   const state = await readState();
   const existing = await existingArticles();
   const knownUrls = [...new Set([...state.proposedSourceUrls, ...existing.map((article) => article.sourceUrl)])];
