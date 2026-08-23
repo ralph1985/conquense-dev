@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BlogPage from '@/components/BlogPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { getBlogPageCount } from '@/data/blog';
 
 const entries = (await getCollection('blog')).filter((entry) => entry.data.lang === 'en');
 ---
@@ -13,5 +14,5 @@ const entries = (await getCollection('blog')).filter((entry) => entry.data.lang 
   description="News and context on software engineering, architecture, applied AI, security and web performance."
   alternateLinks={[{ lang: 'es', href: routesByLanguage.es.blog }, { lang: 'en', href: routesByLanguage.en.blog }]}
 >
-  <BlogPage lang="en" alternateLink={{ lang: 'es', href: routesByLanguage.es.blog }} labels={uiCopy.en} entries={entries} />
+  <BlogPage lang="en" alternateLink={{ lang: 'es', href: routesByLanguage.es.blog }} labels={uiCopy.en} entries={entries} totalPages={getBlogPageCount(entries)} />
 </BaseLayout>

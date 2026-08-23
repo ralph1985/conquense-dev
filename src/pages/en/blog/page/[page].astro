@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPage from '@/components/BlogPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getBlogArchivePath, getBlogPageCount } from '@/data/blog';
+import { uiCopy } from '@/data/i18n';
+
+const entries = (await getCollection('blog')).filter((entry) => entry.data.lang === 'en');
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('blog')).filter((entry) => entry.data.lang === 'en');
+  const totalPages = getBlogPageCount(entries);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const currentPage = index + 2;
+    return {
+      params: { page: String(currentPage) },
+      props: { currentPage, totalPages },
+    };
+  });
+}
+
+const { currentPage, totalPages } = Astro.props;
+const alternatePath = getBlogArchivePath('es', currentPage);
+---
+
+<BaseLayout
+  lang="en"
+  title={`Technical blog, page ${currentPage} - Conquense Dev`}
+  description="News and context on software engineering, architecture, applied AI, security and web performance."
+  alternateLinks={[{ lang: 'es', href: alternatePath }, { lang: 'en', href: getBlogArchivePath('en', currentPage) }]}
+>
+  <BlogPage lang="en" alternateLink={{ lang: 'es', href: alternatePath }} labels={uiCopy.en} entries={entries} currentPage={currentPage} totalPages={totalPages} />
+</BaseLayout>
