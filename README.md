@@ -44,7 +44,7 @@ Las secciones se definen en `src/data/sections.ts`, separadas por idioma en `loc
 
 La experiencia profesional vive en `src/data/experience.ts` y se muestra en `/experiencia/` y `/en/experience/`. Los proyectos viven en `src/data/projects.ts` y se muestran en `/proyectos/` y `/en/projects/`.
 
-El blog vive en `/blog/` y `/en/blog/`. Cada noticia se guarda como dos archivos Markdown vinculados por `translationId`, uno por idioma. El contenido publicado es permanente; la página de índice ordena las entradas por fecha.
+El blog vive en `/blog/` y `/en/blog/`. Cada noticia se guarda como dos archivos Markdown vinculados por `translationId`, uno por idioma. Los slugs públicos pueden coincidir entre idiomas, pero sus IDs internos son siempre `lang/slug`. `pnpm build` valida además que no haya colisiones, traducciones incompletas ni archivos mal nombrados. El contenido publicado es permanente; la página de índice ordena las entradas por fecha.
 
 ## Worker editorial local
 

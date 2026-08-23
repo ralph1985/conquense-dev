@@ -3,7 +3,14 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/blog',
+    // Slugs are intentionally shared by translated articles. The collection
+    // id must still be unique, otherwise one language silently overwrites the
+    // other during content sync.
+    generateId: ({ data }) => `${data.lang}/${data.slug}`,
+  }),
   schema: z.object({
     translationId: z.string(),
     lang: z.enum(['es', 'en']),

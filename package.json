@@ -6,7 +6,7 @@
   "packageManager": "pnpm@10.25.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "node scripts/validate-blog-content.mjs && astro check && astro build",
     "preview": "astro preview",
     "lint": "astro check",
     "blog:worker": "node scripts/blog-worker.mjs"
