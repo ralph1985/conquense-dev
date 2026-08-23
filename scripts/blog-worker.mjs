@@ -72,7 +72,7 @@ async function existingArticles() {
 function promptForArticles(knownUrls) {
   return `You are the research and editorial stage of a local technical blog worker.
 
-Use live web search. Find up to ${maxArticles} recent, genuinely useful technology news items about software engineering, architecture, applied AI, security, systems, or web performance.
+Use live web search. Find up to ${maxArticles} recent, genuinely useful technology news items about software engineering, JavaScript, TypeScript, frontend architecture, browser APIs, web tooling, testing, maintainability, applied AI, security, systems, or web performance. Include frontend and JavaScript ecosystem stories when they contain substantial technical lessons, not merely release announcements.
 
 Rules:
 - Return ONLY valid JSON matching the supplied schema. No Markdown fences and no commentary.

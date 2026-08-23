@@ -48,7 +48,7 @@ El blog vive en `/blog/` y `/en/blog/`. Cada noticia se guarda como dos archivos
 
 ## Worker editorial local
 
-El worker se ejecuta con `pnpm blog:worker`. Codex CLI se usa únicamente para investigar y redactar mediante búsqueda web; el worker valida la respuesta, exige una versión ES y otra EN, deduplica por URL, ejecuta `pnpm lint` y `pnpm build`, y crea o actualiza la rama `automation/blog-news` mediante GitHub CLI.
+El worker se ejecuta con `pnpm blog:worker`. Codex CLI se usa únicamente para investigar y redactar mediante búsqueda web sobre ingeniería, JavaScript, TypeScript, arquitectura frontend, APIs del navegador, tooling, testing, IA aplicada, seguridad, sistemas y rendimiento web; el worker valida la respuesta, exige una versión ES y otra EN, deduplica por URL, ejecuta `pnpm lint` y `pnpm build`, y crea o actualiza la rama `automation/blog-news` mediante GitHub CLI.
 
 La ejecución real requiere `.env.local` con `BLOG_SMTP_PASSWORD` y una sesión válida de `gh`. Los valores de ejemplo están en `.env.example`. La primera prueba controlada puede limitarse a una noticia con `BLOG_MAX_ARTICLES=1`; `BLOG_DRY_RUN=true` evita escribir y publicar.
 

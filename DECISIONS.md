@@ -44,6 +44,6 @@ El blog técnico usa Content Collections Markdown y rutas Astro estáticas en es
 
 Los slugs traducidos pueden coincidir sin colisionar: el loader genera IDs internos con el prefijo del idioma (`es/slug` y `en/slug`). Un validador ejecutado antes de `astro check` rechaza duplicados por idioma, parejas de traducción incompletas, fuentes divergentes y nombres de archivo que no coincidan con su slug.
 
-La automatización se ejecuta en el PC local mediante cron. Codex CLI dispone de búsqueda web y redacta una salida JSON, pero no puede modificar el repositorio. Un worker determinista valida fuentes, estructura, deduplicación, traducciones y checks de Astro antes de crear o actualizar una PR en `automation/blog-news`. El merge sigue siendo manual.
+La automatización se ejecuta en el PC local mediante cron. Codex CLI dispone de búsqueda web y redacta una salida JSON, pero no puede modificar el repositorio. La cobertura editorial incluye ingeniería de software, JavaScript, TypeScript, frontend, IA aplicada, seguridad, sistemas y rendimiento web; las noticias de herramientas o frameworks solo entran si aportan contenido técnico sustancial. Un worker determinista valida fuentes, estructura, deduplicación, traducciones y checks de Astro antes de crear o actualizar una PR en `automation/blog-news`. El merge sigue siendo manual.
 
 Alternativas descartadas: CMS, base de datos de publicación directa, cron remoto y publicación automática. La PR mantiene trazabilidad editorial, revisión humana y compatibilidad con el despliegue estático de Astro.
