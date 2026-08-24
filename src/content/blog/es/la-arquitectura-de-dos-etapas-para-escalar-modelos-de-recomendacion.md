@@ -11,7 +11,7 @@ sourceUrl: "https://engineering.fb.com/2026/08/05/ml-applications/from-user-sequ
 author: "Steven De Gryze, Parshva Doshi, Sean O’Byrne, Arnold Overwijk, Dinesh Ramasamy y Lee Xiong"
 tags: ["arquitectura", "machine learning", "sistemas distribuidos", "recomendación"]
 readingTime: 3
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 Los sistemas de recomendación tienen que resolver una tensión conocida: necesitan modelos cada vez más expresivos para capturar el contexto de los usuarios, pero deben responder con latencias y costes compatibles con miles de millones de interacciones. En una publicación de Engineering at Meta, un equipo de la compañía describe una arquitectura de varias etapas para su plataforma de ranking publicitario.
@@ -27,5 +27,3 @@ La arquitectura no elimina los compromisos. Las representaciones offline pueden 
 Para equipos que construyen buscadores, feeds o sistemas de personalización, la lección es generalizable. No siempre es necesario elegir entre un modelo potente y un servicio rápido. Una división explícita entre comprensión profunda y decisión de baja latencia puede abrir una tercera opción, siempre que exista una interfaz estable entre ambas fases y observabilidad suficiente para detectar degradaciones.
 
 El trabajo de Meta es relevante porque trata el escalado como una propiedad de la arquitectura completa, no solo como una cuestión de añadir parámetros. En sistemas de ML de producción, el rendimiento final depende tanto de dónde se calcula una señal como de la calidad del modelo que la genera.
-
-Transparencia: este texto ha sido generado por IA y revisado antes de su publicación.

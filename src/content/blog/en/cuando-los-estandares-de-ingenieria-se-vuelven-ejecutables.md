@@ -11,7 +11,7 @@ sourceUrl: "https://blog.cloudflare.com/engineering-standards-enforcement/"
 author: "Timo Reimann"
 tags: ["software engineering", "applied AI", "code review", "quality"]
 readingTime: 3
-aiDisclosure: "AI-generated text reviewed before publication."
+aiDisclosure: "AI-generated content."
 ---
 
 One of the less visible challenges of engineering at scale is not writing code, but preserving consistency when technical decisions are scattered across documentation, repositories, conversations, and tacit knowledge. Cloudflare describes an interesting response: turning its engineering standards into a shared foundation that both people and AI agents can consult.

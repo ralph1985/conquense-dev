@@ -11,7 +11,7 @@ sourceUrl: "https://engineering.fb.com/2026/08/05/ml-applications/from-user-sequ
 author: "Steven De Gryze, Parshva Doshi, Sean O’Byrne, Arnold Overwijk, Dinesh Ramasamy and Lee Xiong"
 tags: ["architecture", "machine learning", "distributed systems", "recommendation"]
 readingTime: 3
-aiDisclosure: "AI-generated text reviewed before publication."
+aiDisclosure: "AI-generated content."
 ---
 
 Recommendation systems face a familiar tension: they need increasingly expressive models to capture user context, but they must respond with latency and costs compatible with billions of interactions. In a post on Engineering at Meta, a company team describes a multi-stage architecture for its advertising ranking platform.

@@ -11,7 +11,7 @@ sourceUrl: "https://webkit.org/blog/18191/release-notes-for-safari-technology-pr
 author: "Jon Davis"
 tags: ["JavaScript", "Web APIs", "WebKit", "TypeScript", "streaming"]
 readingTime: 4
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 WebKit ha publicado Safari Technology Preview 250 con dos cambios especialmente interesantes para quienes escriben JavaScript de aplicación: soporte para Explicit Resource Management y una primera implementación de subidas mediante ReadableStream en fetch(). No es todavía una garantía de disponibilidad en el Safari estable, pero sí una señal útil para evaluar cómo evolucionan las capacidades del navegador y qué abstracciones pueden dejar de depender del código generado por herramientas.

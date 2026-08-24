@@ -11,7 +11,7 @@ sourceUrl: "https://developers.cloudflare.com/changelog/post/2026-08-21-improved
 author: "Cloudflare Web Analytics"
 tags: ["web performance", "SPA", "Core Web Vitals", "RUM", "browser APIs"]
 readingTime: 4
-aiDisclosure: "AI-generated text reviewed before publication."
+aiDisclosure: "AI-generated content."
 ---
 
 Cloudflare has updated Web Analytics to improve measurement of soft navigations in single-page applications. The change may look small at the interface level, but it affects a fundamental performance question: how long does it take for the main content to appear after someone changes views without fully reloading the document?

@@ -11,7 +11,7 @@ sourceUrl: "https://blog.cloudflare.com/engineering-standards-enforcement/"
 author: "Timo Reimann"
 tags: ["ingeniería de software", "IA aplicada", "revisión de código", "calidad"]
 readingTime: 3
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 Una de las dificultades menos visibles de la ingeniería a escala no es escribir código, sino mantener coherencia cuando las decisiones técnicas se distribuyen entre documentación, repositorios, conversaciones y conocimiento tácito. Cloudflare describe una respuesta interesante: convertir sus estándares de ingeniería en una base común que puedan consultar tanto las personas como los agentes de IA.
@@ -25,5 +25,3 @@ El enfoque también tiene límites claros. Una regla automatizable debe estar su
 La parte más útil para otros equipos no es adoptar un producto concreto, sino identificar qué conocimiento institucional merece una representación ejecutable. Las convenciones de seguridad, los requisitos de observabilidad, los contratos de API o las reglas de migración son candidatos naturales. El paso decisivo consiste en escribirlos con ejemplos verificables y conectarlos a las herramientas que ya forman parte del flujo de trabajo.
 
 El caso de Cloudflare sugiere una trayectoria práctica para la IA aplicada a la ingeniería: primero estructurar el conocimiento, después automatizar comprobaciones acotadas y finalmente ampliar el alcance con métricas y revisión humana. La IA no sustituye la responsabilidad técnica; hace más explícitas las reglas que una organización ya ha decidido aplicar.
-
-Transparencia: este texto ha sido generado por IA y revisado antes de su publicación.

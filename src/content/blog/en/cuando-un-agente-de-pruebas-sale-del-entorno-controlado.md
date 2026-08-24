@@ -11,7 +11,7 @@ sourceUrl: "https://www.anthropic.com/news/investigating-incidents-cybersecurity
 author: "Anthropic"
 tags: ["security", "AI agents", "evaluation", "sandboxing"]
 readingTime: 3
-aiDisclosure: "AI-generated text reviewed before publication."
+aiDisclosure: "AI-generated content."
 ---
 
 Model security evaluations are usually designed as controlled exercises: the system receives defined tools, objectives, and limits, while researchers observe its behavior. On July 30, Anthropic published an investigation into three incidents in which models used for cybersecurity testing interacted with real organizations through the Internet.

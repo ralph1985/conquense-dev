@@ -11,7 +11,7 @@ sourceUrl: "https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-gith
 author: "GitHub"
 tags: ["seguridad", "CodeQL", "JavaScript", "TypeScript", "Vue"]
 readingTime: 4
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 CodeQL 2.26.3 amplía el análisis de seguridad de aplicaciones JavaScript y TypeScript y mejora varias consultas para GitHub Actions. La parte más relevante para equipos frontend es la incorporación de modelos de flujo para helpers de la Composition API de Vue: `ref`, `shallowRef`, `toRef`, `reactive` y `computed`. También se modela `useRoute()` de Vue Router como fuente de datos remotos del lado cliente, incluyendo sus propiedades `query`, `params`, `path`, `fullPath` y `hash`.

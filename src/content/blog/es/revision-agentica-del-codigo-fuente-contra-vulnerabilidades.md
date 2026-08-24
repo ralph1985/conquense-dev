@@ -11,7 +11,7 @@ sourceUrl: "https://cloud.google.com/blog/topics/threat-intelligence/staying-ahe
 author: "Alex Tselevich y Michael Maturi"
 tags: ["seguridad", "inteligencia artificial", "ingeniería de software", "vulnerabilidades", "código fuente"]
 readingTime: 4
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 Google Threat Intelligence ha explicado cómo utiliza un sistema multiagente para analizar código fuente y descubrir rutas de explotación. La propuesta, denominada Agentic Vulnerability Discovery Harness (AVDH), no se presenta como un sustituto de los especialistas de seguridad, sino como una infraestructura para ampliar su capacidad de análisis en repositorios grandes y complejos.

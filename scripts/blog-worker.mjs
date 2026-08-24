@@ -80,7 +80,7 @@ Rules:
 - Do not copy source text, invent facts, or use a source without a canonical URL, publisher, title and publication date.
 - Prefer primary sources or reliable technical reporting. Explain why each item matters technically without strong unsupported opinions.
 - Reject items that are primarily gadgets, marketing announcements without technical substance, politics, finance, or duplicate coverage.
-- Include a short AI transparency note saying the text is AI-generated and reviewed before publication.
+- Include the short AI transparency note: "Contenido generado automáticamente con IA." for Spanish and "AI-generated content." for English.
 - Use lowercase URL-safe slugs, with the same translationId in both language objects.
 - Skip any source URL already known: ${JSON.stringify(knownUrls)}.
 - If no item meets the bar, return {"articles":[]}.
@@ -210,7 +210,7 @@ async function publish(files, groups) {
   const body = [
     '## Automated editorial proposal',
     '',
-    'This PR contains AI-generated technical news drafts. It requires manual editorial review before merge.',
+    'This PR contains AI-generated technical news drafts.',
     '',
     ...groups.map(({ es }) => `- ${es.title} — ${es.sourceUrl}`),
     '',

@@ -11,7 +11,7 @@ sourceUrl: "https://developers.cloudflare.com/changelog/post/2026-08-21-improved
 author: "Cloudflare Web Analytics"
 tags: ["rendimiento web", "SPA", "Core Web Vitals", "RUM", "browser APIs"]
 readingTime: 4
-aiDisclosure: "Texto generado por IA y revisado antes de su publicación."
+aiDisclosure: "Contenido generado automáticamente con IA."
 ---
 
 Cloudflare ha actualizado Web Analytics para mejorar la medición de las navegaciones suaves en aplicaciones de una sola página. El cambio parece pequeño en una interfaz, pero afecta a una pregunta fundamental de rendimiento: cuánto tarda en aparecer el contenido principal después de que una persona cambia de vista sin recargar todo el documento.
