@@ -7,6 +7,7 @@ export interface AlternateLink {
 
 export interface RouteSet {
   home: string;
+  contact: string;
   projects: string;
   experience: string;
   hobbies: string;
@@ -19,6 +20,7 @@ export interface RouteSet {
 export const routesByLanguage: Record<Language, RouteSet> = {
   es: {
     home: '/',
+    contact: '/#contacto',
     projects: '/proyectos/',
     experience: '/experiencia/',
     hobbies: '/otra-forma-de-mirar/',
@@ -29,6 +31,7 @@ export const routesByLanguage: Record<Language, RouteSet> = {
   },
   en: {
     home: '/en/',
+    contact: '/en/#contact',
     projects: '/en/projects/',
     experience: '/en/experience/',
     hobbies: '/en/another-way-of-looking/',
