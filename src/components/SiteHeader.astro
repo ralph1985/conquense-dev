@@ -27,7 +27,6 @@ interface Props {
 
 const { lang, alternateLink, labels } = Astro.props;
 const routeSet = routesByLanguage[lang];
-const contactSlug = lang === 'es' ? 'contacto' : 'contact';
 const navItems = [
   {
     label: labels.navExperience,
@@ -46,7 +45,7 @@ const navItems = [
   },
   {
     label: labels.navContact,
-    href: `#${contactSlug}`,
+    href: routeSet.contact,
     icon: 'M4 6h16v12H4V6Zm0 2 8 6 8-6',
   },
 ];
