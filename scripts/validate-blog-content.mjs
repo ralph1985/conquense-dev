@@ -5,6 +5,7 @@ import { readdir, readFile } from 'node:fs/promises';
 const root = new URL('../src/content/blog/', import.meta.url);
 const languages = ['es', 'en'];
 const articles = [];
+const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
 
 const readFrontmatter = (content, file) => {
   const match = content.match(/^---\n([\s\S]*?)\n---/);
@@ -21,12 +22,15 @@ for (const lang of languages) {
   const directory = new URL(`${lang}/`, root);
   const files = (await readdir(directory)).filter((file) => file.endsWith('.md')).sort();
   for (const file of files) {
-    const fields = readFrontmatter(await readFile(new URL(file, directory), 'utf8'), `${lang}/${file}`);
+    const content = await readFile(new URL(file, directory), 'utf8');
+    const fields = readFrontmatter(content, `${lang}/${file}`);
     const slug = fields.get('slug');
     const translationId = fields.get('translationId');
     if (fields.get('lang') !== lang) throw new Error(`${lang}/${file}: lang no coincide con su directorio.`);
     if (!slug || !translationId || !fields.get('sourceUrl')) throw new Error(`${lang}/${file}: faltan slug, translationId o sourceUrl.`);
     if (file !== `${slug}.md`) throw new Error(`${lang}/${file}: el nombre debe coincidir con slug (${slug}.md).`);
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 100) throw new Error(`${lang}/${file}: slug inválido.`);
+    if (unsafeBodyPattern.test(content.replace(/^---\n[\s\S]*?\n---\n?/, ''))) throw new Error(`${lang}/${file}: contiene HTML o esquema peligroso.`);
     articles.push({ file: `${lang}/${file}`, lang, slug, translationId, sourceUrl: fields.get('sourceUrl') });
   }
 }

@@ -14,7 +14,7 @@
         "properties": {
           "translationId": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "lang": { "enum": ["es", "en"] },
-          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 100 },
           "title": { "type": "string", "minLength": 10, "maxLength": 140 },
           "description": { "type": "string", "minLength": 40, "maxLength": 180 },
           "publishedAt": { "type": "string", "format": "date" },
