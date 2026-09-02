@@ -2,6 +2,7 @@
 
 import { execFile, spawn } from 'node:child_process';
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { resolve, sep } from 'node:path';
 import { promisify } from 'node:util';
 import process from 'node:process';
 import nodemailer from 'nodemailer';
@@ -23,6 +24,9 @@ const varDir = `${root}/var/blog-worker`;
 const statePath = `${varDir}/state.json`;
 const schemaPath = `${root}/scripts/blog-article.schema.json`;
 const contentRoot = `${root}/src/content/blog`;
+const contentRootPath = resolve(contentRoot);
+const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
 const maxArticles = Number(process.env.BLOG_MAX_ARTICLES ?? '3');
 const dryRun = process.env.BLOG_DRY_RUN === 'true';
 const codexBin = process.env.BLOG_CODEX_BIN ?? 'codex';
@@ -148,10 +152,12 @@ function validateDrafts(result, knownUrls) {
     const required = ['translationId', 'lang', 'slug', 'title', 'description', 'publishedAt', 'sourceName', 'sourceTitle', 'sourceUrl', 'tags', 'readingTime', 'aiDisclosure', 'body'];
     if (required.some((key) => article[key] === undefined)) fail(`Faltan campos en la propuesta ${article.translationId ?? 'desconocida'}.`);
     if (!['es', 'en'].includes(article.lang)) fail('Idioma de artículo no permitido.');
-    if (!/^https?:\/\//.test(article.sourceUrl)) fail('La fuente no usa una URL HTTP(S).');
+    if (typeof article.slug !== 'string' || article.slug.length > 100 || !slugPattern.test(article.slug)) fail('Slug inválido.');
+    if (typeof article.sourceUrl !== 'string' || !/^https?:\/\//i.test(article.sourceUrl)) fail('La fuente no usa una URL HTTP(S).');
     if (knownUrls.includes(article.sourceUrl)) fail(`Fuente duplicada: ${article.sourceUrl}`);
     if (!Array.isArray(article.tags) || article.tags.length < 1 || article.tags.length > 5) fail('Etiquetas inválidas.');
     if (typeof article.body !== 'string' || article.body.length < 500) fail(`Cuerpo demasiado corto en ${article.translationId}.`);
+    if (unsafeBodyPattern.test(article.body)) fail(`Contenido HTML no permitido en ${article.translationId}.`);
     const group = groups.get(article.translationId) ?? [];
     group.push(article);
     groups.set(article.translationId, group);
@@ -167,8 +173,9 @@ async function writeDrafts(groups) {
   const files = [];
   for (const group of groups) {
     for (const article of [group.es, group.en]) {
-      const dir = `${contentRoot}/${article.lang}`;
-      const path = `${dir}/${article.slug}.md`;
+      const dir = resolve(contentRootPath, article.lang);
+      const path = resolve(dir, `${article.slug}.md`);
+      if (!path.startsWith(`${contentRootPath}${sep}`)) fail('La ruta del borrador queda fuera del contenido del blog.');
       await mkdir(dir, { recursive: true });
       const frontmatter = [
         '---',
