@@ -1,8 +1,28 @@
 {
   "redirects": [
     {
+      "source": "/en/blog",
+      "destination": "/en/news/",
+      "permanent": true
+    },
+    {
+      "source": "/en/blog/",
+      "destination": "/en/news/",
+      "permanent": true
+    },
+    {
       "source": "/en/blog/:path*",
       "destination": "/en/news/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/noticias/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/noticias/",
       "permanent": true
     },
     {
