@@ -1,4 +1,16 @@
 {
+  "routes": [
+    {
+      "src": "/en/blog/(.+)/",
+      "headers": { "Location": "/en/news/$1/" },
+      "status": 308
+    },
+    {
+      "src": "/blog/(.+)/",
+      "headers": { "Location": "/noticias/$1/" },
+      "status": 308
+    }
+  ],
   "redirects": [
     {
       "source": "/en/blog",
