@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import NewsPage from '@/components/NewsPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { getNewsPageCount } from '@/data/news';
+
+const entries = (await getCollection('news')).filter((entry) => entry.data.lang === 'en');
+---
+
+<BaseLayout
+  lang="en"
+  title="Technical news - Conquense Dev"
+  description="News and context on software engineering, architecture, applied AI, security and web performance."
+  alternateLinks={[{ lang: 'es', href: routesByLanguage.es.news }, { lang: 'en', href: routesByLanguage.en.news }]}
+>
+  <NewsPage lang="en" alternateLink={{ lang: 'es', href: routesByLanguage.es.news }} labels={uiCopy.en} entries={entries} totalPages={getNewsPageCount(entries)} />
+</BaseLayout>

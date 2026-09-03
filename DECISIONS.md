@@ -38,12 +38,12 @@ Alternativa descartada: cabeceras específicas por ruta. Duplicaban controles y 
 
 Cuando el usuario prefiere reducir movimiento, se eliminan desplazamientos decorativos y transiciones de entrada. La información sigue disponible en el mismo orden del DOM mediante scroll vertical.
 
-## Blog estático con revisión por PR
+## Noticias técnicas estáticas con revisión por PR
 
-El blog técnico usa Content Collections Markdown y rutas Astro estáticas en español e inglés. Cada noticia publicada se conserva en el repositorio como dos documentos vinculados.
+Las noticias técnicas usan Content Collections Markdown y rutas Astro estáticas en español e inglés. Cada noticia publicada se conserva en el repositorio como dos documentos vinculados.
 
 Los slugs traducidos pueden coincidir sin colisionar: el loader genera IDs internos con el prefijo del idioma (`es/slug` y `en/slug`). Un validador ejecutado antes de `astro check` rechaza duplicados por idioma, parejas de traducción incompletas, fuentes divergentes y nombres de archivo que no coincidan con su slug.
 
-La automatización se ejecuta en el PC local mediante cron. Codex CLI dispone de búsqueda web y redacta una salida JSON, pero no puede modificar el repositorio. La cobertura editorial incluye ingeniería de software, JavaScript, TypeScript, frontend, IA aplicada, seguridad, sistemas y rendimiento web; las noticias de herramientas o frameworks solo entran si aportan contenido técnico sustancial. Un worker determinista valida fuentes, estructura, deduplicación, traducciones y checks de Astro antes de crear o actualizar una PR en `automation/blog-news`. El merge sigue siendo manual.
+La automatización se ejecuta en el PC local mediante cron. Codex CLI dispone de búsqueda web y redacta una salida JSON, pero no puede modificar el repositorio. La cobertura editorial incluye ingeniería de software, JavaScript, TypeScript, frontend, IA aplicada, seguridad, sistemas y rendimiento web; las noticias de herramientas o frameworks solo entran si aportan contenido técnico sustancial. Un worker determinista valida fuentes, estructura, deduplicación, traducciones y checks de Astro antes de crear o actualizar una PR en `automation/news`. El merge sigue siendo manual.
 
 Alternativas descartadas: CMS, base de datos de publicación directa, cron remoto y publicación automática. La PR mantiene trazabilidad editorial, revisión humana y compatibilidad con el despliegue estático de Astro.

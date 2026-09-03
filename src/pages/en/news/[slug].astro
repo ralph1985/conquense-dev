@@ -1,11 +1,11 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BlogArticle from '@/components/BlogArticle.astro';
+import NewsArticle from '@/components/NewsArticle.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { uiCopy } from '@/data/i18n';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('blog');
+  const entries = await getCollection('news');
   return entries.filter((entry) => entry.data.lang === 'en').map((entry) => {
     const translation = entries.find((candidate) => candidate.data.translationId === entry.data.translationId && candidate.data.lang === 'es');
     return { params: { slug: entry.data.slug }, props: { entry, translationSlug: translation?.data.slug ?? entry.data.slug } };
@@ -20,7 +20,7 @@ const { Content } = await render(entry);
   lang="en"
   title={`${entry.data.title} - Conquense Dev`}
   description={entry.data.description}
-  alternateLinks={[{ lang: 'es', href: `/blog/${translationSlug}/` }, { lang: 'en', href: `/en/blog/${entry.data.slug}/` }]}
+  alternateLinks={[{ lang: 'es', href: `/noticias/${translationSlug}/` }, { lang: 'en', href: `/en/news/${entry.data.slug}/` }]}
 >
-  <BlogArticle lang="en" alternateLink={{ lang: 'es', href: `/blog/${translationSlug}/` }} labels={uiCopy.en} entry={entry} Content={Content} alternateArticleHref={`/blog/${translationSlug}/`} />
+  <NewsArticle lang="en" alternateLink={{ lang: 'es', href: `/noticias/${translationSlug}/` }} labels={uiCopy.en} entry={entry} Content={Content} alternateArticleHref={`/noticias/${translationSlug}/`} />
 </BaseLayout>
