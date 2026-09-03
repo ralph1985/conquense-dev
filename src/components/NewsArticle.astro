@@ -12,7 +12,7 @@ interface Props {
     languageLabel: string;
     navExperience: string;
     navProjects: string;
-    navBlog: string;
+    navNews: string;
     navContact: string;
     mobileMenuLabel: string;
     mobileMenuCloseLabel: string;
@@ -21,36 +21,36 @@ interface Props {
     themeLightLabel: string;
     themeDarkLabel: string;
   };
-  entry: CollectionEntry<'blog'>;
+  entry: CollectionEntry<'news'>;
   Content: any;
   alternateArticleHref: string;
 }
 
 const { lang, alternateLink, labels, entry, Content, alternateArticleHref } = Astro.props;
 const copy = lang === 'es'
-  ? { back: 'Volver al blog', source: 'Fuente original', disclosure: 'Transparencia editorial', read: 'min de lectura' }
-  : { back: 'Back to the blog', source: 'Original source', disclosure: 'Editorial transparency', read: 'min read' };
+  ? { back: 'Volver a las noticias', source: 'Fuente original', disclosure: 'Transparencia editorial', read: 'min de lectura' }
+  : { back: 'Back to the news', source: 'Original source', disclosure: 'Editorial transparency', read: 'min read' };
 const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'long' }).format(date);
 ---
 
-<main id="contenido" class="blog-article" tabindex="-1">
+<main id="contenido" class="news-article" tabindex="-1">
   <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
   <article>
-    <header class="blog-article__header">
-      <a class="blog-article__back" href={`/${lang === 'en' ? 'en/' : ''}blog/`}>← {copy.back}</a>
-      <p class="blog-eyebrow">{entry.data.tags[0]}</p>
+    <header class="news-article__header">
+      <a class="news-article__back" href={lang === 'en' ? '/en/news/' : '/noticias/'}>← {copy.back}</a>
+      <p class="news-eyebrow">{entry.data.tags[0]}</p>
       <h1>{entry.data.title}</h1>
-      <p class="blog-article__description">{entry.data.description}</p>
-      <div class="blog-article__meta">
+      <p class="news-article__description">{entry.data.description}</p>
+      <div class="news-article__meta">
         <time datetime={entry.data.publishedAt.toISOString()}>{formatDate(entry.data.publishedAt)}</time>
         <span>{entry.data.readingTime} {copy.read}</span>
         <a href={alternateArticleHref}>{lang === 'es' ? 'Read in English' : 'Leer en español'}</a>
       </div>
     </header>
 
-    <div class="blog-article__grid">
-      <div class="blog-prose"><Content /></div>
-      <aside class="blog-article__aside">
+    <div class="news-article__grid">
+      <div class="news-prose"><Content /></div>
+      <aside class="news-article__aside">
         <div>
           <p>{copy.source}</p>
           <a href={entry.data.sourceUrl} target="_blank" rel="noopener noreferrer">{entry.data.sourceTitle}</a>

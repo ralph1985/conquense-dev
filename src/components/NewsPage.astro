@@ -1,0 +1,105 @@
+---
+import SiteHeader from '@/components/SiteHeader.astro';
+import type { CollectionEntry } from 'astro:content';
+import type { AlternateLink, Language } from '@/data/i18n';
+import { getNewsArchivePath, getNewsPageCount, getNewsPageEntries } from '@/data/news';
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  labels: {
+    navLabel: string;
+    skipLink: string;
+    languageLabel: string;
+    navExperience: string;
+    navProjects: string;
+    navNews: string;
+    navContact: string;
+    mobileMenuLabel: string;
+    mobileMenuCloseLabel: string;
+    themeToggleLabel: string;
+    themeSystemLabel: string;
+    themeLightLabel: string;
+    themeDarkLabel: string;
+  };
+  entries: CollectionEntry<'news'>[];
+  currentPage?: number;
+  totalPages?: number;
+}
+
+const { lang, alternateLink, labels, entries, currentPage = 1, totalPages = getNewsPageCount(entries) } = Astro.props;
+const copy = lang === 'es'
+  ? {
+      eyebrow: 'Noticias técnicas',
+      title: 'Lo que está pasando en tecnología y cómo afecta a construir software.',
+      description: 'Selecciono y explico noticias sobre ingeniería de software, arquitectura, IA aplicada, seguridad y rendimiento web.',
+      source: 'Fuente',
+      read: 'min de lectura',
+      empty: 'Todavía no hay noticias publicadas. Las próximas propuestas aparecerán aquí después de una revisión editorial.',
+      archive: 'Archivo permanente',
+      pagination: { label: 'Paginación de noticias', previous: 'Anterior', next: 'Siguiente', page: 'Página' },
+    }
+  : {
+      eyebrow: 'Technical news',
+      title: 'What is happening in technology and what it means for building software.',
+      description: 'I select and explain news about software engineering, architecture, applied AI, security and web performance.',
+      source: 'Source',
+      read: 'min read',
+      empty: 'There are no published news items yet. New proposals will appear here after editorial review.',
+      archive: 'Permanent archive',
+      pagination: { label: 'News pagination', previous: 'Previous', next: 'Next', page: 'Page' },
+    };
+
+const pageEntries = getNewsPageEntries(entries, currentPage);
+const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'medium' }).format(date);
+const pagePath = (page: number) => getNewsArchivePath(lang, page);
+---
+
+<main id="contenido" class="news-page" tabindex="-1">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
+  <header class="news-hero">
+    <p class="news-eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.title}</h1>
+    <p class="news-hero__description">{copy.description}</p>
+    <p class="news-hero__archive">{copy.archive} · {String(entries.length).padStart(2, '0')} {lang === 'es' ? 'noticias' : 'news items'}</p>
+  </header>
+
+  <section class="news-list" aria-labelledby="news-list-title">
+    <h2 id="news-list-title" class="sr-only">{copy.eyebrow}</h2>
+    {
+      pageEntries.length > 0 ? pageEntries.map((entry) => (
+        <article class="news-card">
+          <div class="news-card__meta">
+            <time datetime={entry.data.publishedAt.toISOString()}>{formatDate(entry.data.publishedAt)}</time>
+            <span>{entry.data.readingTime} {copy.read}</span>
+          </div>
+          <div class="news-card__body">
+            <div>
+              <p class="news-card__source">{copy.source} / {entry.data.sourceName}</p>
+              <h2><a href={`${getNewsArchivePath(lang, 1)}${entry.data.slug}/`}>{entry.data.title}</a></h2>
+              <p>{entry.data.description}</p>
+            </div>
+            <ul class="news-card__tags" aria-label={lang === 'es' ? 'Etiquetas' : 'Tags'}>
+              {entry.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+        </article>
+      )) : <p class="news-empty">{copy.empty}</p>
+    }
+  </section>
+  {
+    totalPages > 1 && (
+      <nav class="news-pagination" aria-label={copy.pagination.label}>
+        {currentPage > 1 ? <a class="news-pagination__link" href={pagePath(currentPage - 1)} rel="prev">← {copy.pagination.previous}</a> : <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">← {copy.pagination.previous}</span>}
+        <ol aria-label={copy.pagination.label}>
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+            <li>
+              {page === currentPage ? <span aria-current="page">{page}</span> : <a href={pagePath(page)}>{page}</a>}
+            </li>
+          ))}
+        </ol>
+        {currentPage < totalPages ? <a class="news-pagination__link" href={pagePath(currentPage + 1)} rel="next">{copy.pagination.next} →</a> : <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">{copy.pagination.next} →</span>}
+      </nav>
+    )
+  }
+</main>

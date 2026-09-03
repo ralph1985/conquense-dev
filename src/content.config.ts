@@ -2,10 +2,10 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const blog = defineCollection({
+const news = defineCollection({
   loader: glob({
     pattern: '**/*.md',
-    base: './src/content/blog',
+    base: './src/content/news',
     // Slugs are intentionally shared by translated articles. The collection
     // id must still be unique, otherwise one language silently overwrites the
     // other during content sync.
@@ -28,4 +28,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+export const collections = { news };

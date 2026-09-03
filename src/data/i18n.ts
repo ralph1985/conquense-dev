@@ -11,7 +11,7 @@ export interface RouteSet {
   projects: string;
   experience: string;
   hobbies: string;
-  blog: string;
+  news: string;
   legalNotice: string;
   privacy: string;
   cookies: string;
@@ -24,7 +24,7 @@ export const routesByLanguage: Record<Language, RouteSet> = {
     projects: '/proyectos/',
     experience: '/experiencia/',
     hobbies: '/otra-forma-de-mirar/',
-    blog: '/blog/',
+    news: '/noticias/',
     legalNotice: '/aviso-legal/',
     privacy: '/politica-privacidad/',
     cookies: '/politica-cookies/',
@@ -35,7 +35,7 @@ export const routesByLanguage: Record<Language, RouteSet> = {
     projects: '/en/projects/',
     experience: '/en/experience/',
     hobbies: '/en/another-way-of-looking/',
-    blog: '/en/blog/',
+    news: '/en/news/',
     legalNotice: '/en/legal-notice/',
     privacy: '/en/privacy-policy/',
     cookies: '/en/cookie-policy/',
@@ -54,7 +54,7 @@ export const uiCopy = {
     languageLabel: 'Cambiar idioma',
     navExperience: 'Experiencia',
     navProjects: 'Proyectos',
-    navBlog: 'Blog',
+    navNews: 'Noticias',
     navContact: 'Contacto',
     mobileMenuLabel: 'Abrir menú',
     mobileMenuCloseLabel: 'Cerrar menú',
@@ -75,7 +75,7 @@ export const uiCopy = {
     languageLabel: 'Change language',
     navExperience: 'Experience',
     navProjects: 'Projects',
-    navBlog: 'Blog',
+    navNews: 'News',
     navContact: 'Contact',
     mobileMenuLabel: 'Open menu',
     mobileMenuCloseLabel: 'Close menu',

@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import NewsPage from '@/components/NewsPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getNewsArchivePath, getNewsPageCount } from '@/data/news';
+import { uiCopy } from '@/data/i18n';
+
+const entries = (await getCollection('news')).filter((entry) => entry.data.lang === 'es');
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('news')).filter((entry) => entry.data.lang === 'es');
+  const totalPages = getNewsPageCount(entries);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const currentPage = index + 2;
+    return {
+      params: { page: String(currentPage) },
+      props: { currentPage, totalPages },
+    };
+  });
+}
+
+const { currentPage, totalPages } = Astro.props;
+const alternatePath = getNewsArchivePath('en', currentPage);
+---
+
+<BaseLayout
+  lang="es"
+  title={`Noticias técnicas, página ${currentPage} - Conquense Dev`}
+  description="Noticias y contexto sobre ingeniería de software, arquitectura, IA aplicada, seguridad y rendimiento web."
+  alternateLinks={[{ lang: 'es', href: getNewsArchivePath('es', currentPage) }, { lang: 'en', href: alternatePath }]}
+>
+  <NewsPage lang="es" alternateLink={{ lang: 'en', href: alternatePath }} labels={uiCopy.es} entries={entries} currentPage={currentPage} totalPages={totalPages} />
+</BaseLayout>

@@ -32,9 +32,9 @@ npm run preview  # preview del build
 - `src/data/sections.ts`: fuente de datos tipada para secciones ES/EN.
 - `src/data/experience.ts`: fuente de datos ES/EN para la experiencia profesional.
 - `src/data/projects.ts`: fuente de datos ES/EN para proyectos y casos representativos.
-- `src/content.config.ts` y `src/content/blog/`: colección Markdown tipada para el blog técnico bilingüe.
-- `scripts/blog-worker.mjs`: worker local que busca con Codex, valida borradores, ejecuta checks, crea/actualiza una PR y envía el digest SMTP.
-- `scripts/install-blog-cron.sh`: instalador idempotente de la tarea diaria del blog.
+- `src/content.config.ts` y `src/content/news/`: colección Markdown tipada para las noticias técnicas bilingües.
+- `scripts/news-worker.mjs`: worker local que busca con Codex, valida borradores, ejecuta checks, crea/actualiza una PR y envía el digest SMTP.
+- `scripts/install-news-cron.sh`: instalador idempotente de la tarea diaria de noticias.
 - `src/styles/tailwind.css`: reset, tokens semánticos, tema claro/oscuro y componentes visuales construidos sobre Tailwind.
 - `src/scripts/portfolio-scroll.ts`: navegación vertical, teclado, indicadores y estado activo.
 
@@ -44,20 +44,20 @@ Las secciones se definen en `src/data/sections.ts`, separadas por idioma en `loc
 
 La experiencia profesional vive en `src/data/experience.ts` y se muestra en `/experiencia/` y `/en/experience/`. Los proyectos viven en `src/data/projects.ts` y se muestran en `/proyectos/` y `/en/projects/`.
 
-El blog vive en `/blog/` y `/en/blog/`. Cada noticia se guarda como dos archivos Markdown vinculados por `translationId`, uno por idioma. Los slugs públicos pueden coincidir entre idiomas, pero sus IDs internos son siempre `lang/slug`. `pnpm build` valida además que no haya colisiones, traducciones incompletas ni archivos mal nombrados. El contenido publicado es permanente; la página de índice ordena las entradas por fecha.
+Las noticias viven en `/noticias/` y `/en/news/`. Cada noticia se guarda como dos archivos Markdown vinculados por `translationId`, uno por idioma. Los slugs públicos pueden coincidir entre idiomas, pero sus IDs internos son siempre `lang/slug`. `pnpm build` valida además que no haya colisiones, traducciones incompletas ni archivos mal nombrados. El contenido publicado es permanente; la página de índice ordena las entradas por fecha.
 
 ## Worker editorial local
 
-El worker se ejecuta con `pnpm blog:worker`. Codex CLI se usa únicamente para investigar y redactar mediante búsqueda web sobre ingeniería, JavaScript, TypeScript, arquitectura frontend, APIs del navegador, tooling, testing, IA aplicada, seguridad, sistemas y rendimiento web; el worker valida la respuesta, exige una versión ES y otra EN, deduplica por URL, ejecuta `pnpm lint` y `pnpm build`, y crea o actualiza la rama `automation/blog-news` mediante GitHub CLI.
+El worker se ejecuta con `pnpm news:worker`. Codex CLI se usa únicamente para investigar y redactar mediante búsqueda web sobre ingeniería, JavaScript, TypeScript, arquitectura frontend, APIs del navegador, tooling, testing, IA aplicada, seguridad, sistemas y rendimiento web; el worker valida la respuesta, exige una versión ES y otra EN, deduplica por URL, ejecuta `pnpm lint` y `pnpm build`, y crea o actualiza la rama `automation/news` mediante GitHub CLI.
 
-La ejecución real requiere `.env.local` con `BLOG_SMTP_PASSWORD` y una sesión válida de `gh`. Los valores de ejemplo están en `.env.example`. La primera prueba controlada puede limitarse a una noticia con `BLOG_MAX_ARTICLES=1`; `BLOG_DRY_RUN=true` evita escribir y publicar.
+La ejecución real requiere `.env.local` con `NEWS_SMTP_PASSWORD` y una sesión válida de `gh`. El worker acepta temporalmente las variables `BLOG_*` como fallback para facilitar la migración local sin exponer ni duplicar secretos. Los valores de ejemplo están en `.env.example`. La primera prueba controlada puede limitarse a una noticia con `NEWS_MAX_ARTICLES=1`; `NEWS_DRY_RUN=true` evita escribir y publicar.
 
-`BLOG_CODEX_TIMEOUT_MS` permite limitar el tiempo de búsqueda (por defecto, tres minutos) para que una ejecución bloqueada termine y envíe la alerta configurada.
+`NEWS_CODEX_TIMEOUT_MS` permite limitar el tiempo de búsqueda (por defecto, tres minutos) para que una ejecución bloqueada termine y envíe la alerta configurada.
 
 El instalador añade una entrada marcada en la crontab del usuario para las 09:45, fijada a la zona horaria `Europe/Madrid`:
 
 ```bash
-./scripts/install-blog-cron.sh
+./scripts/install-news-cron.sh
 ```
 
 ## Idiomas

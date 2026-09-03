@@ -6,10 +6,10 @@
   "packageManager": "pnpm@10.25.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/validate-blog-content.mjs && astro check && astro build",
+    "build": "node scripts/validate-news-content.mjs && astro check && astro build",
     "preview": "astro preview",
     "lint": "astro check",
-    "blog:worker": "node scripts/blog-worker.mjs"
+    "news:worker": "node scripts/news-worker.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.9",

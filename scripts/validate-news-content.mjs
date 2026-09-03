@@ -2,7 +2,7 @@
 
 import { readdir, readFile } from 'node:fs/promises';
 
-const root = new URL('../src/content/blog/', import.meta.url);
+const root = new URL('../src/content/news/', import.meta.url);
 const languages = ['es', 'en'];
 const articles = [];
 const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
@@ -62,4 +62,4 @@ for (const [translationId, group] of translations) {
   }
 }
 
-console.log(`Blog content validado: ${articles.length} artículos, ${translations.size} traducciones.`);
+console.log(`News content validado: ${articles.length} artículos, ${translations.size} traducciones.`);

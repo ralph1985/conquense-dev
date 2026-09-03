@@ -21,10 +21,10 @@ El usuario hace scroll vertical nativo. La navegación fija muestra progreso, se
 - TypeScript para configuración y scripts.
 - Tailwind CSS para layout, responsive y estados, con DaisyUI tematizado para primitivas visuales.
 - JavaScript cliente mínimo para navegación vertical, progreso y estado activo.
-- Worker local de blog técnico que genera propuestas bilingües mediante Codex y las publica únicamente tras merge manual de una PR.
+- Worker local de noticias técnicas que genera propuestas bilingües mediante Codex y las publica únicamente tras merge manual de una PR.
 
 ## Pendientes editoriales
 
 - La experiencia laboral en `src/data/experience.ts` ya está revisada por etapas: BBVA, Mobile One2One, Geanet onDemand, ComNet y Goitek.
 - Los proyectos viven aparte en `src/data/projects.ts`. Queda pendiente revisar GitHub, enlaces y casos públicos para decidir qué proyectos pueden ampliarse sin inventar ni exponer información sensible.
-- El blog vive en `src/content/blog/`, con rutas `/blog/` y `/en/blog/`. La automatización usa `scripts/blog-worker.mjs`, GitHub CLI, SMTP y la crontab local; sus logs y estado permanecen en `var/`.
+- Las noticias viven en `src/content/news/`, con rutas `/noticias/` y `/en/news/`. La automatización usa `scripts/news-worker.mjs`, GitHub CLI, SMTP y la crontab local; sus logs y estado permanecen en `var/`.

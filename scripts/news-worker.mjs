@@ -10,6 +10,8 @@ import nodemailer from 'nodemailer';
 const run = promisify(execFile);
 const root = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 
+const readEnv = (name, fallback) => process.env[`NEWS_${name}`] ?? process.env[`BLOG_${name}`] ?? fallback;
+
 try {
   const envFile = await readFile(`${root}/.env.local`, 'utf8');
   for (const line of envFile.split('\n')) {
@@ -20,25 +22,25 @@ try {
   if (error.code !== 'ENOENT') throw error;
 }
 
-const varDir = `${root}/var/blog-worker`;
+const varDir = `${root}/var/news-worker`;
 const statePath = `${varDir}/state.json`;
-const schemaPath = `${root}/scripts/blog-article.schema.json`;
-const contentRoot = `${root}/src/content/blog`;
+const schemaPath = `${root}/scripts/news-article.schema.json`;
+const contentRoot = `${root}/src/content/news`;
 const contentRootPath = resolve(contentRoot);
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
-const maxArticles = Number(process.env.BLOG_MAX_ARTICLES ?? '3');
-const dryRun = process.env.BLOG_DRY_RUN === 'true';
-const codexBin = process.env.BLOG_CODEX_BIN ?? 'codex';
-const codexTimeoutMs = Number(process.env.BLOG_CODEX_TIMEOUT_MS ?? '180000');
-const branch = process.env.BLOG_BRANCH ?? 'automation/blog-news';
-const smtpHost = process.env.BLOG_SMTP_HOST ?? 'smtp.dondominio.com';
-const smtpPort = Number(process.env.BLOG_SMTP_PORT ?? '587');
-const smtpSecure = process.env.BLOG_SMTP_SECURE === 'true';
-const smtpUser = process.env.BLOG_SMTP_USER ?? 'alerts@conquense.dev';
-const smtpPassword = process.env.BLOG_SMTP_PASSWORD;
-const mailFrom = process.env.BLOG_MAIL_FROM ?? smtpUser;
-const mailTo = process.env.BLOG_MAIL_TO ?? 'rafaelgarcia1985@hotmail.com';
+const maxArticles = Number(readEnv('MAX_ARTICLES', '3'));
+const dryRun = readEnv('DRY_RUN', 'false') === 'true';
+const codexBin = readEnv('CODEX_BIN', 'codex');
+const codexTimeoutMs = Number(readEnv('CODEX_TIMEOUT_MS', '180000'));
+const branch = readEnv('BRANCH', 'automation/news');
+const smtpHost = readEnv('SMTP_HOST', 'smtp.dondominio.com');
+const smtpPort = Number(readEnv('SMTP_PORT', '587'));
+const smtpSecure = readEnv('SMTP_SECURE', 'false') === 'true';
+const smtpUser = readEnv('SMTP_USER', 'alerts@conquense.dev');
+const smtpPassword = readEnv('SMTP_PASSWORD');
+const mailFrom = readEnv('MAIL_FROM', smtpUser);
+const mailTo = readEnv('MAIL_TO', 'rafaelgarcia1985@hotmail.com');
 
 const fail = (message) => {
   throw new Error(message);
@@ -74,7 +76,7 @@ async function existingArticles() {
 }
 
 function promptForArticles(knownUrls) {
-  return `You are the research and editorial stage of a local technical blog worker.
+  return `You are the research and editorial stage of a local technical news worker.
 
 Use live web search. Find up to ${maxArticles} recent, genuinely useful technology news items about software engineering, JavaScript, TypeScript, frontend architecture, browser APIs, web tooling, testing, maintainability, applied AI, security, systems, or web performance. Include frontend and JavaScript ecosystem stories when they contain substantial technical lessons, not merely release announcements.
 
@@ -175,7 +177,7 @@ async function writeDrafts(groups) {
     for (const article of [group.es, group.en]) {
       const dir = resolve(contentRootPath, article.lang);
       const path = resolve(dir, `${article.slug}.md`);
-      if (!path.startsWith(`${contentRootPath}${sep}`)) fail('La ruta del borrador queda fuera del contenido del blog.');
+      if (!path.startsWith(`${contentRootPath}${sep}`)) fail('La ruta del borrador queda fuera del contenido de noticias.');
       await mkdir(dir, { recursive: true });
       const frontmatter = [
         '---',
@@ -210,10 +212,10 @@ async function git(args) {
 
 async function publish(files, groups) {
   await git(['add', ...files]);
-  await git(['commit', '-m', 'feat(blog): add reviewed news proposals']);
+  await git(['commit', '-m', 'feat(news): add reviewed news proposals']);
   await git(['push', '--set-upstream', 'origin', branch]);
   const existing = JSON.parse((await run('gh', ['pr', 'list', '--head', branch, '--state', 'open', '--json', 'number,url'], { cwd: root })).stdout);
-  const title = `feat(blog): technical news proposals (${new Date().toISOString().slice(0, 10)})`;
+  const title = `feat(news): technical news proposals (${new Date().toISOString().slice(0, 10)})`;
   const body = [
     '## Automated editorial proposal',
     '',
@@ -256,7 +258,7 @@ async function ensureBranch() {
 }
 
 async function sendMail(subject, text) {
-  if (!smtpPassword) fail('BLOG_SMTP_PASSWORD no está configurada.');
+  if (!smtpPassword) fail('NEWS_SMTP_PASSWORD no está configurada.');
   const transporter = nodemailer.createTransport({ host: smtpHost, port: smtpPort, secure: smtpSecure, auth: { user: smtpUser, pass: smtpPassword } });
   await transporter.sendMail({ from: mailFrom, to: mailTo, subject, text });
 }
@@ -284,7 +286,7 @@ async function main() {
   state.proposedSourceUrls = [...new Set([...knownUrls, ...groups.map(({ es }) => es.sourceUrl)])];
   state.runs = [...state.runs.slice(-29), { at: new Date().toISOString(), pr: pr.url, count: groups.length }];
   await writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
-  await sendMail(`Blog técnico: ${groups.length} propuesta${groups.length === 1 ? '' : 's'}`, [
+  await sendMail(`Noticias técnicas: ${groups.length} propuesta${groups.length === 1 ? '' : 's'}`, [
     'Se ha preparado una nueva propuesta editorial para Conquense Dev.',
     '',
     ...groups.map(({ es }) => `- ${es.title}\n  Fuente: ${es.sourceUrl}`),
@@ -297,7 +299,7 @@ async function main() {
 main().catch(async (error) => {
   console.error(error.stack ?? error.message);
   if (!dryRun && smtpPassword) {
-    try { await sendMail('Error en el worker del blog técnico', `La ejecución automática ha fallado:\n\n${error.stack ?? error.message}`); } catch (mailError) { console.error(`No se pudo enviar la alerta: ${mailError.message}`); }
+    try { await sendMail('Error en el worker de noticias técnicas', `La ejecución automática ha fallado:\n\n${error.stack ?? error.message}`); } catch (mailError) { console.error(`No se pudo enviar la alerta: ${mailError.message}`); }
   }
   process.exitCode = 1;
 });
