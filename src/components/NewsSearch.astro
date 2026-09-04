@@ -152,7 +152,7 @@ const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
 
     const link = document.createElement('a');
     link.className = 'news-search__result-link';
-    link.href = item.url;
+    link.href = `${item.url}?q=${encodeURIComponent(query)}`;
 
     const title = document.createElement('h2');
     title.append(highlight(item.title, query));
@@ -195,6 +195,24 @@ const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
     let currentResults = [];
     let visibleResults = 10;
     let timeout;
+    const storageKey = `conquense-news-search-${lang}`;
+
+    const readSavedQuery = () => {
+      try {
+        return globalThis.sessionStorage.getItem(storageKey) ?? '';
+      } catch {
+        return '';
+      }
+    };
+
+    const saveQuery = (query) => {
+      try {
+        if (query) globalThis.sessionStorage.setItem(storageKey, query);
+        else globalThis.sessionStorage.removeItem(storageKey);
+      } catch {
+        // Storage may be unavailable in private browsing contexts.
+      }
+    };
 
     const updateUrl = (query) => {
       const url = new URL(globalThis.location.href);
@@ -206,6 +224,7 @@ const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
     const render = (query) => {
       const trimmedQuery = query.trim();
       updateUrl(trimmedQuery);
+      saveQuery(trimmedQuery);
       clear.hidden = !trimmedQuery;
       prompt.hidden = Boolean(trimmedQuery);
       empty.hidden = true;
@@ -228,9 +247,17 @@ const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
       empty.hidden = currentResults.length > 0;
     };
 
-    const initialQuery = new URL(globalThis.location.href).searchParams.get('q') ?? '';
+    const urlQuery = new URL(globalThis.location.href).searchParams.get('q');
+    const initialQuery = urlQuery ?? readSavedQuery();
     input.value = initialQuery;
     if (initialQuery) render(initialQuery);
+
+    const restoreFromNavigation = () => {
+      const currentUrlQuery = new URL(globalThis.location.href).searchParams.get('q');
+      const query = currentUrlQuery ?? readSavedQuery();
+      input.value = query;
+      render(query);
+    };
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -262,11 +289,8 @@ const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
       more.hidden = currentResults.length <= visibleResults;
     });
 
-    globalThis.addEventListener('popstate', () => {
-      const query = new URL(globalThis.location.href).searchParams.get('q') ?? '';
-      input.value = query;
-      render(query);
-    });
+    globalThis.addEventListener('popstate', restoreFromNavigation);
+    globalThis.addEventListener('pageshow', restoreFromNavigation);
   };
 
   document.addEventListener('astro:page-load', mountSearch);
