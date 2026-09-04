@@ -1,0 +1,274 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SiteHeader from '@/components/SiteHeader.astro';
+import type { AlternateLink, Language } from '@/data/i18n';
+import { getNewsArchivePath, sortNewsEntries } from '@/data/news';
+import { uiCopy } from '@/data/i18n';
+
+interface SearchItem {
+  id: string;
+  title: string;
+  description: string;
+  sourceName: string;
+  tags: string[];
+  content: string;
+  publishedAt: string;
+  readingTime: number;
+  url: string;
+}
+
+interface Props {
+  lang: Language;
+  alternateLink: AlternateLink;
+  entries: CollectionEntry<'news'>[];
+}
+
+const { lang, alternateLink, entries } = Astro.props;
+const copy = lang === 'es'
+  ? {
+      eyebrow: 'Noticias técnicas',
+      title: 'Buscar en el archivo',
+      description: 'Encuentra contexto sobre ingeniería de software, arquitectura, IA aplicada, seguridad y rendimiento web.',
+      back: 'Volver a las noticias',
+      label: 'Buscar en las noticias',
+      placeholder: 'Título, contenido, fuente o etiqueta',
+      submit: 'Buscar',
+      clear: 'Limpiar',
+      help: 'Puedes combinar varios términos. La búsqueda ignora tildes y mayúsculas.',
+      loading: 'Buscando...',
+      resultSingular: 'resultado encontrado',
+      resultPlural: 'resultados encontrados',
+      empty: 'No hay noticias que coincidan con la búsqueda.',
+      prompt: 'Escribe un término para buscar en todo el archivo.',
+      error: 'No se pudo cargar el índice de noticias.',
+      source: 'Fuente',
+      read: 'min de lectura',
+      more: 'Mostrar más resultados',
+    }
+  : {
+      eyebrow: 'Technical news',
+      title: 'Search the archive',
+      description: 'Find context on software engineering, architecture, applied AI, security and web performance.',
+      back: 'Back to the news',
+      label: 'Search the news',
+      placeholder: 'Title, content, source or tag',
+      submit: 'Search',
+      clear: 'Clear',
+      help: 'You can combine several terms. The search ignores accents and case.',
+      loading: 'Searching...',
+      resultSingular: 'result found',
+      resultPlural: 'results found',
+      empty: 'No news items match the search.',
+      prompt: 'Enter a term to search the full archive.',
+      error: 'The news index could not be loaded.',
+      source: 'Source',
+      read: 'min read',
+      more: 'Show more results',
+    };
+
+const searchItems: SearchItem[] = sortNewsEntries(entries).map((entry) => ({
+  id: entry.id,
+  title: entry.data.title,
+  description: entry.data.description,
+  sourceName: entry.data.sourceName,
+  tags: entry.data.tags,
+  content: entry.body ?? '',
+  publishedAt: entry.data.publishedAt.toISOString(),
+  readingTime: entry.data.readingTime,
+  url: `${getNewsArchivePath(lang, 1)}${entry.data.slug}/`,
+}));
+
+---
+
+<main id="contenido" class="news-page news-search-page" tabindex="-1">
+  <SiteHeader lang={lang} alternateLink={alternateLink} labels={uiCopy[lang]} />
+  <header class="news-hero">
+    <p class="news-eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.title}</h1>
+    <p class="news-hero__description">{copy.description}</p>
+    <a class="news-search__back" href={getNewsArchivePath(lang, 1)}>← {copy.back}</a>
+  </header>
+
+  <section class="news-search" aria-labelledby="news-search-title">
+    <h2 id="news-search-title" class="sr-only">{copy.label}</h2>
+    <form class="news-search__form" role="search" novalidate>
+      <label for="news-search-input">{copy.label}</label>
+      <div class="news-search__controls">
+        <input id="news-search-input" name="q" type="search" placeholder={copy.placeholder} autocomplete="off" aria-describedby="news-search-help" aria-controls="news-search-results" />
+        <button class="news-search__submit" type="submit">{copy.submit}</button>
+        <button class="news-search__clear" type="button" hidden>{copy.clear}</button>
+      </div>
+      <p id="news-search-help" class="news-search__help">{copy.help}</p>
+    </form>
+
+    <div class="news-search__status" aria-live="polite" aria-atomic="true"></div>
+    <p class="news-search__message" data-news-search-prompt>{copy.prompt}</p>
+    <p class="news-search__message" data-news-search-empty hidden>{copy.empty}</p>
+    <p class="news-search__message news-search__message--error" data-news-search-error hidden>{copy.error}</p>
+    <ol id="news-search-results" class="news-search__results" aria-live="polite"></ol>
+    <button class="news-search__more" type="button" hidden>{copy.more}</button>
+  </section>
+</main>
+
+<script is:inline type="application/json" id="news-search-data" set:html={JSON.stringify(searchItems).replaceAll('<', '\\u003c')}></script>
+
+<script is:inline define:vars={{ copy, lang }}>
+  const normalize = (value) => value
+    .toLocaleLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const getTerms = (query) => normalize(query).split(' ').filter(Boolean);
+  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const formatDate = (date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'medium' }).format(new Date(date));
+
+  const highlight = (text, query) => {
+    const fragment = document.createDocumentFragment();
+    const terms = getTerms(query).map(escapeRegExp);
+    if (!terms.length) {
+      fragment.append(document.createTextNode(text));
+      return fragment;
+    }
+
+    const pattern = new RegExp(`(${terms.join('|')})`, 'gi');
+    let lastIndex = 0;
+    for (const match of text.matchAll(pattern)) {
+      const index = match.index ?? 0;
+      fragment.append(document.createTextNode(text.slice(lastIndex, index)));
+      const mark = document.createElement('mark');
+      mark.textContent = match[0];
+      fragment.append(mark);
+      lastIndex = index + match[0].length;
+    }
+    fragment.append(document.createTextNode(text.slice(lastIndex)));
+    return fragment;
+  };
+
+  const createResult = (item, query) => {
+    const result = document.createElement('li');
+    result.className = 'news-search__result';
+
+    const link = document.createElement('a');
+    link.className = 'news-search__result-link';
+    link.href = item.url;
+
+    const title = document.createElement('h2');
+    title.append(highlight(item.title, query));
+
+    const description = document.createElement('p');
+    description.append(highlight(item.description, query));
+
+    const meta = document.createElement('p');
+    meta.className = 'news-search__result-meta';
+    meta.textContent = `${item.sourceName} / ${formatDate(item.publishedAt)} / ${item.readingTime} ${copy.read}`;
+
+    link.append(title, description, meta);
+    result.append(link);
+    return result;
+  };
+
+  const mountSearch = () => {
+    const input = document.querySelector('#news-search-input');
+    const form = document.querySelector('.news-search__form');
+    const clear = document.querySelector('.news-search__clear');
+    const status = document.querySelector('.news-search__status');
+    const prompt = document.querySelector('[data-news-search-prompt]');
+    const empty = document.querySelector('[data-news-search-empty]');
+    const error = document.querySelector('[data-news-search-error]');
+    const resultsList = document.querySelector('#news-search-results');
+    const more = document.querySelector('.news-search__more');
+    const dataElement = document.querySelector('#news-search-data');
+
+    if (!input || !form || !clear || !status || !prompt || !empty || !error || !resultsList || !more || !dataElement || input.dataset.enhanced === 'true') return;
+    input.dataset.enhanced = 'true';
+
+    let searchData;
+    try {
+      searchData = JSON.parse(dataElement.textContent ?? '[]');
+    } catch {
+      searchData = [];
+      error.hidden = false;
+    }
+
+    let currentResults = [];
+    let visibleResults = 10;
+    let timeout;
+
+    const updateUrl = (query) => {
+      const url = new URL(globalThis.location.href);
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      globalThis.history.replaceState({}, '', url);
+    };
+
+    const render = (query) => {
+      const trimmedQuery = query.trim();
+      updateUrl(trimmedQuery);
+      clear.hidden = !trimmedQuery;
+      prompt.hidden = Boolean(trimmedQuery);
+      empty.hidden = true;
+      error.hidden = true;
+      resultsList.replaceChildren();
+      more.hidden = true;
+      status.textContent = '';
+
+      if (!trimmedQuery) {
+        currentResults = [];
+        return;
+      }
+
+      const terms = getTerms(trimmedQuery);
+      currentResults = searchData.filter((item) => terms.every((term) => normalize([item.title, item.description, item.sourceName, item.content, ...item.tags].join(' ')).includes(term)));
+      visibleResults = 10;
+      resultsList.append(...currentResults.slice(0, visibleResults).map((item) => createResult(item, trimmedQuery)));
+      more.hidden = currentResults.length <= visibleResults;
+      status.textContent = `${currentResults.length} ${currentResults.length === 1 ? copy.resultSingular : copy.resultPlural}.`;
+      empty.hidden = currentResults.length > 0;
+    };
+
+    const initialQuery = new URL(globalThis.location.href).searchParams.get('q') ?? '';
+    input.value = initialQuery;
+    if (initialQuery) render(initialQuery);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (timeout) clearTimeout(timeout);
+      render(input.value);
+    });
+
+    input.addEventListener('input', () => {
+      if (timeout) clearTimeout(timeout);
+      const query = input.value;
+      if (!query.trim()) {
+        render('');
+        return;
+      }
+      status.textContent = copy.loading;
+      timeout = setTimeout(() => render(query), 220);
+    });
+
+    clear.addEventListener('click', () => {
+      input.value = '';
+      input.focus();
+      render('');
+    });
+
+    more.addEventListener('click', () => {
+      visibleResults += 10;
+      const query = input.value.trim();
+      resultsList.append(...currentResults.slice(visibleResults - 10, visibleResults).map((item) => createResult(item, query)));
+      more.hidden = currentResults.length <= visibleResults;
+    });
+
+    globalThis.addEventListener('popstate', () => {
+      const query = new URL(globalThis.location.href).searchParams.get('q') ?? '';
+      input.value = query;
+      render(query);
+    });
+  };
+
+  document.addEventListener('astro:page-load', mountSearch);
+  mountSearch();
+</script>

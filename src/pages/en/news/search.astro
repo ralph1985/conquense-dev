@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsSearch from '@/components/NewsSearch.astro';
+import { getNewsSearchPath } from '@/data/news';
+
+const entries = (await getCollection('news')).filter((entry) => entry.data.lang === 'en');
+---
+
+<BaseLayout
+  lang="en"
+  title="Search technical news - Conquense Dev"
+  description="Search the Conquense Dev technical news archive."
+  alternateLinks={[{ lang: 'es', href: getNewsSearchPath('es') }, { lang: 'en', href: getNewsSearchPath('en') }]}
+>
+  <NewsSearch lang="en" alternateLink={{ lang: 'es', href: getNewsSearchPath('es') }} entries={entries} />
+</BaseLayout>

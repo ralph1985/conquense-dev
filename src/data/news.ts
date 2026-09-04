@@ -23,3 +23,7 @@ export function getNewsArchivePath(lang: Language, page: number) {
   const section = lang === 'en' ? 'news' : 'noticias';
   return page === 1 ? `${prefix}/${section}/` : `${prefix}/${section}/page/${page}/`;
 }
+
+export function getNewsSearchPath(lang: Language) {
+  return lang === 'en' ? '/en/news/search/' : '/noticias/buscar/';
+}

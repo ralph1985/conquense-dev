@@ -2,7 +2,7 @@
 import SiteHeader from '@/components/SiteHeader.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateLink, Language } from '@/data/i18n';
-import { getNewsArchivePath, getNewsPageCount, getNewsPageEntries } from '@/data/news';
+import { getNewsArchivePath, getNewsPageCount, getNewsPageEntries, getNewsSearchPath } from '@/data/news';
 
 interface Props {
   lang: Language;
@@ -14,6 +14,7 @@ interface Props {
     navExperience: string;
     navProjects: string;
     navNews: string;
+    newsSearch: string;
     navContact: string;
     mobileMenuLabel: string;
     mobileMenuCloseLabel: string;
@@ -37,6 +38,7 @@ const copy = lang === 'es'
       read: 'min de lectura',
       empty: 'Todavía no hay noticias publicadas. Las próximas propuestas aparecerán aquí después de una revisión editorial.',
       archive: 'Archivo permanente',
+      search: 'Buscar noticias',
       pagination: { label: 'Paginación de noticias', previous: 'Anterior', next: 'Siguiente', page: 'Página' },
     }
   : {
@@ -47,6 +49,7 @@ const copy = lang === 'es'
       read: 'min read',
       empty: 'There are no published news items yet. New proposals will appear here after editorial review.',
       archive: 'Permanent archive',
+      search: 'Search news',
       pagination: { label: 'News pagination', previous: 'Previous', next: 'Next', page: 'Page' },
     };
 
@@ -61,7 +64,10 @@ const pagePath = (page: number) => getNewsArchivePath(lang, page);
     <p class="news-eyebrow">{copy.eyebrow}</p>
     <h1>{copy.title}</h1>
     <p class="news-hero__description">{copy.description}</p>
-    <p class="news-hero__archive">{copy.archive} · {String(entries.length).padStart(2, '0')} {lang === 'es' ? 'noticias' : 'news items'}</p>
+    <div class="news-hero__archive-row">
+      <p class="news-hero__archive">{copy.archive} · {String(entries.length).padStart(2, '0')} {lang === 'es' ? 'noticias' : 'news items'}</p>
+      <a class="news-search-link" href={getNewsSearchPath(lang)}>{copy.search} <span aria-hidden="true">→</span></a>
+    </div>
   </header>
 
   <section class="news-list" aria-labelledby="news-list-title">
