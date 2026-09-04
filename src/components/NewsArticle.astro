@@ -2,6 +2,7 @@
 import SiteHeader from '@/components/SiteHeader.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateLink, Language } from '@/data/i18n';
+import { getNewsArchivePath, getNewsSearchPath } from '@/data/news';
 
 interface Props {
   lang: Language;
@@ -28,16 +29,18 @@ interface Props {
 
 const { lang, alternateLink, labels, entry, Content, alternateArticleHref } = Astro.props;
 const copy = lang === 'es'
-  ? { back: 'Volver a las noticias', source: 'Fuente original', disclosure: 'Transparencia editorial', read: 'min de lectura' }
-  : { back: 'Back to the news', source: 'Original source', disclosure: 'Editorial transparency', read: 'min read' };
+  ? { back: 'Volver a las noticias', backSearch: 'Volver a los resultados', source: 'Fuente original', disclosure: 'Transparencia editorial', read: 'min de lectura' }
+  : { back: 'Back to the news', backSearch: 'Back to results', source: 'Original source', disclosure: 'Editorial transparency', read: 'min read' };
 const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'long' }).format(date);
+const searchPath = getNewsSearchPath(lang);
 ---
 
 <main id="contenido" class="news-article" tabindex="-1">
   <SiteHeader lang={lang} alternateLink={alternateLink} labels={labels} />
   <article>
+    <p class="sr-only" data-news-highlight-status aria-live="polite"></p>
     <header class="news-article__header">
-      <a class="news-article__back" href={lang === 'en' ? '/en/news/' : '/noticias/'}>← {copy.back}</a>
+      <a class="news-article__back" data-news-back href={getNewsArchivePath(lang, 1)}>← {copy.back}</a>
       <p class="news-eyebrow">{entry.data.tags[0]}</p>
       <h1>{entry.data.title}</h1>
       <p class="news-article__description">{entry.data.description}</p>
@@ -64,3 +67,117 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-E
     </div>
   </article>
 </main>
+
+<script is:inline define:vars={{ lang, searchPath, backSearch: copy.backSearch }}>
+  const normalizeUnit = (value) => value
+    .toLocaleLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  const getTerms = (query) => [...new Set(normalizeUnit(query).split(/\s+/).filter(Boolean))];
+
+  const getTextMap = (text) => {
+    let normalized = '';
+    const map = [];
+
+    for (let index = 0; index < text.length;) {
+      const codePoint = text.codePointAt(index);
+      const original = String.fromCodePoint(codePoint);
+      const clean = normalizeUnit(original);
+
+      for (let unit = 0; unit < clean.length; unit += 1) {
+        normalized += clean[unit];
+        map.push({ start: index, end: index + original.length });
+      }
+      index += original.length;
+    }
+
+    return { normalized, map };
+  };
+
+  const findRanges = (text, terms) => {
+    const { normalized, map } = getTextMap(text);
+    const ranges = [];
+
+    for (const term of terms) {
+      let fromIndex = 0;
+      while (fromIndex < normalized.length) {
+        const start = normalized.indexOf(term, fromIndex);
+        if (start === -1) break;
+
+        const end = start + term.length - 1;
+        if (map[start] && map[end]) ranges.push({ start: map[start].start, end: map[end].end });
+        fromIndex = start + Math.max(term.length, 1);
+      }
+    }
+
+    return ranges
+      .sort((a, b) => a.start - b.start || a.end - b.end)
+      .reduce((merged, range) => {
+        const previous = merged.at(-1);
+        if (previous && range.start <= previous.end) previous.end = Math.max(previous.end, range.end);
+        else merged.push({ ...range });
+        return merged;
+      }, []);
+  };
+
+  const highlightTextNode = (node, terms) => {
+    const text = node.textContent ?? '';
+    const ranges = findRanges(text, terms);
+    if (!ranges.length) return 0;
+
+    const fragment = document.createDocumentFragment();
+    let lastIndex = 0;
+    for (const range of ranges) {
+      fragment.append(document.createTextNode(text.slice(lastIndex, range.start)));
+      const mark = document.createElement('mark');
+      mark.className = 'news-highlight';
+      mark.textContent = text.slice(range.start, range.end);
+      fragment.append(mark);
+      lastIndex = range.end;
+    }
+    fragment.append(document.createTextNode(text.slice(lastIndex)));
+    node.replaceWith(fragment);
+    return ranges.length;
+  };
+
+  const highlightArticle = () => {
+    const article = document.querySelector('.news-article');
+    const status = document.querySelector('[data-news-highlight-status]');
+    const query = new URL(globalThis.location.href).searchParams.get('q')?.trim() ?? '';
+    if (!article || !status || !query || article.dataset.newsHighlighted === 'true') return;
+    article.dataset.newsHighlighted = 'true';
+
+    const terms = getTerms(query);
+    const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        const parent = node.parentElement;
+        if (!parent || parent.closest('script, style, mark, [data-news-highlight-status]')) return NodeFilter.FILTER_REJECT;
+        return node.textContent?.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      },
+    });
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) textNodes.push(node);
+
+    const matchCount = textNodes.reduce((count, textNode) => count + highlightTextNode(textNode, terms), 0);
+    status.textContent = lang === 'es'
+      ? `${terms.length} ${terms.length === 1 ? 'término' : 'términos'} buscado${terms.length === 1 ? '' : 's'} y ${matchCount} coincidencia${matchCount === 1 ? '' : 's'} resaltada${matchCount === 1 ? '' : 's'}.`
+      : `${terms.length} ${terms.length === 1 ? 'term' : 'terms'} searched and ${matchCount} highlighted ${matchCount === 1 ? 'match' : 'matches'}.`;
+
+    const firstMatch = article.querySelector('.news-highlight');
+    if (firstMatch && !firstMatch.closest('.news-article__header')) {
+      firstMatch.scrollIntoView({ block: 'center', behavior: globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }
+  };
+
+  const searchQuery = new URL(globalThis.location.href).searchParams.get('q')?.trim() ?? '';
+  const backLink = document.querySelector('[data-news-back]');
+  if (searchQuery && backLink) {
+    backLink.href = `${searchPath}?q=${encodeURIComponent(searchQuery)}`;
+    backLink.replaceChildren(`← ${backSearch}`);
+  }
+
+  document.addEventListener('astro:page-load', highlightArticle);
+  highlightArticle();
+</script>

@@ -340,6 +340,7 @@
   .news-prose li { @apply pl-1; }
   .news-prose a { @apply text-accent underline decoration-accent/40 underline-offset-4 hover:text-warm; }
   .news-prose blockquote { @apply my-8 border-l-2 border-accent pl-5 italic text-muted; }
+  .news-article mark.news-highlight { @apply bg-accent/15 px-0.5 text-inherit; }
   .news-article__aside { @apply flex flex-col gap-8 border-t border-ink/15 pt-6 text-sm md:border-t-0 md:border-l md:pl-8; }
   .news-article__aside div { @apply border-b border-ink/15 pb-6; }
   .news-article__aside p { @apply mb-3 font-mono text-[.65rem] font-bold uppercase tracking-[.16em] text-accent; }
