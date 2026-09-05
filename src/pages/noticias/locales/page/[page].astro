@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import NewsPage from '@/components/NewsPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getNewsLocalArchivePath, getLocalNewsEntries, getNewsPageCount } from '@/data/news';
+import { uiCopy } from '@/data/i18n';
+
+const allEntries = (await getCollection('news')).filter((entry) => entry.data.lang === 'es');
+const entries = getLocalNewsEntries(allEntries);
+
+export async function getStaticPaths() {
+  const allEntries = (await getCollection('news')).filter((entry) => entry.data.lang === 'es');
+  const entries = getLocalNewsEntries(allEntries);
+  const totalPages = getNewsPageCount(entries);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const currentPage = index + 2;
+    return {
+      params: { page: String(currentPage) },
+      props: { currentPage },
+    };
+  });
+}
+
+const { currentPage } = Astro.props;
+const localPath = getNewsLocalArchivePath('es', currentPage);
+const alternatePath = getNewsLocalArchivePath('en', currentPage);
+---
+
+<BaseLayout
+  lang="es"
+  title={`Noticias de tecnología local, página ${currentPage} - Conquense Dev`}
+  description="Noticias sobre innovación, IA, software, ciberseguridad e infraestructuras tecnológicas de Cuenca y Castilla-La Mancha."
+  alternateLinks={[{ lang: 'es', href: localPath }, { lang: 'en', href: alternatePath }]}
+>
+  <NewsPage lang="es" alternateLink={{ lang: 'en', href: alternatePath }} labels={uiCopy.es} entries={entries} scope="local" currentPage={currentPage} totalPages={getNewsPageCount(entries)} />
+</BaseLayout>

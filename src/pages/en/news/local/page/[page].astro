@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import NewsPage from '@/components/NewsPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLocalNewsEntries, getNewsLocalArchivePath, getNewsPageCount } from '@/data/news';
+import { uiCopy } from '@/data/i18n';
+
+const allEntries = (await getCollection('news')).filter((entry) => entry.data.lang === 'en');
+const entries = getLocalNewsEntries(allEntries);
+
+export async function getStaticPaths() {
+  const allEntries = (await getCollection('news')).filter((entry) => entry.data.lang === 'en');
+  const entries = getLocalNewsEntries(allEntries);
+  const totalPages = getNewsPageCount(entries);
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const currentPage = index + 2;
+    return {
+      params: { page: String(currentPage) },
+      props: { currentPage },
+    };
+  });
+}
+
+const { currentPage } = Astro.props;
+const localPath = getNewsLocalArchivePath('en', currentPage);
+const alternatePath = getNewsLocalArchivePath('es', currentPage);
+---
+
+<BaseLayout
+  lang="en"
+  title={`Local technology news, page ${currentPage} - Conquense Dev`}
+  description="News about innovation, AI, software, cybersecurity and technology infrastructure in Cuenca and Castilla-La Mancha."
+  alternateLinks={[{ lang: 'es', href: alternatePath }, { lang: 'en', href: localPath }]}
+>
+  <NewsPage lang="en" alternateLink={{ lang: 'es', href: alternatePath }} labels={uiCopy.en} entries={entries} scope="local" currentPage={currentPage} totalPages={getNewsPageCount(entries)} />
+</BaseLayout>
