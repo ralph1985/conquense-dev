@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { getNewsArchivePath, getNewsPageCount } from '@/data/news';
+import { getLocalNewsEntries, getNewsArchivePath, getNewsLocalArchivePath, getNewsPageCount } from '@/data/news';
 
 const routes = [
   '/',
@@ -26,9 +26,14 @@ export const GET: APIRoute = async ({ site }) => {
   const archiveRoutes = (['es', 'en'] as const).flatMap((lang) => {
     const languageEntries = entries.filter((entry) => entry.data.lang === lang);
     const totalPages = getNewsPageCount(languageEntries);
-    return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => getNewsArchivePath(lang, index + 2));
+    return Array.from({ length: totalPages }, (_, index) => getNewsArchivePath(lang, index + 1));
   });
-  const body = [...routes, ...newsRoutes, ...archiveRoutes].map((route) => `  <url><loc>${new URL(route, origin).toString()}</loc></url>`).join('\n');
+  const localArchiveRoutes = (['es', 'en'] as const).flatMap((lang) => {
+    const languageEntries = getLocalNewsEntries(entries.filter((entry) => entry.data.lang === lang));
+    const totalPages = getNewsPageCount(languageEntries);
+    return Array.from({ length: totalPages }, (_, index) => getNewsLocalArchivePath(lang, index + 1));
+  });
+  const body = [...routes, ...newsRoutes, ...archiveRoutes, ...localArchiveRoutes].map((route) => `  <url><loc>${new URL(route, origin).toString()}</loc></url>`).join('\n');
 
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>`, {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },

@@ -283,6 +283,9 @@
   .news-hero__description { @apply mt-7 max-w-2xl text-xl leading-relaxed text-muted md:text-2xl; }
   .news-hero__archive { @apply mt-8 font-mono text-xs uppercase tracking-[.12em] text-muted; }
   .news-hero__archive-row { @apply flex flex-wrap items-end justify-between gap-5; }
+  .news-filter { @apply mt-8 flex flex-wrap gap-2 border-b border-ink/15 pb-4; }
+  .news-filter__link { @apply border border-ink/20 px-3 py-2 font-mono text-[.65rem] font-bold uppercase tracking-[.08em] text-muted no-underline transition-colors hover:border-accent hover:text-accent focus-visible:border-accent focus-visible:text-accent; }
+  .news-filter__link--active { @apply border-accent text-accent; }
   .news-search-link, .news-search__back { @apply inline-flex border-b border-accent pb-1 font-mono text-xs font-bold uppercase tracking-[.12em] text-accent no-underline transition-colors hover:border-warm hover:text-warm; }
   .news-list { @apply mt-12 border-t border-ink/15; }
   .news-card { @apply grid gap-5 border-b border-ink/15 py-8 md:grid-cols-[minmax(150px,.3fr)_minmax(0,1fr)] md:gap-12 md:py-12; }

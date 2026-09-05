@@ -2,7 +2,7 @@
 import SiteHeader from '@/components/SiteHeader.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateLink, Language } from '@/data/i18n';
-import { getNewsArchivePath, getNewsPageCount, getNewsPageEntries, getNewsSearchPath } from '@/data/news';
+import { getLocalNewsEntries, getNewsArchivePath, getNewsLocalArchivePath, getNewsPageCount, getNewsPageEntries, getNewsSearchPath } from '@/data/news';
 
 interface Props {
   lang: Language;
@@ -26,36 +26,44 @@ interface Props {
   entries: CollectionEntry<'news'>[];
   currentPage?: number;
   totalPages?: number;
+  scope?: 'all' | 'local';
 }
 
-const { lang, alternateLink, labels, entries, currentPage = 1, totalPages = getNewsPageCount(entries) } = Astro.props;
+const { lang, alternateLink, labels, entries, currentPage = 1, scope = 'all' } = Astro.props;
+const isLocalScope = scope === 'local';
+const visibleEntries = isLocalScope ? getLocalNewsEntries(entries) : entries;
+const totalPages = getNewsPageCount(visibleEntries);
 const copy = lang === 'es'
   ? {
-      eyebrow: 'Noticias técnicas',
-      title: 'Lo que está pasando en tecnología y cómo afecta a construir software.',
-      description: 'La IA selecciona y contextualiza noticias sobre ingeniería de software, arquitectura, IA aplicada, seguridad y rendimiento web.',
+      eyebrow: isLocalScope ? 'Noticias locales' : 'Noticias técnicas',
+      title: isLocalScope ? 'Tecnología en Cuenca y Castilla-La Mancha.' : 'Lo que está pasando en tecnología y cómo afecta a construir software.',
+      description: isLocalScope ? 'Noticias sobre innovación, IA, software, ciberseguridad e infraestructuras tecnológicas de la región.' : 'La IA selecciona y contextualiza noticias sobre ingeniería de software, arquitectura, IA aplicada, seguridad y rendimiento web.',
       source: 'Fuente',
       read: 'min de lectura',
       empty: 'Todavía no hay noticias publicadas. Las próximas propuestas aparecerán aquí después de una revisión editorial.',
-      archive: 'Archivo permanente',
+      archive: isLocalScope ? 'Archivo regional' : 'Archivo permanente',
+      items: 'noticias',
       search: 'Buscar noticias',
+      filter: { label: 'Filtrar noticias', all: 'Todas', local: 'Cuenca y Castilla-La Mancha' },
       pagination: { label: 'Paginación de noticias', previous: 'Anterior', next: 'Siguiente', page: 'Página' },
     }
   : {
-      eyebrow: 'Technical news',
-      title: 'What is happening in technology and what it means for building software.',
-      description: 'AI selects and contextualizes news about software engineering, architecture, applied AI, security and web performance.',
+      eyebrow: isLocalScope ? 'Local technology news' : 'Technical news',
+      title: isLocalScope ? 'Technology in Cuenca and Castilla-La Mancha.' : 'What is happening in technology and what it means for building software.',
+      description: isLocalScope ? 'News about innovation, AI, software, cybersecurity and technology infrastructure in the region.' : 'AI selects and contextualizes news about software engineering, architecture, applied AI, security and web performance.',
       source: 'Source',
       read: 'min read',
       empty: 'There are no published news items yet. New proposals will appear here after editorial review.',
-      archive: 'Permanent archive',
+      archive: isLocalScope ? 'Regional archive' : 'Permanent archive',
+      items: 'news items',
       search: 'Search news',
+      filter: { label: 'Filter news', all: 'All', local: 'Cuenca and Castilla-La Mancha' },
       pagination: { label: 'News pagination', previous: 'Previous', next: 'Next', page: 'Page' },
     };
 
-const pageEntries = getNewsPageEntries(entries, currentPage);
+const pageEntries = getNewsPageEntries(visibleEntries, currentPage);
 const formatDate = (date: Date) => new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { dateStyle: 'medium' }).format(date);
-const pagePath = (page: number) => getNewsArchivePath(lang, page);
+const pagePath = (page: number) => isLocalScope ? getNewsLocalArchivePath(lang, page) : getNewsArchivePath(lang, page);
 ---
 
 <main id="contenido" class="news-page" tabindex="-1">
@@ -65,9 +73,13 @@ const pagePath = (page: number) => getNewsArchivePath(lang, page);
     <h1>{copy.title}</h1>
     <p class="news-hero__description">{copy.description}</p>
     <div class="news-hero__archive-row">
-      <p class="news-hero__archive">{copy.archive} · {String(entries.length).padStart(2, '0')} {lang === 'es' ? 'noticias' : 'news items'}</p>
+      <p class="news-hero__archive">{copy.archive} · {String(visibleEntries.length).padStart(2, '0')} {copy.items}</p>
       <a class="news-search-link" href={getNewsSearchPath(lang)}>{copy.search} <span aria-hidden="true">→</span></a>
     </div>
+    <nav class="news-filter" aria-label={copy.filter.label}>
+      <a class:list={{ 'news-filter__link': true, 'news-filter__link--active': !isLocalScope }} href={getNewsArchivePath(lang, 1)} aria-current={!isLocalScope ? 'page' : undefined}>{copy.filter.all}</a>
+      <a class:list={{ 'news-filter__link': true, 'news-filter__link--active': isLocalScope }} href={getNewsLocalArchivePath(lang, 1)} aria-current={isLocalScope ? 'page' : undefined}>{copy.filter.local}</a>
+    </nav>
   </header>
 
   <section class="news-list" aria-labelledby="news-list-title">
@@ -94,7 +106,7 @@ const pagePath = (page: number) => getNewsArchivePath(lang, page);
     }
   </section>
   {
-    totalPages > 1 && (
+      totalPages > 1 && (
       <nav class="news-pagination" aria-label={copy.pagination.label}>
         {currentPage > 1 ? <a class="news-pagination__link" href={pagePath(currentPage - 1)} rel="prev">← {copy.pagination.previous}</a> : <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">← {copy.pagination.previous}</span>}
         <ol aria-label={copy.pagination.label}>

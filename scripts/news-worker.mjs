@@ -29,6 +29,7 @@ const contentRoot = `${root}/src/content/news`;
 const contentRootPath = resolve(contentRoot);
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
+const localNewsTags = new Set(['cuenca', 'castilla-la-mancha']);
 const maxArticles = Number(readEnv('MAX_ARTICLES', '3'));
 const dryRun = readEnv('DRY_RUN', 'false') === 'true';
 const codexBin = readEnv('CODEX_BIN', 'codex');
@@ -41,6 +42,19 @@ const smtpUser = readEnv('SMTP_USER', 'alerts@conquense.dev');
 const smtpPassword = readEnv('SMTP_PASSWORD');
 const mailFrom = readEnv('MAIL_FROM', smtpUser);
 const mailTo = readEnv('MAIL_TO', 'rafaelgarcia1985@hotmail.com');
+
+function normalizeNewsTag(tag) {
+  return tag
+    .toLocaleLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function isRegionalArticle(article) {
+  return article.tags.some((tag) => localNewsTags.has(normalizeNewsTag(tag)));
+}
 
 const fail = (message) => {
   throw new Error(message);
@@ -80,14 +94,18 @@ function promptForArticles(knownUrls) {
 
 Use live web search. Find up to ${maxArticles} recent, genuinely useful technology news items about software engineering, JavaScript, TypeScript, frontend architecture, browser APIs, web tooling, testing, maintainability, applied AI, security, systems, or web performance. Include frontend and JavaScript ecosystem stories when they contain substantial technical lessons, not merely release announcements.
 
+Reserve at most one of the ${maxArticles} total slots for a regional story when one meets the same editorial bar. A regional story must be connected to Cuenca, its province, or Castilla-La Mancha and must have technology at its centre: software, AI, cybersecurity, data centres or cloud infrastructure, digital fabrication, robotics, university research, health technology, agri-tech, tourism technology, or rural digitisation. If no suitable regional story exists, fill the available slots with general technical news.
+
 Rules:
 - Return ONLY valid JSON matching the supplied schema. No Markdown fences and no commentary.
 - Write an original 400-700 word article in Spanish and a faithful English translation.
 - Do not copy source text, invent facts, or use a source without a canonical URL, publisher, title and publication date.
 - Prefer primary sources or reliable technical reporting. Explain why each item matters technically without strong unsupported opinions.
+- For regional stories, prefer primary sources such as UCLM, ITECAM, FabLab Cuenca, the Junta de Comunidades, CRID or the companies involved. Do not turn a political announcement or a generic event notice into a technical story.
 - Reject items that are primarily gadgets, marketing announcements without technical substance, politics, finance, or duplicate coverage.
 - Include the short AI transparency note: "Contenido generado automáticamente con IA." for Spanish and "AI-generated content." for English.
 - Use lowercase URL-safe slugs, with the same translationId in both language objects.
+- For a regional story, include "cuenca" or "castilla-la-mancha" as a tag in both language objects. Keep the tag spelling stable so the archive filter can identify it.
 - Skip any source URL already known: ${JSON.stringify(knownUrls)}.
 - If no item meets the bar, return {"articles":[]}.
 
@@ -167,8 +185,11 @@ function validateDrafts(result, knownUrls) {
   for (const [translationId, articles] of groups) {
     if (articles.length !== 2 || new Set(articles.map((article) => article.lang)).size !== 2) fail(`La noticia ${translationId} no tiene exactamente ES y EN.`);
     if (new Set(articles.map((article) => article.sourceUrl)).size !== 1) fail(`Las traducciones de ${translationId} no comparten fuente.`);
+    if (isRegionalArticle(articles[0]) !== isRegionalArticle(articles[1])) fail(`Las traducciones de ${translationId} no comparten la clasificación regional.`);
   }
-  return [...groups.values()].map(([es, en]) => ({ es, en }));
+  const grouped = [...groups.values()].map(([es, en]) => ({ es, en }));
+  if (grouped.filter(({ es }) => isRegionalArticle(es)).length > 1) fail('Codex ha propuesto más de una noticia regional en la misma ejecución.');
+  return grouped;
 }
 
 async function writeDrafts(groups) {

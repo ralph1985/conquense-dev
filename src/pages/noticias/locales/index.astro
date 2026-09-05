@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import NewsPage from '@/components/NewsPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { uiCopy } from '@/data/i18n';
+import { getLocalNewsEntries, getNewsLocalArchivePath, getNewsPageCount } from '@/data/news';
+
+const allEntries = (await getCollection('news')).filter((entry) => entry.data.lang === 'es');
+const entries = getLocalNewsEntries(allEntries);
+const localPath = getNewsLocalArchivePath('es', 1);
+const alternatePath = getNewsLocalArchivePath('en', 1);
+---
+
+<BaseLayout
+  lang="es"
+  title="Noticias de tecnología de Cuenca y Castilla-La Mancha - Conquense Dev"
+  description="Noticias sobre innovación, IA, software, ciberseguridad e infraestructuras tecnológicas de Cuenca y Castilla-La Mancha."
+  alternateLinks={[{ lang: 'es', href: localPath }, { lang: 'en', href: alternatePath }]}
+>
+  <NewsPage lang="es" alternateLink={{ lang: 'en', href: alternatePath }} labels={uiCopy.es} entries={entries} scope="local" totalPages={getNewsPageCount(entries)} />
+</BaseLayout>
