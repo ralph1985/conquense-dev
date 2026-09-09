@@ -6,6 +6,7 @@ import { resolve, sep } from 'node:path';
 import { promisify } from 'node:util';
 import process from 'node:process';
 import nodemailer from 'nodemailer';
+import { validateDrafts } from './news-worker-validation.mjs';
 
 const run = promisify(execFile);
 const root = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
@@ -27,9 +28,6 @@ const statePath = `${varDir}/state.json`;
 const schemaPath = `${root}/scripts/news-article.schema.json`;
 const contentRoot = `${root}/src/content/news`;
 const contentRootPath = resolve(contentRoot);
-const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-const unsafeBodyPattern = /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|style|form)\b|<[^>]+\bon[a-z]+\s*=|(?:href|src|action)\s*=\s*["']\s*(?:java|vb)script\s*:|\]\(\s*(?:java|vb)script\s*:/i;
-const localNewsTags = new Set(['cuenca', 'castilla-la-mancha']);
 const maxArticles = Number(readEnv('MAX_ARTICLES', '3'));
 const dryRun = readEnv('DRY_RUN', 'false') === 'true';
 const codexBin = readEnv('CODEX_BIN', 'codex');
@@ -42,19 +40,6 @@ const smtpUser = readEnv('SMTP_USER', 'alerts@conquense.dev');
 const smtpPassword = readEnv('SMTP_PASSWORD');
 const mailFrom = readEnv('MAIL_FROM', smtpUser);
 const mailTo = readEnv('MAIL_TO', 'rafaelgarcia1985@hotmail.com');
-
-function normalizeNewsTag(tag) {
-  return tag
-    .toLocaleLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function isRegionalArticle(article) {
-  return article.tags.some((tag) => localNewsTags.has(normalizeNewsTag(tag)));
-}
 
 const fail = (message) => {
   throw new Error(message);
@@ -83,13 +68,14 @@ async function existingArticles() {
     for (const file of files.filter((name) => name.endsWith('.md'))) {
       const content = await readFile(`${dir}/${file}`, 'utf8');
       const sourceUrl = content.match(/^sourceUrl:\s*["']?([^"'\n]+)["']?\s*$/m)?.[1];
-      if (sourceUrl) articles.push({ lang, sourceUrl });
+      const translationId = content.match(/^translationId:\s*["']?([^"'\n]+)["']?\s*$/m)?.[1];
+      if (sourceUrl) articles.push({ lang, sourceUrl, translationId });
     }
   }
   return articles;
 }
 
-function promptForArticles(knownUrls) {
+function promptForArticles(knownUrls, knownTranslationIds) {
   return `You are the research and editorial stage of a local technical news worker.
 
 Use live web search. Find up to ${maxArticles} recent, genuinely useful technology news items about software engineering, JavaScript, TypeScript, frontend architecture, browser APIs, web tooling, testing, maintainability, applied AI, security, systems, or web performance. Include frontend and JavaScript ecosystem stories when they contain substantial technical lessons, not merely release announcements.
@@ -107,13 +93,14 @@ Rules:
 - Use lowercase URL-safe slugs, with the same translationId in both language objects.
 - For a regional story, include "cuenca" or "castilla-la-mancha" as a tag in both language objects. Keep the tag spelling stable so the archive filter can identify it.
 - Skip any source URL already known: ${JSON.stringify(knownUrls)}.
+- Do not reuse any existing translationId: ${JSON.stringify(knownTranslationIds)}.
 - If no item meets the bar, return {"articles":[]}.
 
 The result must contain one article object per language for each story, so every story has exactly one es and one en object sharing translationId.`;
 }
 
-async function generateDrafts(knownUrls) {
-  const prompt = promptForArticles(knownUrls);
+async function generateDrafts(knownUrls, knownTranslationIds) {
+  const prompt = promptForArticles(knownUrls, knownTranslationIds);
   const raw = await new Promise((resolve, reject) => {
     const child = spawn(codexBin, [
       '--search',
@@ -164,67 +151,57 @@ async function generateDrafts(knownUrls) {
   }
 }
 
-function validateDrafts(result, knownUrls) {
-  if (!result || !Array.isArray(result.articles)) fail('La salida de Codex no contiene articles[].');
-  if (result.articles.length > maxArticles * 2) fail('Codex ha excedido el máximo de traducciones permitido.');
-  const groups = new Map();
-  for (const article of result.articles) {
-    const required = ['translationId', 'lang', 'slug', 'title', 'description', 'publishedAt', 'sourceName', 'sourceTitle', 'sourceUrl', 'tags', 'readingTime', 'aiDisclosure', 'body'];
-    if (required.some((key) => article[key] === undefined)) fail(`Faltan campos en la propuesta ${article.translationId ?? 'desconocida'}.`);
-    if (!['es', 'en'].includes(article.lang)) fail('Idioma de artículo no permitido.');
-    if (typeof article.slug !== 'string' || article.slug.length > 100 || !slugPattern.test(article.slug)) fail('Slug inválido.');
-    if (typeof article.sourceUrl !== 'string' || !/^https?:\/\//i.test(article.sourceUrl)) fail('La fuente no usa una URL HTTP(S).');
-    if (knownUrls.includes(article.sourceUrl)) fail(`Fuente duplicada: ${article.sourceUrl}`);
-    if (!Array.isArray(article.tags) || article.tags.length < 1 || article.tags.length > 5) fail('Etiquetas inválidas.');
-    if (typeof article.body !== 'string' || article.body.length < 500) fail(`Cuerpo demasiado corto en ${article.translationId}.`);
-    if (unsafeBodyPattern.test(article.body)) fail(`Contenido HTML no permitido en ${article.translationId}.`);
-    const group = groups.get(article.translationId) ?? [];
-    group.push(article);
-    groups.set(article.translationId, group);
-  }
-  for (const [translationId, articles] of groups) {
-    if (articles.length !== 2 || new Set(articles.map((article) => article.lang)).size !== 2) fail(`La noticia ${translationId} no tiene exactamente ES y EN.`);
-    if (new Set(articles.map((article) => article.sourceUrl)).size !== 1) fail(`Las traducciones de ${translationId} no comparten fuente.`);
-    if (isRegionalArticle(articles[0]) !== isRegionalArticle(articles[1])) fail(`Las traducciones de ${translationId} no comparten la clasificación regional.`);
-  }
-  const grouped = [...groups.values()].map(([es, en]) => ({ es, en }));
-  if (grouped.filter(({ es }) => isRegionalArticle(es)).length > 1) fail('Codex ha propuesto más de una noticia regional en la misma ejecución.');
-  return grouped;
-}
-
 async function writeDrafts(groups) {
   const files = [];
-  for (const group of groups) {
-    for (const article of [group.es, group.en]) {
-      const dir = resolve(contentRootPath, article.lang);
-      const path = resolve(dir, `${article.slug}.md`);
-      if (!path.startsWith(`${contentRootPath}${sep}`)) fail('La ruta del borrador queda fuera del contenido de noticias.');
-      await mkdir(dir, { recursive: true });
-      const frontmatter = [
-        '---',
-        `translationId: ${article.translationId}`,
-        `lang: ${article.lang}`,
-        `slug: ${article.slug}`,
-        `title: ${JSON.stringify(article.title)}`,
-        `description: ${JSON.stringify(article.description)}`,
-        `publishedAt: ${article.publishedAt}`,
-        `sourceName: ${JSON.stringify(article.sourceName)}`,
-        `sourceTitle: ${JSON.stringify(article.sourceTitle)}`,
-        `sourceUrl: ${JSON.stringify(article.sourceUrl)}`,
-        ...(article.author ? [`author: ${JSON.stringify(article.author)}`] : []),
-        `tags: [${article.tags.map((tag) => JSON.stringify(tag)).join(', ')}]`,
-        `readingTime: ${article.readingTime}`,
-        `aiDisclosure: ${JSON.stringify(article.aiDisclosure)}`,
-        '---',
-        '',
-        article.body.trim(),
-        '',
-      ].join('\n');
-      await writeFile(path, frontmatter, 'utf8');
-      files.push(path);
+  try {
+    for (const group of groups) {
+      for (const article of [group.es, group.en]) {
+        const dir = resolve(contentRootPath, article.lang);
+        const path = resolve(dir, `${article.slug}.md`);
+        if (!path.startsWith(`${contentRootPath}${sep}`)) fail('La ruta del borrador queda fuera del contenido de noticias.');
+        try {
+          await readFile(path);
+          fail(`El archivo del borrador ya existe: ${path}`);
+        } catch (error) {
+          if (error.code !== 'ENOENT') throw error;
+        }
+        await mkdir(dir, { recursive: true });
+        const frontmatter = [
+          '---',
+          `translationId: ${article.translationId}`,
+          `lang: ${article.lang}`,
+          `slug: ${article.slug}`,
+          `title: ${JSON.stringify(article.title)}`,
+          `description: ${JSON.stringify(article.description)}`,
+          `publishedAt: ${article.publishedAt}`,
+          `sourceName: ${JSON.stringify(article.sourceName)}`,
+          `sourceTitle: ${JSON.stringify(article.sourceTitle)}`,
+          `sourceUrl: ${JSON.stringify(article.sourceUrl)}`,
+          ...(article.author ? [`author: ${JSON.stringify(article.author)}`] : []),
+          `tags: [${article.tags.map((tag) => JSON.stringify(tag)).join(', ')}]`,
+          `readingTime: ${article.readingTime}`,
+          `aiDisclosure: ${JSON.stringify(article.aiDisclosure)}`,
+          '---',
+          '',
+          article.body.trim(),
+          '',
+        ].join('\n');
+        await writeFile(path, frontmatter, 'utf8');
+        files.push(path);
+      }
     }
+  } catch (error) {
+    await Promise.all(files.map((file) => rm(file, { force: true })));
+    throw error;
   }
   return files;
+}
+
+async function cleanupDrafts(files) {
+  for (const file of files) {
+    const status = (await git(['status', '--porcelain', '--', file])).stdout.trim();
+    if (status.startsWith('?? ')) await rm(file, { force: true });
+  }
 }
 
 async function git(args) {
@@ -262,9 +239,9 @@ async function publish(files, groups) {
 
 async function ensureBranch() {
   const current = (await git(['branch', '--show-current'])).stdout.trim();
-  if (current === branch) return;
   const status = (await git(['status', '--porcelain'])).stdout.trim();
   if (status) fail('El árbol de trabajo no está limpio; no se puede publicar automáticamente.');
+  if (current === branch) return;
   const branches = (await git(['branch', '--list', branch])).stdout.trim();
   if (branches) await git(['switch', branch]);
   else {
@@ -278,6 +255,17 @@ async function ensureBranch() {
   }
 }
 
+async function restoreBranch(originalBranch) {
+  const current = (await git(['branch', '--show-current'])).stdout.trim();
+  if (!originalBranch || current === originalBranch) return;
+  const status = (await git(['status', '--porcelain'])).stdout.trim();
+  if (status) {
+    console.error(`No se restaura ${originalBranch}: el checkout conserva cambios para revisión.`);
+    return;
+  }
+  await git(['switch', originalBranch]);
+}
+
 async function sendMail(subject, text) {
   if (!smtpPassword) fail('NEWS_SMTP_PASSWORD no está configurada.');
   const transporter = nodemailer.createTransport({ host: smtpHost, port: smtpPort, secure: smtpSecure, auth: { user: smtpUser, pass: smtpPassword } });
@@ -289,8 +277,10 @@ async function main() {
   const state = await readState();
   const existing = await existingArticles();
   const knownUrls = [...new Set([...state.proposedSourceUrls, ...existing.map((article) => article.sourceUrl)])];
-  const result = await generateDrafts(knownUrls);
-  const groups = validateDrafts(result, knownUrls).slice(0, maxArticles);
+  const knownTranslationIds = [...new Set(existing.map((article) => article.translationId).filter(Boolean))];
+  const result = await generateDrafts(knownUrls, knownTranslationIds);
+  const { groups, rejected } = validateDrafts(result, { knownUrls, knownTranslationIds, maxArticles });
+  for (const item of rejected) console.warn(`Propuesta descartada (${item.translationId}): ${item.reason}.`);
   if (groups.length === 0) {
     console.log('No hay noticias elegibles.');
     return;
@@ -299,22 +289,43 @@ async function main() {
     console.log(JSON.stringify({ dryRun: true, articles: groups.map(({ es }) => ({ title: es.title, sourceUrl: es.sourceUrl })) }, null, 2));
     return;
   }
-  await ensureBranch();
-  const files = await writeDrafts(groups);
-  await run('pnpm', ['lint'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
-  await run('pnpm', ['build'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
-  const pr = await publish(files, groups);
-  state.proposedSourceUrls = [...new Set([...knownUrls, ...groups.map(({ es }) => es.sourceUrl)])];
-  state.runs = [...state.runs.slice(-29), { at: new Date().toISOString(), pr: pr.url, count: groups.length }];
-  await writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
-  await sendMail(`Noticias técnicas: ${groups.length} propuesta${groups.length === 1 ? '' : 's'}`, [
-    'Se ha preparado una nueva propuesta editorial para Conquense Dev.',
-    '',
-    ...groups.map(({ es }) => `- ${es.title}\n  Fuente: ${es.sourceUrl}`),
-    '',
-    `Pull request: ${pr.url}`,
-  ].join('\n'));
-  console.log(`PR creada o actualizada: ${pr.url}`);
+  const originalBranch = (await git(['branch', '--show-current'])).stdout.trim();
+  if (!originalBranch) fail('El checkout está detached; no se puede restaurar la rama original.');
+  let files = [];
+  try {
+    await ensureBranch();
+    files = await writeDrafts(groups);
+    await run('pnpm', ['lint'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
+    await run('pnpm', ['build'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
+    const pr = await publish(files, groups);
+    state.proposedSourceUrls = [...new Set([...knownUrls, ...groups.map(({ es }) => es.sourceUrl)])];
+    state.runs = [...state.runs.slice(-29), { at: new Date().toISOString(), pr: pr.url, count: groups.length }];
+    await writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+    await sendMail(`Noticias técnicas: ${groups.length} propuesta${groups.length === 1 ? '' : 's'}`, [
+      'Se ha preparado una nueva propuesta editorial para Conquense Dev.',
+      '',
+      ...groups.map(({ es }) => `- ${es.title}\n  Fuente: ${es.sourceUrl}`),
+      '',
+      `Pull request: ${pr.url}`,
+    ].join('\n'));
+    console.log(`PR creada o actualizada: ${pr.url}`);
+  } catch (error) {
+    if (files.length > 0) {
+      try {
+        await cleanupDrafts(files);
+      } catch (cleanupError) {
+        console.error(`No se pudieron limpiar todos los borradores: ${cleanupError.message}`);
+      }
+    }
+    throw error;
+  } finally {
+    try {
+      await restoreBranch(originalBranch);
+    } catch (error) {
+      console.error(`No se pudo restaurar la rama ${originalBranch}: ${error.message}`);
+      process.exitCode = 1;
+    }
+  }
 }
 
 main().catch(async (error) => {
