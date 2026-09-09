@@ -45,7 +45,7 @@ const copy = lang === 'es'
       items: 'noticias',
       search: 'Buscar noticias',
       filter: { label: 'Filtrar noticias', all: 'Todas', local: 'Cuenca y Castilla-La Mancha' },
-      pagination: { label: 'Paginación de noticias', previous: 'Anterior', next: 'Siguiente', page: 'Página' },
+      pagination: { label: 'Paginación de noticias', previous: 'Anterior', next: 'Siguiente', page: 'Página', of: 'de' },
     }
   : {
       eyebrow: isLocalScope ? 'Local technology news' : 'Technical news',
@@ -58,7 +58,7 @@ const copy = lang === 'es'
       items: 'news items',
       search: 'Search news',
       filter: { label: 'Filter news', all: 'All', local: 'Cuenca and Castilla-La Mancha' },
-      pagination: { label: 'News pagination', previous: 'Previous', next: 'Next', page: 'Page' },
+      pagination: { label: 'News pagination', previous: 'Previous', next: 'Next', page: 'Page', of: 'of' },
     };
 
 const pageEntries = getNewsPageEntries(visibleEntries, currentPage);
@@ -109,6 +109,7 @@ const pagePath = (page: number) => isLocalScope ? getNewsLocalArchivePath(lang, 
       totalPages > 1 && (
       <nav class="news-pagination" aria-label={copy.pagination.label}>
         {currentPage > 1 ? <a class="news-pagination__link" href={pagePath(currentPage - 1)} rel="prev">← {copy.pagination.previous}</a> : <span class="news-pagination__link news-pagination__link--disabled" aria-disabled="true">← {copy.pagination.previous}</span>}
+        <span class="news-pagination__summary">{copy.pagination.page} {currentPage} {copy.pagination.of} {totalPages}</span>
         <ol aria-label={copy.pagination.label}>
           {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
             <li>
