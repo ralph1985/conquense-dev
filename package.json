@@ -9,6 +9,7 @@
     "build": "node scripts/validate-news-content.mjs && astro check && astro build",
     "preview": "astro preview",
     "lint": "astro check",
+    "test:news": "node --test scripts/news-worker-validation.test.mjs",
     "news:worker": "node scripts/news-worker.mjs"
   },
   "dependencies": {
