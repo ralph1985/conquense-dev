@@ -13,7 +13,7 @@
     "news:worker": "node scripts/news-worker.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.9",
+    "@astrojs/check": "0.9.10",
     "@vercel/analytics": "2.0.1",
     "astro": "7.2.8",
     "nodemailer": "9.1.1",
