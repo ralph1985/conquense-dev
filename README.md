@@ -52,7 +52,7 @@ El worker se ejecuta con `pnpm news:worker`. Codex CLI se usa para investigar y 
 
 La ejecución real requiere `.env.local` con `NEWS_SMTP_PASSWORD` y una sesión válida de `gh`. El worker acepta temporalmente las variables `BLOG_*` como fallback para facilitar la migración local sin exponer ni duplicar secretos. Los valores de ejemplo están en `.env.example`. La primera prueba controlada puede limitarse a una noticia con `NEWS_MAX_ARTICLES=1`; `NEWS_DRY_RUN=true` evita escribir y publicar.
 
-`NEWS_CODEX_TIMEOUT_MS` permite limitar el tiempo de búsqueda (por defecto, tres minutos) para que una ejecución bloqueada termine y envíe la alerta configurada.
+`NEWS_CODEX_TIMEOUT_MS` permite limitar el tiempo de búsqueda en milisegundos (por defecto, cinco minutos) para que una ejecución bloqueada termine y envíe la alerta configurada. El cron fija explícitamente este valor en `300000`; no hay reintentos automáticos.
 
 El instalador añade una entrada marcada en la crontab del usuario para las 09:45, fijada a la zona horaria `Europe/Madrid`:
 

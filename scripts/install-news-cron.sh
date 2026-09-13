@@ -21,7 +21,7 @@ cat >> "$TEMP_CRON" <<EOF
 $BEGIN
 PATH=$PATH_VALUE
 CRON_TZ=Europe/Madrid
-45 9 * * * cd $ROOT && /usr/bin/flock -n $ROOT/var/news-worker.lock env NEWS_MAX_ARTICLES=3 $PNPM_BIN news:worker >> $LOG_DIR/news-worker.cron.log 2>&1
+45 9 * * * cd $ROOT && /usr/bin/flock -n $ROOT/var/news-worker.lock env NEWS_MAX_ARTICLES=3 NEWS_CODEX_TIMEOUT_MS=300000 $PNPM_BIN news:worker >> $LOG_DIR/news-worker.cron.log 2>&1
 $END
 EOF
 crontab "$TEMP_CRON"

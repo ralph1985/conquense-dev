@@ -31,7 +31,7 @@ const contentRootPath = resolve(contentRoot);
 const maxArticles = Number(readEnv('MAX_ARTICLES', '3'));
 const dryRun = readEnv('DRY_RUN', 'false') === 'true';
 const codexBin = readEnv('CODEX_BIN', 'codex');
-const codexTimeoutMs = Number(readEnv('CODEX_TIMEOUT_MS', '180000'));
+const codexTimeoutMs = Number(readEnv('CODEX_TIMEOUT_MS', '300000'));
 const branch = readEnv('BRANCH', 'automation/news');
 const smtpHost = readEnv('SMTP_HOST', 'smtp.dondominio.com');
 const smtpPort = Number(readEnv('SMTP_PORT', '587'));
@@ -41,6 +41,8 @@ const smtpPassword = readEnv('SMTP_PASSWORD');
 const mailFrom = readEnv('MAIL_FROM', smtpUser);
 const mailTo = readEnv('MAIL_TO', 'rafaelgarcia1985@hotmail.com');
 
+const log = (message) => console.error(`[${new Date().toISOString()}] ${message}`);
+const elapsed = (startedAt) => `${((Date.now() - startedAt) / 1000).toFixed(1)} s`;
 const fail = (message) => {
   throw new Error(message);
 };
@@ -100,7 +102,9 @@ The result must contain one article object per language for each story, so every
 }
 
 async function generateDrafts(knownUrls, knownTranslationIds) {
+  const startedAt = Date.now();
   const prompt = promptForArticles(knownUrls, knownTranslationIds);
+  log(`Investigación Codex iniciada (timeout: ${Math.round(codexTimeoutMs / 1000)} s).`);
   const raw = await new Promise((resolve, reject) => {
     const child = spawn(codexBin, [
       '--search',
@@ -117,6 +121,7 @@ async function generateDrafts(knownUrls, knownTranslationIds) {
     let settled = false;
     const timer = setTimeout(() => {
       child.kill('SIGTERM');
+      log(`Investigación Codex agotó el timeout tras ${elapsed(startedAt)}.`);
       if (!settled) {
         settled = true;
         reject(new Error(`Codex superó el tiempo máximo de ${Math.round(codexTimeoutMs / 1000)} segundos.`));
@@ -133,9 +138,11 @@ async function generateDrafts(knownUrls, knownTranslationIds) {
       if (settled) return;
       settled = true;
       if (code !== 0) {
+        log(`Investigación Codex terminó con error tras ${elapsed(startedAt)}.`);
         reject(new Error(stderr.trim() || `Codex terminó con código ${code ?? 'desconocido'}${signal ? ` (${signal})` : ''}.`));
         return;
       }
+      log(`Investigación Codex completada en ${elapsed(startedAt)}.`);
       resolve(stdout);
     });
     child.stdin.end(prompt);
@@ -273,6 +280,8 @@ async function sendMail(subject, text) {
 }
 
 async function main() {
+  const startedAt = Date.now();
+  log(`Worker iniciado (máximo: ${maxArticles} noticias, dry-run: ${dryRun}).`);
   await mkdir(varDir, { recursive: true });
   const state = await readState();
   const existing = await existingArticles();
@@ -281,8 +290,9 @@ async function main() {
   const result = await generateDrafts(knownUrls, knownTranslationIds);
   const { groups, rejected } = validateDrafts(result, { knownUrls, knownTranslationIds, maxArticles });
   for (const item of rejected) console.warn(`Propuesta descartada (${item.translationId}): ${item.reason}.`);
+  log(`Validación completada: ${groups.length} propuesta(s) válida(s), ${rejected.length} descartada(s).`);
   if (groups.length === 0) {
-    console.log('No hay noticias elegibles.');
+    log('No hay noticias elegibles.');
     return;
   }
   if (dryRun) {
@@ -295,8 +305,10 @@ async function main() {
   try {
     await ensureBranch();
     files = await writeDrafts(groups);
+    log('Checks locales iniciados.');
     await run('pnpm', ['lint'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
     await run('pnpm', ['build'], { cwd: root, maxBuffer: 10 * 1024 * 1024 });
+    log('Checks locales completados.');
     const pr = await publish(files, groups);
     state.proposedSourceUrls = [...new Set([...knownUrls, ...groups.map(({ es }) => es.sourceUrl)])];
     state.runs = [...state.runs.slice(-29), { at: new Date().toISOString(), pr: pr.url, count: groups.length }];
@@ -308,7 +320,8 @@ async function main() {
       '',
       `Pull request: ${pr.url}`,
     ].join('\n'));
-    console.log(`PR creada o actualizada: ${pr.url}`);
+    log(`Digest SMTP enviado correctamente. PR creada o actualizada: ${pr.url}`);
+    log(`Worker completado en ${elapsed(startedAt)}.`);
   } catch (error) {
     if (files.length > 0) {
       try {
@@ -329,9 +342,14 @@ async function main() {
 }
 
 main().catch(async (error) => {
-  console.error(error.stack ?? error.message);
+  console.error(`[${new Date().toISOString()}] ${error.stack ?? error.message}`);
   if (!dryRun && smtpPassword) {
-    try { await sendMail('Error en el worker de noticias técnicas', `La ejecución automática ha fallado:\n\n${error.stack ?? error.message}`); } catch (mailError) { console.error(`No se pudo enviar la alerta: ${mailError.message}`); }
+    try {
+      await sendMail('Error en el worker de noticias técnicas', `La ejecución automática ha fallado:\n\n${error.stack ?? error.message}`);
+      log('Alerta SMTP enviada correctamente.');
+    } catch (mailError) {
+      console.error(`[${new Date().toISOString()}] No se pudo enviar la alerta: ${mailError.message}`);
+    }
   }
   process.exitCode = 1;
 });
