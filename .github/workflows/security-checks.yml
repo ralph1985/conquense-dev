@@ -33,6 +33,12 @@ jobs:
       - name: Audit production dependencies
         run: pnpm audit --prod
 
+      - name: TypeScript typecheck
+        run: pnpm exec tsc --noEmit
+
+      - name: Validate news worker
+        run: pnpm test:news
+
       - name: Check source
         run: pnpm lint
 
