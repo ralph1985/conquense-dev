@@ -33,6 +33,9 @@ jobs:
       - name: Audit production dependencies
         run: pnpm audit --prod
 
+      - name: Sync Astro types
+        run: pnpm exec astro sync
+
       - name: TypeScript typecheck
         run: pnpm exec tsc --noEmit
 
