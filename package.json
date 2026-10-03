@@ -13,17 +13,17 @@
     "news:worker": "node scripts/news-worker.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.10",
-    "@vercel/analytics": "2.0.1",
-    "astro": "7.2.8",
-    "nodemailer": "10.0.10",
-    "typescript": "6.0.3"
+    "@vercel/analytics": "2.0.1"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.10",
     "autoprefixer": "10.5.5",
+    "astro": "7.2.8",
     "daisyui": "4.12.14",
+    "nodemailer": "10.0.10",
     "postcss": "8.5.26",
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "3.4.17",
+    "typescript": "6.0.3"
   },
   "pnpm": {
     "overrides": {
