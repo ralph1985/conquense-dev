@@ -18,7 +18,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "autoprefixer": "10.5.5",
-    "astro": "7.2.8",
+    "astro": "7.3.5",
     "daisyui": "4.12.14",
     "nodemailer": "10.0.10",
     "postcss": "8.5.26",
