@@ -32,6 +32,7 @@ const maxArticles = Number(readEnv('MAX_ARTICLES', '3'));
 const dryRun = readEnv('DRY_RUN', 'false') === 'true';
 const codexBin = readEnv('CODEX_BIN', 'codex');
 const codexTimeoutMs = Number(readEnv('CODEX_TIMEOUT_MS', '300000'));
+const baseBranch = 'main';
 const branch = readEnv('BRANCH', 'automation/news');
 const smtpHost = readEnv('SMTP_HOST', 'smtp.dondominio.com');
 const smtpPort = Number(readEnv('SMTP_PORT', '587'));
@@ -215,6 +216,11 @@ async function git(args) {
   return run('git', args, { cwd: root, maxBuffer: 10 * 1024 * 1024 });
 }
 
+async function hasOpenPullRequest() {
+  const result = await run('gh', ['pr', 'list', '--head', branch, '--state', 'open', '--json', 'number'], { cwd: root });
+  return JSON.parse(result.stdout).length > 0;
+}
+
 async function publish(files, groups) {
   await git(['add', ...files]);
   await git(['commit', '-m', 'feat(news): add reviewed news proposals']);
@@ -244,33 +250,55 @@ async function publish(files, groups) {
   return pr;
 }
 
+async function synchronizeBaseBranch() {
+  const current = (await git(['branch', '--show-current'])).stdout.trim();
+  const status = (await git(['status', '--porcelain'])).stdout.trim();
+  if (status) fail('El árbol de trabajo no está limpio; no se puede publicar automáticamente.');
+  if (!current) fail('El checkout está detached; no se puede sincronizar la rama base.');
+  if (current !== baseBranch) await git(['switch', baseBranch]);
+  await git(['fetch', 'origin', baseBranch]);
+  const [ahead, behind] = (await git(['rev-list', '--left-right', '--count', `${baseBranch}...origin/${baseBranch}`])).stdout.trim().split(/\s+/).map(Number);
+  if (ahead > 0) {
+    const backupBranch = `backup/news-worker-main-${Date.now()}`;
+    await git(['branch', backupBranch, baseBranch]);
+    log(`Commits locales de ${baseBranch} preservados en ${backupBranch}.`);
+  }
+  if (ahead > 0 || behind > 0) await git(['reset', '--hard', `origin/${baseBranch}`]);
+  const remaining = (await git(['rev-list', '--left-right', '--count', `${baseBranch}...origin/${baseBranch}`])).stdout.trim();
+  if (remaining !== '0\t0') fail(`${baseBranch} no quedó sincronizada con origin/${baseBranch}: ${remaining}.`);
+}
+
 async function ensureBranch() {
   const current = (await git(['branch', '--show-current'])).stdout.trim();
   const status = (await git(['status', '--porcelain'])).stdout.trim();
   if (status) fail('El árbol de trabajo no está limpio; no se puede publicar automáticamente.');
-  if (current === branch) return;
+  if (current !== baseBranch) fail(`El worker debe partir de ${baseBranch}; rama actual: ${current || 'detached'}.`);
+  await git(['fetch', 'origin', baseBranch]);
   const branches = (await git(['branch', '--list', branch])).stdout.trim();
+  const remote = (await git(['ls-remote', '--heads', 'origin', `refs/heads/${branch}`])).stdout.trim();
   if (branches) await git(['switch', branch]);
-  else {
-    const remote = (await git(['ls-remote', '--heads', 'origin', `refs/heads/${branch}`])).stdout.trim();
-    if (remote) {
-      await git(['fetch', 'origin', `${branch}:${branch}`]);
-      await git(['switch', branch]);
-    } else {
-      await git(['switch', '-c', branch]);
-    }
+  else if (remote) {
+    await git(['fetch', 'origin', branch]);
+    await git(['switch', '-c', branch, '--track', `origin/${branch}`]);
+  } else await git(['switch', '-c', branch, `origin/${baseBranch}`]);
+  if (await hasOpenPullRequest()) return;
+
+  await git(['reset', '--hard', `origin/${baseBranch}`]);
+  if (remote) {
+    await git(['fetch', 'origin', branch]);
+    await git(['push', '--force-with-lease', '--set-upstream', 'origin', branch]);
   }
 }
 
-async function restoreBranch(originalBranch) {
+async function restoreBaseBranch() {
   const current = (await git(['branch', '--show-current'])).stdout.trim();
-  if (!originalBranch || current === originalBranch) return;
+  if (current === baseBranch) return;
   const status = (await git(['status', '--porcelain'])).stdout.trim();
   if (status) {
-    console.error(`No se restaura ${originalBranch}: el checkout conserva cambios para revisión.`);
+    console.error(`No se puede volver a ${baseBranch}: el checkout conserva cambios para revisión.`);
     return;
   }
-  await git(['switch', originalBranch]);
+  await git(['switch', baseBranch]);
 }
 
 async function sendMail(subject, text) {
@@ -282,6 +310,7 @@ async function sendMail(subject, text) {
 async function main() {
   const startedAt = Date.now();
   log(`Worker iniciado (máximo: ${maxArticles} noticias, dry-run: ${dryRun}).`);
+  if (!dryRun) await synchronizeBaseBranch();
   await mkdir(varDir, { recursive: true });
   const state = await readState();
   const existing = await existingArticles();
@@ -299,8 +328,6 @@ async function main() {
     console.log(JSON.stringify({ dryRun: true, articles: groups.map(({ es }) => ({ title: es.title, sourceUrl: es.sourceUrl })) }, null, 2));
     return;
   }
-  const originalBranch = (await git(['branch', '--show-current'])).stdout.trim();
-  if (!originalBranch) fail('El checkout está detached; no se puede restaurar la rama original.');
   let files = [];
   try {
     await ensureBranch();
@@ -333,9 +360,9 @@ async function main() {
     throw error;
   } finally {
     try {
-      await restoreBranch(originalBranch);
+      await restoreBaseBranch();
     } catch (error) {
-      console.error(`No se pudo restaurar la rama ${originalBranch}: ${error.message}`);
+      console.error(`No se pudo restaurar la rama ${baseBranch}: ${error.message}`);
       process.exitCode = 1;
     }
   }
