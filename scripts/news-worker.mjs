@@ -215,6 +215,11 @@ async function git(args) {
   return run('git', args, { cwd: root, maxBuffer: 10 * 1024 * 1024 });
 }
 
+async function hasOpenPullRequest() {
+  const result = await run('gh', ['pr', 'list', '--head', branch, '--state', 'open', '--json', 'number'], { cwd: root });
+  return JSON.parse(result.stdout).length > 0;
+}
+
 async function publish(files, groups) {
   await git(['add', ...files]);
   await git(['commit', '-m', 'feat(news): add reviewed news proposals']);
@@ -248,17 +253,22 @@ async function ensureBranch() {
   const current = (await git(['branch', '--show-current'])).stdout.trim();
   const status = (await git(['status', '--porcelain'])).stdout.trim();
   if (status) fail('El árbol de trabajo no está limpio; no se puede publicar automáticamente.');
-  if (current === branch) return;
+  await git(['fetch', 'origin', 'main']);
   const branches = (await git(['branch', '--list', branch])).stdout.trim();
-  if (branches) await git(['switch', branch]);
-  else {
-    const remote = (await git(['ls-remote', '--heads', 'origin', `refs/heads/${branch}`])).stdout.trim();
-    if (remote) {
-      await git(['fetch', 'origin', `${branch}:${branch}`]);
-      await git(['switch', branch]);
-    } else {
-      await git(['switch', '-c', branch]);
-    }
+  const remote = (await git(['ls-remote', '--heads', 'origin', `refs/heads/${branch}`])).stdout.trim();
+  if (current !== branch) {
+    if (branches) await git(['switch', branch]);
+    else if (remote) {
+      await git(['fetch', 'origin', branch]);
+      await git(['switch', '-c', branch, '--track', `origin/${branch}`]);
+    } else await git(['switch', '-c', branch, 'origin/main']);
+  }
+  if (await hasOpenPullRequest()) return;
+
+  await git(['reset', '--hard', 'origin/main']);
+  if (remote) {
+    await git(['fetch', 'origin', branch]);
+    await git(['push', '--force-with-lease', '--set-upstream', 'origin', branch]);
   }
 }
 
