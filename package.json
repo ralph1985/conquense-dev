@@ -19,7 +19,7 @@
     "@astrojs/check": "0.9.10",
     "autoprefixer": "10.5.5",
     "astro": "7.4.0",
-    "daisyui": "4.12.14",
+    "daisyui": "5.7.50",
     "nodemailer": "10.1.4",
     "postcss": "8.5.26",
     "tailwindcss": "3.4.17",
