@@ -20,7 +20,7 @@
     "autoprefixer": "10.5.5",
     "astro": "7.4.0",
     "daisyui": "4.12.14",
-    "nodemailer": "10.1.4",
+    "nodemailer": "10.1.7",
     "postcss": "8.5.26",
     "tailwindcss": "3.4.17",
     "typescript": "6.0.3"
