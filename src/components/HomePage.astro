@@ -34,6 +34,9 @@ const experience = localizedExperience[lang];
 const projects = localizedProjects[lang];
 const projectIcons: Record<string, string> = {
   Jucart: '/assets/project-icons/jucart.svg',
+  'Bingo Musical': '/assets/project-icons/music-bingo.svg',
+  'Music Bingo': '/assets/project-icons/music-bingo.svg',
+  'Palomares del Campo': '/assets/project-icons/palomares-del-campo.ico',
   Irati: '/assets/project-icons/irati.svg',
   'Curvas de crecimiento infantiles': '/assets/project-icons/curvas-crecimiento.svg',
   'Borch Gómez': '/assets/project-icons/borchgomez.png',
@@ -257,6 +260,18 @@ const getContactIcon = (label: string, href: string) => {
             <h3><ProjectIcon label={item.name} icon={projectIcons[item.name]} />{item.name}</h3>
             <p class="home-project__role">{item.role}</p>
             <span>{item.summary}</span>
+            {item.name === 'Palomares del Campo' && (
+              <a
+                class="home-project__asset-credit"
+                href="https://commons.wikimedia.org/wiki/File:Escudo_de_Palomares_del_Campo.svg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {lang === 'es'
+                  ? 'Escudo municipal: Asqueladd (CC BY-SA 3.0)'
+                  : 'Municipal coat of arms: Asqueladd (CC BY-SA 3.0)'}
+              </a>
+            )}
           </article>
         ))
       }

@@ -75,6 +75,10 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/palomares-del-campo' },
             { label: 'Demo', href: 'https://palomares-del-campo.vercel.app' },
+            {
+              label: 'Escudo municipal: Asqueladd (CC BY-SA 3.0)',
+              href: 'https://commons.wikimedia.org/wiki/File:Escudo_de_Palomares_del_Campo.svg',
+            },
           ],
         },
         {
@@ -279,6 +283,10 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/palomares-del-campo' },
             { label: 'Demo', href: 'https://palomares-del-campo.vercel.app' },
+            {
+              label: 'Coat of arms: Asqueladd (CC BY-SA 3.0)',
+              href: 'https://commons.wikimedia.org/wiki/File:Escudo_de_Palomares_del_Campo.svg',
+            },
           ],
         },
         {

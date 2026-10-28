@@ -160,6 +160,7 @@
   html[data-theme='dark'] .company-logo img, html[data-theme='dark'] .home-brands img { mix-blend-mode: multiply; }
   .home-projects { @apply grid gap-3 md:grid-cols-3; }
   .home-project__role { @apply mb-5 text-sm font-semibold text-accent; }
+  .home-project__asset-credit { @apply mt-3 inline-flex font-mono text-xs text-accent underline underline-offset-4; }
   .home-contact { @apply grid gap-10 py-20 md:grid-cols-[1fr_auto] md:items-end md:py-28; }
   .home-contact ul { @apply flex flex-col items-start gap-3; }
   .home-contact li { @apply text-sm text-muted; }
