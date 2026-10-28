@@ -41,6 +41,43 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           ],
         },
         {
+          name: 'Bingo Musical',
+          context: 'Producto social en producción',
+          role: 'Producto, arquitectura full-stack y experiencia en tiempo real',
+          summary:
+            'Aplicación web móvil para organizar partidas presenciales de bingo musical. La persona anfitriona importa canciones desde texto, CSV o Spotify, comparte un código o QR y anuncia cada tema; los jugadores usan cartones digitales en el móvil. Convex mantiene el estado compartido y valida las marcas, la línea y el bingo. Spotify puede controlar la reproducción cuando se conecta una cuenta, aunque la música se reproduce fuera de la aplicación.',
+          highlights: [
+            'Experiencias diferenciadas para anfitrión y jugadores.',
+            'Sala compartida con código de seis caracteres y QR.',
+            'Cartones deterministas de 3 × 4 y estado autoritativo en Convex.',
+            'Integración opcional con Spotify para importar y anunciar canciones.',
+          ],
+          stack: ['Next.js', 'React', 'TypeScript', 'Convex', 'Spotify API', 'Vitest', 'Playwright'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/music-bingo' },
+            { label: 'Demo', href: 'https://bingo.conquense.dev' },
+          ],
+        },
+        {
+          name: 'Palomares del Campo',
+          context: 'Plataforma digital local y comunitaria',
+          role: 'Producto, arquitectura full-stack y desarrollo frontend',
+          summary:
+            'Sitio editorial y conjunto de experiencias interactivas para Palomares del Campo. Las noticias, los bandos y las rutas se generan como páginas estáticas; Leaflet y OpenStreetMap aportan mapas y recorridos GPX, y las escenas Three.js se cargan bajo demanda con alternativa. Convex proporciona estado remoto para un juego geolocalizado y para moderar propuestas de «Palomareños por el mundo», sin hacer depender el contenido editorial del backend.',
+          highlights: [
+            'Contenido editorial estático, independiente de los servicios remotos.',
+            'Mapas con Leaflet, OpenStreetMap y rutas GPX.',
+            'Escenas Three.js opcionales con carga bajo demanda y fallback.',
+            'Juego geolocalizado y propuestas comunitarias con moderación remota.',
+            'Coordenadas y radios del juego identificados como provisionales.',
+          ],
+          stack: ['Astro', 'TypeScript', 'Leaflet', 'Three.js', 'Convex', 'OpenStreetMap', 'Turnstile', 'Resend', 'Playwright'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/palomares-del-campo' },
+            { label: 'Demo', href: 'https://palomares-del-campo.vercel.app' },
+          ],
+        },
+        {
           name: 'Irati',
           context: 'Producto privado familiar',
           role: 'Producto, arquitectura y desarrollo asistido por IA',
@@ -205,6 +242,43 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/jucart' },
             { label: 'Demo', href: 'https://jucart-rosy.vercel.app' },
+          ],
+        },
+        {
+          name: 'Music Bingo',
+          context: 'Social product in production',
+          role: 'Product, full-stack architecture and real-time experience',
+          summary:
+            'Mobile web app for running in-person music bingo games. Hosts import songs from text, CSV or Spotify, share a code or QR, and announce each track; players use digital cards on their phones. Convex holds shared game state and validates marks, lines and bingo claims. Spotify can control playback when an account is connected, while the music itself plays outside the app.',
+          highlights: [
+            'Separate host and player experiences.',
+            'Shared room with a six-character code and QR.',
+            'Deterministic 3 × 4 cards and authoritative state in Convex.',
+            'Optional Spotify integration to import and announce songs.',
+          ],
+          stack: ['Next.js', 'React', 'TypeScript', 'Convex', 'Spotify API', 'Vitest', 'Playwright'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/music-bingo' },
+            { label: 'Demo', href: 'https://bingo.conquense.dev' },
+          ],
+        },
+        {
+          name: 'Palomares del Campo',
+          context: 'Local and community digital platform',
+          role: 'Product, full-stack architecture and frontend development',
+          summary:
+            'Editorial website and interactive experiences for Palomares del Campo. News, municipal notices and routes are generated as static pages; Leaflet and OpenStreetMap provide maps and GPX routes, while Three.js scenes load on demand with a fallback. Convex provides remote state for a geolocated game and moderated “Palomareños por el mundo” submissions, without making editorial content depend on the backend.',
+          highlights: [
+            'Static editorial content, independent from remote services.',
+            'Maps with Leaflet, OpenStreetMap and GPX routes.',
+            'Optional Three.js scenes with on-demand loading and a fallback.',
+            'Geolocated game and community submissions with remote moderation.',
+            'Game coordinates and radii are identified as provisional.',
+          ],
+          stack: ['Astro', 'TypeScript', 'Leaflet', 'Three.js', 'Convex', 'OpenStreetMap', 'Turnstile', 'Resend', 'Playwright'],
+          links: [
+            { label: 'GitHub', href: 'https://github.com/ralph1985/palomares-del-campo' },
+            { label: 'Demo', href: 'https://palomares-del-campo.vercel.app' },
           ],
         },
         {
