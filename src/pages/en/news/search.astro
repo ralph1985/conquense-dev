@@ -9,6 +9,7 @@ const entries = (await getCollection('news')).filter((entry) => entry.data.lang 
 
 <BaseLayout
   lang="en"
+  robots="noindex,follow"
   title="Search technical news - Conquense Dev"
   description="Search the Conquense Dev technical news archive."
   alternateLinks={[{ lang: 'es', href: getNewsSearchPath('es') }, { lang: 'en', href: getNewsSearchPath('en') }]}

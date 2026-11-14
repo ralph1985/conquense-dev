@@ -25,6 +25,7 @@ const alternatePath = getNewsArchivePath('es', currentPage);
 
 <BaseLayout
   lang="en"
+  robots="noindex,follow"
   title={`Technical news, page ${currentPage} - Conquense Dev`}
   description="News and context on software engineering, architecture, applied AI, security and web performance."
   alternateLinks={[{ lang: 'es', href: alternatePath }, { lang: 'en', href: getNewsArchivePath('en', currentPage) }]}

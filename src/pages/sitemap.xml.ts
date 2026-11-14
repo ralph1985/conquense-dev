@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { getLocalNewsEntries, getNewsArchivePath, getNewsLocalArchivePath, getNewsPageCount } from '@/data/news';
+import { siteConfig } from '@/config/site';
+import { getLocalNewsEntries, getNewsArchivePath, getNewsLocalArchivePath } from '@/data/news';
 
 const routes = [
   '/',
@@ -20,20 +21,14 @@ const routes = [
 ];
 
 export const GET: APIRoute = async ({ site }) => {
-  const origin = site ?? new URL('https://conquense.dev');
+  const origin = site ?? new URL(siteConfig.canonical);
   const entries = await getCollection('news');
   const newsRoutes = entries.map((entry) => `${getNewsArchivePath(entry.data.lang, 1)}${entry.data.slug}/`);
-  const archiveRoutes = (['es', 'en'] as const).flatMap((lang) => {
-    const languageEntries = entries.filter((entry) => entry.data.lang === lang);
-    const totalPages = getNewsPageCount(languageEntries);
-    return Array.from({ length: totalPages }, (_, index) => getNewsArchivePath(lang, index + 1));
-  });
-  const localArchiveRoutes = (['es', 'en'] as const).flatMap((lang) => {
-    const languageEntries = getLocalNewsEntries(entries.filter((entry) => entry.data.lang === lang));
-    const totalPages = getNewsPageCount(languageEntries);
-    return Array.from({ length: totalPages }, (_, index) => getNewsLocalArchivePath(lang, index + 1));
-  });
-  const body = [...routes, ...newsRoutes, ...archiveRoutes, ...localArchiveRoutes].map((route) => `  <url><loc>${new URL(route, origin).toString()}</loc></url>`).join('\n');
+  const archiveRoutes = (['es', 'en'] as const).flatMap((lang) => [
+    getNewsArchivePath(lang, 1),
+    ...(getLocalNewsEntries(entries.filter((entry) => entry.data.lang === lang)).length > 0 ? [getNewsLocalArchivePath(lang, 1)] : []),
+  ]);
+  const body = [...routes, ...newsRoutes, ...archiveRoutes].map((route) => `  <url><loc>${new URL(route, origin).toString()}</loc></url>`).join('\n');
 
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>`, {
     headers: { 'Content-Type': 'application/xml; charset=utf-8' },
