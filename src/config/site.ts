@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Rafael García Prieto',
   title: {
-    es: 'Rafael García Prieto | Frontend sénior',
+    es: 'Rafael García Prieto | Ingeniero frontend sénior',
     en: 'Rafael García Prieto | Senior Frontend Engineer',
   },
   description: {
