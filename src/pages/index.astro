@@ -2,8 +2,30 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import HomePage from '@/components/HomePage.astro';
 import { routesByLanguage, uiCopy } from '@/data/i18n';
+import { siteConfig } from '@/config/site';
+
+const personId = `${siteConfig.canonical}#rafael-garcia-prieto`;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': personId,
+    name: siteConfig.name,
+    url: siteConfig.canonical,
+    jobTitle: 'Frontend sénior',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${siteConfig.canonical}#website`,
+    name: siteConfig.brand.name,
+    url: siteConfig.canonical,
+    inLanguage: ['es', 'en'],
+    about: { '@id': personId },
+  },
+];
 ---
 
-<BaseLayout lang="es" alternateLinks={[{ lang: 'es', href: routesByLanguage.es.home }, { lang: 'en', href: routesByLanguage.en.home }]}>
+<BaseLayout lang="es" structuredData={structuredData} alternateLinks={[{ lang: 'es', href: routesByLanguage.es.home }, { lang: 'en', href: routesByLanguage.en.home }]}>
   <HomePage lang="es" alternateLink={{ lang: 'en', href: routesByLanguage.en.home }} labels={uiCopy.es} />
 </BaseLayout>
