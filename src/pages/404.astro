@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  languageFromPath
+  title="Página no encontrada | Conquense Dev"
+  description="La página que buscas no está disponible. Vuelve al inicio o consulta los proyectos."
+  robots="noindex, nofollow"
+>
+  <main class="not-found-page">
+    <div class="not-found-page__content">
+      <p class="not-found-page__eyebrow">// ERROR 404</p>
+      <p class="not-found-page__code" aria-hidden="true">404</p>
+
+      <section data-404-copy="es">
+        <h1>No encontramos esa página</h1>
+        <p class="not-found-page__message">La dirección puede haber cambiado o ya no existir.</p>
+        <nav class="not-found-page__links" aria-label="Opciones de navegación">
+          <a class="not-found-page__link not-found-page__link--primary" href="/">Inicio</a>
+          <a class="not-found-page__link" href="/proyectos/">Proyectos</a>
+          <a class="not-found-page__back" href="/" data-404-back>Volver atrás</a>
+        </nav>
+      </section>
+
+      <section data-404-copy="en" hidden>
+        <h1>We couldn’t find that page</h1>
+        <p class="not-found-page__message">The address may have changed or may no longer exist.</p>
+        <nav class="not-found-page__links" aria-label="Navigation options">
+          <a class="not-found-page__link not-found-page__link--primary" href="/en/">Home</a>
+          <a class="not-found-page__link" href="/en/projects/">Projects</a>
+          <a class="not-found-page__back" href="/en/" data-404-back>Go back</a>
+        </nav>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  const language = window.location.pathname === '/en' || window.location.pathname.startsWith('/en/') ? 'en' : 'es';
+  document.documentElement.lang = language;
+  document.title = language === 'en' ? 'Page not found | Conquense Dev' : 'Página no encontrada | Conquense Dev';
+
+  document.querySelectorAll<HTMLElement>('[data-404-copy]').forEach((copy) => {
+    copy.hidden = copy.dataset['404Copy'] !== language;
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-footer-language]').forEach((footer) => {
+    footer.hidden = footer.dataset['footerLanguage'] !== language;
+  });
+
+  if (language === 'en') {
+    const backToTop = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+
+    if (backToTop) {
+      backToTop.setAttribute('aria-label', 'Back to top');
+      const label = backToTop.querySelector<HTMLElement>('span:last-child');
+      if (label) label.textContent = 'Back to top';
+    }
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-404-back]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+</script>
+
+<style>
+  .not-found-page {
+    @apply mx-auto flex min-h-[75svh] max-w-[1440px] items-center border-x border-ink/10 bg-paper/80 px-5 py-20 font-sans text-ink md:px-10;
+  }
+
+  .not-found-page__content {
+    @apply mx-auto w-full max-w-4xl;
+  }
+
+  .not-found-page__eyebrow {
+    @apply mb-6 font-mono text-[.68rem] font-bold uppercase tracking-[.2em] text-accent;
+  }
+
+  .not-found-page__code {
+    @apply m-0 font-mono text-[clamp(7rem,28vw,19rem)] font-bold leading-[.78] tracking-[-.1em] text-accent;
+  }
+
+  .not-found-page h1 {
+    @apply mt-10 max-w-3xl text-3xl font-semibold uppercase leading-[.98] tracking-[-.06em] md:mt-14 md:text-5xl lg:text-6xl;
+  }
+
+  .not-found-page__message {
+    @apply mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg;
+  }
+
+  .not-found-page__links {
+    @apply mt-8 flex flex-wrap items-center gap-x-6 gap-y-4;
+  }
+
+  .not-found-page__link {
+    @apply inline-flex min-h-11 items-center border border-ink/25 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[.08em] text-ink no-underline transition-colors hover:border-accent hover:text-accent;
+  }
+
+  .not-found-page__link--primary {
+    @apply border-accent bg-accent text-paper hover:border-warm hover:bg-warm hover:text-paper;
+  }
+
+  .not-found-page__back {
+    @apply inline-flex min-h-11 items-center font-mono text-xs font-bold uppercase tracking-[.08em] text-muted underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .not-found-page__link,
+    .not-found-page__back {
+      transition: none;
+    }
+  }
+</style>

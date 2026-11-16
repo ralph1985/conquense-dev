@@ -13,6 +13,7 @@ interface Props {
   alternateLinks?: AlternateLink[];
   robots?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  languageFromPath?: boolean;
 }
 
 const lang = Astro.props.lang ?? 'es';
@@ -22,8 +23,8 @@ const canonical = new URL(Astro.url.pathname, siteConfig.canonical).toString();
 const ogImage = new URL(siteConfig.ogImage, siteConfig.canonical).toString();
 const alternateLinks = Astro.props.alternateLinks ?? [];
 const structuredData = Astro.props.structuredData;
-const legalMeta = getLegalMeta(lang);
-const legalRoutes = routesByLanguage[lang];
+const languageFromPath = Astro.props.languageFromPath ?? false;
+const footerLanguages: Language[] = languageFromPath ? ['es', 'en'] : [lang];
 ---
 
 <!doctype html>
@@ -84,18 +85,29 @@ const legalRoutes = routesByLanguage[lang];
   <body>
     <slot />
     <footer class="site-footer">
-      <div class="site-footer__inner">
-        <p>
-          {legalMeta.footer.split('Rafael García Prieto')[0]}<span class="site-footer__owner">Rafael García Prieto</span>{legalMeta.footer.split('Rafael García Prieto')[1]}
-        </p>
-        <nav aria-label={legalMeta.legalLabel}>
-          <ul>
-            <li><a href={legalRoutes.legalNotice}>{lang === 'es' ? 'Aviso legal' : 'Legal notice'}</a></li>
-            <li><a href={legalRoutes.privacy}>{lang === 'es' ? 'Privacidad' : 'Privacy'}</a></li>
-            <li><a href={legalRoutes.cookies}>{lang === 'es' ? 'Cookies' : 'Cookies'}</a></li>
-          </ul>
-        </nav>
-      </div>
+      {footerLanguages.map((footerLang) => {
+        const footerMeta = getLegalMeta(footerLang);
+        const footerRoutes = routesByLanguage[footerLang];
+
+        return (
+          <div
+            class="site-footer__inner"
+            data-footer-language={languageFromPath ? footerLang : undefined}
+            hidden={languageFromPath && footerLang !== lang}
+          >
+            <p>
+              {footerMeta.footer.split('Rafael García Prieto')[0]}<span class="site-footer__owner">Rafael García Prieto</span>{footerMeta.footer.split('Rafael García Prieto')[1]}
+            </p>
+            <nav aria-label={footerMeta.legalLabel}>
+              <ul>
+                <li><a href={footerRoutes.legalNotice}>{footerLang === 'es' ? 'Aviso legal' : 'Legal notice'}</a></li>
+                <li><a href={footerRoutes.privacy}>{footerLang === 'es' ? 'Privacidad' : 'Privacy'}</a></li>
+                <li><a href={footerRoutes.cookies}>{footerLang === 'es' ? 'Cookies' : 'Cookies'}</a></li>
+              </ul>
+            </nav>
+          </div>
+        );
+      })}
     </footer>
     <BackToTop label={uiCopy[lang].backToTop} />
   </body>

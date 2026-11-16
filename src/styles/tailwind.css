@@ -168,6 +168,7 @@
   .home-contact__link--primary { @apply border-accent bg-accent text-paper hover:bg-transparent hover:text-accent; }
   .site-footer { @apply border-t border-ink/20 bg-surface/80 px-5 py-10 md:px-10; }
   .site-footer__inner { @apply mx-auto flex max-w-[1440px] flex-col gap-5 font-mono text-xs text-muted md:flex-row md:items-center md:justify-between; }
+  .site-footer__inner[hidden] { display: none; }
   .site-footer p { @apply m-0; }
   .site-footer__owner { @apply whitespace-nowrap; }
   .site-footer nav ul { @apply m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0; }
