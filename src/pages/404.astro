@@ -49,6 +49,16 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     footer.hidden = footer.dataset['footerLanguage'] !== language;
   });
 
+  if (language === 'en') {
+    const backToTop = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+
+    if (backToTop) {
+      backToTop.setAttribute('aria-label', 'Back to top');
+      const label = backToTop.querySelector<HTMLElement>('span:last-child');
+      if (label) label.textContent = 'Back to top';
+    }
+  }
+
   document.querySelectorAll<HTMLAnchorElement>('[data-404-back]').forEach((link) => {
     link.addEventListener('click', (event) => {
       if (window.history.length > 1) {
