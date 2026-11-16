@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
+  languageFromPath
   title="Página no encontrada | Conquense Dev"
   description="La página que buscas no está disponible. Vuelve al inicio o consulta los proyectos."
   robots="noindex, nofollow"
@@ -42,6 +43,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
   document.querySelectorAll<HTMLElement>('[data-404-copy]').forEach((copy) => {
     copy.hidden = copy.dataset['404Copy'] !== language;
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-footer-language]').forEach((footer) => {
+    footer.hidden = footer.dataset['footerLanguage'] !== language;
   });
 
   document.querySelectorAll<HTMLAnchorElement>('[data-404-back]').forEach((link) => {
