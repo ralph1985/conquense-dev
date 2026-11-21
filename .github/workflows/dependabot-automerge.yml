@@ -1,0 +1,113 @@
+name: Dependabot automerge
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review, edited]
+
+# Serialize evaluations of the same PR; required up-to-date checks protect main.
+concurrency:
+  group: dependabot-automerge-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  evaluate:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      # Only check out the trusted base revision; never check out or execute PR code.
+      - name: Checkout trusted base
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Build policy input from GitHub metadata
+        id: policy_input
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          DEPENDENCY_NAMES: ${{ steps.metadata.outputs.dependency-names }}
+          DEPENDENCY_GROUP: ${{ steps.metadata.outputs.dependency-group }}
+          PACKAGE_ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+          UPDATED_DEPENDENCIES: ${{ steps.metadata.outputs.updated-dependencies-json }}
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+            let updatedDependencies;
+            try {
+              updatedDependencies = JSON.parse(process.env.UPDATED_DEPENDENCIES || '');
+            } catch {
+              core.setFailed('Dependabot did not provide parseable per-dependency metadata.');
+              return;
+            }
+            const input = {
+              author: context.payload.pull_request.user.login,
+              baseRef: context.payload.pull_request.base.ref,
+              dependencyNames: process.env.DEPENDENCY_NAMES,
+              dependencyGroup: process.env.DEPENDENCY_GROUP,
+              packageEcosystem: process.env.PACKAGE_ECOSYSTEM,
+              updatedDependencies,
+              files: files.map(({ filename, patch }) => ({ filename, patch })),
+            };
+            core.setOutput('policy-input', JSON.stringify(input));
+
+      - name: Enforce policy for every dependency update
+        env:
+          AUTOMERGE_POLICY_INPUT: ${{ steps.policy_input.outputs.policy-input }}
+        run: node .github/scripts/dependabot-automerge-policy.mjs
+
+  enable-automerge:
+    needs: evaluate
+    if: >-
+      needs.evaluate.result == 'success' &&
+      github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 2
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable GitHub native auto-merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
+
+  disable-automerge-on-policy-failure:
+    needs: evaluate
+    if: >-
+      needs.evaluate.result == 'failure' &&
+      github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 2
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Disable auto-merge when a Dependabot PR fails policy
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          if gh pr view "$PR_URL" --json autoMergeRequest --jq '.autoMergeRequest != null' | grep -q true; then
+            gh pr merge --disable-auto "$PR_URL"
+          else
+            echo "No native auto-merge request to disable."
+          fi
