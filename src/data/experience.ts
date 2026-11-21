@@ -17,7 +17,7 @@ export const localizedExperience: Record<Language, DetailCopy & { items: Experie
       title: 'Experiencia profesional',
       subtitle: 'Frontend, mobile web, banca digital, producto y aplicaciones de gestión.',
       description:
-        'De los sistemas industriales al desarrollo frontend senior en banca móvil y productos de inversión.',
+        'De los sistemas industriales a mi trabajo actual como desarrollador frontend sénior en banca móvil y productos de inversión.',
       items: [
         {
           company: 'BBVA Technology',

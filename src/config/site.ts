@@ -1,11 +1,11 @@
 export const siteConfig = {
   name: 'Rafael García Prieto',
   title: {
-    es: 'Rafael García Prieto | Ingeniero frontend sénior',
+    es: 'Rafael García Prieto | Desarrollador frontend sénior',
     en: 'Rafael García Prieto | Senior Frontend Engineer',
   },
   description: {
-    es: 'Portfolio de Rafael García Prieto, frontend sénior especializado en arquitectura UI, banca móvil y productos web.',
+    es: 'Portfolio de Rafael García Prieto, desarrollador frontend sénior especializado en arquitectura UI, banca móvil y productos web.',
     en: 'Portfolio of Rafael García Prieto, a senior frontend engineer focused on UI architecture, mobile banking and web products.',
   },
   canonical: 'https://www.conquense.dev/',
