@@ -27,14 +27,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           context: 'Proyecto personal y familiar',
           role: 'Definición de producto, arquitectura frontend y desarrollo asistido por IA',
           summary:
-            'Jucart resuelve una necesidad doméstica concreta: sustituir la pizarra de la nevera por una lista de compra privada que se pueda usar también sin conexión en el supermercado. Definí el producto y su arquitectura frontend, ampliándolo por capas: Dexie e IndexedDB permiten el uso offline; Supabase comparte la lista entre dispositivos; y una bandeja de tickets permite a Codex extraer líneas y formar un histórico de precios. Así, la sincronización y el procesamiento de tickets se suman a la lista sin convertirlos en requisito para anotar la compra.',
+            'Jucart resuelve una necesidad doméstica concreta: sustituir la pizarra de la nevera por una lista de compra privada que se pueda usar también sin conexión en el supermercado. Definí el producto y su arquitectura frontend, ampliándolo por capas: Dexie e IndexedDB permiten el uso offline; Supabase comparte la lista entre dispositivos; y un modelo de IA procesa los tickets para extraer líneas y formar un histórico de precios. Así, la sincronización y el procesamiento de tickets se suman a la lista sin convertirlos en requisito para anotar la compra.',
           highlights: [
             'Lista privada pensada para sustituir la pizarra de la compra.',
             'Dexie e IndexedDB mantienen la lista disponible offline.',
             'Supabase permite compartirla entre dispositivos.',
-            'Codex extrae líneas de tickets para construir un histórico de precios.',
+            'Un modelo de IA extrae las líneas de los tickets para construir un histórico de precios.',
           ],
-          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
+          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Playwright'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/jucart' },
             { label: 'Demo', href: 'https://jucart-rosy.vercel.app' },
@@ -235,14 +235,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
           context: 'Personal and family project',
           role: 'Product definition, frontend architecture and AI-assisted development',
           summary:
-            'Jucart addresses a specific household need: replacing the fridge whiteboard with a private shopping list that also works offline at the supermarket. I defined the product and frontend architecture, extending it in layers: Dexie and IndexedDB support offline use; Supabase shares the list across devices; and a ticket inbox lets Codex extract line items and build price history. This adds synchronisation and ticket processing without making either a requirement for writing down a purchase.',
+            'Jucart addresses a specific household need: replacing the fridge whiteboard with a private shopping list that also works offline at the supermarket. I defined the product and frontend architecture, extending it in layers: Dexie and IndexedDB support offline use; Supabase shares the list across devices; and an AI model processes receipts to extract line items and build price history. This adds synchronisation and receipt processing without making either a requirement for writing down a purchase.',
           highlights: [
             'A private list designed to replace the household shopping whiteboard.',
             'Dexie and IndexedDB keep the list available offline.',
             'Supabase lets the list be shared across devices.',
-            'Codex extracts ticket line items to build price history.',
+            'An AI model extracts receipt line items to build price history.',
           ],
-          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
+          stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Playwright'],
           links: [
             { label: 'GitHub', href: 'https://github.com/ralph1985/jucart' },
             { label: 'Demo', href: 'https://jucart-rosy.vercel.app' },
