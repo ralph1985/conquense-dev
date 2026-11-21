@@ -46,7 +46,10 @@ const {
     <a class="detail-hero__back" href={backHref}>← {backLabel}</a>
   </header>
 
-  <section class:list={['detail-list', `detail-list--${variant}`]} aria-label={title}>
+  <section
+    class:list={['detail-list', variant === 'projects' ? 'detail-list--projects' : 'detail-list--experience']}
+    aria-label={title}
+  >
     {
       items.map((item) => (
         variant === 'projects' ? (
