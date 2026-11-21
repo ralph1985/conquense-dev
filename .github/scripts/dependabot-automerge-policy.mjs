@@ -1,49 +1,110 @@
-const sensitivePackages = new Set([
-  '@vercel/analytics',
-  'nodemailer',
-  'typescript',
+const updateTypes = new Set([
+  'version-update:semver-patch',
+  'version-update:semver-minor',
+  'version-update:semver-major',
 ]);
 
-const allowedFiles = new Set(['package.json', 'pnpm-lock.yaml']);
+const ecosystems = {
+  npm: new Set(['npm_and_yarn', 'npm']),
+  'github-actions': new Set(['github_actions', 'github-actions']),
+};
+
+const npmFiles = new Set(['package.json', 'pnpm-lock.yaml']);
+const actionReferenceChange = /^[+-]\s*uses:\s*([^\s]+)(?:\s+#.*)?$/;
+
+function parseUpdates(input) {
+  let updates = input.updatedDependencies;
+  if (typeof updates === 'string') {
+    try {
+      updates = JSON.parse(updates);
+    } catch {
+      return null;
+    }
+  }
+  return Array.isArray(updates) ? updates : null;
+}
+
+function namesMatch(inputNames, updates) {
+  if (typeof inputNames !== 'string' || !inputNames.trim()) return false;
+  const expected = inputNames.split(',').map((name) => name.trim()).sort();
+  const actual = updates.map((update) => update.dependencyName).sort();
+  return expected.length === actual.length && expected.every((name, index) => name === actual[index]);
+}
+
+function validActionWorkflowChanges(files, updates) {
+  const actionFile = (filename) => (
+    /^\.github\/workflows\/[^/]+\.ya?ml$/.test(filename)
+    || /^\.github\/actions\/.+\/action\.ya?ml$/.test(filename)
+    || /^action\.ya?ml$/.test(filename)
+  );
+  if (!files.every((file) => actionFile(file.filename))) return false;
+
+  const updateNames = new Set(updates.map((update) => update.dependencyName.toLowerCase()));
+  let changedReferences = 0;
+
+  for (const file of files) {
+    if (typeof file.patch !== 'string') return false;
+    for (const line of file.patch.split('\n')) {
+      if (!line.startsWith('+') && !line.startsWith('-')) continue;
+      if (line.startsWith('+++') || line.startsWith('---')) continue;
+      const match = line.match(actionReferenceChange);
+      if (!match) return false;
+      const reference = match[1];
+      const separator = reference.lastIndexOf('@');
+      if (separator < 1) return false;
+      const actionName = reference.slice(0, separator).toLowerCase();
+      if (!updateNames.has(actionName)) return false;
+      changedReferences += 1;
+    }
+  }
+
+  return changedReferences > 0;
+}
 
 export function evaluateDependabotAutomerge(input) {
   const deny = (reason) => ({ eligible: false, reason });
 
   if (input.author !== 'dependabot[bot]') return deny('PR author is not Dependabot');
-  if (input.packageEcosystem !== 'npm') return deny('Only npm dependency PRs are eligible');
-  if (input.dependencyGroup) return deny('Grouped dependency PRs require manual review');
+  if (input.baseRef !== 'main') return deny('Dependabot PRs must target main');
   if (!Array.isArray(input.files) || input.files.length === 0) return deny('Changed files are unavailable');
-  if (!input.files.every((file) => allowedFiles.has(file))) {
-    return deny('PR changes files outside package.json and pnpm-lock.yaml');
+
+  const ecosystemKind = Object.entries(ecosystems)
+    .find(([, aliases]) => aliases.has(input.packageEcosystem))?.[0];
+  if (!ecosystemKind) return deny('Unsupported Dependabot ecosystem');
+
+  const updates = parseUpdates(input);
+  if (!updates?.length || !namesMatch(input.dependencyNames, updates)) {
+    return deny('Dependabot update metadata is missing or inconsistent');
   }
 
-  const name = input.dependencyNames?.trim();
-  if (!name || name.includes(',')) return deny('Expected exactly one dependency');
-  if (sensitivePackages.has(name) || name.startsWith('@astrojs/') || name === 'astro') {
-    return deny(`Sensitive dependency requires manual review: ${name}`);
+  for (const update of updates) {
+    if (!update || !update.dependencyName || !updateTypes.has(update.updateType)) {
+      return deny('Every update must have a recognized patch, minor or major type');
+    }
+    if (!ecosystems[ecosystemKind].has(update.packageEcosystem)) {
+      return deny('Update ecosystem metadata is inconsistent');
+    }
+    if (update.targetBranch !== 'main') return deny('Every update must target main');
+    if (!['direct:production', 'direct:development', 'indirect'].includes(update.dependencyType)) {
+      return deny('Dependency type metadata is missing or unsupported');
+    }
+    if ((update.dependencyGroup ?? '') !== (input.dependencyGroup ?? '')) {
+      return deny('Dependency group metadata is inconsistent');
+    }
   }
 
-  const updateType = input.updateType;
-  if (
-    updateType === 'version-update:semver-patch'
-    && ['direct:production', 'direct:development'].includes(input.dependencyType)
-  ) {
-    return { eligible: true, reason: 'Patch update passed policy' };
-  }
-  if (
-    updateType === 'version-update:semver-minor'
-    && input.dependencyType === 'direct:development'
-  ) {
-    return { eligible: true, reason: 'Development minor update passed policy' };
-  }
-  if (updateType === 'version-update:semver-major') {
-    return deny('Major updates always require manual review');
-  }
-  if (updateType === 'version-update:semver-minor') {
-    return deny('Production or indirect minor updates require manual review');
+  if (ecosystemKind === 'npm') {
+    if (!input.files.every((file) => npmFiles.has(file.filename))) {
+      return deny('npm PRs may only change package.json and pnpm-lock.yaml');
+    }
+  } else if (!validActionWorkflowChanges(input.files, updates)) {
+    return deny('GitHub Actions PRs may only change matching uses references in workflow files');
   }
 
-  return deny('Missing or unsupported Dependabot update metadata');
+  return {
+    eligible: true,
+    reason: `All ${updates.length} ${updates.length === 1 ? 'update' : 'updates'} passed policy`,
+  };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
