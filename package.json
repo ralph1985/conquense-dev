@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "lint": "astro check",
     "test:news": "node --test scripts/news-worker-validation.test.mjs",
+    "test:dependabot-policy": "node --test .github/scripts/dependabot-automerge-policy.test.mjs",
     "news:worker": "node scripts/news-worker.mjs"
   },
   "dependencies": {

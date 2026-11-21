@@ -1,0 +1,75 @@
+name: Dependabot automerge
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+# One policy evaluation at a time; GitHub's native auto-merge handles the checks.
+concurrency:
+  group: dependabot-automerge-${{ github.event.pull_request.base.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  evaluate:
+    if: >-
+      github.event.pull_request.user.login == 'dependabot[bot]' &&
+      vars.DEPENDABOT_AUTOMERGE_ENABLED == 'true'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      # Only check out the trusted base revision; never check out or execute PR code.
+      - name: Checkout trusted base
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Build policy input from GitHub metadata
+        id: policy_input
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+        env:
+          DEPENDENCY_NAMES: ${{ steps.metadata.outputs.dependency-names }}
+          DEPENDENCY_TYPE: ${{ steps.metadata.outputs.dependency-type }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+          DEPENDENCY_GROUP: ${{ steps.metadata.outputs.dependency-group }}
+          PACKAGE_ECOSYSTEM: ${{ steps.metadata.outputs.package-ecosystem }}
+        with:
+          script: |
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              ...context.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+            const input = {
+              author: context.payload.pull_request.user.login,
+              packageEcosystem: process.env.PACKAGE_ECOSYSTEM,
+              dependencyNames: process.env.DEPENDENCY_NAMES,
+              dependencyType: process.env.DEPENDENCY_TYPE,
+              updateType: process.env.UPDATE_TYPE,
+              dependencyGroup: process.env.DEPENDENCY_GROUP,
+              files: files.map(({ filename }) => filename),
+            };
+            core.setOutput('policy-input', JSON.stringify(input));
+
+      - name: Enforce conservative policy
+        id: policy
+        env:
+          AUTOMERGE_POLICY_INPUT: ${{ steps.policy_input.outputs.policy-input }}
+        run: node .github/scripts/dependabot-automerge-policy.mjs
+
+      - name: Enable GitHub native auto-merge
+        if: steps.policy.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"
