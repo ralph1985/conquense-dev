@@ -126,7 +126,10 @@ const navItems = [
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
     menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
     });
     document.addEventListener('click', (event) => {
       if (toggle.getAttribute('aria-expanded') === 'true' && event.target instanceof Node && !menu.contains(event.target) && !toggle.contains(event.target)) {
