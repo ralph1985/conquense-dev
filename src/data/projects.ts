@@ -25,14 +25,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Jucart',
           context: 'Proyecto personal y familiar',
-          role: 'Producto, arquitectura frontend y desarrollo asistido por IA',
+          role: 'Definición de producto, arquitectura frontend y desarrollo asistido por IA',
           summary:
-            'Jucart empezó como una lista de compra privada para sustituir la pizarra de la nevera: añadir productos y tacharlos sin complicaciones. A partir de esa necesidad mínima creció por capas: funcionamiento offline para usarla en el supermercado, Supabase para compartirla entre dispositivos y una bandeja de tickets que Codex procesa para extraer líneas y construir histórico de precios. La herramienta mantiene una interfaz sencilla mientras añade automatización y un histórico de precios.',
+            'Jucart resuelve una necesidad doméstica concreta: sustituir la pizarra de la nevera por una lista de compra privada que se pueda usar también sin conexión en el supermercado. Definí el producto y su arquitectura frontend, ampliándolo por capas: Dexie e IndexedDB permiten el uso offline; Supabase comparte la lista entre dispositivos; y una bandeja de tickets permite a Codex extraer líneas y formar un histórico de precios. Así, la sincronización y el procesamiento de tickets se suman a la lista sin convertirlos en requisito para anotar la compra.',
           highlights: [
-            'Una necesidad doméstica convertida en producto.',
-            'Offline first con Dexie e IndexedDB.',
-            'Sincronización compartida con Supabase.',
-            'Tickets y precios procesados con Codex.',
+            'Lista privada pensada para sustituir la pizarra de la compra.',
+            'Dexie e IndexedDB mantienen la lista disponible offline.',
+            'Supabase permite compartirla entre dispositivos.',
+            'Codex extrae líneas de tickets para construir un histórico de precios.',
           ],
           stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
           links: [
@@ -43,14 +43,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Bingo Musical',
           context: 'Producto social en producción',
-          role: 'Producto, arquitectura full-stack y experiencia en tiempo real',
+          role: 'Definición de producto, arquitectura full-stack y flujo de partida en tiempo real',
           summary:
-            'Aplicación web móvil para organizar partidas presenciales de bingo musical. La persona anfitriona importa canciones desde texto, CSV o Spotify, comparte un código o QR y anuncia cada tema; los jugadores usan cartones digitales en el móvil. Convex mantiene el estado compartido y valida las marcas, la línea y el bingo. Spotify puede controlar la reproducción cuando se conecta una cuenta, aunque la música se reproduce fuera de la aplicación.',
+            'Bingo Musical organiza partidas presenciales en las que una persona pone canciones y cada jugador sigue su propio cartón. Definí el producto y la arquitectura de la partida: el anfitrión importa canciones desde texto, CSV o Spotify y comparte una sala mediante código o QR; los jugadores marcan cartones digitales en el móvil. Convex conserva el estado compartido y valida marcas, línea y bingo; los cartones deterministas de 3 × 4 mantienen una distribución reproducible. Spotify es una integración opcional para importar canciones y controlar la reproducción, que ocurre fuera de la aplicación.',
           highlights: [
-            'Experiencias diferenciadas para anfitrión y jugadores.',
-            'Sala compartida con código de seis caracteres y QR.',
-            'Cartones deterministas de 3 × 4 y estado autoritativo en Convex.',
-            'Integración opcional con Spotify para importar y anunciar canciones.',
+            'Flujos separados para quien organiza la partida y quienes juegan.',
+            'Código de seis caracteres o QR para entrar en la sala compartida.',
+            'Cartones deterministas de 3 × 4 y validación del estado en Convex.',
+            'Spotify opcional para importar canciones y controlar la reproducción externa.',
           ],
           stack: ['Next.js', 'React', 'TypeScript', 'Convex', 'Spotify API', 'Vitest', 'Playwright'],
           links: [
@@ -61,14 +61,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Palomares del Campo',
           context: 'Plataforma digital local y comunitaria',
-          role: 'Producto, arquitectura full-stack y desarrollo frontend',
+          role: 'Definición de producto, arquitectura full-stack y desarrollo frontend',
           summary:
-            'Sitio editorial y conjunto de experiencias interactivas para Palomares del Campo. Las noticias, los bandos y las rutas se generan como páginas estáticas; Leaflet y OpenStreetMap aportan mapas y recorridos GPX, y las escenas Three.js se cargan bajo demanda con alternativa. Convex proporciona estado remoto para un juego geolocalizado y para moderar propuestas de «Palomareños por el mundo», sin hacer depender el contenido editorial del backend.',
+            'Palomares del Campo reúne información local —noticias, bandos y rutas— con experiencias interactivas para la comunidad. Me encargué de definir el producto, la arquitectura full-stack y el frontend. El contenido editorial se genera como páginas estáticas para que no dependa de Convex; Leaflet y OpenStreetMap muestran mapas y recorridos GPX, mientras las escenas Three.js se cargan bajo demanda y cuentan con alternativa. Convex queda reservado al estado remoto del juego geolocalizado y a la moderación de propuestas de «Palomareños por el mundo».',
           highlights: [
-            'Contenido editorial estático, independiente de los servicios remotos.',
-            'Mapas con Leaflet, OpenStreetMap y rutas GPX.',
-            'Escenas Three.js opcionales con carga bajo demanda y fallback.',
-            'Juego geolocalizado y propuestas comunitarias con moderación remota.',
+            'Noticias, bandos y rutas publicados como contenido estático, independiente de Convex.',
+            'Mapas y recorridos GPX con Leaflet y OpenStreetMap.',
+            'Escenas Three.js con carga bajo demanda y alternativa.',
+            'Convex gestiona el estado del juego geolocalizado y la moderación de propuestas comunitarias.',
             'Coordenadas y radios del juego identificados como provisionales.',
           ],
           stack: ['Astro', 'TypeScript', 'Leaflet', 'Three.js', 'Convex', 'OpenStreetMap', 'Turnstile', 'Resend', 'Playwright'],
@@ -233,14 +233,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Jucart',
           context: 'Personal and family project',
-          role: 'Product, frontend architecture and AI-assisted development',
+          role: 'Product definition, frontend architecture and AI-assisted development',
           summary:
-            'Jucart started as a private shopping list to replace the whiteboard on the fridge: add products and cross them off without friction. From that small need it grew in layers: offline use for shopping, Supabase to share it across devices and a ticket inbox that Codex processes to extract lines and build price history. The tool keeps a simple interface while adding automation and price history.',
+            'Jucart addresses a specific household need: replacing the fridge whiteboard with a private shopping list that also works offline at the supermarket. I defined the product and frontend architecture, extending it in layers: Dexie and IndexedDB support offline use; Supabase shares the list across devices; and a ticket inbox lets Codex extract line items and build price history. This adds synchronisation and ticket processing without making either a requirement for writing down a purchase.',
           highlights: [
-            'A household need turned into a product.',
-            'Offline first with Dexie and IndexedDB.',
-            'Shared synchronisation with Supabase.',
-            'Tickets and prices processed with Codex.',
+            'A private list designed to replace the household shopping whiteboard.',
+            'Dexie and IndexedDB keep the list available offline.',
+            'Supabase lets the list be shared across devices.',
+            'Codex extracts ticket line items to build price history.',
           ],
           stack: ['React', 'TypeScript', 'Vite', 'SCSS Modules', 'Dexie', 'Supabase', 'PWA', 'Codex', 'Playwright'],
           links: [
@@ -251,14 +251,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Music Bingo',
           context: 'Social product in production',
-          role: 'Product, full-stack architecture and real-time experience',
+          role: 'Product definition, full-stack architecture and real-time game flow',
           summary:
-            'Mobile web app for running in-person music bingo games. Hosts import songs from text, CSV or Spotify, share a code or QR, and announce each track; players use digital cards on their phones. Convex holds shared game state and validates marks, lines and bingo claims. Spotify can control playback when an account is connected, while the music itself plays outside the app.',
+            'Music Bingo runs in-person games where one person plays songs and each player follows an individual card. I defined the product and game architecture: the host imports songs from text, CSV or Spotify and shares a room by code or QR; players mark digital cards on their phones. Convex holds shared game state and validates marks, lines and bingo claims; deterministic 3 × 4 cards keep card layouts reproducible. Spotify is optional for importing songs and controlling playback, which happens outside the app.',
           highlights: [
-            'Separate host and player experiences.',
-            'Shared room with a six-character code and QR.',
-            'Deterministic 3 × 4 cards and authoritative state in Convex.',
-            'Optional Spotify integration to import and announce songs.',
+            'Separate flows for the host and the players.',
+            'Join a shared room with a six-character code or QR.',
+            'Deterministic 3 × 4 cards and state validation in Convex.',
+            'Optional Spotify integration to import songs and control external playback.',
           ],
           stack: ['Next.js', 'React', 'TypeScript', 'Convex', 'Spotify API', 'Vitest', 'Playwright'],
           links: [
@@ -269,14 +269,14 @@ export const localizedProjects: Record<Language, DetailCopy & { items: ProjectHi
         {
           name: 'Palomares del Campo',
           context: 'Local and community digital platform',
-          role: 'Product, full-stack architecture and frontend development',
+          role: 'Product definition, full-stack architecture and frontend development',
           summary:
-            'Editorial website and interactive experiences for Palomares del Campo. News, municipal notices and routes are generated as static pages; Leaflet and OpenStreetMap provide maps and GPX routes, while Three.js scenes load on demand with a fallback. Convex provides remote state for a geolocated game and moderated “Palomareños por el mundo” submissions, without making editorial content depend on the backend.',
+            'Palomares del Campo brings local information—news, municipal notices and routes—together with interactive experiences for the community. I defined the product, full-stack architecture and frontend. Editorial content is generated as static pages so it does not depend on Convex; Leaflet and OpenStreetMap provide maps and GPX routes, while Three.js scenes load on demand with an alternative available. Convex is reserved for remote state in the geolocated game and moderation of “Palomareños por el mundo” submissions.',
           highlights: [
-            'Static editorial content, independent from remote services.',
-            'Maps with Leaflet, OpenStreetMap and GPX routes.',
-            'Optional Three.js scenes with on-demand loading and a fallback.',
-            'Geolocated game and community submissions with remote moderation.',
+            'News, notices and routes published as static content, independent from Convex.',
+            'Maps and GPX routes with Leaflet and OpenStreetMap.',
+            'Three.js scenes with on-demand loading and an alternative.',
+            'Convex handles game state and moderation of community submissions.',
             'Game coordinates and radii are identified as provisional.',
           ],
           stack: ['Astro', 'TypeScript', 'Leaflet', 'Three.js', 'Convex', 'OpenStreetMap', 'Turnstile', 'Resend', 'Playwright'],
