@@ -40,17 +40,17 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'inicio',
-      title: 'Escucho, entiendo y convierto necesidades en interfaces fáciles de usar.',
-      subtitle: 'Arquitectura UI, producto digital y calidad frontend para banca, mobile web y productos con lógica compleja.',
+      title: 'Ingeniero frontend especializado en arquitectura UI.',
+      subtitle: 'Experiencia en banca móvil, inversión y mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'Diseño y desarrollo interfaces web para banca móvil, inversión y aplicaciones de gestión, con foco en claridad técnica, rendimiento, mantenibilidad y experiencia de usuario. Mi experiencia se concentra en producto bancario, arquitectura UI, calidad frontend y aplicaciones web móviles.',
+        'Experiencia también en aplicaciones de gestión y productos con lógica de negocio compleja.',
       items: [
         'Banca móvil e inversión',
         'Arquitectura UI con Ember y Lit',
-        'Rendimiento y calidad frontend',
+        'Calidad y rendimiento frontend',
         'Coordinación técnica de producto',
       ],
       actions: [
@@ -62,12 +62,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'profile',
       slug: 'perfil',
       title: 'Qué resuelvo',
-      subtitle: 'Ordeno problemas de producto, diseño y frontend para convertirlos en interfaces claras y código que el equipo puede mantener.',
+      subtitle: 'Criterio técnico para aclarar decisiones entre producto, diseño y tecnología.',
       eyebrow: 'Propuesta de valor',
       theme: 'profile',
       accentColor: '#0f766e',
       content:
-        'Aporto experiencia frontend y criterio técnico para ordenar problemas de producto y llevarlos desde la definición hasta una solución que el equipo pueda mantener. Trabajo entre producto, diseño y tecnología para construir interfaces claras y arquitecturas explícitas, mientras ayudo al equipo a evolucionar el producto.',
+        'Hago explícitos los límites y las decisiones de implementación para que el equipo pueda evolucionar la solución con claridad.',
       items: ['Interfaces que se entienden', 'Arquitecturas que resisten', 'Equipos que avanzan'],
     },
     {
@@ -239,14 +239,14 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'home',
-      title: 'I listen, understand and turn needs into easy-to-use interfaces.',
-      subtitle: 'UI architecture, digital product and frontend quality for banking, mobile web and products with complex business logic.',
+      title: 'Frontend engineer specialising in UI architecture.',
+      subtitle: 'Experience in mobile banking, investment and mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
-        'I design and build web interfaces for mobile banking, investment products and management applications, with a focus on technical clarity, performance, maintainability and user experience. My experience focuses on banking products, UI architecture, frontend quality and mobile web applications.',
-      items: ['Mobile banking and investment', 'UI architecture with Ember and Lit', 'Frontend performance and quality', 'Technical product coordination'],
+        'Also experienced with management applications and products with complex business logic.',
+      items: ['Mobile banking and investment', 'UI architecture with Ember and Lit', 'Frontend quality and performance', 'Technical product coordination'],
       actions: [
         { label: 'View experience', href: routesByLanguage.en.experience },
         { label: 'View projects', href: routesByLanguage.en.projects },
@@ -256,12 +256,12 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'profile',
       slug: 'profile',
       title: 'What I solve',
-      subtitle: 'I bring product, design and frontend problems into focus, then turn them into clear interfaces and code the team can maintain.',
+      subtitle: 'Technical judgement to clarify decisions across product, design and technology.',
       eyebrow: 'Value proposition',
       theme: 'profile',
       accentColor: '#0f766e',
       content:
-        'I bring frontend experience and technical judgement to frame product problems and carry them from definition to a solution the team can maintain. I work across product, design and technology to build clear interfaces and explicit architectures, while helping teams evolve the product.',
+        'I make constraints and implementation decisions explicit so the team can evolve the solution with clarity.',
       items: ['Interfaces people understand', 'Architectures that hold up', 'Teams that keep moving'],
     },
     {
