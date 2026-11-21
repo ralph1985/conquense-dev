@@ -29,95 +29,122 @@ function npmCandidate(overrides = {}) {
   };
 }
 
+const actionUpdate = (overrides = {}) => ({
+  dependencyName: 'actions/checkout',
+  dependencyType: 'indirect',
+  updateType: 'version-update:semver-patch',
+  packageEcosystem: 'github_actions',
+  targetBranch: 'main',
+  dependencyGroup: '',
+  ...overrides,
+});
+
+function actionsCandidate(updates = [actionUpdate()]) {
+  const group = updates[0]?.dependencyGroup ?? '';
+  const patch = updates.flatMap(({ dependencyName }) => [
+    `-        uses: ${dependencyName}@old-sha`,
+    `+        uses: ${dependencyName}@new-sha`,
+  ]).join('\n');
+  return {
+    author: 'dependabot[bot]',
+    baseRef: 'main',
+    packageEcosystem: 'github_actions',
+    dependencyNames: updates.map(({ dependencyName }) => dependencyName).join(', '),
+    dependencyGroup: group,
+    updatedDependencies: updates,
+    files: [{ filename: '.github/workflows/ci.yml', patch }],
+  };
+}
+
 const accepted = (input) => assert.equal(evaluateDependabotAutomerge(input).eligible, true);
 const rejected = (input) => assert.equal(evaluateDependabotAutomerge(input).eligible, false);
 
-test('admite patch, minor y major en producción, desarrollo e indirectas', () => {
-  for (const updateType of [
-    'version-update:semver-patch',
-    'version-update:semver-minor',
-    'version-update:semver-major',
-  ]) {
+test('admite patch y minor en producción, desarrollo e indirectas de npm', () => {
+  for (const updateType of ['version-update:semver-patch', 'version-update:semver-minor']) {
     for (const dependencyType of ['direct:production', 'direct:development', 'indirect']) {
       accepted(npmCandidate({ updatedDependencies: [npmUpdate({ updateType, dependencyType })] }));
     }
   }
 });
 
-test('admite grupos si cada actualización tiene metadatos válidos, incluso con major', () => {
-  const dependencyGroup = 'all-dependencies';
-  accepted(npmCandidate({
-    dependencyGroup,
-    dependencyNames: 'astro, postcss',
-    updatedDependencies: [
-      npmUpdate({ dependencyName: 'astro', dependencyType: 'direct:development', updateType: 'version-update:semver-major', dependencyGroup }),
-      npmUpdate({ dependencyName: 'postcss', dependencyType: 'indirect', updateType: 'version-update:semver-patch', dependencyGroup }),
-    ],
-  }));
+test('rechaza cualquier major individual, también si es una actualización de seguridad', () => {
+  for (const dependencyType of ['direct:production', 'direct:development', 'indirect']) {
+    rejected(npmCandidate({ updatedDependencies: [npmUpdate({
+      dependencyType,
+      updateType: 'version-update:semver-major',
+      alertState: 'OPEN',
+      ghsaId: 'GHSA-test-test-test',
+      cvss: 10,
+    })] }));
+  }
 });
 
-test('admite actualizaciones de seguridad, incluidas las críticas, si los checks pasan', () => {
-  accepted(npmCandidate({ updatedDependencies: [npmUpdate({
+test('admite grupos patch/minor y bloquea el grupo entero si contiene un major', () => {
+  const dependencyGroup = 'all-dependencies';
+  const patch = npmUpdate({ dependencyName: 'postcss', dependencyGroup });
+  const minor = npmUpdate({
+    dependencyName: 'astro',
+    dependencyType: 'direct:production',
+    updateType: 'version-update:semver-minor',
+    dependencyGroup,
+  });
+  accepted(npmCandidate({ updatedDependencies: [patch, minor] }));
+
+  const major = npmUpdate({
+    dependencyName: 'typescript',
     updateType: 'version-update:semver-major',
     alertState: 'OPEN',
-    ghsaId: 'GHSA-test-test-test',
     cvss: 10,
-  })] }));
+    dependencyGroup,
+  });
+  rejected(npmCandidate({ updatedDependencies: [patch, major] }));
 });
 
-test('admite dependencias sensibles bajo la política de automatización ampliada', () => {
+test('admite patch y minor de GitHub Actions, también agrupadas', () => {
+  for (const updateType of ['version-update:semver-patch', 'version-update:semver-minor']) {
+    for (const dependencyType of ['direct:production', 'direct:development', 'indirect']) {
+      accepted(actionsCandidate([actionUpdate({ updateType, dependencyType })]));
+    }
+  }
+
+  const dependencyGroup = 'workflow-actions';
+  accepted(actionsCandidate([
+    actionUpdate({ dependencyGroup }),
+    actionUpdate({
+      dependencyName: 'actions/setup-node',
+      updateType: 'version-update:semver-minor',
+      dependencyGroup,
+    }),
+  ]));
+});
+
+test('rechaza majors de GitHub Actions, individuales o agrupadas con security metadata', () => {
+  rejected(actionsCandidate([actionUpdate({
+    updateType: 'version-update:semver-major',
+    alertState: 'OPEN',
+    cvss: 10,
+  })]));
+
+  const dependencyGroup = 'workflow-actions';
+  rejected(actionsCandidate([
+    actionUpdate({ dependencyGroup }),
+    actionUpdate({
+      dependencyName: 'actions/setup-node',
+      updateType: 'version-update:semver-major',
+      alertState: 'OPEN',
+      cvss: 10,
+      dependencyGroup,
+    }),
+  ]));
+});
+
+test('admite dependencias sensibles para patch/minor bajo la política ampliada', () => {
   accepted(npmCandidate({ updatedDependencies: [npmUpdate({ dependencyName: 'nodemailer' })] }));
 });
 
-test('admite actualizaciones de GitHub Actions limitadas a referencias uses del workflow', () => {
-  const input = {
-    author: 'dependabot[bot]',
-    baseRef: 'main',
-    packageEcosystem: 'github_actions',
-    dependencyNames: 'actions/checkout',
-    dependencyGroup: '',
-    updatedDependencies: [{
-      dependencyName: 'actions/checkout',
-      dependencyType: 'indirect',
-      updateType: 'version-update:semver-major',
-      packageEcosystem: 'github_actions',
-      targetBranch: 'main',
-      dependencyGroup: '',
-    }],
-    files: [{
-      filename: '.github/workflows/ci.yml',
-      patch: [
-        '@@ -1 +1 @@',
-        '-        uses: actions/checkout@old-sha # v5',
-        '+        uses: actions/checkout@new-sha # v6',
-      ].join('\n'),
-    }],
-  };
-  accepted(input);
-  accepted({ ...input, files: [{ ...input.files[0], filename: '.github/actions/release/action.yml' }] });
-});
-
 test('bloquea cambios de workflow ajenos a la actualización de Actions', () => {
-  const input = {
-    author: 'dependabot[bot]',
-    baseRef: 'main',
-    packageEcosystem: 'github_actions',
-    dependencyNames: 'actions/checkout',
-    dependencyGroup: '',
-    updatedDependencies: [{
-      dependencyName: 'actions/checkout',
-      dependencyType: 'direct:production',
-      updateType: 'version-update:semver-patch',
-      packageEcosystem: 'github_actions',
-      targetBranch: 'main',
-      dependencyGroup: '',
-    }],
-    files: [{
-      filename: '.github/workflows/ci.yml',
-      patch: '-        run: echo old\n+        run: echo changed',
-    }],
-  };
-  rejected(input);
+  const input = actionsCandidate();
+  rejected({ ...input, files: [{ ...input.files[0], patch: '-        run: echo old\n+        run: echo changed' }] });
   rejected({ ...input, files: [{ ...input.files[0], patch: '-        uses: actions/checkout@old\n+        uses: evil/action@new' }] });
 });
 
@@ -127,7 +154,7 @@ test('rechaza autor ajeno, rama destino incorrecta y archivos npm ajenos', () =>
   rejected(npmCandidate({ files: [{ filename: '.github/workflows/ci.yml', patch: '' }] }));
 });
 
-test('rechaza metadatos ausentes, desconocidos o inconsistentes en grupos', () => {
+test('rechaza metadata ausente, desconocida o inconsistente en grupos', () => {
   rejected(npmCandidate({ updatedDependencies: [] }));
   rejected(npmCandidate({ updatedDependencies: [npmUpdate({ updateType: 'unknown' })] }));
   rejected(npmCandidate({ updatedDependencies: [npmUpdate({ targetBranch: 'develop' })] }));

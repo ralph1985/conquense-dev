@@ -1,7 +1,6 @@
 const updateTypes = new Set([
   'version-update:semver-patch',
   'version-update:semver-minor',
-  'version-update:semver-major',
 ]);
 
 const ecosystems = {
@@ -79,7 +78,7 @@ export function evaluateDependabotAutomerge(input) {
 
   for (const update of updates) {
     if (!update || !update.dependencyName || !updateTypes.has(update.updateType)) {
-      return deny('Every update must have a recognized patch, minor or major type');
+      return deny('Only patch and minor updates are eligible; majors require manual review');
     }
     if (!ecosystems[ecosystemKind].has(update.packageEcosystem)) {
       return deny('Update ecosystem metadata is inconsistent');
