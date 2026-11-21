@@ -17,7 +17,7 @@
     "@vercel/analytics": "2.0.1"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.10",
+    "@astrojs/check": "0.9.12",
     "autoprefixer": "10.6.2",
     "astro": "7.4.12",
     "daisyui": "4.12.14",
