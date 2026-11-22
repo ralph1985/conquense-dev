@@ -40,8 +40,8 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'inicio',
-      title: 'Desarrollador frontend sénior especializado en arquitectura UI.',
-      subtitle: 'Experiencia en banca móvil, inversión y mobile web.',
+      title: 'Desarrollador frontend sénior con experiencia en banca móvil e inversión.',
+      subtitle: 'Banca móvil, inversión y mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
@@ -49,7 +49,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
         'Experiencia también en aplicaciones de gestión y productos con lógica de negocio compleja.',
       items: [
         'Banca móvil e inversión',
-        'Arquitectura UI con Ember y Lit',
+        'Frontend con Ember y Lit',
         'Calidad y rendimiento frontend',
         'Coordinación técnica de producto',
       ],
@@ -68,7 +68,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#0f766e',
       content:
         'Hago explícitos los límites y las decisiones de implementación para que el equipo pueda evolucionar la solución con claridad.',
-      items: ['Interfaces que se entienden', 'Arquitecturas que resisten', 'Equipos que avanzan'],
+      items: ['Interfaces que se entienden', 'Decisiones técnicas claras', 'Equipos que avanzan'],
     },
     {
       id: 'workflow',
@@ -239,14 +239,14 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'home',
-      title: 'Frontend engineer specialising in UI architecture.',
-      subtitle: 'Experience in mobile banking, investment and mobile web.',
+      title: 'Senior Frontend Engineer experienced in mobile banking and investment.',
+      subtitle: 'Mobile banking, investment and mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
         'Also experienced with management applications and products with complex business logic.',
-      items: ['Mobile banking and investment', 'UI architecture with Ember and Lit', 'Frontend quality and performance', 'Technical product coordination'],
+      items: ['Mobile banking and investment', 'Frontend with Ember and Lit', 'Frontend quality and performance', 'Technical product coordination'],
       actions: [
         { label: 'View experience', href: routesByLanguage.en.experience },
         { label: 'View projects', href: routesByLanguage.en.projects },
@@ -262,7 +262,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       accentColor: '#0f766e',
       content:
         'I make constraints and implementation decisions explicit so the team can evolve the solution with clarity.',
-      items: ['Interfaces people understand', 'Architectures that hold up', 'Teams that keep moving'],
+      items: ['Interfaces people understand', 'Clear technical decisions', 'Teams that keep moving'],
     },
     {
       id: 'workflow',
