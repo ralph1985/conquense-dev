@@ -40,7 +40,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
     {
       id: 'home',
       slug: 'inicio',
-      title: 'Ingeniero frontend especializado en arquitectura UI.',
+      title: 'Desarrollador frontend sénior especializado en arquitectura UI.',
       subtitle: 'Experiencia en banca móvil, inversión y mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
@@ -98,7 +98,7 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'experience',
       slug: 'experiencia',
       title: 'Experiencia',
-      subtitle: 'De prácticas en industria a frontend senior en banca móvil e inversión.',
+      subtitle: 'De prácticas en industria a desarrollador frontend sénior en banca móvil e inversión.',
       eyebrow: 'Trabajo',
       theme: 'experience',
       accentColor: '#334155',
