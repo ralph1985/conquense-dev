@@ -41,14 +41,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'home',
       slug: 'inicio',
       title: 'Desarrollador frontend sénior con experiencia en banca móvil e inversión.',
-      subtitle: 'Banca móvil, inversión y mobile web.',
+      subtitle: 'Experiencia en mobile web.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
         'Experiencia también en aplicaciones de gestión y productos con lógica de negocio compleja.',
       items: [
-        'Banca móvil e inversión',
         'Frontend con Ember y Lit',
         'Calidad y rendimiento frontend',
         'Coordinación técnica de producto',
@@ -240,13 +239,13 @@ export const localizedPortfolioSections: Record<Language, PortfolioSection[]> = 
       id: 'home',
       slug: 'home',
       title: 'Senior Frontend Engineer experienced in mobile banking and investment.',
-      subtitle: 'Mobile banking, investment and mobile web.',
+      subtitle: 'Mobile web experience.',
       eyebrow: 'Rafael García Prieto · Portfolio',
       theme: 'intro',
       accentColor: '#2563eb',
       content:
         'Also experienced with management applications and products with complex business logic.',
-      items: ['Mobile banking and investment', 'Frontend with Ember and Lit', 'Frontend quality and performance', 'Technical product coordination'],
+      items: ['Frontend with Ember and Lit', 'Frontend quality and performance', 'Technical product coordination'],
       actions: [
         { label: 'View experience', href: routesByLanguage.en.experience },
         { label: 'View projects', href: routesByLanguage.en.projects },
