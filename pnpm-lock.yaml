@@ -37,8 +37,8 @@ importers:
         specifier: 4.12.14
         version: 4.12.14(postcss@8.5.33)
       nodemailer:
-        specifier: 10.1.4
-        version: 10.1.4
+        specifier: 10.6.0
+        version: 10.6.0
       postcss:
         specifier: 8.5.33
         version: 8.5.33
@@ -1486,8 +1486,8 @@ packages:
     resolution: {integrity: sha512-zAPCKqMcnqs2nGy6nlkm7JduFseiBJy3EXHGLh+8pFR+TxGCBxxiEN21+UROU5CKwX/f4TlUcYjiM+vs/tsyxw==}
     engines: {node: '>=18'}
 
-  nodemailer@10.1.4:
-    resolution: {integrity: sha512-EsMnOR2oRv4LGnWvHgcVYkkQ4O2j8KO4WTw6l+PHR4sOXo8SAgIraxtEnGDmotjbhv0hDsu3IuDIFZm8iXwO4A==}
+  nodemailer@10.6.0:
+    resolution: {integrity: sha512-jWanL7D9GD3jvUDYKmoC5rWTiG8MnBgnN2yV68bgMKip1zUJhiSTyz7Eg+18y8sk5OvdVDzws5nZK5arSI4f5Q==}
     engines: {node: '>=20.0.0'}
 
   normalize-path@3.0.0:
@@ -3434,7 +3434,7 @@ snapshots:
 
   node-releases@2.0.64: {}
 
-  nodemailer@10.1.4: {}
+  nodemailer@10.6.0: {}
 
   normalize-path@3.0.0: {}
 
