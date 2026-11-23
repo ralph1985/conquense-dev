@@ -23,7 +23,7 @@
     "daisyui": "4.12.14",
     "nodemailer": "10.6.0",
     "postcss": "8.5.33",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.3.5",
     "typescript": "6.0.3"
   },
   "pnpm": {
